@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.System.Object
 {
-    public class StopRouteExt
+    public class StopRouteExt:StopRouteFuncs
     {
         private static StopRouteExt instance = null;
         public static StopRouteExt Instance
