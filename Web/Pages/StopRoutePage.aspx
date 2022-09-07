@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoutePage.aspx.cs" Inherits="Web.Pages.RoutePage" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StopRoutePage.aspx.cs" Inherits="Web.Pages.StopRoutePage" %>
 
 <!DOCTYPE html>
 
@@ -9,8 +9,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
+        <div>
         </div>
     </form>
 </body>
 </html>
-
