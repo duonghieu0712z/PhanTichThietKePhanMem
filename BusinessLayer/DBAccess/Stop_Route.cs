@@ -10,8 +10,8 @@
 namespace BusinessLayer.DBAccess
 {
     using System;
-    using System.Collections.Generic;
-    
+    using global::System.Collections.Generic;
+
     public partial class Stop_Route
     {
         public int StopRouteID { get; set; }

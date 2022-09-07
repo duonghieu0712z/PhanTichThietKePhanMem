@@ -9,8 +9,8 @@
 
 namespace BusinessLayer.DBAccess
 {
-    using System;
-    using System.Collections.Generic;
+    using global::System;
+    using global:: System.Collections.Generic;
     
     public partial class Route
     {
@@ -20,10 +20,10 @@ namespace BusinessLayer.DBAccess
         public int EndPositionID { get; set; }
         public string RouteName { get; set; }
         public int RouteAmount { get; set; }
-        public System.TimeSpan RouteTime { get; set; }
-        public System.DateTime StartTime { get; set; }
-        public System.DateTime EndTime { get; set; }
-        public System.DateTime ApplicableDate { get; set; }
-        public System.DateTime OperationDate { get; set; }
+        public TimeSpan RouteTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public DateTime ApplicableDate { get; set; }
+        public DateTime OperationDate { get; set; }
     }
 }
