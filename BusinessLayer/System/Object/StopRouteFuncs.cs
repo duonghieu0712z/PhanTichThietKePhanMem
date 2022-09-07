@@ -114,43 +114,43 @@ namespace BusinessLayer.System.Object
                 }
             }
         }
-        //public List<Stop_Route> Stop_Route_Find_KeyWord(string Keyword, int PageSize, int PageIndex, out int TotalRows)
-        //{
-        //    TotalRows = 0;
-        //    using (var db = GetContext())
-        //    {
-        //        if (!string.IsNullOrWhiteSpace(Keyword))
-        //        {
-        //            var obj = db.Stop_Route.FirstOrDefault(s => s.StopRouteID.ToString().CompareTo(Keyword) == 0);
-        //            if (obj != null)
-        //            {
-        //                List<Stop_Route> ls = new List<Stop_Route>();
-        //                ls.Add(obj);
-        //                TotalRows = 1;
-        //                return ls;
-        //            }
-        //            var list = db.Stop_Route.AsQueryable();
-        //            list = list.Where(s => s.StopRouteID.ToString().Contains(Keyword)
-        //            || s.Name.ToLower().Contains(Keyword)
-        //            );
-        //            if (list != null && list.Any())
-        //            {
-        //                TotalRows = list.Count();
-        //                return list.OrderByDescending(s => s.StopRouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            var list = db.Stop_Route.AsQueryable();
-        //            if (list != null && list.Any())
-        //            {
-        //                TotalRows = list.Count();
-        //                return list.OrderByDescending(s => s.StopRouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList();
-        //            }
-        //        }
-        //        return new List<Stop_Route>();
-        //    }
-        //}
+        public List<Stop_Route> Stop_Route_Find_KeyWord(string Keyword, int PageSize, int PageIndex, out int TotalRows)
+        {
+            TotalRows = 0;
+            using (var db = GetContext())
+            {
+                if (!string.IsNullOrWhiteSpace(Keyword))
+                {
+                    var obj = db.Stop_Route.FirstOrDefault(s => s.StopRouteID.ToString().CompareTo(Keyword) == 0);
+                    if (obj != null)
+                    {
+                        List<Stop_Route> ls = new List<Stop_Route>();
+                        ls.Add(obj);
+                        TotalRows = 1;
+                        return ls;
+                    }
+                    var list = db.Stop_Route.AsQueryable();
+                    list = list.Where(s => s.StopRouteID.ToString().Contains(Keyword)
+                    //|| s.Name.ToLower().Contains(Keyword)
+                    );
+                    if (list != null && list.Any())
+                    {
+                        TotalRows = list.Count();
+                        return list.OrderByDescending(s => s.StopRouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList();
+                    }
+                }
+                else
+                {
+                    var list = db.Stop_Route.AsQueryable();
+                    if (list != null && list.Any())
+                    {
+                        TotalRows = list.Count();
+                        return list.OrderByDescending(s => s.StopRouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList();
+                    }
+                }
+                return new List<Stop_Route>();
+            }
+        }
         public void Stop_Route_Import(List<Stop_Route> list)
         {
             using (var db = GetContext())
