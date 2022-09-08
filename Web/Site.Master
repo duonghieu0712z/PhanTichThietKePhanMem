@@ -56,7 +56,7 @@
                         <li><a runat="server" href="~/Pages/RoutePage.aspx">Lộ trình</a></li>
                         <li><a runat="server" href="~/Pages/StopRoutePage.aspx">Điểm dừng</a></li>
                         <li><a runat="server" href="~/Pages/ShowRouteOnMap.aspx">Bản đồ</a></li>
-                        <li><a runat="server" href="~/Pages/UISearchRoute.aspx">Tra cúu thông tin lộ trình</a></li>
+                        <li><a runat="server" href="~/Pages/UISearchRoute.aspx">Tra cứu thông tin lộ trình</a></li>
                         <li><a runat="server" href="~/Pages/UISearchStopRoute.aspx">Tra cứu thông tin điểm dừng</a></li>
                         <li><a runat="server" href="~/Contact">Liên hệ</a></li>
                     </ul>

@@ -4,12 +4,12 @@
  
       <div runat="server">
             <h2>Danh sách lộ trình: </h2><br />
-            <asp:GridView ID="GridViewRoute" runat="server"></asp:GridView>
+<asp:GridView ID="GridViewRoute" runat="server" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridViewRoute_SelectedIndexChanged"></asp:GridView>
         </div>
         <div runat="server" id="RouteContentForm">
             <asp:Label runat="server">ID Lộ trình (sửa, xóa):</asp:Label><br />
             <asp:TextBox runat="server" ID="RouteIDRoute" TextMode="SingleLine"></asp:TextBox>
-            <asp:Button runat="server" ID="ButtonDeleteRoute" Text="Xóa lộ trình"/>
+            <asp:Button runat="server" ID="ButtonDeleteRoute" Text="Xóa lộ trình" OnClick="ButtonDeleteRoute_Click" />
             <br />
             <asp:Label runat="server">ID Tuyến:</asp:Label><br />
             <asp:TextBox runat="server" ID="RouteIDBusRoute" TextMode="SingleLine"></asp:TextBox>
@@ -26,7 +26,8 @@
             <asp:Label runat="server">Số chuyến:</asp:Label><br />
             <asp:TextBox runat="server" ID="RoutesNumber" TextMode="SingleLine"></asp:TextBox>
             <br />
-            <asp:Label runat="server">Thời gian chuyến (trung chuyển - phút):</asp:Label> <br />
+            <asp:Label runat="server">Thời gian chuyến (trung chuyển - phút):</asp:Label>
+            <br />
             <asp:TextBox runat="server" ID="RoutesTime" TextMode="SingleLine"></asp:TextBox>
             <br />
             <asp:Label runat="server">Thời gian bắt đầu hoạt động:</asp:Label><br />
@@ -40,12 +41,13 @@
             <br />
             <asp:Label runat="server">Ngày hoạt động:</asp:Label><br />
             <asp:TextBox runat="server" ID="RouteOperation" TextMode="SingleLine"></asp:TextBox>
-            <br /><br />
-            <asp:Button runat="server" ID="ButtonAddRoute" Text="Thêm lộ trình" OnClick="ButtonAddRoute_Click"/>
-            <asp:Button runat="server" ID="ButtonUpdateRoute" Text="Sửa lộ trình"/>
             <br />
             <br />
-            <asp:TextBox runat="server" ID="TestPlace" TextMode="MultiLine" Rows = "20" Columns="40"></asp:TextBox>
+            <asp:Button runat="server" ID="ButtonAddRoute" Text="Thêm lộ trình" OnClick="ButtonAddRoute_Click" />
+            <asp:Button runat="server" ID="ButtonUpdateRoute" Text="Sửa lộ trình" OnClick="ButtonUpdateRoute_Click" />
+            <br />
+            <br />
+            <asp:TextBox runat="server" ID="TestPlace" TextMode="MultiLine" Rows="20" Columns="40"></asp:TextBox>
         </div>
 
 </asp:Content>

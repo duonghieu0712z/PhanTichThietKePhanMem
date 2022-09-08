@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace BusinessLayer.DBAccess
 {
-    using System;
-    using global::System.Collections.Generic;
-
     public partial class Stop_Route
     {
         public int StopRouteID { get; set; }
