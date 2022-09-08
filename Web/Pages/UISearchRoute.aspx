@@ -8,12 +8,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:TextBox runat="server" ID="UISearchRouteBusRouteName" TextMode="SingleLine" Text="Nhập tên tuyến..." Columns="40"></asp:TextBox>
+        <asp:TextBox runat="server" ID="UISearchRouteBusRouteName" TextMode="SingleLine" PlaceHolder="Nhập tên tuyến..." Columns="40"></asp:TextBox>
         <asp:Button runat="server" ID="ButtonSearchRouteByBusRouteName" Text="Tìm kiếm lộ trình"/>
         <br /><br />
-        <asp:TextBox runat="server" ID="UISearchRouteStartPoint" TextMode="SingleLine" Text="Nhập điểm bắt đầu..." Columns="40"></asp:TextBox>
+        <asp:TextBox runat="server" ID="UISearchRouteStartPoint" TextMode="SingleLine" PlaceHolder="Nhập điểm bắt đầu..." Columns="40"></asp:TextBox>
         <br />
-        <asp:TextBox runat="server" ID="UISearchRouteEndPoint" TextMode="SingleLine" Text="Nhập điểm kết thúc..." Columns="40"></asp:TextBox>
+        <asp:TextBox runat="server" ID="UISearchRouteEndPoint" TextMode="SingleLine" PlaceHolder="Nhập điểm kết thúc..." Columns="40"></asp:TextBox>
         <asp:Button runat="server" ID="ButtonSearchRouteByPoint" Text="Tìm kiếm lộ trình"/>
         <div runat="server">
             <h2>Danh sách kết quả lộ trình: </h2>

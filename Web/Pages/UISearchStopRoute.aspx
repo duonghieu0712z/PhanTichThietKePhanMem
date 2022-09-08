@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:TextBox runat="server" ID="UISearchStopRouteRouteName" TextMode="SingleLine" Text="Nhập tên lộ trình..." Columns="40"></asp:TextBox>
+        <asp:TextBox runat="server" ID="UISearchStopRouteRouteName" TextMode="SingleLine" PlaceHolder="Nhập tên lộ trình..." Columns="40"></asp:TextBox>
         <asp:Button runat="server" ID="ButtonSearchStopRouteByRouteName" Text="Tìm kiếm điểm dừng"/>
         <div runat="server">
             <h2>Danh sách kết quả điểm dừng thuộc lộ trình: </h2>
