@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessLayer.DBAccess;
+using BusinessLayer.Functions;
 
 namespace Web.Pages
 {
@@ -12,6 +13,8 @@ namespace Web.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.GridViewRoute.DataSource = HRFunctions.Instance.SelectAllRoute();
+            this.GridViewRoute.DataBind();
             if (!IsPostBack)
             {
                 RoutesNumber.Text = "Hello";
