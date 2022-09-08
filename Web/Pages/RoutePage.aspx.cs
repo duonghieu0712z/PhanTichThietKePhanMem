@@ -153,5 +153,13 @@ namespace Web.Pages
             Route route = GetRouteFromRow(GridViewRoute.SelectedIndex);
             SetRouteData(route);
         }
+
+        protected void ButtonUpdateRoute_Click(object sender, EventArgs e)
+        {
+            Route route = GetRoute();
+            HRFunctions.Instance.InsertNUpdateRoute(route);
+            onTestGetData();
+            Refresh();
+        }
     }
 }

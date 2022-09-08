@@ -51,7 +51,7 @@
             <br />
             <br />
             <asp:Button runat="server" ID="ButtonAddRoute" Text="Thêm lộ trình" OnClick="ButtonAddRoute_Click" />
-            <asp:Button runat="server" ID="ButtonUpdateRoute" Text="Sửa lộ trình" />
+            <asp:Button runat="server" ID="ButtonUpdateRoute" Text="Sửa lộ trình" OnClick="ButtonUpdateRoute_Click" />
             <br />
             <br />
             <asp:TextBox runat="server" ID="TestPlace" TextMode="MultiLine" Rows="20" Columns="40"></asp:TextBox>
