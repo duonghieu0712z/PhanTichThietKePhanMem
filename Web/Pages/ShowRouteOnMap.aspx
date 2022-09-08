@@ -1,8 +1,6 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShowRouteOnMap.aspx.cs" Inherits="Web.Pages.ShowRouteOnMap" %>
 
 <asp:Content ID="ShowOnMap" ContentPlaceHolderID="Head" runat="server">
- 
-
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false" type="text/javascript"></script>
     <script>  
@@ -24,11 +22,8 @@
 
     </script>
 </asp:Content>
-
-
     <asp:Content ID="route" ContentPlaceHolderID="MainContent" runat="server">
  
-    
         <div id="map_populate" style="width: 100%; height: 500px; border: 5px solid #5e5454;">
         </div>
     </asp:Content>
