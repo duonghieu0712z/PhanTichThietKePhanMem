@@ -134,6 +134,8 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\RoutePage.aspx" />
     <Content Include="Pages\StopRoutePage.aspx" />
+    <Content Include="Pages\UISearchRoute.aspx" />
+    <Content Include="Pages\UISearchStopRoute.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -209,6 +211,20 @@
     <Compile Include="Pages\StopRoutePage.aspx.designer.cs">
       <DependentUpon>StopRoutePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UISearchRoute.aspx.cs">
+      <DependentUpon>UISearchRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchRoute.aspx.designer.cs">
+      <DependentUpon>UISearchRoute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchStopRoute.aspx.cs">
+      <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchStopRoute.aspx.designer.cs">
+      <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -245,6 +261,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{19eb969e-4500-4e2c-a42e-bd34a88849bf}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
