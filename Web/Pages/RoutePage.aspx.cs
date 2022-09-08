@@ -83,5 +83,20 @@ namespace Web.Pages
             route.OperationDate = RouteOperation;
             return route;
         }
+
+        private void SetRouteData(Route r)
+        {
+            this.RouteIDRoute.Text = r.RouteID.ToString();
+            this.RouteIDBusRoute.Text = r.BusRoutesID.ToString();
+            this.RouteIDStartPoint.Text = r.StartPositionID.ToString();
+            this.RouteIDEndPoint.Text = r.EndPositionID.ToString();
+            this.RouteRouteName.Text = r.RouteName.ToString();
+            this.RoutesNumber.Text = r.RouteAmount.ToString();
+            this.RoutesTime.Text = r.RouteTime.ToString();
+            this.RouteStartActiveTime.Text = r.StartTime.ToString();
+            this.RouteFinishActiveTime.Text = r.EndTime.ToString();
+            this.RouteApplicable.Text = r.ApplicableDate.ToString();
+            this.RouteOperation.Text = r.OperationDate.ToString();
+        }
     }
 }

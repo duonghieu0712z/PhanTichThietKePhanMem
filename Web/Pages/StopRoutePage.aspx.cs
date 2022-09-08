@@ -34,19 +34,26 @@ namespace Web.Pages
             int StopRouteID = 0;
             int RouteID=0;
             int EndPositionID=0;
-            int Orther= 0;
+            int Order= 0;
                
             int.TryParse(this.StopRouteIDStopRoute.Text, out StopRouteID);
             int.TryParse(this.StopRouteIDRoute.Text, out RouteID);
             int.TryParse(this.StopRouteIDStoping.Text, out EndPositionID);
-            int.TryParse(this.StopRouteOrder.Text, out Orther);
+            int.TryParse(this.StopRouteOrder.Text, out Order);
 
             stopRoute.StopRouteID = StopRouteID;
             stopRoute.RouteID = RouteID;
             stopRoute.EndPositionID = EndPositionID;
-            stopRoute.Order = Orther;
+            stopRoute.Order = Order;
 
             return stopRoute;
+        }
+        private void SetStopRouteData(Stop_Route sr)
+        {
+            this.StopRouteIDStopRoute.Text = sr.StopRouteID.ToString();
+            this.StopRouteIDRoute.Text = sr.RouteID.ToString();
+            this.StopRouteIDStoping.Text = sr.EndPositionID.ToString();
+            this.StopRouteOrder.Text = sr.Order.ToString();
         }
     }
 }
