@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <div runat="server">
             <h2>Danh sách lộ trình - điểm dừng: </h2><br />
-            <asp:GridView ID="GridViewStopRoute" runat="server"></asp:GridView>
+            <asp:GridView ID="GridViewStopRoute" runat="server" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridViewStopRoute_SelectedIndexChanged"></asp:GridView>
         </div>
         <asp:Label runat="server">ID Lộ trình - điểm dừng (sửa, xóa):</asp:Label><br />
         <asp:TextBox runat="server" ID="StopRouteIDStopRoute" TextMode="SingleLine"></asp:TextBox>

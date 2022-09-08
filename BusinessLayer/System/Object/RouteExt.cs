@@ -18,6 +18,5 @@ namespace BusinessLayer.System.Object
                 return instance;
             }
         }
-
     }
 }

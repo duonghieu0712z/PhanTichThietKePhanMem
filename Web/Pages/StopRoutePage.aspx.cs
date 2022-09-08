@@ -55,5 +55,10 @@ namespace Web.Pages
             this.StopRouteIDStoping.Text = sr.EndPositionID.ToString();
             this.StopRouteOrder.Text = sr.Order.ToString();
         }
+
+        protected void GridViewStopRoute_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
