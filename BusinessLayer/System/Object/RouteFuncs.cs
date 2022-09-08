@@ -131,7 +131,7 @@ namespace BusinessLayer.System.Object
                     }
                     var list = db.Routes.AsQueryable();
                     list = list.Where(s => s.RouteID.ToString().Contains(Keyword)
-                    //|| s.Name.ToLower().Contains(Keyword)
+                    || s.RouteName.ToLower().Contains(Keyword)
                     );
                     if (list != null && list.Any())
                     {

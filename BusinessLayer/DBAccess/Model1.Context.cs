@@ -7,24 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
 namespace BusinessLayer.DBAccess
 {
-    using global::System.Data.Entity;
-    using global::System.Data.Entity.Infrastructure;
-    using System;
-    
     public partial class ROUTE_MANAGEMENTEntities : DbContext
     {
         public ROUTE_MANAGEMENTEntities()
             : base("name=ROUTE_MANAGEMENTEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Route> Routes { get; set; }
         public virtual DbSet<Stop_Route> Stop_Route { get; set; }
     }

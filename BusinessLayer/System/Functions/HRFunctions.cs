@@ -28,7 +28,7 @@ namespace BusinessLayer.Functions
         {
             return StopRouteExt.Instance.Stop_Route_Select_All();
         }
- 
+
         public int InsertNUpdateRoute(Route route)
         {
             return RouteExt.Instance.Route_InsertUpdate(route);
@@ -40,11 +40,11 @@ namespace BusinessLayer.Functions
 
         public void DeleteRoute(int id)
         {
-             RouteExt.Instance.Route_Delete(id);
+            RouteExt.Instance.Route_Delete(id);
         }
         public void DeleteStopRoute(int id)
         {
-             StopRouteExt.Instance.Stop_Route_Delete(id);
+            StopRouteExt.Instance.Stop_Route_Delete(id);
         }
 
 
