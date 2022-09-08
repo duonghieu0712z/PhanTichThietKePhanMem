@@ -11,7 +11,7 @@ namespace Web.Pages
 {
 
 
-    public partial class StopRoutePage
+    public partial class UISearchRoute
     {
 
         /// <summary>
@@ -24,84 +24,66 @@ namespace Web.Pages
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// GridViewStopRoute control.
+        /// UISearchRouteBusRouteName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewStopRoute;
+        protected global::System.Web.UI.WebControls.TextBox UISearchRouteBusRouteName;
 
         /// <summary>
-        /// StopRouteIDStopRoute control.
+        /// ButtonSearchRouteByBusRouteName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StopRouteIDStopRoute;
+        protected global::System.Web.UI.WebControls.Button ButtonSearchRouteByBusRouteName;
 
         /// <summary>
-        /// ButtonDeleteStopRoute control.
+        /// UISearchRouteStartPoint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonDeleteStopRoute;
+        protected global::System.Web.UI.WebControls.TextBox UISearchRouteStartPoint;
 
         /// <summary>
-        /// StopRouteIDRoute control.
+        /// UISearchRouteEndPoint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StopRouteIDRoute;
+        protected global::System.Web.UI.WebControls.TextBox UISearchRouteEndPoint;
 
         /// <summary>
-        /// StopRouteIDStoping control.
+        /// ButtonSearchRouteByPoint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StopRouteIDStoping;
+        protected global::System.Web.UI.WebControls.Button ButtonSearchRouteByPoint;
 
         /// <summary>
-        /// StopRouteOrder control.
+        /// GridViewUISearchRouteListRoute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StopRouteOrder;
+        protected global::System.Web.UI.WebControls.GridView GridViewUISearchRouteListRoute;
 
         /// <summary>
-        /// ButtonAddStopRoute control.
+        /// GridViewUISearchRouteRouteInfomation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAddStopRoute;
-
-        /// <summary>
-        /// ButtonUpdateStopRoute control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonUpdateStopRoute;
-
-        /// <summary>
-        /// TestPlace control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TestPlace;
+        protected global::System.Web.UI.WebControls.GridView GridViewUISearchRouteRouteInfomation;
     }
 }

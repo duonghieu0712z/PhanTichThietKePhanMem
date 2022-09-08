@@ -134,6 +134,8 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\RoutePage.aspx" />
     <Content Include="Pages\StopRoutePage.aspx" />
+    <Content Include="Pages\UISearchRoute.aspx" />
+    <Content Include="Pages\UISearchStopRoute.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -208,6 +210,20 @@
     </Compile>
     <Compile Include="Pages\StopRoutePage.aspx.designer.cs">
       <DependentUpon>StopRoutePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchRoute.aspx.cs">
+      <DependentUpon>UISearchRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchRoute.aspx.designer.cs">
+      <DependentUpon>UISearchRoute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchStopRoute.aspx.cs">
+      <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchStopRoute.aspx.designer.cs">
+      <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
