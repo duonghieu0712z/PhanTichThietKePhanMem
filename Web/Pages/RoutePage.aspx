@@ -8,7 +8,7 @@
         </div>
         <div runat="server" id="RouteContentForm">
             <asp:Label runat="server">ID Lộ trình (sửa, xóa):</asp:Label><br />
-            <asp:TextBox runat="server" ID="RouteIDRoute" TextMode="SingleLine"></asp:TextBox>
+            <asp:TextBox runat="server" ID="RouteIDRoute" TextMode="SingleLine" ReadOnly="true"></asp:TextBox>
             <asp:Button runat="server" ID="ButtonDeleteRoute" Text="Xóa lộ trình" OnClick="ButtonDeleteRoute_Click" />
             <br />
             <asp:Label runat="server">ID Tuyến:</asp:Label><br />
