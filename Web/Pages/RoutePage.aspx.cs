@@ -12,6 +12,7 @@ namespace Web.Pages
             {
                 Refresh();
             }
+            Page.Title = "Quản lý lộ trình";
         }
 
         protected void ButtonAddRoute_Click(object sender, EventArgs e)

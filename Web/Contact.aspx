@@ -1,17 +1,13 @@
 ﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Web.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your contact page.</h3>
+    <h2>Nhóm thực hiện </h2>
+    <h3>Nhóm 4</h3>
     <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
-
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        <strong>Nhữu Văn Hữu: </strong>   <a href="mailto:1910127@dlu.edu.vn">1910127@dlu.edu.vn</a>
+        <br />
+        <strong>Cao Dương Sơn Hiếu: </strong> <a href="mailto:1914745@dlu.edu.vn">1914745@dlu.edu.vn</a>
+        <br />
+         <strong>Nguyễn Hữu Đức Thanh: </strong> <a href="mailto:1911205@dlu.edu.vn">@dlu.edu.vn</a>
     </address>
 </asp:Content>

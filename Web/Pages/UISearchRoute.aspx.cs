@@ -11,7 +11,7 @@ namespace Web.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Page.Title = "Tra cứu thông tin lộ trình";
         }
     }
 }

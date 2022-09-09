@@ -133,11 +133,13 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\RoutePage.aspx" />
+    <Content Include="Pages\ShowRouteOnMap.aspx" />
     <Content Include="Pages\StopRoutePage.aspx" />
     <Content Include="Pages\UISearchRoute.aspx" />
     <Content Include="Pages\UISearchStopRoute.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\GoogleAPIScript.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -203,6 +205,13 @@
     </Compile>
     <Compile Include="Pages\RoutePage.aspx.designer.cs">
       <DependentUpon>RoutePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShowRouteOnMap.aspx.cs">
+      <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ShowRouteOnMap.aspx.designer.cs">
+      <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\StopRoutePage.aspx.cs">
       <DependentUpon>StopRoutePage.aspx</DependentUpon>
