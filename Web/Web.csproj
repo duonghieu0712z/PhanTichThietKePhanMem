@@ -273,7 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
-      <Project>{19eb969e-4500-4e2c-a42e-bd34a88849bf}</Project>
+      <Project>{49e41d1a-799d-467a-affb-ca4c6abc2056}</Project>
       <Name>BusinessLayer</Name>
     </ProjectReference>
   </ItemGroup>

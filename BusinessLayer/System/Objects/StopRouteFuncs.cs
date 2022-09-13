@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.System.Object
+namespace BusinessLayer
 {
     public class StopRouteFuncs
     {

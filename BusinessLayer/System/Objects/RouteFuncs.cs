@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.DBAccess;
 
-namespace BusinessLayer.System.Object
+namespace BusinessLayer
 {
     public class RouteFuncs
     {
@@ -174,4 +174,3 @@ namespace BusinessLayer.System.Object
 
     }
 }
-

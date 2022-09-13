@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.System.Object
+namespace BusinessLayer
 {
-    public class RouteExt: RouteFuncs
+    public class StopRouteExt : StopRouteFuncs
     {
-        private static RouteExt instance = null;
-        public static RouteExt Instance
+        private static StopRouteExt instance = null;
+        public static StopRouteExt Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new RouteExt();
+                    instance = new StopRouteExt();
                 return instance;
             }
         }
