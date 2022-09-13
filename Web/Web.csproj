@@ -137,7 +137,6 @@
     <Content Include="Pages\StopRoutePage.aspx" />
     <Content Include="Pages\UISearchRoute.aspx" />
     <Content Include="Pages\UISearchStopRoute.aspx" />
-    <Content Include="Pages\WebForm1.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\GoogleAPIScript.js" />
