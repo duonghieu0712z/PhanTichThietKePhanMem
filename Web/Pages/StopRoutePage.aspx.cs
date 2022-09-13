@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessLayer.DBAccess;
+using BusinessLayer.Functions;
 
 namespace Web.Pages
 {
@@ -12,12 +14,44 @@ namespace Web.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.Title = "Quản lý lộ trình - điểm dừng";
+            if (!IsPostBack)
+            {
+                Refresh();
+            }
+            //Page.Title = "Quản lý lộ trình - điểm dừng";
+        }
+        private void Refresh()
+        {
+            GridViewStopRoute.DataSource = HRFunctions.Instance.SelectAllStopRoute();
+            GridViewStopRoute.DataBind();
+        }
+        private void ClearText()
+        {
+            this.StopRouteIDStopRoute.Text = String.Empty;
+            this.StopRouteIDRoute.Text = String.Empty;
+            this.StopRouteIDStoping.Text = String.Empty;
+            this.StopRouteOrder.Text = String.Empty;
+        }
+        private Stop_Route GetStopRouteFromRow(int index)
+        {
+            var row = GridViewStopRoute.Rows[index];
+            //TestPlace.Text += DateTime.Parse(row.Cells[8].Text);
+            return new Stop_Route()
+            {
+                StopRouteID = int.Parse(row.Cells[1].Text),
+                RouteID = int.Parse(row.Cells[2].Text),
+                EndPositionID = int.Parse(row.Cells[3].Text),
+                Order = int.Parse(row.Cells[4].Text),
+            };
         }
 
         protected void ButtonAddStopRoute_Click(object sender, EventArgs e)
         {
+            Stop_Route sr = GetStopRoute();
+            HRFunctions.Instance.InsertNUpdateStopRoute(sr);
             onTestGetStopRoute();
+            Refresh();
+            ClearText();
         }
         private void onTestGetStopRoute()
         {
@@ -58,7 +92,24 @@ namespace Web.Pages
 
         protected void GridViewStopRoute_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Stop_Route sr = GetStopRouteFromRow(GridViewStopRoute.SelectedIndex);
+            SetStopRouteData(sr);
+        }
 
+        protected void ButtonDeleteStopRoute_Click(object sender, EventArgs e)
+        {
+            int.TryParse(this.StopRouteIDStopRoute.Text, out var id);
+            HRFunctions.Instance.DeleteStopRoute(id);
+            Refresh();
+            ClearText();
+        }
+
+        protected void ButtonUpdateStopRoute_Click(object sender, EventArgs e)
+        {
+            Stop_Route sr = GetStopRoute();
+            HRFunctions.Instance.InsertNUpdateStopRoute(sr);
+            onTestGetStopRoute();
+            Refresh();
         }
     }
 }
