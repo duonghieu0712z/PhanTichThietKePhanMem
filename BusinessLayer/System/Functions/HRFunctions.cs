@@ -46,8 +46,5 @@ namespace BusinessLayer.Functions
         {
             StopRouteExt.Instance.Stop_Route_Delete(id);
         }
-
-
-
     }
 }
