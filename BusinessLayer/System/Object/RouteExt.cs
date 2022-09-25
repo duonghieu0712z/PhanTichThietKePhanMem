@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLayer.System.Object
+﻿namespace BusinessLayer.System.Object
 {
-    public class RouteExt: RouteFuncs
+    public class RouteExt : RouteFuncs
     {
         private static RouteExt instance = null;
         public static RouteExt Instance
