@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                     <h2>Danh sách lộ trình: </h2>
                     <div runat="server" class="overflow-auto" style="margin-top: 24px">
-                        <asp:GridView style="width: 1800px" ID="GridViewRoute" CssClass="table table-bordered table-striped" runat="server" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridViewRoute_SelectedIndexChanged"></asp:GridView>
+                        <asp:GridView Style="width: 1800px" ID="GridViewRoute" CssClass="table table-bordered table-striped" runat="server" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridViewRoute_SelectedIndexChanged"></asp:GridView>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -27,7 +27,7 @@
                                     <small class="form-text text-muted">Xác nhận lộ trình nào được cập nhật hay xóa, tăng tự động khi thêm.</small>
                                 </div>
                                 <div class="col-sm-2">
-                                    <asp:Button Text="Xóa" runat="server" style="width: 100%" ID="btnDelete" CssClass="btn btn-primary" OnClick="ButtonDeleteRoute_Click" />
+                                    <asp:Button Text="Xóa" runat="server" Style="width: 100%" ID="btnDelete" CssClass="btn btn-primary" OnClick="ButtonDeleteRoute_Click" />
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Thời gian chuyến</label>
-                                    <asp:TextBox type="number" class="form-control" placeholder="0" min="1" max="100" runat="server" id="RouteTime" />
+                                    <asp:TextBox type="number" class="form-control" placeholder="0" min="1" max="100" runat="server" ID="RouteTime" />
                                     <small class="form-text text-muted">Số phút hoàn thành một chuyến.</small>
                                 </div>
                             </div>
@@ -118,10 +118,10 @@
 
                         <div class="form-group row mt-3">
                             <div class="col-sm-4">
-                                <asp:Button runat="server" Text="Cập nhật" CssClass="btn btn-primary" style="width: 100%" OnClick="ButtonUpdateRoute_Click" />
+                                <asp:Button runat="server" Text="Cập nhật" CssClass="btn btn-primary" Style="width: 100%" OnClick="ButtonUpdateRoute_Click" />
                             </div>
                             <div class="col-sm-3">
-                                <asp:Button runat="server" Text="Thêm" CssClass="btn btn-primary" style="width: 100%" OnClick="ButtonAddRoute_Click" />
+                                <asp:Button runat="server" Text="Thêm" CssClass="btn btn-primary" Style="width: 100%" OnClick="ButtonAddRoute_Click" />
                             </div>
                         </div>
 
@@ -135,5 +135,3 @@
     </div>
 </body>
 </html>
-
-
