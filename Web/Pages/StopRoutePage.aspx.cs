@@ -2,6 +2,7 @@
 using BusinessLayer.Functions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Web.Pages
 {
@@ -19,7 +20,8 @@ namespace Web.Pages
         }
         private void Refresh()
         {
-            GridViewStopRoute.DataSource = HRFunctions.Instance.SelectAllStopRoute();
+            //GridViewStopRoute.DataSource = HRFunctions.Instance.SelectAllStopRoute();
+            GridViewStopRoute.DataSource = HRFunctions.Instance.GetAllStopRouteInfo();
             GridViewStopRoute.DataBind();
             stop_Routes = HRFunctions.Instance.SelectAllStopRoute();
             BindingDLRouteID();
@@ -59,6 +61,7 @@ namespace Web.Pages
         private Stop_Route GetStopRouteFromRow(int index)
         {
             var row = GridViewStopRoute.Rows[index];
+            //return HRFunctions.Instance.Stop_Route_Select_ID(int.Parse(row.Cells[1].Text));
             return new Stop_Route()
             {
                 StopRouteID = int.Parse(row.Cells[1].Text),

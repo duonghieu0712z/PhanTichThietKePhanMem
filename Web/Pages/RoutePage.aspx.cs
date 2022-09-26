@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.DBAccess;
 using BusinessLayer.Functions;
 using System;
+using System.Data.Entity;
 
 namespace Web.Pages
 {
@@ -25,12 +26,13 @@ namespace Web.Pages
             {
                 ClearText();
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
         }
 
         private void Refresh()
         {
-            GridViewRoute.DataSource = HRFunctions.Instance.SelectAllRoute();
+            //GridViewRoute.DataSource = HRFunctions.Instance.SelectAllRoute();
+            GridViewRoute.DataSource = HRFunctions.Instance.GetAllRouteInfo();
             GridViewRoute.DataBind();
             BindingDLBusRoutes();
             BindingDLStartPosition();
