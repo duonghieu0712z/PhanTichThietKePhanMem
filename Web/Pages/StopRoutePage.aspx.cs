@@ -8,6 +8,7 @@ namespace Web.Pages
     public partial class StopRoutePage : System.Web.UI.Page
     {
         public List<Stop_Route> stop_Routes = new List<Stop_Route>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -21,14 +22,32 @@ namespace Web.Pages
             GridViewStopRoute.DataSource = HRFunctions.Instance.SelectAllStopRoute();
             GridViewStopRoute.DataBind();
             stop_Routes = HRFunctions.Instance.SelectAllStopRoute();
+            BindingDLRouteID();
+            BindingDLEndPositionID();
+        }
+
+        private void BindingDLRouteID()
+        {
+            this.dlRouteID.DataSource = HRFunctions.Instance.SelectAllStopRoute();
+            this.dlRouteID.DataValueField = "RouteID";
+            this.dlRouteID.DataTextField = "RouteID";
+            this.dlRouteID.DataBind();
+        }
+
+        private void BindingDLEndPositionID()
+        {
+            this.dlEndPositionID.DataSource = HRFunctions.Instance.SelectAllStopRoute();
+            this.dlEndPositionID.DataValueField = "EndPositionID";
+            this.dlEndPositionID.DataTextField = "EndPositionID";
+            this.dlEndPositionID.DataBind();
         }
 
         private void ClearText()
         {
-            this.StopRouteIDStopRoute.Text = String.Empty;
-            this.StopRouteIDRoute.Text = String.Empty;
-            //this.StopRouteIDStoping.Text = String.Empty;
-            this.StopRouteOrder.Text = String.Empty;
+            this.IDStopRoute.Text = String.Empty;
+            this.dlRouteID.Text = String.Empty;
+            this.dlEndPositionID.Text = String.Empty;
+            this.Order.Text = String.Empty;
         }
         private Stop_Route GetStopRouteFromRow(int index)
         {
@@ -57,10 +76,10 @@ namespace Web.Pages
             int EndPositionID = 0;
             int Order = 0;
 
-            int.TryParse(this.StopRouteIDStopRoute.Text, out StopRouteID);
-            int.TryParse(this.StopRouteIDRoute.Text, out RouteID);
-            //int.TryParse(this.StopRouteIDStoping.Text, out EndPositionID);
-            int.TryParse(this.StopRouteOrder.Text, out Order);
+            StopRouteID = int.Parse(this.IDStopRoute.Text);
+            RouteID = int.Parse(this.dlRouteID.SelectedValue);
+            EndPositionID = int.Parse(this.dlEndPositionID.SelectedValue);
+            Order = int.Parse(this.Order.Text);
 
             stopRoute.StopRouteID = StopRouteID;
             stopRoute.RouteID = RouteID;
@@ -71,10 +90,10 @@ namespace Web.Pages
         }
         private void SetStopRouteData(Stop_Route sr)
         {
-            this.StopRouteIDStopRoute.Text = sr.StopRouteID.ToString();
-            this.StopRouteIDRoute.Text = sr.RouteID.ToString();
-            //this.StopRouteIDStoping.Text = sr.EndPositionID.ToString();
-            this.StopRouteOrder.Text = sr.Order.ToString();
+            this.IDStopRoute.Text = sr.StopRouteID.ToString();
+            this.dlRouteID.SelectedValue = sr.RouteID.ToString();
+            this.dlEndPositionID.SelectedValue = sr.EndPositionID.ToString();
+            this.Order.Text = sr.Order.ToString();
         }
 
         protected void GridViewStopRoute_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,7 +104,7 @@ namespace Web.Pages
 
         protected void ButtonDeleteStopRoute_Click(object sender, EventArgs e)
         {
-            int.TryParse(this.StopRouteIDStopRoute.Text, out var id);
+            int.TryParse(this.IDStopRoute.Text, out var id);
             HRFunctions.Instance.DeleteStopRoute(id);
             Refresh();
             ClearText();

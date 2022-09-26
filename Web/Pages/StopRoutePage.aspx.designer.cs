@@ -33,57 +33,66 @@ namespace Web.Pages
         protected global::System.Web.UI.WebControls.GridView GridViewStopRoute;
 
         /// <summary>
-        /// StopRouteIDStopRoute control.
+        /// IDStopRoute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StopRouteIDStopRoute;
+        protected global::System.Web.UI.WebControls.TextBox IDStopRoute;
 
         /// <summary>
-        /// dlPageNumber control.
+        /// btnDeleteStopRoute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dlPageNumber;
+        protected global::System.Web.UI.WebControls.Button btnDeleteStopRoute;
 
         /// <summary>
-        /// StopRouteIDRoute control.
+        /// dlRouteID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StopRouteIDRoute;
+        protected global::System.Web.UI.WebControls.DropDownList dlRouteID;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// dlEndPositionID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList dlEndPositionID;
 
         /// <summary>
-        /// TextBox1 control.
+        /// Order control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox Order;
 
         /// <summary>
-        /// StopRouteOrder control.
+        /// btnUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StopRouteOrder;
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
+
+        /// <summary>
+        /// btnAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAdd;
     }
 }
