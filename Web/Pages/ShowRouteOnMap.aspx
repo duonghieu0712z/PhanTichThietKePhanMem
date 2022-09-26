@@ -1,55 +1,56 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShowRouteOnMap.aspx.cs" Inherits="Web.Pages.ShowRouteOnMap" %>
 
 <asp:Content ID="ShowOnMap" ContentPlaceHolderID="Head" runat="server">
- 
-
-
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyDz0PKtri5vQnfnCGvMbnQYF6s-1z649LE" type="text/javascript"></script>
-    <script>  
-        var mapcode;
-        var diag;
-        function initialize() {
-            mapcode = new google.maps.Geocoder();
-            var lnt = new google.maps.LatLng(11.955537325881393, 108.44341625091612);
-            var diagChoice = {
-                zoom: 16,
-                center: lnt,
-                diagId: google.maps.MapTypeId.ROADMAP
-            }
-            diag = new google.maps.Map(document.getElementById('map_populate'), diagChoice);
-        }
-        function getmap() {
-            var completeaddress = document.getElementById('txt_location').value;
-            mapcode.geocode({ 'address': completeaddress }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    diag.setCenter(results[0].geometry.location);
-                    var hint = new google.maps.Marker({
-                        diag: diag,
-                        position: results[0].geometry.location
-                    });
-                } else {
-                    alert('Location Not Tracked. ' + status);
-                }
+    <script>
+        let array = [];
+        function initMap() {
+            const myLatlng = { lat: -25.363, lng: 131.044 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: myLatlng,
             });
+            const marker = new google.maps.Marker({
+                position: myLatlng,
+                map,
+                title: "Click to zoom",
+            });
+
+            map.addListener("center_changed", () => {
+                // 3 seconds after the center of the map has changed, pan back to the
+                // marker.
+                window.setTimeout(() => {
+                    map.panTo(marker.getPosition());
+                }, 3000);
+            });
+            map.addListener("click", (e) => {
+                placeMarkerAndPanTo(e.latLng, map);
+            });
+
         }
-        google.maps.event.addDomListener(window, 'load', initialize);
+        function placeMarkerAndPanTo(latLng, map) {
+            new google.maps.Marker({
+                position: latLng,
+                map: map,
+            });
+            map.panTo(latLng);
+        }
+        window.initMap = initMap;
     </script>
+</asp:Content>
+<asp:Content ID="route" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="row" style="height: 800px">
+        <div class="col-sm-9">
+            <div id="map" style="height: 100%"></div>
+        </div>
+        <div class="col-sm-3">
+            <h1>test</h1>
+        </div>
+
+    </div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDz0PKtri5vQnfnCGvMbnQYF6s-1z649LE&region=VN&language=vi&callback=initMap&v"
+        defer></script>
 
 </asp:Content>
 
-
-    <asp:Content ID="route" ContentPlaceHolderID="MainContent" runat="server">
- 
-        <div>
-            <h1>enter your location details</h1>
-        </div>
-        <div>
-            <asp:textbox id="txt_location" textmode="multiline" width="400px" height="70px" runat="server"></asp:textbox>
-        </div>
-        <div>
-            <input type="button" value="search" onclick="getmap()">
-        </div>
-        <div id="map_populate" style="width: 100%; height: 500px; border: 5px solid #5e5454;">
-        </div>
-    </asp:Content>
 
