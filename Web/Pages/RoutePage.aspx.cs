@@ -21,45 +21,73 @@ namespace Web.Pages
             HRFunctions.Instance.InsertNUpdateRoute(route);
             onTestGetData();
             Refresh();
-            ClearText();
+            try
+            {
+                ClearText();
+            }
+            catch (Exception ex) { }
         }
 
         private void Refresh()
         {
             GridViewRoute.DataSource = HRFunctions.Instance.SelectAllRoute();
             GridViewRoute.DataBind();
+            BindingDLBusRoutes();
+            BindingDLStartPosition();
+            BindingDLEndPosition();
         }
-
+        private void BindingDLBusRoutes()
+        {
+            this.dlIDBusRoutes.DataSource = HRFunctions.Instance.SelectAllRoute();
+            this.dlIDBusRoutes.DataValueField = "BusRoutesID";
+            this.dlIDBusRoutes.DataTextField = "BusRoutesID";
+            this.dlIDBusRoutes.DataBind();
+        }
+        private void BindingDLStartPosition()
+        {
+            this.dlIDStartPosition.DataSource = HRFunctions.Instance.SelectAllRoute();
+            this.dlIDStartPosition.DataValueField = "StartPositionID";
+            this.dlIDStartPosition.DataTextField = "StartPositionID";
+            this.dlIDStartPosition.DataBind();
+        }
+        private void BindingDLEndPosition()
+        {
+            this.dlIDEndPosition.DataSource = HRFunctions.Instance.SelectAllRoute();
+            this.dlIDEndPosition.DataValueField = "EndPositionID";
+            this.dlIDEndPosition.DataTextField = "EndPositionID";
+            this.dlIDEndPosition.DataBind();
+        }
         private void ClearText()
         {
-            RouteIDRoute.Text = string.Empty;
-            RouteIDBusRoute.Text = string.Empty;
-            RouteIDStartPoint.Text = string.Empty;
-            RouteIDEndPoint.Text = string.Empty;
-            RouteRouteName.Text = string.Empty;
-            RoutesNumber.Text = string.Empty;
-            RoutesTime.Text = string.Empty;
-            RouteStartActiveTime.Text = string.Empty;
-            RouteFinishActiveTime.Text = string.Empty;
-            RouteApplicable.Text = string.Empty;
-            RouteIDRoute.Text = string.Empty;
+            this.IDRoute.Text = String.Empty;
+            this.RouteName.Text = String.Empty;
+            this.dlIDBusRoutes.SelectedValue = String.Empty;
+            this.dlIDStartPosition.SelectedValue = String.Empty;
+            this.dlIDEndPosition.SelectedValue = String.Empty;
+
+            this.RouteAmount.Text = String.Empty;
+            this.RouteTime.Text = String.Empty;
+            this.StartTime.Text = String.Empty;
+            this.EndTime.Text = String.Empty;
+            this.OperationDate.ClearSelection();
+            this.ApplicableDate.Text = String.Empty;
         }
 
         private void onTestGetData()
         {
-            Route route = GetRoute();
+            //Route route = GetRoute();
 
-            this.TestPlace.Text = $"ID: {route.RouteID} \n" +
-                $"IDBusRoute: {route.BusRoutesID}\n" +
-                $"IDStartPoint: {route.StartPositionID} \n" +
-                $"IDEndPoint: {route.EndPositionID}\n" +
-                $"RouteName: {route.RouteName}\n" +
-                $"RouteAmount: {route.RouteAmount}\n" +
-                $"RouteTime: {route.RouteTime}\n" +
-                $"RouteStartActiveTime: {route.StartTime}\n" +
-                $"RouteFinishActiveTime: {route.EndTime}\n" +
-                $"Applicable: {route.ApplicableDate}\n" +
-                $"Operation: {route.OperationDate}";
+            //this.TestPlace.Text = $"ID: {route.RouteID} \n" +
+            //    $"IDBusRoute: {route.BusRoutesID}\n" +
+            //    $"IDStartPoint: {route.StartPositionID} \n" +
+            //    $"IDEndPoint: {route.EndPositionID}\n" +
+            //    $"RouteName: {route.RouteName}\n" +
+            //    $"RouteAmount: {route.RouteAmount}\n" +
+            //    $"RouteTime: {route.RouteTime}\n" +
+            //    $"RouteStartActiveTime: {route.StartTime}\n" +
+            //    $"RouteFinishActiveTime: {route.EndTime}\n" +
+            //    $"Applicable: {route.ApplicableDate}\n" +
+            //    $"Operation: {route.OperationDate}";
         }
 
         private Route GetRoute()
@@ -74,22 +102,22 @@ namespace Web.Pages
             double _doubleRouteTime = 0;
             TimeSpan RouteTime = TimeSpan.Zero;
 
-            int.TryParse(this.RouteIDRoute.Text, out IDRoute);
-            int.TryParse(this.RouteIDBusRoute.Text, out IDBusRoutes);
-            int.TryParse(this.RouteIDStartPoint.Text, out IDStartPoint);
-            int.TryParse(this.RouteIDEndPoint.Text, out IDEndPoint);
-            RouteName = this.RouteRouteName.Text;
-            int.TryParse(this.RoutesNumber.Text, out RouteAmount);
-            //TimeSpan.TryParse(this.RoutesTime.Text, out RouteTime);
-            if (Double.TryParse(this.RoutesTime.Text, out _doubleRouteTime))
+            int.TryParse(this.IDRoute.Text, out IDRoute);
+            int.TryParse(this.dlIDBusRoutes.SelectedValue, out IDBusRoutes);
+            int.TryParse(this.dlIDStartPosition.SelectedValue, out IDStartPoint);
+            int.TryParse(this.dlIDEndPosition.SelectedValue, out IDEndPoint);
+            RouteName = this.RouteName.Text;
+            int.TryParse(this.RouteAmount.Text, out RouteAmount);
+            TimeSpan.TryParse(this.RouteTime.Text, out RouteTime);
+            if (Double.TryParse(this.RouteTime.Text, out _doubleRouteTime))
             {
                 RouteTime = TimeSpan.FromMinutes(_doubleRouteTime);
             }
 
-            DateTime.TryParse(this.RouteStartActiveTime.Text, out var RouteStartActiveTime);
-            DateTime.TryParse(this.RouteFinishActiveTime.Text, out var RouteFinishActiveTime);
-            DateTime.TryParse(this.RouteApplicable.Text, out var RouteApplicable);
-            //DateTime.TryParse(this.RouteApplicable.Text, out var RouteOperation);
+            DateTime.TryParse(this.StartTime.Text, out var RouteStartActiveTime);
+            DateTime.TryParse(this.EndTime.Text, out var RouteFinishActiveTime);
+            DateTime.TryParse(this.ApplicableDate.Text, out var RouteApplicable);
+            // DateTime.TryParse(this.RouteApplicable.Text, out var RouteOperation);
             DateTime RouteOperation = DateTime.Now;
 
             route.RouteID = IDRoute;
@@ -109,7 +137,6 @@ namespace Web.Pages
         private Route GetRouteFromRow(int index)
         {
             var row = GridViewRoute.Rows[index];
-            TestPlace.Text += DateTime.Parse(row.Cells[8].Text);
             return new Route()
             {
                 RouteID = int.Parse(row.Cells[1].Text),
@@ -128,22 +155,23 @@ namespace Web.Pages
 
         private void SetRouteData(Route r)
         {
-            this.RouteIDRoute.Text = r.RouteID.ToString();
-            this.RouteIDBusRoute.Text = r.BusRoutesID.ToString();
-            this.RouteIDStartPoint.Text = r.StartPositionID.ToString();
-            this.RouteIDEndPoint.Text = r.EndPositionID.ToString();
-            this.RouteRouteName.Text = r.RouteName.ToString();
-            this.RoutesNumber.Text = r.RouteAmount.ToString();
-            this.RoutesTime.Text = r.RouteTime.ToString();
-            this.RouteStartActiveTime.Text = r.StartTime.ToString("HH:mm");
-            this.RouteFinishActiveTime.Text = r.EndTime.ToString("HH:mm");
-            this.RouteApplicable.Text = r.ApplicableDate.ToString("yyyy-MM-dd");
-            this.RouteOperation.Text = r.OperationDate.ToString();
+            this.IDRoute.Text = r.RouteID.ToString();
+            this.RouteName.Text = r.RouteName.ToString();
+            this.dlIDBusRoutes.SelectedValue = r.BusRoutesID.ToString();
+            this.dlIDStartPosition.SelectedValue = r.StartPositionID.ToString();
+            this.dlIDEndPosition.SelectedValue = r.EndPositionID.ToString();
+
+            this.RouteAmount.Text = r.RouteAmount.ToString();
+            this.RouteTime.Text = r.RouteTime.ToString("mm");
+            this.StartTime.Text = r.StartTime.ToString("HH:mm");
+            this.EndTime.Text = r.EndTime.ToString("HH:mm");
+            this.OperationDate.ClearSelection();
+            this.ApplicableDate.Text = r.ApplicableDate.ToString("yyyy-MM-dd");
         }
 
         protected void ButtonDeleteRoute_Click(object sender, EventArgs e)
         {
-            int.TryParse(this.RouteIDRoute.Text, out var id);
+            int.TryParse(this.IDRoute.Text, out var id);
             HRFunctions.Instance.DeleteRoute(id);
             Refresh();
             ClearText();
