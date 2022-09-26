@@ -14,7 +14,12 @@
         <div class="col-sm">
         <h4>Danh sách lộ trình - điểm dừng: </h4>
           <div runat="server" class="overflow-auto">
-                <asp:GridView CssClass="table table-bordered table-striped" ID="GridViewStopRoute" runat="server" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridViewStopRoute_SelectedIndexChanged"></asp:GridView>
+                <asp:GridView CssClass="table table-bordered table-striped" 
+                    ID="GridViewStopRoute" 
+                    runat="server" 
+                    AutoGenerateSelectButton="true" 
+                    OnSelectedIndexChanged="GridViewStopRoute_SelectedIndexChanged"
+                    SelectedRowStyle-BackColor="Gray"></asp:GridView>
             </div>
         </div>
         <div class="col-sm" style="margin-top: 24px">

@@ -71,7 +71,14 @@ namespace Web.Pages
         protected void ButtonAddStopRoute_Click(object sender, EventArgs e)
         {
             Stop_Route sr = GetStopRoute();
-            HRFunctions.Instance.InsertNUpdateStopRoute(sr);
+            if (HRFunctions.Instance.InsertNUpdateStopRoute(sr) > 0)
+            {
+                ShowMessage("Thêm Lộ trình - điểm dừng thành công");
+            }
+            else
+            {
+                ShowMessage("Thêm Lộ trình - điểm dừng thất bại");
+            }
             Refresh();
             ClearText();
         }
@@ -120,8 +127,21 @@ namespace Web.Pages
         protected void ButtonUpdateStopRoute_Click(object sender, EventArgs e)
         {
             Stop_Route sr = GetStopRoute();
-            HRFunctions.Instance.InsertNUpdateStopRoute(sr);
+            if (HRFunctions.Instance.InsertNUpdateStopRoute(sr) > 0)
+            {
+                ShowMessage("Cập nhật thành công");
+            }
+            else
+            {
+                ShowMessage("Cập nhật thất bại");
+            }
             Refresh();
+            ClearText();
+
+        }
+        private void ShowMessage(string myStringVariable)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
         }
     }
 }

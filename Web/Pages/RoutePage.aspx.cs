@@ -18,14 +18,17 @@ namespace Web.Pages
         protected void ButtonAddRoute_Click(object sender, EventArgs e)
         {
             Route route = GetRoute();
-            HRFunctions.Instance.InsertNUpdateRoute(route);
-            onTestGetData();
-            Refresh();
-            try
+            if (HRFunctions.Instance.InsertNUpdateRoute(route) > 0)
             {
-                ClearText();
+                ShowMessage("Thêm lộ trình thành công");
             }
-            catch (Exception ex) { }
+            else
+            {
+                ShowMessage("Thêm lộ trình thất bại");
+            }
+
+            Refresh();
+            ClearText();
         }
 
         private void Refresh()
@@ -78,23 +81,6 @@ namespace Web.Pages
             {
 
             }
-        }
-
-        private void onTestGetData()
-        {
-            //Route route = GetRoute();
-
-            //this.TestPlace.Text = $"ID: {route.RouteID} \n" +
-            //    $"IDBusRoute: {route.BusRoutesID}\n" +
-            //    $"IDStartPoint: {route.StartPositionID} \n" +
-            //    $"IDEndPoint: {route.EndPositionID}\n" +
-            //    $"RouteName: {route.RouteName}\n" +
-            //    $"RouteAmount: {route.RouteAmount}\n" +
-            //    $"RouteTime: {route.RouteTime}\n" +
-            //    $"RouteStartActiveTime: {route.StartTime}\n" +
-            //    $"RouteFinishActiveTime: {route.EndTime}\n" +
-            //    $"Applicable: {route.ApplicableDate}\n" +
-            //    $"Operation: {route.OperationDate}";
         }
 
         private Route GetRoute()
@@ -194,9 +180,20 @@ namespace Web.Pages
         protected void ButtonUpdateRoute_Click(object sender, EventArgs e)
         {
             Route route = GetRoute();
-            HRFunctions.Instance.InsertNUpdateRoute(route);
-            onTestGetData();
+            if (HRFunctions.Instance.InsertNUpdateRoute(route) > 0)
+            {
+                ShowMessage("Cập nhật lộ trình thành công");
+            }
+            else
+            {
+                ShowMessage("Cập nhật lộ trình thất bại");
+            }
             Refresh();
+            ClearText();
+        }
+        private void ShowMessage(string myStringVariable)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
         }
     }
 }
