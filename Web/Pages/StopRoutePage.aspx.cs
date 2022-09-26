@@ -28,26 +28,33 @@ namespace Web.Pages
 
         private void BindingDLRouteID()
         {
-            this.dlRouteID.DataSource = HRFunctions.Instance.SelectAllStopRoute();
+            this.dlRouteID.DataSource = HRFunctions.Instance.SelectAllRoute();
             this.dlRouteID.DataValueField = "RouteID";
-            this.dlRouteID.DataTextField = "RouteID";
+            this.dlRouteID.DataTextField = "RouteName";
             this.dlRouteID.DataBind();
         }
 
         private void BindingDLEndPositionID()
         {
-            this.dlEndPositionID.DataSource = HRFunctions.Instance.SelectAllStopRoute();
-            this.dlEndPositionID.DataValueField = "EndPositionID";
-            this.dlEndPositionID.DataTextField = "EndPositionID";
+            this.dlEndPositionID.DataSource = HRFunctions.Instance.SelectAllBusStop();
+            this.dlEndPositionID.DataValueField = "BusStopID";
+            this.dlEndPositionID.DataTextField = "BusStopName";
             this.dlEndPositionID.DataBind();
         }
 
         private void ClearText()
         {
-            this.IDStopRoute.Text = String.Empty;
-            this.dlRouteID.Text = String.Empty;
-            this.dlEndPositionID.Text = String.Empty;
-            this.Order.Text = String.Empty;
+            try
+            {
+                this.IDStopRoute.Text = String.Empty;
+                this.dlRouteID.Text = String.Empty;
+                this.dlEndPositionID.Text = String.Empty;
+                this.Order.Text = String.Empty;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         private Stop_Route GetStopRouteFromRow(int index)
         {
@@ -75,8 +82,8 @@ namespace Web.Pages
             int RouteID = 0;
             int EndPositionID = 0;
             int Order = 0;
+            int.TryParse(this.IDStopRoute.Text, out StopRouteID);
 
-            StopRouteID = int.Parse(this.IDStopRoute.Text);
             RouteID = int.Parse(this.dlRouteID.SelectedValue);
             EndPositionID = int.Parse(this.dlEndPositionID.SelectedValue);
             Order = int.Parse(this.Order.Text);
