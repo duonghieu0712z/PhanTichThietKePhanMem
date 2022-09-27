@@ -14,11 +14,14 @@
         let curentMaker;
         let startPoint;
         let markerStart;
+        let listMaker = [];
         let markerEnd;
         let markerChoice;
         let map;
+        let testLine = [];
         let infoWindow;
-        let listStopbus = [];
+        let busStops = [];
+        let lineDirection;
         const centerDefault = { lat: 10.771119394974335, lng: 106.70050611220746 };
         const imgStart = "/SetImg/imgStart.png";
         const imgEnd = "/SetImg/imgStop.png";
@@ -44,6 +47,20 @@
                 showInfo(map, markerChoice, TypeChoice);
 
             });
+        }
+        function drawLine(listLatLng) {
+            if (lineDirection != null) {
+                lineDirection.setMap(null);
+                lineDirection = null
+            };
+            lineDirection = new google.maps.Polyline({
+                path: listLatLng,
+                geodesic: true,
+                strokeColor: "#FF0000",
+                strokeOpacity: 1.0,
+                strokeWeight: 2,
+            });
+            lineDirection.setMap(map);
         }
 
         function getContentInfoWindow(type) {
@@ -99,9 +116,25 @@
                 markerStart.setMap(null);
                 markerStart = null;
             }
-
-
         });
+        function renderMaker(listBusStop) {
+            if (listMaker != []) {
+                listMaker.forEach(marker => {
+                    maker.setMap(null);
+                });
+
+            }
+            listMaker = [];
+            listBusStop.forEach(busStop => {
+                let latLng = { lat: busStop.Latitude, lng: busStop.Longitude }
+                testLine.push(latLng);
+                listMaker.push(placeMarkerAndPanTo(latLng, map, imgStopBus, TypeBus))
+            });
+            busStops = listBusStop;
+            drawLine(testLine);
+        }
+
+
 
         $(document).on('click', '#btn_start_point', function getStartPoint() {
             if (markerStart != null) {
@@ -111,7 +144,6 @@
             markerChoice.setMap(null);
             markerStart = placeMarkerAndPanTo(curentPoint, map, imgStart, TypeStart);
             markerStart.setMap(map);
-
 
 
         });
@@ -124,11 +156,11 @@
             markerEnd = placeMarkerAndPanTo(curentPoint, map, imgEnd, TypeEnd);
             markerEnd.setMap(map);
         });
-    //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
+        //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
 
         function loadAllStopBus() {
-            if (listStopbus != []) {
-                listStopbus = [];
+            if (busStops != []) {
+                busStops = [];
             }
             $.ajax({
                 type: "GET", //GET
@@ -137,8 +169,9 @@
                 dataType: "json",
                 async: false,
                 success: function (msg) {
-                    console.log(msg);
-                    alert(response.d);
+                    let data = msg.d;
+                    console.log(data);
+                    renderMaker(data);
                 },
                 failure: function (response) {
                     alert(response.d);
@@ -148,7 +181,7 @@
                 }
             });
         }
-        function placeMarkerAndPanTo(latLng, map, img, typeShow, info) {
+        function placeMarkerAndPanTo(latLng, map, img, typeShow, info, id) {
             let maker = new google.maps.Marker({
                 position: latLng,
                 map: map,
@@ -177,6 +210,6 @@
         src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
         defer></script>
 
-    <input type="button" id="load_all_stop_bus" Text="Tất cả địa điểm" onclick="loadAllStopBus()"/>
-
+    <input type="button" id="load_all_stop_bus" text="Tất cả địa điểm" onclick="loadAllStopBus()" />
+    <asp:Button ID="insert_data" runat="server" Text="Thêm dữ liệu" OnClick="btn_load_json_Click" />
 </asp:Content>

@@ -133,6 +133,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="JavaScript\StopRouteHandle.js" />
+    <Content Include="Pages\AddData.aspx" />
     <Content Include="Pages\RoutePage.aspx" />
     <Content Include="Pages\ShowRouteOnMap.aspx" />
     <Content Include="Pages\StopRoutePage.aspx" />
@@ -200,6 +201,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddData.aspx.cs">
+      <DependentUpon>AddData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AddData.aspx.designer.cs">
+      <DependentUpon>AddData.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RoutePage.aspx.cs">
       <DependentUpon>RoutePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -264,6 +272,17 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="SetImg\xmltojson.json" />
+    <Content Include="SetImg\data\product_0.json" />
+    <Content Include="SetImg\data\product_1.json" />
+    <Content Include="SetImg\data\product_2.json" />
+    <Content Include="SetImg\data\product_3.json" />
+    <Content Include="SetImg\data\product_4.json" />
+    <Content Include="SetImg\data\route_0.json" />
+    <Content Include="SetImg\data\route_1.json" />
+    <Content Include="SetImg\data\route_2.json" />
+    <Content Include="SetImg\data\route_3.json" />
+    <Content Include="SetImg\data\route_4.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

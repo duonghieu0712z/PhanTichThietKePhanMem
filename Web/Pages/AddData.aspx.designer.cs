@@ -11,43 +11,34 @@ namespace Web.Pages
 {
 
 
-    public partial class ShowRouteOnMap
+    public partial class AddData
     {
 
         /// <summary>
-        /// start_point control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField start_point;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// end_point control.
+        /// btn_add_data control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField end_point;
+        protected global::System.Web.UI.WebControls.Button btn_add_data;
 
         /// <summary>
-        /// current_point control.
+        /// test_file control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField current_point;
-
-        /// <summary>
-        /// insert_data control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button insert_data;
+        protected global::System.Web.UI.WebControls.Label test_file;
     }
 }
