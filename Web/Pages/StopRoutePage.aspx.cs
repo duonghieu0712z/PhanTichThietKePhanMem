@@ -2,7 +2,7 @@
 using BusinessLayer.Functions;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Web.UI.WebControls;
 
 namespace Web.Pages
 {
@@ -145,6 +145,20 @@ namespace Web.Pages
         private void ShowMessage(string myStringVariable)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
+        }
+
+        protected void GridViewStopRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+            e.Row.Cells[2].Visible = false;
+            e.Row.Cells[3].Visible = false;
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[1].Text = "Mã Lộ trình-Điểm dừng";
+                e.Row.Cells[4].Text = "Thứ tự";
+                e.Row.Cells[5].Text = "Tên Lộ trình";
+                e.Row.Cells[6].Text = "Tên Điểm dừng";
+            }
+
         }
     }
 }

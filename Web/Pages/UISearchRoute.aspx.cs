@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Functions;
 using System;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Web.Pages
 {
@@ -30,6 +31,16 @@ namespace Web.Pages
             e.Row.Cells[2].Visible = false;
             e.Row.Cells[3].Visible = false;
             e.Row.Cells[4].Visible = false;
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[5].Text = "Tên lộ trình";
+                e.Row.Cells[6].Text = "Số chuyến";
+                e.Row.Cells[7].Text = "Thời gian chuyến";
+                e.Row.Cells[8].Text = "Thời gian bắt đầu";
+                e.Row.Cells[9].Text = "Thời gian kết thúc";
+                e.Row.Cells[10].Text = "Ngày áp dụng";
+                e.Row.Cells[11].Text = "Ngày hoạt động";
+            }
         }
 
 
@@ -51,6 +62,14 @@ namespace Web.Pages
             e.Row.Cells[0].Visible = false;
             e.Row.Cells[3].Visible = false;
             e.Row.Cells[4].Visible = false;
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[1].Text = "Tên Điểm dừng";
+                e.Row.Cells[2].Text = "Mô tả";
+                e.Row.Cells[5].Text = "Tên đường";
+                e.Row.Cells[6].Text = "Khu vực";
+                e.Row.Cells[7].Text = "Quận";
+            }
         }
     }
 }

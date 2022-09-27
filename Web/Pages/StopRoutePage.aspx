@@ -19,7 +19,8 @@
                     runat="server" 
                     AutoGenerateSelectButton="true" 
                     OnSelectedIndexChanged="GridViewStopRoute_SelectedIndexChanged"
-                    SelectedRowStyle-BackColor="Gray"></asp:GridView>
+                    SelectedRowStyle-BackColor="Gray"
+                    OnRowDataBound="GridViewStopRoute_RowDataBound"></asp:GridView>
             </div>
         </div>
         <div class="col-sm" style="margin-top: 24px">

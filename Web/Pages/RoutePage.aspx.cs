@@ -1,7 +1,7 @@
 ﻿using BusinessLayer.DBAccess;
 using BusinessLayer.Functions;
 using System;
-using System.Data.Entity;
+using System.Web.UI.WebControls;
 
 namespace Web.Pages
 {
@@ -78,6 +78,8 @@ namespace Web.Pages
                 this.EndTime.Text = String.Empty;
                 this.OperationDate.ClearSelection();
                 this.ApplicableDate.Text = String.Empty;
+
+                this.GridViewRoute.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -196,6 +198,27 @@ namespace Web.Pages
         private void ShowMessage(string myStringVariable)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
+        }
+
+        protected void GridViewRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+            e.Row.Cells[2].Visible = false;
+            e.Row.Cells[3].Visible = false;
+            e.Row.Cells[4].Visible = false;
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[1].Text = "Mã Lộ trình";
+                e.Row.Cells[5].Text = "Tên Lộ trình";
+                e.Row.Cells[6].Text = "Số chuyến";
+                e.Row.Cells[7].Text = "Thời gian chuyến";
+                e.Row.Cells[8].Text = "Thời gian bắt đầu";
+                e.Row.Cells[9].Text = "Thời gian kết thúc";
+                e.Row.Cells[10].Text = "Ngày áp dụng";
+                e.Row.Cells[11].Text = "Ngày hoạt động";
+                e.Row.Cells[12].Text = "Tên tuyến";
+                e.Row.Cells[13].Text = "Điểm bắt đầu";
+                e.Row.Cells[14].Text = "Điểm kết thúc";
+            }
         }
     }
 }
