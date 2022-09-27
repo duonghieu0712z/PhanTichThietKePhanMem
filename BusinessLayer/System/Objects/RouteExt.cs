@@ -54,15 +54,20 @@ namespace BusinessLayer
             }
         }
 
-        //public List<RouteInfo> SearchByPosition(int idStart, int idEnd)
-        //{
-        //    using (var db = GetContext())
-        //    {
-        //        string sql = "";
-        //        var ls = db.Routes.SqlQuery(sql);
-        //        if (ls != null && ls.Any()) return ls.ToList<RouteInfo>();
-        //        return new List<RouteInfo>();
-        //    }
-        //}
+        public List<Route> SearchByPosition(int idStart, int idEnd)
+        {
+            using (var db = GetContext())
+            {
+                var start = db.Stop_Route.Where(sr => sr.StopRouteID == idStart).Select(sr => sr.RouteID);
+                var end = db.Stop_Route.Where(sr => sr.StopRouteID == idEnd).Select(sr => sr.RouteID);
+                var inter = start.Intersect(end);
+                var ls = db.Routes.Join(inter, r => r.RouteID, i => i, (r, i) => r);
+
+                //string sql = "";
+                //var ls = db.Routes.SqlQuery(sql);
+                if (ls != null && ls.Any()) return ls.ToList();
+                return new List<Route>();
+            }
+        }
     }
 }

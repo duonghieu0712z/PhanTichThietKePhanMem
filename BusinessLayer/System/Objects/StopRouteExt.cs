@@ -41,5 +41,15 @@ namespace BusinessLayer
                 return new List<Stop_RouteInfo>();
             }
         }
+
+        public List<Stop_Route> GetStopRoutesByRoute(int routeId)
+        {
+            using (var db = GetContext())
+            {
+                var res = db.Stop_Route.Where(sr => sr.RouteID == routeId).OrderBy(sr => sr.Order);
+                if (res != null && res.Any()) return res.ToList();
+                return new List<Stop_Route>();
+            }
+        }
     }
 }
