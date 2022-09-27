@@ -46,7 +46,7 @@ namespace BusinessLayer
         {
             using (var db = GetContext())
             {
-                var res = db.Stop_Route.Where(sr => sr.RouteID == routeId).OrderBy(sr => sr.Order).Join(db.BusStops, sr => sr.EndPositionID, bs => bs.BusStopID, (sr, bs) => bs);
+                var res = db.Stop_Route.Where(sr => sr.RouteID == routeId).OrderBy(sr => sr.Order).Skip(0).Join(db.BusStops, sr => sr.EndPositionID, bs => bs.BusStopID, (sr, bs) => bs);
                 if (res != null && res.Any()) return res.ToList();
                 return new List<BusStop>();
             }
