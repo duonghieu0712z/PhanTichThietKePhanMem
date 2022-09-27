@@ -53,6 +53,7 @@
                 </div>
             </div>
             <div class="col-sm-8">
+                <asp:Button text="Xem tất cả Điểm dừng" runat="server" CssClass="btn" style="background: teal;" ID="btnShowAllBusStop" OnClick="btnShowAllBusStop_Click"/>
                 wating for map
             </div>
         </div>

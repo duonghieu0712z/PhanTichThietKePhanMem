@@ -1,5 +1,7 @@
-﻿using BusinessLayer.Functions;
+﻿using BusinessLayer.DBAccess;
+using BusinessLayer.Functions;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -64,7 +66,6 @@ namespace Web.Pages
             }
         }
 
-
         private void BindingBusStopData(int routeID)
         {
             this.GridViewSearchBusStop.DataSource = HRFunctions.Instance.GetBusStopByRoute(routeID);
@@ -97,6 +98,11 @@ namespace Web.Pages
                 e.Row.Cells[6].Text = "Khu vực";
                 e.Row.Cells[7].Text = "Quận";
             }
+        }
+
+        protected void btnShowAllBusStop_Click(object sender, EventArgs e)
+        {
+            List<BusStop> busStops = HRFunctions.Instance.SelectAllBusStop();
         }
     }
 }
