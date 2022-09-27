@@ -14,18 +14,10 @@
             <div class="d-flex justify-content-center mt-4" style="width: 100%">
                 <div class="col-sm-10">
                 <div class="form-group">
-                    <%--<asp:TextBox runat="server" ID="StartPositionName" placeholder="Nhập tên điểm bắt đầu" CssClass="form-control mb-1" 
-                        AutoPostBack="true"
-                        type="text"></asp:TextBox>--%>
                     <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="dlStartPosition" runat="server">
                                     </asp:DropDownList>
-                    <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="dlEndPosition" runat="server">
+                    <asp:DropDownList CssClass="form-control mt-1" AutoPostBack="true" ID="dlEndPosition" runat="server" >
                                     </asp:DropDownList>
-                    <asp:Label runat="server" ID="toTest"></asp:Label>
-
-                    <%--<asp:TextBox runat="server" ID="EndPosition" placeholder="Nhập tên điểm kết thúc" CssClass="form-control mb-1" 
-                        AutoPostBack="true"
-                        type="text"></asp:TextBox>--%>
                 </div>
                 </div>
                 <div class="col-sm-2 d-flex justify-content-center align-items-center">
@@ -35,7 +27,7 @@
         </div>
 
         <div class="row mt-4">
-        <div class="col-sm-6 overflow-auto">
+        <div class="col-sm-12 overflow-auto">
             <asp:Label id="lblRoute" Visible="false" runat="server"><h4>Danh sách Lộ trình</h4></asp:Label>
         <asp:GridView Visible="false" style="width:1200px" 
             OnRowDataBound="GridViewSearchRoute_RowDataBound" 
@@ -46,15 +38,23 @@
             OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
             SelectedRowStyle-BackColor="Gray"></asp:GridView>
         </div>
-        <div class="col-sm-6 overflow-auto">
-            <asp:Label id="lblBusStop" Visible="false" runat="server"><h4>Danh sách Điểm dừng</h4></asp:Label>
-        <asp:GridView Visible="false" 
-            ID="GridViewSearchBusStop" 
-            OnRowDataBound="GridViewSearchBusStop_RowDataBound" 
-            CssClass="table table-bordered table-striped" 
-            runat="server" 
-            ></asp:GridView>
+        
         </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="col-sm-6 overflow-auto">
+                <%--<asp:Label id="lblBusStop" Visible="true" runat="server"><h4>Danh sách Điểm dừng</h4></asp:Label>--%>
+                <asp:GridView Visible="false" 
+                    ID="GridViewSearchBusStop" 
+                    OnRowDataBound="GridViewSearchBusStop_RowDataBound" 
+                    CssClass="table table-bordered table-striped" 
+                    runat="server" 
+                    ></asp:GridView>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                wating for map
+            </div>
         </div>
             
         </div>

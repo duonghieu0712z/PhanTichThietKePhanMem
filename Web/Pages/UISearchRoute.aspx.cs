@@ -42,54 +42,59 @@ namespace Web.Pages
         {
             this.GridViewSearchRoute.DataSource = HRFunctions.Instance.SearchRouteByStartAndEndPos(int.Parse(this.dlStartPosition.SelectedValue), int.Parse(this.dlEndPosition.SelectedValue));
             this.GridViewSearchRoute.DataBind();
-            this.toTest.Text = this.dlStartPosition.SelectedValue + "-" + this.dlEndPosition.SelectedValue;
         }
 
         protected void GridViewSearchRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-            //e.Row.Cells[1].Visible = false;
-            //e.Row.Cells[2].Visible = false;
-            //e.Row.Cells[3].Visible = false;
-            //e.Row.Cells[4].Visible = false;
-            //if (e.Row.RowType == DataControlRowType.Header)
-            //{
-            //    e.Row.Cells[5].Text = "Tên lộ trình";
-            //    e.Row.Cells[6].Text = "Số chuyến";
-            //    e.Row.Cells[7].Text = "Thời gian chuyến";
-            //    e.Row.Cells[8].Text = "Thời gian bắt đầu";
-            //    e.Row.Cells[9].Text = "Thời gian kết thúc";
-            //    e.Row.Cells[10].Text = "Ngày áp dụng";
-            //    e.Row.Cells[11].Text = "Ngày hoạt động";
-            //}
+            e.Row.Cells[1].Visible = false;
+            e.Row.Cells[2].Visible = false;
+            e.Row.Cells[3].Visible = false;
+            e.Row.Cells[4].Visible = false;
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[5].Text = "Tên lộ trình";
+                e.Row.Cells[6].Text = "Số chuyến";
+                e.Row.Cells[7].Text = "Thời gian chuyến";
+                e.Row.Cells[8].Text = "Thời gian bắt đầu";
+                e.Row.Cells[9].Text = "Thời gian kết thúc";
+                e.Row.Cells[10].Text = "Ngày áp dụng";
+                e.Row.Cells[11].Text = "Ngày hoạt động";
+            }
         }
 
 
-        private void BindingBusStopData()
+        private void BindingBusStopData(int routeID)
         {
-            this.GridViewSearchBusStop.DataSource = HRFunctions.Instance.SelectAllBusStop();
+            this.GridViewSearchBusStop.DataSource = HRFunctions.Instance.Stop_Route_Select_ID(routeID);
             this.GridViewSearchBusStop.DataBind();
         }
 
         protected void GridViewSearchRoute_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindingBusStopData();
+            var row = this.GridViewSearchRoute.Rows[this.GridViewSearchRoute.SelectedIndex];
+            int routeID = int.Parse(row.Cells[1].Text);
+
+            BindingBusStopData(routeID);
             this.GridViewSearchBusStop.Visible = true;
-            this.lblBusStop.Visible = true;
         }
 
         protected void GridViewSearchBusStop_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-            e.Row.Cells[0].Visible = false;
-            e.Row.Cells[3].Visible = false;
-            e.Row.Cells[4].Visible = false;
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                e.Row.Cells[1].Text = "Tên Điểm dừng";
-                e.Row.Cells[2].Text = "Mô tả";
-                e.Row.Cells[5].Text = "Tên đường";
-                e.Row.Cells[6].Text = "Khu vực";
-                e.Row.Cells[7].Text = "Quận";
-            }
+            //e.Row.Cells[0].Visible = false;
+            //e.Row.Cells[3].Visible = false;
+            //e.Row.Cells[4].Visible = false;
+            //e.Row.Cells[2].Visible = false;
+            //e.Row.Cells[5].Visible = false;
+            //e.Row.Cells[6].Visible = false;
+            //e.Row.Cells[7].Visible = false;
+            //if (e.Row.RowType == DataControlRowType.Header)
+            //{
+            //    e.Row.Cells[1].Text = "Tên Điểm dừng";
+            //    e.Row.Cells[2].Text = "Mô tả";
+            //    e.Row.Cells[5].Text = "Tên đường";
+            //    e.Row.Cells[6].Text = "Khu vực";
+            //    e.Row.Cells[7].Text = "Quận";
+            //}
         }
     }
 }
