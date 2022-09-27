@@ -29,7 +29,7 @@
         <div class="row mt-4">
         <div class="col-sm-12 overflow-auto">
             <asp:Label id="lblRoute" Visible="false" runat="server"><h4>Danh sách Lộ trình</h4></asp:Label>
-        <asp:GridView Visible="false" style="width:1200px" 
+        <asp:GridView Visible="false" style="width:100%" 
             OnRowDataBound="GridViewSearchRoute_RowDataBound" 
             ID="GridViewSearchRoute" 
             CssClass="table table-bordered table-striped" 

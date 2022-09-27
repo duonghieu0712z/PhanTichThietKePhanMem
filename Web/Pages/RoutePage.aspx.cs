@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.DBAccess;
 using BusinessLayer.Functions;
 using System;
+using System.Drawing;
 using System.Web.UI.WebControls;
 
 namespace Web.Pages
@@ -202,6 +203,7 @@ namespace Web.Pages
 
         protected void GridViewRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
+            e.Row.Cells[0].ForeColor = Color.Green;
             e.Row.Cells[2].Visible = false;
             e.Row.Cells[3].Visible = false;
             e.Row.Cells[4].Visible = false;

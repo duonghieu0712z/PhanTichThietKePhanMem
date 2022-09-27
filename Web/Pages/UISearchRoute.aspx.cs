@@ -65,7 +65,7 @@ namespace Web.Pages
 
         private void BindingBusStopData(int routeID)
         {
-            this.GridViewSearchBusStop.DataSource = HRFunctions.Instance.Stop_Route_Select_ID(routeID);
+            this.GridViewSearchBusStop.DataSource = HRFunctions.Instance.GetBusStopByRoute(routeID);
             this.GridViewSearchBusStop.DataBind();
         }
 
