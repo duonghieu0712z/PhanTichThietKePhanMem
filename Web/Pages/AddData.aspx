@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <div>
     <asp:Button runat ="server" Text ="Thêm dữ liệu" ID="btn_add_data" OnClick ="btn_add_data_Click"/>
-
+    <asp:Label runat="server"  ID ="test_file"/>
         </div>
     </form>
 </body>

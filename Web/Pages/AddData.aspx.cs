@@ -15,26 +15,17 @@ namespace Web.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            test_file.Text = Server.MapPath("~/Templates/template.cfg");
         }
         public void LoadJson()
         {
-            List<string> listProduct = new List<string>()
+            List<string> listProduct = new List<string>();
+             List<string> listRoute = new List<string>();
+            for (int i = 0; i < 5; i++)
             {
-                  "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\product_0.json",
-                "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\product_1.json",
-                "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\product_2.json",
-                "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\product_3.json",
-                "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\product_4.json",
-            };
-            List<string> listRoute = new List<string>()
-            {
-                  "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\route_0.json",
-                  "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\route_1.json",
-                  "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\route_2.json",
-                  "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\route_3.json",
-                  "G:\\PhanTichThietKePhanMem\\PhanTichThietKePhanMem\\Web\\SetImg\\data\\route_4.json",
-            };
+                listProduct.Add(Server.MapPath("~/SetImg/data/product_" + i + ".json"));
+                listRoute.Add(Server.MapPath("~/SetImg/data/route_" + i + ".json"));
+            }
             Dictionary<BusRoute, List<BusStop>> map = new Dictionary<BusRoute, List<BusStop>>();
 
             for (int i = 0; i < listProduct.Count; i++)
