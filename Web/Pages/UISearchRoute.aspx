@@ -1,28 +1,31 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UISearchRoute.aspx.cs" Inherits="Web.Pages.UISearchRoute" %>
 
 <asp:Content ID="UISearchRouteHead" ContentPlaceHolderID="Head" runat="server">
+    <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
    <script>
         const TypeChoice = 1;
         const TypeBus = 2;
         const TypeStart = 3;
         const TypeEnd = 4;
         let zoom = 15;
+        let listBusStop;
         var uniqueId = 1;
-        let curentMaker;
+        let currentMaker;
         let startPoint;
         let markerStart;
         let listMaker = [];
         let markerEnd;
         let markerChoice;
         let map;
-        let testLine = [];
+        let drawLine = [];
         let infoWindow;
         let busStops = [];
+       let dataJson;
         let lineDirection;
         const centerDefault = { lat: 10.771119394974335, lng: 106.70050611220746 };
         const imgStart = "/SetImg/imgStart.png";
         const imgEnd = "/SetImg/imgStop.png";
-        const imgCurent = "/SetImg/imgCurrent.png";
+        const imgCurrent = "/SetImg/imgCurrent.png";
         const imgStopBus = "/SetImg/imgStopBus.png";
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
@@ -31,21 +34,22 @@
             });
 
             map.addListener("click", (e) => {
-                curentPoint = e.latLng;
+                currentPoint = e.latLng;
                 if (markerChoice != null) {
                     markerChoice.setMap(null);
                     markerChoice = null;
                 }
                 console.log(e.latLng);
-                markerChoice = placeMarkerAndPanTo(curentPoint, map, imgCurent);
+                markerChoice = placeMarkerAndPanTo(currentPoint, map, imgCurrent);
                 google.maps.event.addListener(markerChoice, "click", function (e) {
                     showInfo(map, markerChoice, TypeChoice);
                 });
                 showInfo(map, markerChoice, TypeChoice);
 
             });
+            getRoute();
         }
-        function drawLine(listLatLng) {
+        function drawDirection(listLatLng) {
             if (lineDirection != null) {
                 lineDirection.setMap(null);
                 lineDirection = null
@@ -61,7 +65,7 @@
         }
 
         function getContentInfoWindow(type) {
-            const strChoie = "Điểm được chọn";
+            const strChoice = "Điểm được chọn";
             const strStart = "Điểm bắt đầu";
             const strEnd = "Điểm kết thúc";
             const strBusStop = "Điểm được chọn";
@@ -72,7 +76,7 @@
                 "</div>";
             switch (type) {
                 case TypeChoice:
-                    content += `<h4 id="firstHeading" class="">${strChoie}</h4>
+                    content += `<h4 id="firstHeading" class="">${strChoice}</h4>
                         <div id="bodyContent">
                         <button type="button" class="btn btn - success" id = "btn_start_point" click = getStartPoint()>${strStart}</button>
                         <button type="button" class="btn btn-warning" id = "btn_end_point" click = getEndPoint()>${strEnd}</button>`;
@@ -114,21 +118,21 @@
                 markerStart = null;
             }
         });
-        function renderMaker(listBusStop) {
+        function renderMaker(BusStops,haveDraw) {
             if (listMaker != []) {
                 listMaker.forEach(marker => {
                     maker.setMap(null);
                 });
-
             }
             listMaker = [];
-            listBusStop.forEach(busStop => {
+            BusStops.forEach(busStop => {
                 let latLng = { lat: busStop.Latitude, lng: busStop.Longitude }
-                testLine.push(latLng);
+                drawLine.push(latLng);
                 listMaker.push(placeMarkerAndPanTo(latLng, map, imgStopBus, TypeBus))
             });
-            busStops = listBusStop;
-            drawLine(testLine);
+            listBusStop = BusStops;
+            if(haveDraw)
+            drawDirection(drawLine);
         }
 
 
@@ -139,7 +143,7 @@
                 markerStart = null;
             }
             markerChoice.setMap(null);
-            markerStart = placeMarkerAndPanTo(curentPoint, map, imgStart, TypeStart);
+            markerStart = placeMarkerAndPanTo(currentPoint, map, imgStart, TypeStart);
             markerStart.setMap(map);
 
 
@@ -150,11 +154,11 @@
                 markerEnd = null;
             }
             markerChoice.setMap(null);
-            markerEnd = placeMarkerAndPanTo(curentPoint, map, imgEnd, TypeEnd);
+            markerEnd = placeMarkerAndPanTo(currentPoint, map, imgEnd, TypeEnd);
             markerEnd.setMap(map);
         });
-        //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
-
+       //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
+      
         function loadAllStopBus() {
             if (busStops != []) {
                 busStops = [];
@@ -168,7 +172,7 @@
                 success: function (msg) {
                     let data = msg.d;
                     console.log(data);
-                    renderMaker(data);
+                 
                 },
                 failure: function (response) {
                     alert(response.d);
@@ -187,17 +191,30 @@
             map.panTo(latLng);
             if (typeShow == TypeEnd || typeShow == TypeStart) {
                 google.maps.event.addListener(maker, "click", function (e) {
-
                     showInfo(map, maker, typeShow, info);
                 });
             }
             return maker;
         }
+       function getRoute() {
+           dataJson = $('input#hfData').val();
+           console.log(dataJson, "daylatext");
+           if (dataJson != "") {
 
+               let dataRoute = JSON.parse(dataJson);
+               renderMaker(dataRoute, true);
+           } else {
+               renderMaker(dataRoute, true);
+               lineDirection.setMap(null);
+           }
+         
 
+       }
+     /*  window.document.addEventListener('DOMContentLoaded', );*/
         window.initMap = initMap;
+  
 
-    </script>
+   </script>
 </asp:Content>
 <asp:Content ID="UISearchRouteMainContent" ContentPlaceHolderID="MainContent" runat="server">
         <div class="form-group">
@@ -256,7 +273,6 @@
         </div>
             
         </div>
-        
         
     <script
         src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"

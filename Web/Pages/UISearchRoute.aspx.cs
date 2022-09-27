@@ -1,5 +1,7 @@
 ﻿using BusinessLayer.DBAccess;
 using BusinessLayer.Functions;
+using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -48,7 +50,9 @@ namespace Web.Pages
         private void Refresh()
         {
             BindingPositionData();
+            lblRoute.Visible = false;
         }
+
         private void BindingPositionData()
         {
             this.dlStartPosition.DataSource = HRFunctions.Instance.SelectAllBusStop();
@@ -67,6 +71,7 @@ namespace Web.Pages
             BindingRouteData();
             this.GridViewSearchRoute.Visible = true;
             this.lblRoute.Visible = true;
+            
         }
         private void BindingRouteData()
         {
@@ -76,6 +81,7 @@ namespace Web.Pages
 
         protected void GridViewSearchRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
+            
             e.Row.Cells[0].ForeColor = Color.DarkOrange;
             e.Row.Cells[1].Visible = false;
             e.Row.Cells[2].Visible = false;
@@ -95,7 +101,14 @@ namespace Web.Pages
 
         private void BindingBusStopData(int routeID)
         {
-            this.GridViewSearchBusStop.DataSource = HRFunctions.Instance.GetBusStopByRoute(routeID);
+            List<BusStop> busStops = HRFunctions.Instance.GetBusStopByRoute(routeID);
+            this.GridViewSearchBusStop.DataSource = busStops;
+            List<BusStopModel> list = new List<BusStopModel>();
+            busStops.ForEach(item =>
+            {
+                list.Add(new BusStopModel(item));
+            });
+            hfData.Value = JsonConvert.SerializeObject(list);
             this.GridViewSearchBusStop.DataBind();
         }
 
