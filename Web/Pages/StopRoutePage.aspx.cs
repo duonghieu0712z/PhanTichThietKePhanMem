@@ -13,7 +13,7 @@ namespace Web.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Page.Title = "Quản lý lộ trình - điểm dừng";
             if (!IsPostBack)
             {
                 Refresh();

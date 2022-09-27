@@ -38,7 +38,7 @@ namespace Web.Pages
     }
     public partial class ShowRouteOnMap : System.Web.UI.Page
     {
-        public string startPoint { get; set; }
+        
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -62,10 +62,7 @@ namespace Web.Pages
             });
             return list;
         }
-        public static string SayHello(string name)
-        {
-            return "Hello " + name;
-        }
+
 
       
     }

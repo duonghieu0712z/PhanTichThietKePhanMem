@@ -1,15 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StopRoutePage.aspx.cs" Inherits="Web.Pages.StopRoutePage" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StopRoutePage.aspx.cs" Inherits="Web.Pages.StopRoutePage" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Quản lý lộ trình - điểm dừng</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
-</head>
-<body>
-    <div class="" style="margin-left: 48px; margin-right:48px;margin-top:24px;">
-     <form id="form1" runat="server">
+<asp:Content ID="StopRoutePageHead" ContentPlaceHolderID="Head" runat="server">
+ 
+</asp:Content>
+<asp:Content ID="StopRoutePagenContent" ContentPlaceHolderID="MainContent" runat="server">
+ <div class="" style="margin-left: 48px; margin-right:48px;margin-top:24px;">
       <div class="row">
         <div class="col-sm">
         <h4>Danh sách lộ trình - điểm dừng: </h4>
@@ -78,9 +73,9 @@
       </div>
             </div>
       </div>
-    </form>
 </div>
     <script type="text/javascript">
+
 </script>
-</body>
-</html>
+    </asp:Content>
+
