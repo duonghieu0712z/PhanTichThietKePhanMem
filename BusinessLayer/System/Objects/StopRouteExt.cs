@@ -42,7 +42,7 @@ namespace BusinessLayer
             }
         }
 
-        public List<Stop_Route> GetStopRoutesByRoute(int routeId)
+        public List<Stop_Route> GetBusStopByRoute(int routeId)
         {
             using (var db = GetContext())
             {

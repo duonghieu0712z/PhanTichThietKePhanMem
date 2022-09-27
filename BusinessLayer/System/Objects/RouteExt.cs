@@ -60,8 +60,8 @@ namespace BusinessLayer
             {
                 var start = db.Stop_Route.Where(sr => sr.EndPositionID == idStart).Select(sr => sr.RouteID);
                 var end = db.Stop_Route.Where(sr => sr.EndPositionID == idEnd).Select(sr => sr.RouteID);
-                var inter = start.Intersect(end);
-                var ls = db.Routes.Join(inter, r => r.RouteID, i => i, (r, i) => r);
+                var ids = start.Intersect(end);
+                var ls = db.Routes.Join(ids, r => r.RouteID, i => i, (r, i) => r);
 
                 if (ls != null && ls.Any()) return ls.ToList();
                 return new List<Route>();
