@@ -42,13 +42,13 @@ namespace BusinessLayer
             }
         }
 
-        public List<Stop_Route> GetBusStopByRoute(int routeId)
+        public List<BusStop> GetBusStopByRoute(int routeId)
         {
             using (var db = GetContext())
             {
-                var res = db.Stop_Route.Where(sr => sr.RouteID == routeId).OrderBy(sr => sr.Order);
+                var res = db.Stop_Route.Where(sr => sr.RouteID == routeId).OrderBy(sr => sr.Order).Join(db.BusStops, sr => sr.EndPositionID, bs => bs.BusStopID, (sr, bs) => bs);
                 if (res != null && res.Any()) return res.ToList();
-                return new List<Stop_Route>();
+                return new List<BusStop>();
             }
         }
     }
