@@ -15,66 +15,66 @@ namespace Web.Pages
     {
 
         /// <summary>
-        /// UISearchRouteBusRouteName control.
+        /// dlStartPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UISearchRouteBusRouteName;
+        protected global::System.Web.UI.WebControls.DropDownList dlStartPosition;
 
         /// <summary>
-        /// ButtonSearchRouteByBusRouteName control.
+        /// dlEndPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSearchRouteByBusRouteName;
+        protected global::System.Web.UI.WebControls.DropDownList dlEndPosition;
 
         /// <summary>
-        /// UISearchRouteStartPoint control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UISearchRouteStartPoint;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// UISearchRouteEndPoint control.
+        /// lblRoute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UISearchRouteEndPoint;
+        protected global::System.Web.UI.WebControls.Label lblRoute;
 
         /// <summary>
-        /// ButtonSearchRouteByPoint control.
+        /// GridViewSearchRoute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSearchRouteByPoint;
+        protected global::System.Web.UI.WebControls.GridView GridViewSearchRoute;
 
         /// <summary>
-        /// GridViewUISearchRouteListRoute control.
+        /// GridViewSearchBusStop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewUISearchRouteListRoute;
+        protected global::System.Web.UI.WebControls.GridView GridViewSearchBusStop;
 
         /// <summary>
-        /// GridViewUISearchRouteRouteInfomation control.
+        /// btnShowAllBusStop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewUISearchRouteRouteInfomation;
+        protected global::System.Web.UI.WebControls.Button btnShowAllBusStop;
     }
 }
