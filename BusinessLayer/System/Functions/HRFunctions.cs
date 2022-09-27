@@ -67,5 +67,10 @@ namespace BusinessLayer.Functions
         {
             return StopRouteExt.Instance.GetAllStopRouteInfo();
         }
+
+        public List<Route> SearchByPosition(int idStart, int idEnd)
+        {
+            return RouteExt.Instance.SearchByPosition(idStart, idEnd);
+        }
     }
 }
