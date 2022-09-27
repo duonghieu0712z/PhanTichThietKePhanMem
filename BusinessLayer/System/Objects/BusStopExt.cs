@@ -4,20 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.System.Object
+namespace BusinessLayer
 {
-    public class RouteExt: RouteFuncs
+    public class BusStopExt : BusStopFuncs
     {
-        private static RouteExt instance = null;
-        public static RouteExt Instance
+        private static BusStopExt instance = null;
+        public static BusStopExt Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new RouteExt();
+                    instance = new BusStopExt();
                 return instance;
             }
         }
-
     }
 }

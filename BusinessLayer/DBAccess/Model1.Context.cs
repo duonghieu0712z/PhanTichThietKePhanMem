@@ -9,9 +9,9 @@
 
 namespace BusinessLayer.DBAccess
 {
-    using global::System.Data.Entity;
-    using global::System.Data.Entity.Infrastructure;
     using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     
     public partial class ROUTE_MANAGEMENTEntities : DbContext
     {
@@ -25,6 +25,8 @@ namespace BusinessLayer.DBAccess
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BusRoute> BusRoutes { get; set; }
+        public virtual DbSet<BusStop> BusStops { get; set; }
         public virtual DbSet<Route> Routes { get; set; }
         public virtual DbSet<Stop_Route> Stop_Route { get; set; }
     }

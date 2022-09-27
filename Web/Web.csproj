@@ -51,6 +51,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Json.Net, Version=1.0.33.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Json.Net.1.0.33\lib\netstandard2.0\Json.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -132,9 +135,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="JavaScript\StopRouteHandle.js" />
     <Content Include="Pages\RoutePage.aspx" />
     <Content Include="Pages\ShowRouteOnMap.aspx" />
     <Content Include="Pages\StopRoutePage.aspx" />
+    <Content Include="Pages\UISearchRoute.aspx" />
+    <Content Include="Pages\UISearchStopRoute.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\GoogleAPIScript.js" />
@@ -164,6 +170,10 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SetImg\imgCurrent.png" />
+    <Content Include="SetImg\imgStart.png" />
+    <Content Include="SetImg\imgStop.png" />
+    <Content Include="SetImg\imgStopBus.png" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -206,7 +216,6 @@
     </Compile>
     <Compile Include="Pages\ShowRouteOnMap.aspx.cs">
       <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\ShowRouteOnMap.aspx.designer.cs">
       <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
@@ -217,6 +226,20 @@
     </Compile>
     <Compile Include="Pages\StopRoutePage.aspx.designer.cs">
       <DependentUpon>StopRoutePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchRoute.aspx.cs">
+      <DependentUpon>UISearchRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchRoute.aspx.designer.cs">
+      <DependentUpon>UISearchRoute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchStopRoute.aspx.cs">
+      <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchStopRoute.aspx.designer.cs">
+      <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -254,6 +277,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{49e41d1a-799d-467a-affb-ca4c6abc2056}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

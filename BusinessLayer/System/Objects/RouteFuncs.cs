@@ -1,157 +1,154 @@
 ﻿using BusinessLayer.DBAccess;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BusinessLayer.System.Object
+namespace BusinessLayer
 {
-    public class StopRouteFuncs
+    public class RouteFuncs
     {
         public ROUTE_MANAGEMENTEntities GetContext()
         {
             return new ROUTE_MANAGEMENTEntities();
         }
-        #region StopRoute
-        public List<Stop_Route> Stop_Route_Select_All()
+        #region Route
+        public List<Route> Route_Select_All()
         {
             using (var db = new ROUTE_MANAGEMENTEntities())
             {
-                var ls = db.Stop_Route.AsQueryable();
+                var ls = db.Routes.AsQueryable();
                 if (ls != null && ls.Any())
                     return ls.ToList();
-                return new List<Stop_Route>();
+                return new List<Route>();
             }
         }
-        public Stop_Route Stop_Route_Select_ID(int id)
+        public Route Route_Select_ID(int id)
         {
             using (var db = GetContext())
             {
-                return db.Stop_Route.FirstOrDefault(s => s.StopRouteID == id);
+                return db.Routes.FirstOrDefault(s => s.RouteID == id);
             }
         }
-        public List<Stop_Route> Stop_Route_Select_IDs(List<string> IDs)
+        public List<Route> Route_Select_IDs(List<string> IDs)
         {
             using (var db = GetContext())
             {
-                var ls = db.Stop_Route.AsQueryable();
+                var ls = db.Routes.AsQueryable();
                 if (ls != null && ls.Any())
                 {
-                    ls = ls.Where(s => IDs.Contains(s.StopRouteID.ToString()));
+                    ls = ls.Where(s => IDs.Contains(s.RouteID.ToString()));
                     return ls.ToList();
                 }
-                return new List<Stop_Route>();
+                return new List<Route>();
             }
         }
-        public List<Stop_Route> Stop_Route_Select_By(string ColumnName, string Value)
+        public List<Route> Route_Select_By(string ColumnName, string Value)
         {
             using (var db = GetContext())
             {
                 ColumnName = ColumnName.ToLower();
                 Value = Value.ToLower();
-                string sql = "Select * From Stop_Route Where CONVERT(nvarchar," + ColumnName + ") = '" + Value + "'";
-                var ls = db.Stop_Route.SqlQuery(sql);
-                if (ls != null && ls.Any()) return ls.ToList<Stop_Route>();
-                return new List<Stop_Route>();
+                string sql = "Select * From Route Where CONVERT(nvarchar," + ColumnName + ") = '" + Value + "'";
+                var ls = db.Routes.SqlQuery(sql);
+                if (ls != null && ls.Any()) return ls.ToList<Route>();
+                return new List<Route>();
             }
         }
-        public List<Stop_Route> Stop_Route_Select_By(string ColumnName, string Value, int PageSize, int PageIndex, out int TotalRows)
+        public List<Route> Route_Select_By(string ColumnName, string Value, int PageSize, int PageIndex, out int TotalRows)
         {
             TotalRows = 0;
             using (var db = GetContext())
             {
                 ColumnName = ColumnName.ToLower();
                 Value = Value.ToLower();
-                string sql = "Select * From Stop_Route Where CONVERT(nvarchar," + ColumnName + ") = '" + Value + "'";
-                var ls = db.Stop_Route.SqlQuery(sql);
+                string sql = "Select * From Route Where CONVERT(nvarchar," + ColumnName + ") = '" + Value + "'";
+                var ls = db.Routes.SqlQuery(sql);
                 if (ls != null && ls.Any())
                 {
                     TotalRows = ls.Count();
-                    return ls.OrderByDescending(s => s.StopRouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList<Stop_Route>();
+                    return ls.OrderByDescending(s => s.RouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList<Route>();
                 }
-                return new List<Stop_Route>();
+                return new List<Route>();
             }
         }
-        public int Stop_Route_InsertUpdate(Stop_Route obj)
+        public int Route_InsertUpdate(Route obj)
         {
             using (var db = GetContext())
             {
                 using (var db1 = GetContext())
                 {
-                    var find = db.Stop_Route.FirstOrDefault(s => s.StopRouteID == obj.StopRouteID);
+                    var find = db.Routes.FirstOrDefault(s => s.RouteID == obj.RouteID);
                     if (find != null) db1.Entry(obj).State = EntityState.Modified;
-                    else obj = db1.Stop_Route.Add(obj);
+                    else obj = db1.Routes.Add(obj);
                     db1.SaveChanges();
-                    return obj.StopRouteID;
+                    return obj.RouteID;
                 }
             }
         }
-        public void Stop_Route_Delete(int id)
+        public void Route_Delete(int id)
         {
             using (var db = GetContext())
             {
-                var obj = db.Stop_Route.FirstOrDefault(s => s.StopRouteID == id);
+                var obj = db.Routes.FirstOrDefault(s => s.RouteID == id);
                 if (obj != null)
                 {
-                    db.Stop_Route.Remove(obj);
+                    db.Routes.Remove(obj);
                     db.SaveChanges();
                 }
             }
         }
-        public void Stop_Route_Delete_IDs(List<string> IDs)
+        public void Route_Delete_IDs(List<string> IDs)
         {
             using (var db = GetContext())
             {
-                var ls = db.Stop_Route.AsQueryable();
+                var ls = db.Routes.AsQueryable();
                 if (ls != null && ls.Any())
                 {
-                    ls = ls.Where(s => IDs.Contains(s.StopRouteID.ToString()));
+                    ls = ls.Where(s => IDs.Contains(s.RouteID.ToString()));
                     foreach (var item in ls)
-                        db.Stop_Route.Remove(item);
+                        db.Routes.Remove(item);
                     db.SaveChanges();
                 }
             }
         }
-        public List<Stop_Route> Stop_Route_Find_KeyWord(string Keyword, int PageSize, int PageIndex, out int TotalRows)
+        public List<Route> Route_Find_KeyWord(string Keyword, int PageSize, int PageIndex, out int TotalRows)
         {
             TotalRows = 0;
             using (var db = GetContext())
             {
                 if (!string.IsNullOrWhiteSpace(Keyword))
                 {
-                    var obj = db.Stop_Route.FirstOrDefault(s => s.StopRouteID.ToString().CompareTo(Keyword) == 0);
+                    var obj = db.Routes.FirstOrDefault(s => s.RouteID.ToString().CompareTo(Keyword) == 0);
                     if (obj != null)
                     {
-                        List<Stop_Route> ls = new List<Stop_Route>();
+                        List<Route> ls = new List<Route>();
                         ls.Add(obj);
                         TotalRows = 1;
                         return ls;
                     }
-                    var list = db.Stop_Route.AsQueryable();
-                    list = list.Where(s => s.StopRouteID.ToString().Contains(Keyword)
-                    //|| s.Name.ToLower().Contains(Keyword)
+                    var list = db.Routes.AsQueryable();
+                    list = list.Where(s => s.RouteID.ToString().Contains(Keyword)
+                    || s.RouteName.ToLower().Contains(Keyword)
                     );
                     if (list != null && list.Any())
                     {
                         TotalRows = list.Count();
-                        return list.OrderByDescending(s => s.StopRouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList();
+                        return list.OrderByDescending(s => s.RouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList();
                     }
                 }
                 else
                 {
-                    var list = db.Stop_Route.AsQueryable();
+                    var list = db.Routes.AsQueryable();
                     if (list != null && list.Any())
                     {
                         TotalRows = list.Count();
-                        return list.OrderByDescending(s => s.StopRouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList();
+                        return list.OrderByDescending(s => s.RouteID).Skip(PageSize * PageIndex).Take(PageSize).ToList();
                     }
                 }
-                return new List<Stop_Route>();
+                return new List<Route>();
             }
         }
-        public void Stop_Route_Import(List<Stop_Route> list)
+        public void Route_Import(List<Route> list)
         {
             using (var db = GetContext())
             {
@@ -159,7 +156,7 @@ namespace BusinessLayer.System.Object
                 {
                     try
                     {
-                        db.Stop_Route.AddRange(list);
+                        db.Routes.AddRange(list);
                         db.SaveChanges();
                         transaction.Commit();
                     }
@@ -170,7 +167,7 @@ namespace BusinessLayer.System.Object
                 }
             }
         }
-    }
-    #endregion
-}
+        #endregion
 
+    }
+}

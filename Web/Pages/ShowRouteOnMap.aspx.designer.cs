@@ -13,5 +13,32 @@ namespace Web.Pages
 
     public partial class ShowRouteOnMap
     {
+
+        /// <summary>
+        /// start_point control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField start_point;
+
+        /// <summary>
+        /// end_point control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField end_point;
+
+        /// <summary>
+        /// current_point control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField current_point;
     }
 }

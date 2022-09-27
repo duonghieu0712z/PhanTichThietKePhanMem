@@ -1,10 +1,7 @@
 ﻿using BusinessLayer.DBAccess;
-using BusinessLayer.System.Object;
+using BusinessLayer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Functions
 {
@@ -28,7 +25,15 @@ namespace BusinessLayer.Functions
         {
             return StopRouteExt.Instance.Stop_Route_Select_All();
         }
- 
+        public List<BusRoute> SelectAllBusRoute()
+        {
+            return BusRouteExt.Instance.BusRoute_Select_All();
+        }
+        public List<BusStop> SelectAllBusStop()
+        {
+            return BusStopExt.Instance.BusStop_Select_All();
+        }
+
         public int InsertNUpdateRoute(Route route)
         {
             return RouteExt.Instance.Route_InsertUpdate(route);
@@ -37,17 +42,18 @@ namespace BusinessLayer.Functions
         {
             return StopRouteExt.Instance.Stop_Route_InsertUpdate(stop_Route);
         }
+        public int InsertNUpdateBusStop(BusStop  busStop)
+        {
+            return BusStopExt.Instance.BusStop_InsertUpdate(busStop);
+        }
 
         public void DeleteRoute(int id)
         {
-             RouteExt.Instance.Route_Delete(id);
+            RouteExt.Instance.Route_Delete(id);
         }
         public void DeleteStopRoute(int id)
         {
-             StopRouteExt.Instance.Stop_Route_Delete(id);
+            StopRouteExt.Instance.Stop_Route_Delete(id);
         }
-
-
-
     }
 }
