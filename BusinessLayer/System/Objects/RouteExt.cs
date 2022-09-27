@@ -54,17 +54,15 @@ namespace BusinessLayer
             }
         }
 
-        public List<Route> SearchByPosition(int idStart, int idEnd)
+        public List<Route> SearchRouteByStartAndEndPos(int idStart, int idEnd)
         {
             using (var db = GetContext())
             {
-                var start = db.Stop_Route.Where(sr => sr.StopRouteID == idStart).Select(sr => sr.RouteID);
-                var end = db.Stop_Route.Where(sr => sr.StopRouteID == idEnd).Select(sr => sr.RouteID);
+                var start = db.Stop_Route.Where(sr => sr.EndPositionID == idStart).Select(sr => sr.RouteID);
+                var end = db.Stop_Route.Where(sr => sr.EndPositionID == idEnd).Select(sr => sr.RouteID);
                 var inter = start.Intersect(end);
                 var ls = db.Routes.Join(inter, r => r.RouteID, i => i, (r, i) => r);
 
-                //string sql = "";
-                //var ls = db.Routes.SqlQuery(sql);
                 if (ls != null && ls.Any()) return ls.ToList();
                 return new List<Route>();
             }

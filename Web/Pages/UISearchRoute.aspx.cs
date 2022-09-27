@@ -40,7 +40,7 @@ namespace Web.Pages
         }
         private void BindingRouteData()
         {
-            this.GridViewSearchRoute.DataSource = HRFunctions.Instance.SearchByPosition(int.Parse(this.dlStartPosition.SelectedValue), int.Parse(this.dlEndPosition.SelectedValue));
+            this.GridViewSearchRoute.DataSource = HRFunctions.Instance.SearchRouteByStartAndEndPos(int.Parse(this.dlStartPosition.SelectedValue), int.Parse(this.dlEndPosition.SelectedValue));
             this.GridViewSearchRoute.DataBind();
             this.toTest.Text = this.dlStartPosition.SelectedValue + "-" + this.dlEndPosition.SelectedValue;
         }
