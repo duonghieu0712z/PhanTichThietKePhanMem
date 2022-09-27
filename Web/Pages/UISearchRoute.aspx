@@ -14,12 +14,18 @@
             <div class="d-flex justify-content-center mt-4" style="width: 100%">
                 <div class="col-sm-10">
                 <div class="form-group">
-                    <asp:TextBox runat="server" ID="StartPositionName" placeholder="Nhập tên điểm bắt đầu" CssClass="form-control mb-1" 
+                    <%--<asp:TextBox runat="server" ID="StartPositionName" placeholder="Nhập tên điểm bắt đầu" CssClass="form-control mb-1" 
                         AutoPostBack="true"
-                        type="text"></asp:TextBox>
-                    <asp:TextBox runat="server" ID="EndPosition" placeholder="Nhập tên điểm kết thúc" CssClass="form-control mb-1" 
+                        type="text"></asp:TextBox>--%>
+                    <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="dlStartPosition" runat="server">
+                                    </asp:DropDownList>
+                    <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="dlEndPosition" runat="server">
+                                    </asp:DropDownList>
+                    <asp:Label runat="server" ID="toTest"></asp:Label>
+
+                    <%--<asp:TextBox runat="server" ID="EndPosition" placeholder="Nhập tên điểm kết thúc" CssClass="form-control mb-1" 
                         AutoPostBack="true"
-                        type="text"></asp:TextBox>
+                        type="text"></asp:TextBox>--%>
                 </div>
                 </div>
                 <div class="col-sm-2 d-flex justify-content-center align-items-center">

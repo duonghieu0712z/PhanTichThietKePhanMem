@@ -15,22 +15,31 @@ namespace Web.Pages
     {
 
         /// <summary>
-        /// StartPositionName control.
+        /// dlStartPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StartPositionName;
+        protected global::System.Web.UI.WebControls.DropDownList dlStartPosition;
 
         /// <summary>
-        /// EndPosition control.
+        /// dlEndPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EndPosition;
+        protected global::System.Web.UI.WebControls.DropDownList dlEndPosition;
+
+        /// <summary>
+        /// toTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label toTest;
 
         /// <summary>
         /// btnSearch control.
