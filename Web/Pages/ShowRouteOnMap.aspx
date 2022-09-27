@@ -18,8 +18,10 @@
         let markerEnd;
         let markerChoice;
         let map;
+        let testLine = [];
         let infoWindow;
         let busStops = [];
+        let lineDirection;
         const centerDefault = { lat: 10.771119394974335, lng: 106.70050611220746 };
         const imgStart = "/SetImg/imgStart.png";
         const imgEnd = "/SetImg/imgStop.png";
@@ -45,6 +47,20 @@
                 showInfo(map, markerChoice, TypeChoice);
 
             });
+        }
+        function drawLine(listLatLng) {
+            if (lineDirection != null) {
+                lineDirection.setMap(null);
+                lineDirection = null
+            };
+            lineDirection = new google.maps.Polyline({
+                path: listLatLng,
+                geodesic: true,
+                strokeColor: "#FF0000",
+                strokeOpacity: 1.0,
+                strokeWeight: 2,
+            });
+            lineDirection.setMap(map);
         }
 
         function getContentInfoWindow(type) {
@@ -111,9 +127,11 @@
             listMaker = [];
             listBusStop.forEach(busStop => {
                 let latLng = { lat: busStop.Latitude, lng: busStop.Longitude }
+                testLine.push(latLng);
                 listMaker.push(placeMarkerAndPanTo(latLng, map, imgStopBus, TypeBus))
             });
             busStops = listBusStop;
+            drawLine(testLine);
         }
 
 

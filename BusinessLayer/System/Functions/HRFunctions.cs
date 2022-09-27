@@ -34,6 +34,10 @@ namespace BusinessLayer.Functions
             return BusStopExt.Instance.BusStop_Select_All();
         }
 
+        public int InsertNUpdateBusRoute(BusRoute busRoute)
+        {
+            return BusRouteExt.Instance.BusRoute_InsertUpdate(busRoute);
+        }
         public int InsertNUpdateRoute(Route route)
         {
             return RouteExt.Instance.Route_InsertUpdate(route);
