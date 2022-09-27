@@ -73,6 +73,11 @@ namespace BusinessLayer.Functions
             return RouteExt.Instance.SearchRouteByStartAndEndPos(idStart, idEnd);
         }
 
+        public List<Stop_Route> GetBusStopByRoute(int routeId)
+        {
+            return StopRouteExt.Instance.GetBusStopByRoute(routeId);
+        }
+
         public BusStop BusStop_Select_ID(int id)
         {
             return BusStopExt.Instance.BusStop_Select_ID(id);
