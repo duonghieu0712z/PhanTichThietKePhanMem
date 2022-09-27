@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Functions;
 using System;
+using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -46,6 +47,7 @@ namespace Web.Pages
 
         protected void GridViewSearchRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
+            e.Row.Cells[0].ForeColor = Color.DarkOrange;
             e.Row.Cells[1].Visible = false;
             e.Row.Cells[2].Visible = false;
             e.Row.Cells[3].Visible = false;
@@ -80,21 +82,21 @@ namespace Web.Pages
 
         protected void GridViewSearchBusStop_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-            //e.Row.Cells[0].Visible = false;
-            //e.Row.Cells[3].Visible = false;
-            //e.Row.Cells[4].Visible = false;
-            //e.Row.Cells[2].Visible = false;
-            //e.Row.Cells[5].Visible = false;
-            //e.Row.Cells[6].Visible = false;
-            //e.Row.Cells[7].Visible = false;
-            //if (e.Row.RowType == DataControlRowType.Header)
-            //{
-            //    e.Row.Cells[1].Text = "Tên Điểm dừng";
-            //    e.Row.Cells[2].Text = "Mô tả";
-            //    e.Row.Cells[5].Text = "Tên đường";
-            //    e.Row.Cells[6].Text = "Khu vực";
-            //    e.Row.Cells[7].Text = "Quận";
-            //}
+            e.Row.Cells[0].Visible = false;
+            e.Row.Cells[3].Visible = false;
+            e.Row.Cells[4].Visible = false;
+            e.Row.Cells[2].Visible = false;
+            e.Row.Cells[5].Visible = false;
+            e.Row.Cells[6].Visible = false;
+            e.Row.Cells[7].Visible = false;
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[1].Text = "Tên Điểm dừng";
+                e.Row.Cells[2].Text = "Mô tả";
+                e.Row.Cells[5].Text = "Tên đường";
+                e.Row.Cells[6].Text = "Khu vực";
+                e.Row.Cells[7].Text = "Quận";
+            }
         }
     }
 }

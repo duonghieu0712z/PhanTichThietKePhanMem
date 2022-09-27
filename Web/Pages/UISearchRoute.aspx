@@ -21,7 +21,7 @@
                 </div>
                 </div>
                 <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                    <asp:Button style="height: 48px" Text="Tìm kiếm" runat="server" ID="btnSearch" CssClass="btn btn-primary" OnClick="btnSearch_Click"/>
+                    <asp:Button style="height: 48px; background-color: teal" Text="Tìm kiếm" runat="server" ID="btnSearch" CssClass="btn" OnClick="btnSearch_Click"/>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
             runat="server" 
             AutoGenerateSelectButton="true"
             OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
-            SelectedRowStyle-BackColor="Gray"></asp:GridView>
+            SelectedRowStyle-BackColor="Teal"></asp:GridView>
         </div>
         
         </div>

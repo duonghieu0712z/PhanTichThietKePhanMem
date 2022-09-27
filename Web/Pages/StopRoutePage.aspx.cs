@@ -2,6 +2,7 @@
 using BusinessLayer.Functions;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Web.UI.WebControls;
 
 namespace Web.Pages
@@ -151,6 +152,7 @@ namespace Web.Pages
         {
             e.Row.Cells[2].Visible = false;
             e.Row.Cells[3].Visible = false;
+            e.Row.Cells[0].ForeColor = Color.DarkOrange;
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 e.Row.Cells[1].Text = "Mã Lộ trình-Điểm dừng";

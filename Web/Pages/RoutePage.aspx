@@ -20,7 +20,7 @@
                             runat="server" 
                             AutoGenerateSelectButton="true" 
                             OnSelectedIndexChanged="GridViewRoute_SelectedIndexChanged"
-                            SelectedRowStyle-BackColor="Gray"
+                            SelectedRowStyle-BackColor="Teal"
                             OnRowDataBound="GridViewRoute_RowDataBound"></asp:GridView>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                                     <small class="form-text text-muted">Xác nhận lộ trình nào được cập nhật hay xóa, tăng tự động khi thêm.</small>
                                 </div>
                                 <div class="col-sm-2">
-                                    <asp:Button Text="Xóa" runat="server" Style="width: 100%" ID="btnDelete" CssClass="btn btn-primary" OnClick="ButtonDeleteRoute_Click" />
+                                    <asp:Button Text="Xóa" runat="server" Style="width: 100%; background-color: teal" ID="btnDelete" CssClass="btn" OnClick="ButtonDeleteRoute_Click" />
                                 </div>
                             </div>
                         </div>
@@ -125,10 +125,10 @@
 
                         <div class="form-group row mt-3">
                             <div class="col-sm-4">
-                                <asp:Button runat="server" Text="Cập nhật" CssClass="btn btn-primary" Style="width: 100%" OnClick="ButtonUpdateRoute_Click" />
+                                <asp:Button runat="server" Text="Cập nhật" CssClass="btn" Style="width: 100%; background-color: teal" OnClick="ButtonUpdateRoute_Click" />
                             </div>
                             <div class="col-sm-3">
-                                <asp:Button runat="server" Text="Thêm" CssClass="btn btn-primary" Style="width: 100%" OnClick="ButtonAddRoute_Click" />
+                                <asp:Button runat="server" Text="Thêm" CssClass="btn" Style="width: 100%; background-color: teal" OnClick="ButtonAddRoute_Click" />
                             </div>
                         </div>
 
