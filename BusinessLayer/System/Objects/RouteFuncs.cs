@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.DBAccess;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 
@@ -16,7 +17,7 @@ namespace BusinessLayer
         {
             using (var db = new ROUTE_MANAGEMENTEntities())
             {
-                var ls = db.Routes.AsQueryable();
+                var ls = db.Routes.AsQueryable().Include(r => r.BusRoute);
                 if (ls != null && ls.Any())
                     return ls.ToList();
                 return new List<Route>();

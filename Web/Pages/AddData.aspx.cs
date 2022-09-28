@@ -64,7 +64,7 @@ namespace Web.Pages
                 {
                     int stt = i + 1;
                     ConvertStopRoute(routes[countRoute].RouteID, item.Value[i].BusStopID, stt);
-                    ConvertStopRoute(routes[countRoute].RouteID, item.Value[countBusRoute - stt].BusStopID, stt);
+                    ConvertStopRoute(routes[countRoute+1].RouteID, item.Value[countBusRoute-stt].BusStopID, stt);
                 }
             }
         }

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UISearchStopRoute.aspx.cs" Inherits="Web.Pages.UISearchStopRoute" %>
 
-<asp:Content ID="UISearchStopRoute" ContentPlaceHolderID="Head" runat="server">
+<asp:Content ID="UISearchStopRouteHead" ContentPlaceHolderID="Head" runat="server">
     <asp:TextBox runat="server" ID="UISearchStopRouteRouteName" TextMode="SingleLine" Text="Nhập tên lộ trình..." Columns="40"></asp:TextBox>
     <asp:Button runat="server" ID="ButtonSearchStopRouteByRouteName" Text="Tìm kiếm điểm dừng" />
     <div runat="server">
@@ -10,3 +10,5 @@
         <asp:GridView ID="GridViewUISearchStopRouteStopRouteInfomation" runat="server"></asp:GridView>
     </div>
 </asp:Content>
+<asp:Content ID="UISearchStopRouteMainContent" ContentPlaceHolderID="MainContent" runat="server">
+    </asp:Content>

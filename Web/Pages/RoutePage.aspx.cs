@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.DBAccess;
 using BusinessLayer.Functions;
 using System;
+using System.Drawing;
+using System.Web.UI.WebControls;
 
 namespace Web.Pages
 {
@@ -8,6 +10,7 @@ namespace Web.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 Refresh();
@@ -18,19 +21,23 @@ namespace Web.Pages
         protected void ButtonAddRoute_Click(object sender, EventArgs e)
         {
             Route route = GetRoute();
-            HRFunctions.Instance.InsertNUpdateRoute(route);
-            onTestGetData();
-            Refresh();
-            try
+            if (HRFunctions.Instance.InsertNUpdateRoute(route) > 0)
             {
-                ClearText();
+                ShowMessage("Thêm lộ trình thành công");
             }
-            catch (Exception ex) { }
+            else
+            {
+                ShowMessage("Thêm lộ trình thất bại");
+            }
+
+            Refresh();
+            ClearText();
         }
 
         private void Refresh()
         {
-            GridViewRoute.DataSource = HRFunctions.Instance.SelectAllRoute();
+            //GridViewRoute.DataSource = HRFunctions.Instance.SelectAllRoute();
+            GridViewRoute.DataSource = HRFunctions.Instance.GetAllRouteInfo();
             GridViewRoute.DataBind();
             BindingDLBusRoutes();
             BindingDLStartPosition();
@@ -38,56 +45,48 @@ namespace Web.Pages
         }
         private void BindingDLBusRoutes()
         {
-            this.dlIDBusRoutes.DataSource = HRFunctions.Instance.SelectAllRoute();
-            this.dlIDBusRoutes.DataValueField = "BusRoutesID";
-            this.dlIDBusRoutes.DataTextField = "BusRoutesID";
+            this.dlIDBusRoutes.DataSource = HRFunctions.Instance.SelectAllBusRoute();
+            this.dlIDBusRoutes.DataValueField = "BusRouteID";
+            this.dlIDBusRoutes.DataTextField = "RouteName";
             this.dlIDBusRoutes.DataBind();
         }
         private void BindingDLStartPosition()
         {
-            this.dlIDStartPosition.DataSource = HRFunctions.Instance.SelectAllRoute();
-            this.dlIDStartPosition.DataValueField = "StartPositionID";
-            this.dlIDStartPosition.DataTextField = "StartPositionID";
+            this.dlIDStartPosition.DataSource = HRFunctions.Instance.SelectAllBusStop();
+            this.dlIDStartPosition.DataValueField = "BusStopID";
+            this.dlIDStartPosition.DataTextField = "BusStopName";
             this.dlIDStartPosition.DataBind();
         }
         private void BindingDLEndPosition()
         {
-            this.dlIDEndPosition.DataSource = HRFunctions.Instance.SelectAllRoute();
-            this.dlIDEndPosition.DataValueField = "EndPositionID";
-            this.dlIDEndPosition.DataTextField = "EndPositionID";
+            this.dlIDEndPosition.DataSource = HRFunctions.Instance.SelectAllBusStop();
+            this.dlIDEndPosition.DataValueField = "BusStopID";
+            this.dlIDEndPosition.DataTextField = "BusStopName";
             this.dlIDEndPosition.DataBind();
         }
         private void ClearText()
         {
-            this.IDRoute.Text = String.Empty;
-            this.RouteName.Text = String.Empty;
-            this.dlIDBusRoutes.SelectedValue = String.Empty;
-            this.dlIDStartPosition.SelectedValue = String.Empty;
-            this.dlIDEndPosition.SelectedValue = String.Empty;
+            try
+            {
+                this.IDRoute.Text = String.Empty;
+                this.RouteName.Text = String.Empty;
+                this.dlIDBusRoutes.SelectedValue = String.Empty;
+                this.dlIDStartPosition.SelectedValue = String.Empty;
+                this.dlIDEndPosition.SelectedValue = String.Empty;
 
-            this.RouteAmount.Text = String.Empty;
-            this.RouteTime.Text = String.Empty;
-            this.StartTime.Text = String.Empty;
-            this.EndTime.Text = String.Empty;
-            this.OperationDate.ClearSelection();
-            this.ApplicableDate.Text = String.Empty;
-        }
+                this.RouteAmount.Text = String.Empty;
+                this.RouteTime.Text = String.Empty;
+                this.StartTime.Text = String.Empty;
+                this.EndTime.Text = String.Empty;
+                this.OperationDate.ClearSelection();
+                this.ApplicableDate.Text = String.Empty;
 
-        private void onTestGetData()
-        {
-            //Route route = GetRoute();
+                this.GridViewRoute.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
 
-            //this.TestPlace.Text = $"ID: {route.RouteID} \n" +
-            //    $"IDBusRoute: {route.BusRoutesID}\n" +
-            //    $"IDStartPoint: {route.StartPositionID} \n" +
-            //    $"IDEndPoint: {route.EndPositionID}\n" +
-            //    $"RouteName: {route.RouteName}\n" +
-            //    $"RouteAmount: {route.RouteAmount}\n" +
-            //    $"RouteTime: {route.RouteTime}\n" +
-            //    $"RouteStartActiveTime: {route.StartTime}\n" +
-            //    $"RouteFinishActiveTime: {route.EndTime}\n" +
-            //    $"Applicable: {route.ApplicableDate}\n" +
-            //    $"Operation: {route.OperationDate}";
+            }
         }
 
         private Route GetRoute()
@@ -120,17 +119,17 @@ namespace Web.Pages
             // DateTime.TryParse(this.RouteApplicable.Text, out var RouteOperation);
             DateTime RouteOperation = DateTime.Now;
 
-            //route.RouteID = IDRoute;
-            //route.BusRoutesID = IDBusRoutes;
-            //route.StartPositionID = IDStartPoint;
-            //route.EndPositionID = IDEndPoint;
-            //route.RouteName = RouteName;
-            //route.RouteAmount = RouteAmount;
-            //route.RouteTime = RouteTime;
-            //route.StartTime = RouteStartActiveTime;
-            //route.EndTime = RouteFinishActiveTime;
-            //route.ApplicableDate = RouteApplicable;
-            //route.OperationDate = RouteOperation;
+            route.RouteID = IDRoute;
+            route.BusRoutesID = IDBusRoutes;
+            route.StartPositionID = IDStartPoint;
+            route.EndPositionID = IDEndPoint;
+            route.RouteName = RouteName;
+            route.RouteAmount = RouteAmount;
+            route.RouteTime = RouteTime;
+            route.StartTime = RouteStartActiveTime;
+            route.EndTime = RouteFinishActiveTime;
+            route.ApplicableDate = RouteApplicable;
+            route.OperationDate = RouteOperation;
             return route;
         }
 
@@ -187,9 +186,42 @@ namespace Web.Pages
         protected void ButtonUpdateRoute_Click(object sender, EventArgs e)
         {
             Route route = GetRoute();
-            HRFunctions.Instance.InsertNUpdateRoute(route);
-            onTestGetData();
+            if (HRFunctions.Instance.InsertNUpdateRoute(route) > 0)
+            {
+                ShowMessage("Cập nhật lộ trình thành công");
+            }
+            else
+            {
+                ShowMessage("Cập nhật lộ trình thất bại");
+            }
             Refresh();
+            ClearText();
+        }
+        private void ShowMessage(string myStringVariable)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
+        }
+
+        protected void GridViewRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].ForeColor = Color.DarkOrange;
+            e.Row.Cells[2].Visible = false;
+            e.Row.Cells[3].Visible = false;
+            e.Row.Cells[4].Visible = false;
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[1].Text = "Mã Lộ trình";
+                e.Row.Cells[5].Text = "Tên Lộ trình";
+                e.Row.Cells[6].Text = "Số chuyến";
+                e.Row.Cells[7].Text = "Thời gian chuyến";
+                e.Row.Cells[8].Text = "Thời gian bắt đầu";
+                e.Row.Cells[9].Text = "Thời gian kết thúc";
+                e.Row.Cells[10].Text = "Ngày áp dụng";
+                e.Row.Cells[11].Text = "Ngày hoạt động";
+                e.Row.Cells[12].Text = "Tên tuyến";
+                e.Row.Cells[13].Text = "Điểm bắt đầu";
+                e.Row.Cells[14].Text = "Điểm kết thúc";
+            }
         }
     }
 }

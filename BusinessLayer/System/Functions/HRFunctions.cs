@@ -2,6 +2,8 @@
 using BusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using BusinessLayer.Models;
 
 namespace BusinessLayer.Functions
 {
@@ -58,6 +60,35 @@ namespace BusinessLayer.Functions
         public void DeleteStopRoute(int id)
         {
             StopRouteExt.Instance.Stop_Route_Delete(id);
+        }
+
+        public Stop_Route Stop_Route_Select_ID(int id)
+        {
+            return StopRouteExt.Instance.Stop_Route_Select_ID(id);
+        }
+
+        public List<RouteInfo> GetAllRouteInfo()
+        {
+            return RouteExt.Instance.GetAllRouteInfo();
+        }
+        public List<Stop_RouteInfo> GetAllStopRouteInfo()
+        {
+            return StopRouteExt.Instance.GetAllStopRouteInfo();
+        }
+
+        public List<Route> SearchRouteByStartAndEndPos(int idStart, int idEnd)
+        {
+            return RouteExt.Instance.SearchRouteByStartAndEndPos(idStart, idEnd);
+        }
+
+        public List<BusStop> GetBusStopByRoute(int routeId)
+        {
+            return StopRouteExt.Instance.GetBusStopByRoute(routeId);
+        }
+
+        public BusStop BusStop_Select_ID(int id)
+        {
+            return BusStopExt.Instance.BusStop_Select_ID(id);
         }
     }
 }
