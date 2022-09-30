@@ -256,7 +256,8 @@
             runat="server" 
             AutoGenerateSelectButton="true"
             OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
-            SelectedRowStyle-BackColor="Teal"></asp:GridView>
+            SelectedRowStyle-BackColor="Teal"
+            SelectedRowStyle-ForeColor="White"></asp:GridView>
         </div>
         
         </div>
