@@ -1,6 +1,5 @@
 ﻿using BusinessLayer.DBAccess;
 using BusinessLayer.Functions;
-using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -71,7 +70,7 @@ namespace Web.Pages
             BindingRouteData();
             this.GridViewSearchRoute.Visible = true;
             this.lblRoute.Visible = true;
-            
+
         }
         private void BindingRouteData()
         {
@@ -81,7 +80,7 @@ namespace Web.Pages
 
         protected void GridViewSearchRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-            
+
             e.Row.Cells[0].ForeColor = Color.DarkOrange;
             e.Row.Cells[1].Visible = false;
             e.Row.Cells[2].Visible = false;
@@ -139,9 +138,20 @@ namespace Web.Pages
                 e.Row.Cells[7].Text = "Quận";
             }
         }
+        private void ClearData()
+        {
+            this.GridViewSearchBusStop.DataSource = null;
+            this.GridViewSearchBusStop.DataBind();
+            this.GridViewSearchBusStop.Visible = false;
+
+            this.GridViewSearchRoute.DataSource = null;
+            this.GridViewSearchRoute.DataBind();
+            this.GridViewSearchRoute.Visible = false;
+        }
 
         protected void btnShowAllBusStop_Click(object sender, EventArgs e)
         {
+            ClearData();
             List<BusStop> busStops = HRFunctions.Instance.SelectAllBusStop();
         }
         [WebMethod]
