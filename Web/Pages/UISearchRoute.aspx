@@ -271,7 +271,6 @@
             </div>
             <div class="col-sm-8">
                 <div class="row">
-                  <asp:Button text="Xem tất cả Điểm dừng" runat="server" CssClass="btn" style="background: teal;color: white !important" ID="btnShowAllBusStop" OnClick="btnShowAllBusStop_Click"/>
                 </div>
                 <div class="row">
                    <div id="map" style="width: 100%; height: 500px; border: 5px solid #5e5454;"></div>

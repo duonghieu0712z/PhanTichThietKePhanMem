@@ -67,6 +67,7 @@ namespace Web.Pages
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            ClearData();
             BindingRouteData();
             this.GridViewSearchRoute.Visible = true;
             this.lblRoute.Visible = true;
@@ -143,17 +144,12 @@ namespace Web.Pages
             this.GridViewSearchBusStop.DataSource = null;
             this.GridViewSearchBusStop.DataBind();
             this.GridViewSearchBusStop.Visible = false;
-
+            hfData.Value = "";
             this.GridViewSearchRoute.DataSource = null;
             this.GridViewSearchRoute.DataBind();
             this.GridViewSearchRoute.Visible = false;
         }
 
-        protected void btnShowAllBusStop_Click(object sender, EventArgs e)
-        {
-            ClearData();
-            List<BusStop> busStops = HRFunctions.Instance.SelectAllBusStop();
-        }
         [WebMethod]
         public static string update(string userdata)
         {
