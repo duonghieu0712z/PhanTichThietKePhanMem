@@ -136,9 +136,9 @@
             }
         });
         $(document).on('click', '#btn_delete_end', function getStartPoint() {
-            if (markerStart != null) {
-                markerStart.setMap(null);
-                markerStart = null;
+            if (markerEnd != null) {
+                markerEnd.setMap(null);
+                markerEnd = null;
             }
         });
         function renderMaker(BusStops, haveDraw) {
@@ -308,6 +308,5 @@
         src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
         defer></script>
 
-    <input type="button" id="load_all_stop_bus" text="Tất cả địa điểm" onclick="loadAllStopBus()" />
 
 </asp:Content>
