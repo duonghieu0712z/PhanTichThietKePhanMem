@@ -8,6 +8,6 @@
         <br />
         <strong>Cao Dương Sơn Hiếu: </strong> <a href="mailto:1914745@dlu.edu.vn">1914745@dlu.edu.vn</a>
         <br />
-         <strong>Nguyễn Hữu Đức Thanh: </strong> <a href="mailto:1911205@dlu.edu.vn">@dlu.edu.vn</a>
+         <strong>Nguyễn Hữu Đức Thanh: </strong> <a href="mailto:1911205@dlu.edu.vn">1911205@dlu.edu.vn</a>
     </address>
 </asp:Content>
