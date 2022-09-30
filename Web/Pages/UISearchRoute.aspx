@@ -267,20 +267,22 @@
             </div>
         </div>
 
-        <div class="row mt-4" style="padding-left: 8px; padding-right: 8px">
-            <div class="col-sm-12 overflow-auto">
-                <asp:Label ID="lblRoute" Visible="false" runat="server"><h4>Danh sách Lộ trình</h4></asp:Label>
-                <asp:GridView Visible="false" Style="width: 100%"
-                    OnRowDataBound="GridViewSearchRoute_RowDataBound"
-                    ID="GridViewSearchRoute"
-                    CssClass="table table-bordered table-striped"
-                    runat="server"
-                    AutoGenerateSelectButton="true"
-                    OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
-                    SelectedRowStyle-BackColor="Teal">
-                </asp:GridView>
-            </div>
 
+        <div class="row mt-4" style="padding-left:8px; padding-right: 8px">
+        <div class="col-sm-12 overflow-auto">
+            <asp:Label id="lblRoute" Visible="false" runat="server"
+            ><h4>Danh sách Lộ trình</h4></asp:Label>
+        <asp:GridView Visible="false" style="width:100%" 
+            OnRowDataBound="GridViewSearchRoute_RowDataBound" 
+            ID="GridViewSearchRoute" 
+            CssClass="table table-bordered table-striped" 
+            runat="server" 
+            AutoGenerateSelectButton="true"
+            OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
+            SelectedRowStyle-BackColor="Teal"
+            SelectedRowStyle-ForeColor="White"></asp:GridView>
+        </div>
+        
         </div>
         <div class="row" style="padding-left: 8px; padding-right: 22px; height: 500px">
             <div class="col-sm-4 overflow-auto" style="height: 500px">

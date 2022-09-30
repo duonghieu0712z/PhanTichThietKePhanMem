@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-sm">
         <h4>Danh sách lộ trình - điểm dừng: </h4>
-          <div runat="server" class="overflow-auto">
+          <div runat="server" class="overflow-auto" style="height:560px">
                 <asp:GridView CssClass="table table-bordered table-striped" 
                     ID="GridViewStopRoute" 
                     runat="server" 

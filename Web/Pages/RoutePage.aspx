@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h4>Danh sách lộ trình: </h4>
-                    <div runat="server" class="overflow-auto" style="margin-top: 24px">
+                    <div runat="server" class="overflow-auto" style="margin-top: 24px; height: 900px">
                         <asp:GridView style="width: 1800px !important; max-width: 1800px !important" 
                             ID="GridViewRoute" 
                             CssClass="table table-bordered table-striped" 
