@@ -69,8 +69,8 @@ namespace Web.Pages
         }
         private void BindingRouteData()
         {
-            //this.GridViewSearchRoute.DataSource = HRFunctions.Instance.SearchRouteByStartAndEndPos(int.Parse(this.dlStartPosition.SelectedValue), int.Parse(this.dlEndPosition.SelectedValue));
-            //this.GridViewSearchRoute.DataBind();
+            this.GridViewSearchRoute.DataSource = HRFunctions.Instance.SearchRouteByBusRouteId(int.Parse(this.dlStartPosition.SelectedValue));
+            this.GridViewSearchRoute.DataBind();
         }
 
         protected void GridViewSearchRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
