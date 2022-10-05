@@ -10,7 +10,7 @@ namespace Web.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
                 Refresh();
@@ -105,7 +105,7 @@ namespace Web.Pages
             int.TryParse(this.dlIDBusRoutes.SelectedValue, out IDBusRoutes);
             int.TryParse(this.dlIDStartPosition.SelectedValue, out IDStartPoint);
             int.TryParse(this.dlIDEndPosition.SelectedValue, out IDEndPoint);
-            RouteName = this.RouteName.Text;
+            RouteName = this.RouteName.Text.ToString();
             int.TryParse(this.RouteAmount.Text, out RouteAmount);
             TimeSpan.TryParse(this.RouteTime.Text, out RouteTime);
             if (Double.TryParse(this.RouteTime.Text, out _doubleRouteTime))
@@ -136,14 +136,14 @@ namespace Web.Pages
         private Route GetRouteFromRow(int index)
         {
             var row = GridViewRoute.Rows[index];
-
+            ShowMessage((row.Cells[1].Text));
             return new Route()
             {
                 RouteID = int.Parse(row.Cells[1].Text),
                 BusRoutesID = int.Parse(row.Cells[2].Text),
                 StartPositionID = int.Parse(row.Cells[3].Text),
                 EndPositionID = int.Parse(row.Cells[4].Text),
-                RouteName = row.Cells[5].Text,
+                RouteName = row.Cells[5].Text.ToString(),
                 RouteAmount = int.Parse(row.Cells[6].Text),
                 RouteTime = TimeSpan.Parse(row.Cells[7].Text),
                 StartTime = DateTime.Parse(row.Cells[8].Text),
