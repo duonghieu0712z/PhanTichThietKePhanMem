@@ -138,6 +138,7 @@
     <Content Include="Pages\ShowRouteOnMap.aspx" />
     <Content Include="Pages\StopRoutePage.aspx" />
     <Content Include="Pages\UISearchRoute.aspx" />
+    <Content Include="Pages\UISearchRouteByBusRoute.aspx" />
     <Content Include="Pages\UISearchStopRoute.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -234,6 +235,13 @@
     </Compile>
     <Compile Include="Pages\UISearchRoute.aspx.designer.cs">
       <DependentUpon>UISearchRoute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchRouteByBusRoute.aspx.cs">
+      <DependentUpon>UISearchRouteByBusRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchRouteByBusRoute.aspx.designer.cs">
+      <DependentUpon>UISearchRouteByBusRoute.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UISearchStopRoute.aspx.cs">
       <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
