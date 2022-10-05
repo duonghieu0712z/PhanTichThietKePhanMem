@@ -67,5 +67,15 @@ namespace BusinessLayer
                 return new List<Route>();
             }
         }
+
+        public List<Route> SearchRouteByBusRouteId(int id)
+        {
+            using (var db = GetContext())
+            {
+                var ls = db.Routes.Where(r => r.BusRoutesID == id);
+                if (ls != null && ls.Any()) return ls.ToList();
+                return new List<Route>();
+            }
+        }
     }
 }
