@@ -64,7 +64,7 @@
             lineDirection.setMap(map);
         }
 
-        function getContentInfoWindow(type) {
+        function getContentInfoWindow(type,data) {
             const strChoice = "Điểm được chọn";
             const strStart = "Điểm bắt đầu";
             const strEnd = "Điểm kết thúc";
@@ -79,21 +79,38 @@
                     content += `<h4 id="firstHeading" class="">${strChoice}</h4>
                         <div id="bodyContent">
                         <button type="button" class="btn btn - success" id = "btn_start_point" click = getStartPoint()>${strStart}</button>
-                        <button type="button" class="btn btn-warning" id = "btn_end_point" click = getEndPoint()>${strEnd}</button>`;
+                        <button type="button" class="btn btn-warning" id = "btn_end_point" click = getEndPoint()>${strEnd}</button>
+                    </div>`;
                     break;
                 case TypeBus:
-
+                    let address = "";
+                    if (data.Street) {
+                        address += data.Street + ',';
+                    }
+                    if (data.Wards) {
+                        address +=  data.Wards +',';
+                    } if (data.District) {
+                        address += data.District + ",";
+                    } if (address != "") {
+                        address = "Địa điểm: " + address.substring(0,address.lastIndexOf(","));
+                    };
+                    content += `<h4 id="firstHeading" class="">${strChoice}</h4>
+                        <div id="bodyContent">
+                        <p>Tên: ${data.BusStopName}</p>
+                        <p>Mô tả: ${data.BusStopDescription}</p>
+                        <p>${address}</p>
+                        </div>`;
                     break;
                 case TypeStart:
                     content += `<h4 id="firstHeading" class="firstHeading">${strStart}</h4>
                         <div id="bodyContent">
-                        <button type="button" class="btn btn-danger" id = "btn_delete_point" click = getDeletePoint(maker)>${strDelete}</button> 
+                        <button type="button" class="btn btn-danger" id = "btn_delete_start" click = getDeletePoint(maker)>${strDelete}</button> 
                         </div>`
                     break;
                 case TypeEnd:
                     content += `<h4 id="firstHeading" class="firstHeading">${strEnd}</h4>
                         <div id="bodyContent">
-                        <button type="button" class="btn btn-danger" id = "btn_delete_point" click = getDeletePoint(maker)>${strDelete}</button> 
+                        <button type="button" class="btn btn-danger" id = "btn_delete_end" click = getDeletePoint(maker)>${strDelete}</button> 
                         </div>`
                     break;
             }
@@ -112,10 +129,16 @@
             });
             infoWindow.open(map, maker);
         }
-        $(document).on('click', '#btn_delete_point', function getStartPoint() {
+        $(document).on('click', '#btn_delete_start', function getStartPoint() {
             if (markerStart != null) {
                 markerStart.setMap(null);
                 markerStart = null;
+            }
+        });
+        $(document).on('click', '#btn_delete_end', function getStartPoint() {
+            if (markerEnd != null) {
+                markerEnd.setMap(null);
+                markerEnd = null;
             }
         });
         function renderMaker(BusStops, haveDraw) {
@@ -128,7 +151,7 @@
             BusStops.forEach(busStop => {
                 let latLng = { lat: busStop.Latitude, lng: busStop.Longitude }
                 drawLine.push(latLng);
-                listMaker.push(placeMarkerAndPanTo(latLng, map, imgStopBus, TypeBus))
+                listMaker.push(placeMarkerAndPanTo(latLng, map, imgStopBus, TypeBus, busStop));
             });
             listBusStop = BusStops;
             if (haveDraw)
@@ -189,7 +212,7 @@
                 icon: img
             });
             map.panTo(latLng);
-            if (typeShow == TypeEnd || typeShow == TypeStart) {
+            if (typeShow == TypeEnd || typeShow == TypeStart || typeShow == TypeBus) {
                 google.maps.event.addListener(maker, "click", function (e) {
                     showInfo(map, maker, typeShow, info);
                 });
@@ -222,28 +245,28 @@
         <div class="row">
             <div class="d-flex justify-content-center mt-4" style="width: 100%">
                 <div class="col-sm-10 ">
-                <div class="form-group">
-                    <asp:DropDownList CssClass="form-control" 
-                        AutoPostBack="true" ID="dlStartPosition" 
-                        runat="server"
-                        style="width:100% !important; max-width: 100% !important"
-                        >
-                    </asp:DropDownList>
-                    <asp:DropDownList 
-                        CssClass="form-control mt-1" 
-                        AutoPostBack="true" 
-                        ID="dlEndPosition" 
-                        runat="server" 
-                        style="width:100% !important; max-width: 100% !important">
-                    </asp:DropDownList>
-                </div>
+                    <div class="form-group">
+                        <asp:DropDownList CssClass="form-control"
+                            AutoPostBack="true" ID="dlStartPosition"
+                            runat="server"
+                            Style="width: 100% !important; max-width: 100% !important">
+                        </asp:DropDownList>
+                        <asp:DropDownList
+                            CssClass="form-control mt-1"
+                            AutoPostBack="true"
+                            ID="dlEndPosition"
+                            runat="server"
+                            Style="width: 100% !important; max-width: 100% !important">
+                        </asp:DropDownList>
+                    </div>
                 </div>
                 <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                    <asp:Button style="height: 48px; background-color: teal; margin-bottom:12px !important;color: white !important" 
-                        Text="Tìm kiếm" runat="server" ID="btnSearch" CssClass="btn" OnClick="btnSearch_Click"/>
+                    <asp:Button Style="height: 48px; background-color: teal; margin-bottom: 12px !important; color: white !important"
+                        Text="Tìm kiếm" runat="server" ID="btnSearch" CssClass="btn" OnClick="btnSearch_Click" />
                 </div>
             </div>
         </div>
+
 
         <div class="row mt-4" style="padding-left:8px; padding-right: 8px">
         <div class="col-sm-12 overflow-auto">
@@ -261,20 +284,20 @@
         </div>
         
         </div>
-        <div class="row" style="padding-left:8px; padding-right:22px; height: 500px" >
+        <div class="row" style="padding-left: 8px; padding-right: 22px; height: 500px">
             <div class="col-sm-4 overflow-auto" style="height: 500px">
-                <asp:GridView Visible="false" 
-                    ID="GridViewSearchBusStop" 
-                    OnRowDataBound="GridViewSearchBusStop_RowDataBound" 
-                    CssClass="table table-bordered table-striped" 
-                    runat="server" 
-                    ></asp:GridView>
+                <asp:GridView Visible="false"
+                    ID="GridViewSearchBusStop"
+                    OnRowDataBound="GridViewSearchBusStop_RowDataBound"
+                    CssClass="table table-bordered table-striped"
+                    runat="server">
+                </asp:GridView>
             </div>
             <div class="col-sm-8">
                 <div class="row">
                 </div>
                 <div class="row">
-                   <div id="map" style="width: 100%; height: 500px; border: 5px solid #5e5454;"></div>
+                    <div id="map" style="width: 100%; height: 500px; border: 5px solid #5e5454;"></div>
                 </div>
             </div>
         </div>
@@ -285,6 +308,5 @@
         src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
         defer></script>
 
-    <input type="button" id="load_all_stop_bus" text="Tất cả địa điểm" onclick="loadAllStopBus()" />
 
 </asp:Content>

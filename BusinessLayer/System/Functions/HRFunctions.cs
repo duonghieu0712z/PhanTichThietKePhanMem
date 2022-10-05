@@ -62,6 +62,11 @@ namespace BusinessLayer.Functions
             StopRouteExt.Instance.Stop_Route_Delete(id);
         }
 
+        public Route Route_Select_ID(int id)
+        {
+            return RouteExt.Instance.Route_Select_ID(id);
+        }
+
         public Stop_Route Stop_Route_Select_ID(int id)
         {
             return StopRouteExt.Instance.Stop_Route_Select_ID(id);
