@@ -136,21 +136,22 @@ namespace Web.Pages
         private Route GetRouteFromRow(int index)
         {
             var row = GridViewRoute.Rows[index];
-            ShowMessage((row.Cells[1].Text));
-            return new Route()
-            {
-                RouteID = int.Parse(row.Cells[1].Text),
-                BusRoutesID = int.Parse(row.Cells[2].Text),
-                StartPositionID = int.Parse(row.Cells[3].Text),
-                EndPositionID = int.Parse(row.Cells[4].Text),
-                RouteName = row.Cells[5].Text.ToString(),
-                RouteAmount = int.Parse(row.Cells[6].Text),
-                RouteTime = TimeSpan.Parse(row.Cells[7].Text),
-                StartTime = DateTime.Parse(row.Cells[8].Text),
-                EndTime = DateTime.Parse(row.Cells[9].Text),
-                ApplicableDate = DateTime.Parse(row.Cells[10].Text),
-                OperationDate = DateTime.Parse(row.Cells[11].Text),
-            };
+            var route = HRFunctions.Instance.Route_Select_ID(int.Parse(row.Cells[1].Text));
+            return route;
+            //return new Route()
+            //{
+            //    RouteID = int.Parse(row.Cells[1].Text),
+            //    BusRoutesID = int.Parse(row.Cells[2].Text),
+            //    StartPositionID = int.Parse(row.Cells[3].Text),
+            //    EndPositionID = int.Parse(row.Cells[4].Text),
+            //    RouteName = row.Cells[5].Text.ToString(),
+            //    RouteAmount = int.Parse(row.Cells[6].Text),
+            //    RouteTime = TimeSpan.Parse(row.Cells[7].Text),
+            //    StartTime = DateTime.Parse(row.Cells[8].Text),
+            //    EndTime = DateTime.Parse(row.Cells[9].Text),
+            //    ApplicableDate = DateTime.Parse(row.Cells[10].Text),
+            //    OperationDate = DateTime.Parse(row.Cells[11].Text),
+            //};
         }
 
         private void SetRouteData(Route r)
