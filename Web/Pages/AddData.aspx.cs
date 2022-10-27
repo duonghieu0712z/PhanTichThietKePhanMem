@@ -19,38 +19,32 @@ namespace Web.Pages
         }
         public void LoadJson()
         {
-            List<string> listProduct = new List<string>();
-             List<string> listRoute = new List<string>();
-            for (int i = 0; i < 5; i++)
-            {
-                listProduct.Add(Server.MapPath("~/SetImg/data/product_" + i + ".json"));
-                listRoute.Add(Server.MapPath("~/SetImg/data/route_" + i + ".json"));
-            }
+            string listProduct = Server.MapPath("~/SetImg/data/Dalat_BaoLoc/bustop.json");
+            string listRoute = Server.MapPath("~/SetImg/data/Dalat_BaoLoc/route.json");
             Dictionary<BusRoute, List<BusStop>> map = new Dictionary<BusRoute, List<BusStop>>();
 
-            for (int i = 0; i < listProduct.Count; i++)
+
+            BusRoute busRoute;
+            List<BusStop> busStops = new List<BusStop>();
+            using (StreamReader r = new StreamReader(listRoute))
             {
-                BusRoute busRoute;
-                List<BusStop> busStops = new List<BusStop>();
-                using (StreamReader r = new StreamReader(listRoute[i]))
-                {
-                    string json = r.ReadToEnd();
-                    ItemRoute itemRoute = JsonConvert.DeserializeObject<ItemRoute>(json);
-                    busRoute = ConvertBusRoute(itemRoute);
+                string json = r.ReadToEnd();
+                ItemRoute itemRoute = JsonConvert.DeserializeObject<ItemRoute>(json);
+                busRoute = ConvertBusRoute(itemRoute);
 
-                }
-                using (StreamReader r = new StreamReader(listProduct[i]))
-                {
-                    string json = r.ReadToEnd();
-                    List<Item> listItem = JsonConvert.DeserializeObject<List<Item>>(json);
-                    foreach (var item in listItem)
-                    {
-                        busStops.Add(ConvertBusstop(item));
-                    }
-                }
-
-                map.Add(busRoute, busStops);
             }
+            using (StreamReader r = new StreamReader(listProduct))
+            {
+                string json = r.ReadToEnd();
+                List<Item> listItem = JsonConvert.DeserializeObject<List<Item>>(json);
+                foreach (var item in listItem)
+                {
+                    busStops.Add(ConvertBusstop(item));
+                }
+            }
+
+            map.Add(busRoute, busStops);
+
 
             foreach (var item in map)
             {
@@ -64,9 +58,60 @@ namespace Web.Pages
                 {
                     int stt = i + 1;
                     ConvertStopRoute(routes[countRoute].RouteID, item.Value[i].BusStopID, stt);
-                    ConvertStopRoute(routes[countRoute+1].RouteID, item.Value[countBusRoute-stt].BusStopID, stt);
+                    ConvertStopRoute(routes[countRoute + 1].RouteID, item.Value[countBusRoute - stt].BusStopID, stt);
                 }
             }
+
+
+
+            //List<string> listProduct = new List<string>();
+            // List<string> listRoute = new List<string>();
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    listProduct.Add(Server.MapPath("~/SetImg/data/product_" + i + ".json"));
+            //    listRoute.Add(Server.MapPath("~/SetImg/data/route_" + i + ".json"));
+            //}
+            //Dictionary<BusRoute, List<BusStop>> map = new Dictionary<BusRoute, List<BusStop>>();
+
+            //for (int i = 0; i < listProduct.Count; i++)
+            //{
+            //    BusRoute busRoute;
+            //    List<BusStop> busStops = new List<BusStop>();
+            //    using (StreamReader r = new StreamReader(listRoute[i]))
+            //    {
+            //        string json = r.ReadToEnd();
+            //        ItemRoute itemRoute = JsonConvert.DeserializeObject<ItemRoute>(json);
+            //        busRoute = ConvertBusRoute(itemRoute);
+
+            //    }
+            //    using (StreamReader r = new StreamReader(listProduct[i]))
+            //    {
+            //        string json = r.ReadToEnd();
+            //        List<Item> listItem = JsonConvert.DeserializeObject<List<Item>>(json);
+            //        foreach (var item in listItem)
+            //        {
+            //            busStops.Add(ConvertBusstop(item));
+            //        }
+            //    }
+
+            //    map.Add(busRoute, busStops);
+            //}
+
+            //foreach (var item in map)
+            //{
+            //    List<Route> routes = new List<Route>();
+            //    int countBusRoute = item.Value.Count;
+            //    int countRoute = routes.Count;
+            //    routes.Add(ConvertRoute(item.Key, item.Value[0], item.Value[countBusRoute - 1]));
+            //    int countBusStop = item.Value.Count;
+            //    routes.Add(ConvertRoute(item.Key, item.Value[countBusRoute - 1], item.Value[0]));
+            //    for (int i = 0; i < countBusRoute; i++)
+            //    {
+            //        int stt = i + 1;
+            //        ConvertStopRoute(routes[countRoute].RouteID, item.Value[i].BusStopID, stt);
+            //        ConvertStopRoute(routes[countRoute+1].RouteID, item.Value[countBusRoute-stt].BusStopID, stt);
+            //    }
+            //}
         }
 
 

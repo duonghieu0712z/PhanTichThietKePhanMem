@@ -22,7 +22,7 @@
         let busStops = [];
         let dataJson;
         let lineDirection;
-        const centerDefault = { lat: 10.771119394974335, lng: 106.70050611220746 };
+        const centerDefault = { lat: 11.944959979783556, lng: 108.44610830987766 };
         const imgStart = "/SetImg/imgStart.png";
         const imgEnd = "/SetImg/imgStop.png";
         const imgCurrent = "/SetImg/imgCurrent.png";

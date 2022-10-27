@@ -22,12 +22,17 @@
         let busStops = [];
         let dataJson;
         let lineDirection;
+        let listPosition;
         const centerDefault = { lat: 10.771119394974335, lng: 106.70050611220746 };
         const imgStart = "/SetImg/imgStart.png";
         const imgEnd = "/SetImg/imgStop.png";
         const imgCurrent = "/SetImg/imgCurrent.png";
         const imgStopBus = "/SetImg/imgStopBus.png";
+        let directionsService;
+        let directionsRenderer;
         function initMap() {
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: zoom,
                 center: centerDefault,
@@ -141,6 +146,24 @@
                 markerEnd = null;
             }
         });
+        function calcRoute(listPoint) {
+            let lengthList = listPoint.length;
+            let start = listPoint[0];
+            let midPoints = listPoint.slice(1, lengthList - 1);
+            let end = listPoint[lengthList-1];
+            console.log(midPoints);
+            let request = {
+                origin: start,
+                destination: end,
+                waypoints: midPoints ,
+                travelMode: 'DRIVING'
+            };
+            directionsService.route(request, function (result, status) {
+                if (status == 'OK') {
+                    directionsRenderer.setDirections(result);
+                }
+            });
+        }
         function renderMaker(BusStops, haveDraw) {
             if (listMaker != []) {
                 listMaker.forEach(marker => {
@@ -148,14 +171,17 @@
                 });
             }
             listMaker = [];
+            listPosition = [];
             BusStops.forEach(busStop => {
                 let latLng = { lat: busStop.Latitude, lng: busStop.Longitude }
                 drawLine.push(latLng);
                 listMaker.push(placeMarkerAndPanTo(latLng, map, imgStopBus, TypeBus, busStop));
+                listPosition.push({ location: latLng});
             });
             listBusStop = BusStops;
             if (haveDraw)
                 drawDirection(drawLine);
+            calcRoute(listPosition);
         }
 
 
@@ -226,8 +252,8 @@
 
                 let dataRoute = JSON.parse(dataJson);
                 renderMaker(dataRoute, true);
+             
             } else {
-                renderMaker(dataRoute, true);
                 lineDirection.setMap(null);
             }
 

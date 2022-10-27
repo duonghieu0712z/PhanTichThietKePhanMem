@@ -169,6 +169,10 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SetImg\imgCurrent.png" />
+    <Content Include="SetImg\imgStart.png" />
+    <Content Include="SetImg\imgStop.png" />
+    <Content Include="SetImg\imgStopBus.png" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -291,6 +295,8 @@
     <Content Include="SetImg\data\route_2.json" />
     <Content Include="SetImg\data\route_3.json" />
     <Content Include="SetImg\data\route_4.json" />
+    <Content Include="SetImg\data\Dalat_BaoLoc\bustop.json" />
+    <Content Include="SetImg\data\Dalat_BaoLoc\route.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
