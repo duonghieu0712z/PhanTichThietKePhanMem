@@ -263,6 +263,84 @@
         window.initMap = initMap;
 
 
+
+     
+
+
+    </script>
+    <style type="text/css">
+        .desc-icon{
+            width: 40px;
+            height: 40px;
+            border-radius: 24px;
+            background-color: #ffffff;
+            display:inline-block;
+            padding:4px;
+        }
+        .online-table-data{
+            display:inline-block;
+            margin-top: -1px;
+            float: right;
+            border:none;
+        }
+        .tr-search-route-result{
+            background-color: #34B67A;
+            border: 2px solid #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            cursor: pointer;
+            width:100%;
+        }
+        .center-vertical-container{
+            display:flex;
+            justify-items:center;
+            align-items:center;
+            height: 40px;
+        }
+        .desc-detail-icon{
+            width: 40px;
+            height:40px;
+            padding: 4px;
+        }
+        .desc-detail-bus-route-number{
+            width:40px;
+            height:40px;
+            background-color: #34B67A;
+            border-radius: 20px;
+            font-size: 18px;
+            color: #ffffff;
+            text-align:center;
+            padding-top: 8px;
+        }
+        .td-detail-text-container{
+            text-align: center;
+            font-size:12px;
+        }
+        .tr-search-route-result-detail-container{
+            padding: 4px;
+            background-color: #f4f4f4;
+            margin:2px;
+        }
+        .table-detail{
+            border: 1px solid #c4c4c4;
+        }
+        .tb-detail-tr{
+            border: 1px solid #c4c4c4;
+        }
+        .tb-detail-td{
+            padding: 4px;
+        }
+        .table-header{
+            margin-bottom: 0px;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        function handleClickOnTrResultRoute()
+        {
+            this.lbTest.Text = "def";
+        }
     </script>
 </asp:Content>
 
@@ -270,7 +348,10 @@
     <div class="form-group">
         <div class="row">
             <div class="d-flex justify-content-center mt-4" style="width: 100%">
-                <div class="col-sm-10 ">
+                <div class="col-sm-3">
+                    <asp:ImageButton ImageUrl="~/SetImg/ic-swap.png" runat="server" Style="float: right;background-color: #34B67A; width:48px; height: 72px; margin-bottom: 12px; padding-top: 20px; padding-bottom: 20px;padding-left: 8px; padding-right:8px" />
+                </div>
+                <div class="col-sm-6 ">
                     <div class="form-group">
                         <asp:DropDownList CssClass="form-control"
                             AutoPostBack="true" ID="dlStartPosition"
@@ -286,9 +367,8 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                    <asp:Button Style="height: 48px; background-color: teal; margin-bottom: 12px !important; color: white !important"
-                        Text="Tìm kiếm" runat="server" ID="btnSearch" CssClass="btn" OnClick="btnSearch_Click" />
+                <div class="col-sm-3 d-flex justify-content-left align-items-center">
+                    <asp:ImageButton ImageUrl="~/SetImg/ic-search.png" runat="server" ID="imgbtnSearch" OnClick="imgbtnSearch_Click" Style="background-color: #34B67A; width:48px; height: 72px; margin-bottom: 12px; padding-top: 20px; padding-bottom: 20px;padding-left: 8px; padding-right:8px" />
                 </div>
             </div>
         </div>
@@ -298,15 +378,193 @@
         <div class="col-sm-12 overflow-auto">
             <asp:Label id="lblRoute" Visible="false" runat="server"
             ><h4>Danh sách Lộ trình</h4></asp:Label>
-        <asp:GridView Visible="false" style="width:100%" 
-            OnRowDataBound="GridViewSearchRoute_RowDataBound" 
-            ID="GridViewSearchRoute" 
-            CssClass="table table-bordered table-striped" 
-            runat="server" 
-            AutoGenerateSelectButton="true"
-            OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
-            SelectedRowStyle-BackColor="Teal"
-            SelectedRowStyle-ForeColor="White"></asp:GridView>
+            <asp:GridView Visible="false" style="width:100%" 
+                OnRowDataBound="GridViewSearchRoute_RowDataBound" 
+                ID="GridViewSearchRoute" 
+                CssClass="table table-bordered table-striped" 
+                runat="server" 
+                AutoGenerateSelectButton="true"
+                OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
+                SelectedRowStyle-BackColor="Teal"
+                SelectedRowStyle-ForeColor="White">
+            </asp:GridView>
+            <asp:Label id="lbTest" runat="server"></asp:Label>
+
+             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <asp:Panel ID="pnTable" runat="server">
+                        <div class="table-responsive">
+
+                            <%for (var i=0;i<RouteList.Count; i++)
+                                        {
+                                            var item = RouteList[i]; %>
+                             <table style="width: 100%" class="table table-header">
+                                <tbody>
+                                    <tr class="tr-search-route-result" id=<%=item.RouteID %> onclick="handleClickOnTrResultRoute">
+                                        <td><div class="center-vertical-container"><%= i+1 %></div></td>
+                                        <td><div class="center-vertical-container">Đi tuyến: <%= item.RouteName.Substring(0, item.RouteName.LastIndexOf(":")) %></div></td>
+                                       <td class="online-table-data">
+                                           <div class="desc-icon">
+                                               <img src="../SetImg/ic-money.png" />
+                                           </div>
+                                           <%= 40 %> $
+                                       </td>
+                                        <td class="online-table-data">
+                                           <div class="desc-icon">
+                                               <img src="../SetImg/ic-clock.png" />
+                                           </div>
+                                           <%= 40 %> km
+                                       </td>
+                                        <td class="online-table-data">
+                                           <div class="desc-icon">
+                                               <img src="../SetImg/ic-car.png" />
+                                           </div>
+                                           <%= 40 %> km
+                                            <td class="online-table-data">
+                                           <div class="desc-icon">
+                                               <img src="../SetImg/ic-walk.png" />
+                                           </div>
+                                           <%= 40 %> km
+                                       </td>
+                                       </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                                    
+                                    
+                            <div class="tr-search-route-result-detail-container">
+                                <table style="width: 100%" class="table-detail">
+                                <tbody>
+                                <tr class="tb-detail-tr">
+                                    <td class="tb-detail-td">
+                                        <div class="desc-detail-icon">
+                                            <img src="../SetImg/ic-walk.png" />
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Đi bộ
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Từ
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Đến
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            <%=item.RouteTime%>
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            3km
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            6.000 đ
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="tb-detail-tr">
+                                    <td class="tb-detail-td">
+                                        <div class="desc-detail-bus-route-number">
+                                            <%=item.RouteID %>
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Đi lộ trình
+                                            <br />
+                                            <b><%= item.RouteName.Substring(item.RouteName.LastIndexOf(":")+1, item.RouteName.Length - item.RouteName.LastIndexOf(":")-1) %></b>
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Lên xe tại trạm
+                                            <br />
+                                            <b><%= item.RouteName.Substring(item.RouteName.LastIndexOf(":")+1, item.RouteName.Length - item.RouteName.LastIndexOf(":")-1) %></b>
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Xuống xe tại trạm
+                                            <br />
+                                            <b><%= item.RouteName.Substring(item.RouteName.LastIndexOf(":")+1, item.RouteName.Length - item.RouteName.LastIndexOf(":")-1) %></b>
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            <%=item.RouteTime%>
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            3km
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            6.000 đ
+                                        </div>
+                                    </td>
+                            </tr>
+                            <tr class="tb-detail-tr">
+                                <td class="tb-detail-td">
+                                    <div class="desc-detail-icon">
+                                        <img src="../SetImg/ic-walk.png" />
+                                    </div>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Đi bộ
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Từ
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            Đến
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            <%=item.RouteTime%>
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            3km
+                                        </div>
+                                    </td>
+                                    <td class="tb-detail-td">
+                                        <div class="td-detail-text-container">
+                                            6.000 đ
+                                        </div>
+                                    </td>
+                                </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            </div>
+                                    
+                            <% } %>
+
+                           
+
+                        </div>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
         </div>
         
         </div>
