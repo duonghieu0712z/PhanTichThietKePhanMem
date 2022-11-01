@@ -100,10 +100,5 @@ namespace BusinessLayer.Functions
         {
             return StopRouteExt.Instance.GetBusStopByRoute(routeId);
         }
-
-        public BusStop BusStop_Select_ID(int id)
-        {
-            return BusStopExt.Instance.BusStop_Select_ID(id);
-        }
     }
 }

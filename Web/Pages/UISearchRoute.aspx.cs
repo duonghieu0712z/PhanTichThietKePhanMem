@@ -14,6 +14,7 @@ namespace Web.Pages
 
     public partial class UISearchRoute : System.Web.UI.Page
     {
+        public List<Route> RouteList = new List<Route>();
         public class BusStopModel
         {
             public int BusStopID { get; set; }
@@ -77,11 +78,11 @@ namespace Web.Pages
         {
             this.GridViewSearchRoute.DataSource = HRFunctions.Instance.SearchRouteByStartAndEndPos(int.Parse(this.dlStartPosition.SelectedValue), int.Parse(this.dlEndPosition.SelectedValue));
             this.GridViewSearchRoute.DataBind();
+            RouteList = HRFunctions.Instance.SearchRouteByStartAndEndPos(int.Parse(this.dlStartPosition.SelectedValue), int.Parse(this.dlEndPosition.SelectedValue));
         }
 
         protected void GridViewSearchRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-
             e.Row.Cells[0].ForeColor = Color.DarkOrange;
             e.Row.Cells[1].Visible = false;
             e.Row.Cells[2].Visible = false;
@@ -166,6 +167,14 @@ namespace Web.Pages
                 list.Add(new BusStopModel(item));
             });
             return list;
+        }
+
+        protected void imgbtnSearch_Click(object sender, ImageClickEventArgs e)
+        {
+            ClearData();
+            BindingRouteData();
+            this.GridViewSearchRoute.Visible = true;
+            this.lblRoute.Visible = true;
         }
     }
 }
