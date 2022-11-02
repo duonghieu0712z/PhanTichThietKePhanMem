@@ -134,6 +134,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="JavaScript\StopRouteHandle.js" />
     <Content Include="Pages\AddData.aspx" />
+    <Content Include="Pages\BusStopPage.aspx" />
     <Content Include="Pages\RoutePage.aspx" />
     <Content Include="Pages\ShowRouteOnMap.aspx" />
     <Content Include="Pages\StopRoutePage.aspx" />
@@ -218,6 +219,13 @@
     </Compile>
     <Compile Include="Pages\AddData.aspx.designer.cs">
       <DependentUpon>AddData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BusStopPage.aspx.cs">
+      <DependentUpon>BusStopPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BusStopPage.aspx.designer.cs">
+      <DependentUpon>BusStopPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\RoutePage.aspx.cs">
       <DependentUpon>RoutePage.aspx</DependentUpon>

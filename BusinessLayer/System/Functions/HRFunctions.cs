@@ -19,6 +19,7 @@ namespace BusinessLayer.Functions
                 return instance;
             }
         }
+        #region Route
         public List<Route> SelectAllRoute()
         {
             return RouteExt.Instance.Route_Select_All();
@@ -100,5 +101,38 @@ namespace BusinessLayer.Functions
         {
             return StopRouteExt.Instance.GetBusStopByRoute(routeId);
         }
+        #endregion
+
+        #region BusStop
+        public List<BusStop> SearchByName(string nameValue)
+        {
+
+            return BusStopExt.Instance.BusStop_Select_By("Name", nameValue);
+        }
+
+        public int InsertBusStop(BusStop bs)
+        {
+            return BusStopExt.Instance.BusStop_InsertUpdate(bs);
+        }
+
+        public BusStop FindBusStopByID(int id)
+        {
+            return BusStopExt.Instance.BusStop_Select_ID(id);
+        }
+        public void DeleteBusStopByID(int id)
+        {
+            BusStopExt.Instance.BusStop_Delete(id);
+        }
+        public void DeleteBusStopByIDs(List<String> IDs)
+        {
+            BusStopExt.Instance.BusStop_Delete_IDs(IDs);
+
+        }
+        public List<BusStop> Bus_Stop_Pagination(int PageSize, int PageIndex, out int TotalRows)
+        {
+            return BusStopExt.Instance.BusStop_Find_KeyWord("", PageSize, PageIndex, out TotalRows);
+        }
+
+        #endregion
     }
 }
