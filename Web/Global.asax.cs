@@ -7,6 +7,7 @@ namespace Web
 {
     public class Global : HttpApplication
     {
+        public static string g_PageSize = "20";
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup

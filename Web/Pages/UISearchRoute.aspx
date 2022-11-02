@@ -1,73 +1,82 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UISearchRoute.aspx.cs" Inherits="Web.Pages.UISearchRoute" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UISearchRoute.aspx.cs"
+    Inherits="Web.Pages.UISearchRoute" %>
 
-<asp:Content ID="UISearchRouteHead" ContentPlaceHolderID="Head" runat="server">
-    <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
-    <script>
-        const TypeChoice = 1;
-        const TypeBus = 2;
-        const TypeStart = 3;
-        const TypeEnd = 4;
-        let zoom = 15;
-        let listBusStop;
-        var uniqueId = 1;
-        let currentMaker;
-        let startPoint;
-        let markerStart;
-        let listMaker = [];
-        let markerEnd;
-        let markerChoice;
-        let map;
-        let drawLine = [];
-        let infoWindow;
-        let busStops = [];
-        let dataJson;
-        let lineDirection;
-        let listPosition;
-        const centerDefault = { lat: 10.771119394974335, lng: 106.70050611220746 };
-        const imgStart = "/SetImg/imgStart.png";
-        const imgEnd = "/SetImg/imgStop.png";
-        const imgCurrent = "/SetImg/imgCurrent.png";
-        const imgStopBus = "/SetImg/imgStopBus.png";
-        let directionsService;
-        let directionsRenderer;
-        function initMap() {
-            directionsService = new google.maps.DirectionsService();
-            directionsRenderer = new google.maps.DirectionsRenderer();
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: zoom,
-                center: centerDefault,
-            });
-
-            map.addListener("click", (e) => {
-                currentPoint = e.latLng;
-                if (markerChoice != null) {
-                    markerChoice.setMap(null);
-                    markerChoice = null;
-                }
-                console.log(e.latLng);
-                markerChoice = placeMarkerAndPanTo(currentPoint, map, imgCurrent);
-                google.maps.event.addListener(markerChoice, "click", function (e) {
-                    showInfo(map, markerChoice, TypeChoice);
+    <asp:Content ID="UISearchRouteHead" ContentPlaceHolderID="Head" runat="server">
+        <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
+        <script>
+            const TypeChoice = 1;
+            const TypeBus = 2;
+            const TypeStart = 3;
+            const TypeEnd = 4;
+            let zoom = 15;
+            let listBusStop;
+            var uniqueId = 1;
+            let currentMaker;
+            let startPoint;
+            let markerStart;
+            let listMaker = [];
+            let markerEnd;
+            let markerChoice;
+            let map;
+            let drawLine = [];
+            let infoWindow;
+            let busStops = [];
+            let dataJson;
+            let lineDirection;
+            let listPosition;
+            const centerDefault = { lat: 10.771119394974335, lng: 106.70050611220746 };
+            const imgStart = "/SetImg/imgStart.png";
+            const imgEnd = "/SetImg/imgStop.png";
+            const imgCurrent = "/SetImg/imgCurrent.png";
+            const imgStopBus = "/SetImg/imgStopBus.png";
+            let directionsService;
+            let directionsRenderer;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: zoom,
+                    center: centerDefault,
                 });
-                showInfo(map, markerChoice, TypeChoice);
+                directionsService = new google.maps.DirectionsService();
+                directionsRenderer = new google.maps.DirectionsRenderer({
+                    'map': map,
+                    'suppressMarkers': true,
+                });
+                directionsRenderer.setOptions({
+                    polylineOptions: {
+                        strokeColor: 'red'
+                    }
+                });
 
-            });
-            getRoute();
-        }
-        function drawDirection(listLatLng) {
-            if (lineDirection != null) {
-                lineDirection.setMap(null);
-                lineDirection = null
-            };
-            lineDirection = new google.maps.Polyline({
-                path: listLatLng,
-                geodesic: true,
-                strokeColor: "#FF0000",
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-            });
-            lineDirection.setMap(map);
-        }
+                map.addListener("click", (e) => {
+                    currentPoint = e.latLng;
+                    if (markerChoice != null) {
+                        markerChoice.setMap(null);
+                        markerChoice = null;
+                    }
+                    console.log(e.latLng);
+                    markerChoice = placeMarkerAndPanTo(currentPoint, map, imgCurrent);
+                    google.maps.event.addListener(markerChoice, "click", function (e) {
+                        showInfo(map, markerChoice, TypeChoice);
+                    });
+                    showInfo(map, markerChoice, TypeChoice);
+
+                });
+                getRoute();
+            }
+            function drawDirection(listLatLng) {
+                if (lineDirection != null) {
+                    lineDirection.setMap(null);
+                    lineDirection = null
+                };
+                lineDirection = new google.maps.Polyline({
+                    path: listLatLng,
+                    geodesic: true,
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                });
+                lineDirection.setMap(map);
+            }
 
 
         function getContentInfoWindow(type,data) {
@@ -107,25 +116,25 @@
                         <p>Mô tả: ${data.BusStopDescription}</p>
                         <p>${address}</p>
                         </div>`;
-                    break;
-                case TypeStart:
-                    content += `<h4 id="firstHeading" class="firstHeading">${strStart}</h4>
+                        break;
+                    case TypeStart:
+                        content += `<h4 id="firstHeading" class="firstHeading">${strStart}</h4>
                         <div id="bodyContent">
                         <button type="button" class="btn btn-danger" id = "btn_delete_start" click = getDeletePoint(maker)>${strDelete}</button> 
                         </div>`
-                    break;
-                case TypeEnd:
-                    content += `<h4 id="firstHeading" class="firstHeading">${strEnd}</h4>
+                        break;
+                    case TypeEnd:
+                        content += `<h4 id="firstHeading" class="firstHeading">${strEnd}</h4>
                         <div id="bodyContent">
                         <button type="button" class="btn btn-danger" id = "btn_delete_end" click = getDeletePoint(maker)>${strDelete}</button> 
                         </div>`
-                    break;
-            }
-            content += `</div>
+                        break;
+                }
+                content += `</div>
                 </div>
                 </div>`
-            return content;
-        }
+                return content;
+            }
 
         function showInfo(map, maker, typeContent, info) {
             if (infoWindow != null && infoWindow.getMap() != null) {
@@ -162,7 +171,12 @@
             };
             directionsService.route(request, function (result, status) {
                 if (status == 'OK') {
+                    console.log(result);
+                
                     directionsRenderer.setDirections(result);
+                    directionsRenderer.setMap(map);
+                } else {
+                    alert("Đã có lỗi xảy ra !! Vui lòng thử lại ");
                 }
             });
         }
@@ -182,76 +196,79 @@
 
             });
             listBusStop = BusStops;
-            if (haveDraw)
-                drawDirection(drawLine);
+            if (haveDraw) {
+                //  drawDirection(drawLine);
+                calcRoute(listPosition);
+            }
             calcRoute(listPosition);
+        
         }
 
 
 
-        $(document).on('click', '#btn_start_point', function getStartPoint() {
-            if (markerStart != null) {
-                markerStart.setMap(null);
-                markerStart = null;
-            }
-            markerChoice.setMap(null);
-            markerStart = placeMarkerAndPanTo(currentPoint, map, imgStart, TypeStart);
-            markerStart.setMap(map);
-
-
-        });
-        $(document).on('click', '#btn_end_point', function getEndPonit() {
-            if (markerEnd != null) {
-                markerEnd.setMap(null);
-                markerEnd = null;
-            }
-            markerChoice.setMap(null);
-            markerEnd = placeMarkerAndPanTo(currentPoint, map, imgEnd, TypeEnd);
-            markerEnd.setMap(map);
-        });
-        //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
-
-        function loadAllStopBus() {
-            if (busStops != []) {
-                busStops = [];
-            }
-            $.ajax({
-                type: "GET", //GET
-                url: "ShowRouteOnMap.aspx/GetAllBusStop",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: false,
-                success: function (msg) {
-                    let data = msg.d;
-                    console.log(data);
-
-                },
-                failure: function (response) {
-                    alert(response.d);
-                },
-                error: function (response) {
-                    alert(response.d);
+            $(document).on('click', '#btn_start_point', function getStartPoint() {
+                if (markerStart != null) {
+                    markerStart.setMap(null);
+                    markerStart = null;
                 }
+                markerChoice.setMap(null);
+                markerStart = placeMarkerAndPanTo(currentPoint, map, imgStart, TypeStart);
+                markerStart.setMap(map);
+
+
             });
-        }
-        function placeMarkerAndPanTo(latLng, map, img, typeShow, info, id) {
-            let maker = new google.maps.Marker({
-                position: latLng,
-                map: map,
-                icon: img
+            $(document).on('click', '#btn_end_point', function getEndPonit() {
+                if (markerEnd != null) {
+                    markerEnd.setMap(null);
+                    markerEnd = null;
+                }
+                markerChoice.setMap(null);
+                markerEnd = placeMarkerAndPanTo(currentPoint, map, imgEnd, TypeEnd);
+                markerEnd.setMap(map);
             });
-            map.panTo(latLng);
-            if (typeShow == TypeEnd || typeShow == TypeStart || typeShow == TypeBus) {
-                google.maps.event.addListener(maker, "click", function (e) {
-                    showInfo(map, maker, typeShow, info);
+            //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
+
+            function loadAllStopBus() {
+                if (busStops != []) {
+                    busStops = [];
+                }
+                $.ajax({
+                    type: "GET", //GET
+                    url: "ShowRouteOnMap.aspx/GetAllBusStop",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (msg) {
+                        let data = msg.d;
+                        console.log(data);
+
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
                 });
             }
-            return maker;
-        }
-        function getRoute() {
-            dataJson = $('input#hfData').val();
-            console.log(dataJson, "daylatext");
-            if (dataJson != "") {
+            function placeMarkerAndPanTo(latLng, map, img, typeShow, info, id) {
+                let maker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    icon: img
+                });
+                map.panTo(latLng);
+                if (typeShow == TypeEnd || typeShow == TypeStart || typeShow == TypeBus) {
+                    google.maps.event.addListener(maker, "click", function (e) {
+                        showInfo(map, maker, typeShow, info);
+                    });
+                }
+                return maker;
+            }
+            function getRoute() {
+                dataJson = $('input#hfData').val();
+                console.log(dataJson, "daylatext");
+                if (dataJson != "") {
 
                 let dataRoute = JSON.parse(dataJson);
                 renderMaker(dataRoute, true);
@@ -261,17 +278,11 @@
             }
 
 
-        }
-        /*  window.document.addEventListener('DOMContentLoaded', );*/
-        window.initMap = initMap;
+            }
+            /*  window.document.addEventListener('DOMContentLoaded', );*/
+            window.initMap = initMap;
 
-
-
-
-     
-
-
-    </script>
+        </script>
     <style type="text/css">
         .desc-icon{
             width: 40px;
@@ -417,11 +428,9 @@
             </div>
         </div>
 
-    </div>
+        </div>
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
-        defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqDGCtUCp7HDWxfqnWiy-Z2TZfVhDxuKA&callback=initMap" defer></script>
 
 
-</asp:Content>
+    </asp:Content>
