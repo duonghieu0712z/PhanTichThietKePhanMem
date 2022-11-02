@@ -16,7 +16,7 @@
                             runat="server" 
                             AutoGenerateSelectButton="true" 
                             OnSelectedIndexChanged="GridViewRoute_SelectedIndexChanged"
-                            SelectedRowStyle-BackColor="Teal"
+                            SelectedRowStyle-BackColor="#34B67A"
                             OnRowDataBound="GridViewRoute_RowDataBound"></asp:GridView>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                                     <small class="form-text text-muted">Xác nhận lộ trình nào được cập nhật hay xóa, tăng tự động khi thêm.</small>
                                 </div>
                                 <div class="col-sm-2">
-                                    <asp:Button Text="Xóa" runat="server" Style="width: 100%; background-color: teal; color: white" ID="btnDelete" CssClass="btn" OnClick="ButtonDeleteRoute_Click" />
+                                    <asp:Button Text="Xóa" runat="server" Style="width: 100%; background-color: #34B67A; color: white" ID="btnDelete" CssClass="btn" OnClick="ButtonDeleteRoute_Click" />
                                 </div>
                             </div>
                         </div>
@@ -118,10 +118,10 @@
                         <div class="form-group ">
                             <div class="row mt-3">
                                 <div class="col-sm-4">
-                                <asp:Button runat="server" Text="Cập nhật" CssClass="btn" Style="width: 100%; background-color: teal; color: white" OnClick="ButtonUpdateRoute_Click" />
+                                <asp:Button runat="server" Text="Cập nhật" CssClass="btn" Style="width: 100%; background-color: #34B67A; color: white" OnClick="ButtonUpdateRoute_Click" />
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:Button runat="server" Text="Thêm" CssClass="btn" Style="width: 100%; background-color: teal; color: white" OnClick="ButtonAddRoute_Click" />
+                                    <asp:Button runat="server" Text="Thêm" CssClass="btn" Style="width: 100%; background-color: #34B67A; color: white" OnClick="ButtonAddRoute_Click" />
                                 </div>
                             </div>
                         </div>
