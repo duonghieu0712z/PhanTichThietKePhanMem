@@ -72,6 +72,11 @@ namespace BusinessLayer.Functions
             return StopRouteExt.Instance.Stop_Route_Select_ID(id);
         }
 
+        public BusStop BusStop_Select_ID(int id)
+        {
+            return BusStopExt.Instance.BusStop_Select_ID(id);
+        }
+
         public List<RouteInfo> GetAllRouteInfo()
         {
             return RouteExt.Instance.GetAllRouteInfo();
@@ -94,11 +99,6 @@ namespace BusinessLayer.Functions
         public List<BusStop> GetBusStopByRoute(int routeId)
         {
             return StopRouteExt.Instance.GetBusStopByRoute(routeId);
-        }
-
-        public BusStop BusStop_Select_ID(int id)
-        {
-            return BusStopExt.Instance.BusStop_Select_ID(id);
         }
     }
 }

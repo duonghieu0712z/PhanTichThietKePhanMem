@@ -4,19 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-<<<<<<< .merge_file_a17644
-      <Diagram DiagramId="24293cb782a1459a854f2175280f189d" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusRoute" Width="1.5" PointX="0.875" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusStop" Width="1.5" PointX="0.875" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Route" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Stop_Route" Width="1.5" PointX="6.5" PointY="2" IsExpanded="true" />
-=======
       <Diagram DiagramId="24293cb782a1459a854f2175280f189d" Name="Diagram1">
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusRoute" Width="1.5" PointX="0.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusStop" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Route" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Stop_Route" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
->>>>>>> .merge_file_a26184
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" ManuallyRouted="false" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop_End" ManuallyRouted="false" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop_Start" ManuallyRouted="false" />

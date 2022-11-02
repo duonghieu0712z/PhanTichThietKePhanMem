@@ -169,6 +169,12 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SetImg\ic-car.png" />
+    <Content Include="SetImg\ic-clock.png" />
+    <Content Include="SetImg\ic-money.png" />
+    <Content Include="SetImg\ic-search.png" />
+    <Content Include="SetImg\ic-swap.png" />
+    <Content Include="SetImg\ic-walk.png" />
     <Content Include="SetImg\imgCurrent.png" />
     <Content Include="SetImg\imgStart.png" />
     <Content Include="SetImg\imgStop.png" />

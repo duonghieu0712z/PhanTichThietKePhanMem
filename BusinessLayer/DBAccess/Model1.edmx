@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ROUTE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ROUTE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BusRoutes">
           <Key>
             <PropertyRef Name="BusRouteID" />
@@ -58,100 +58,13 @@
           <Property Name="EndPositionID" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Route_BusRoutes">
-          <End Role="BusRoutes" Type="Self.BusRoutes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Route" Type="Self.Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusRoutes">
-              <PropertyRef Name="BusRouteID" />
-            </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="BusRoutesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Route_BusStop_End">
-          <End Role="BusStop" Type="Self.BusStop" Multiplicity="1" />
-          <End Role="Route" Type="Self.Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
-            </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="EndPositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Route_BusStop_Start">
-          <End Role="BusStop" Type="Self.BusStop" Multiplicity="1" />
-          <End Role="Route" Type="Self.Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
-            </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="StartPositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Stop_Route_BusStop">
-          <End Role="BusStop" Type="Self.BusStop" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Stop_Route" Type="Self.Stop_Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
-            </Principal>
-            <Dependent Role="Stop_Route">
-              <PropertyRef Name="EndPositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Stop_Route_Route">
-          <End Role="Route" Type="Self.Route" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Stop_Route" Type="Self.Stop_Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Route">
-              <PropertyRef Name="RouteID" />
-            </Principal>
-            <Dependent Role="Stop_Route">
-              <PropertyRef Name="RouteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ROUTE_MANAGEMENTModelStoreContainer">
           <EntitySet Name="BusRoutes" EntityType="Self.BusRoutes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusStop" EntityType="Self.BusStop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stop_Route" EntityType="Self.Stop_Route" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Route_BusRoutes" Association="Self.FK_Route_BusRoutes">
-            <End Role="BusRoutes" EntitySet="BusRoutes" />
-            <End Role="Route" EntitySet="Route" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Route_BusStop_End" Association="Self.FK_Route_BusStop_End">
-            <End Role="BusStop" EntitySet="BusStop" />
-            <End Role="Route" EntitySet="Route" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Route_BusStop_Start" Association="Self.FK_Route_BusStop_Start">
-            <End Role="BusStop" EntitySet="BusStop" />
-            <End Role="Route" EntitySet="Route" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stop_Route_BusStop" Association="Self.FK_Stop_Route_BusStop">
-            <End Role="BusStop" EntitySet="BusStop" />
-            <End Role="Stop_Route" EntitySet="Stop_Route" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stop_Route_Route" Association="Self.FK_Stop_Route_Route">
-            <End Role="Route" EntitySet="Route" />
-            <End Role="Stop_Route" EntitySet="Stop_Route" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ROUTE_MANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
