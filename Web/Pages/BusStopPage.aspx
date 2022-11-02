@@ -167,9 +167,10 @@
 
         });
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKfEUwb7w6YwVKQkIETsJZoO_-ce9v1t0&callback=initMap" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqDGCtUCp7HDWxfqnWiy-Z2TZfVhDxuKA&callback=initMap" defer></script>
      <script>  
-         const center = { lat: 10.771119394974335, lng: 106.70050611220746 };
+         // 11.948958322797099, 108.44351244220658
+         const center = { lat: 11.948958322797099, lng: 108.44351244220658 };
          let zoom = 15;
          var map;
          let marker = [];

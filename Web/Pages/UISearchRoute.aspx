@@ -24,7 +24,8 @@
             let dataJson;
             let lineDirection;
             let listPosition;
-            const centerDefault = { lat: 10.771119394974335, lng: 106.70050611220746 };
+            const center = { lat: 11.948958322797099, lng: 108.44351244220658 };
+            const centerDefault = { lat: 11.948958322797099, lng: 108.44351244220658 };
             const imgStart = "/SetImg/imgStart.png";
             const imgEnd = "/SetImg/imgStop.png";
             const imgCurrent = "/SetImg/imgCurrent.png";
