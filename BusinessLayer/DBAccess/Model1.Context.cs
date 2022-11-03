@@ -29,5 +29,6 @@ namespace BusinessLayer.DBAccess
         public virtual DbSet<BusStop> BusStops { get; set; }
         public virtual DbSet<Route> Routes { get; set; }
         public virtual DbSet<Stop_Route> Stop_Route { get; set; }
+        public virtual DbSet<ResponsibleUnit> ResponsibleUnits { get; set; }
     }
 }

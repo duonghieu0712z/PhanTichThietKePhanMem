@@ -74,6 +74,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBAccess\ResponsibleUnit.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBAccess\Route.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

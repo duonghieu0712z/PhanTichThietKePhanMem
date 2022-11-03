@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24293cb782a1459a854f2175280f189d" Name="Diagram1">
+      <Diagram DiagramId="24293cb782a1459a854f2175280f189d" Name="Diagram1" ShowGrid="true">
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusRoute" Width="1.5" PointX="0.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusStop" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Route" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
@@ -14,6 +14,7 @@
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop_Start" ManuallyRouted="false" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_BusStop" ManuallyRouted="false" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_Route" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.ResponsibleUnit" Width="1.5" PointX="5.5" PointY="5.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

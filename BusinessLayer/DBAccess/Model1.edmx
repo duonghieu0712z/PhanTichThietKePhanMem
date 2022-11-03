@@ -33,6 +33,14 @@
           <Property Name="Wards" Type="nvarchar" MaxLength="200" />
           <Property Name="District" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="ResponsibleUnit">
+          <Key>
+            <PropertyRef Name="ResponsibleUnitID" />
+          </Key>
+          <Property Name="ResponsibleUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReponsibleUnitName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PhoneNumber" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Route">
           <Key>
             <PropertyRef Name="RouteID" />
@@ -61,6 +69,7 @@
         <EntityContainer Name="ROUTE_MANAGEMENTModelStoreContainer">
           <EntitySet Name="BusRoutes" EntityType="Self.BusRoutes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusStop" EntityType="Self.BusStop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResponsibleUnit" EntityType="Self.ResponsibleUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stop_Route" EntityType="Self.Stop_Route" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -222,7 +231,16 @@
             <End Role="Route" EntitySet="Routes" />
             <End Role="Stop_Route" EntitySet="Stop_Route" />
           </AssociationSet>
+          <EntitySet Name="ResponsibleUnits" EntityType="ROUTE_MANAGEMENTModel.ResponsibleUnit" />
         </EntityContainer>
+        <EntityType Name="ResponsibleUnit">
+          <Key>
+            <PropertyRef Name="ResponsibleUnitID" />
+          </Key>
+          <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReponsibleUnitName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -283,6 +301,15 @@
                 <ScalarProperty Name="RouteID" ColumnName="RouteID" />
                 <ScalarProperty Name="EndPositionID" ColumnName="EndPositionID" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResponsibleUnits">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.ResponsibleUnit">
+              <MappingFragment StoreEntitySet="ResponsibleUnit">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ReponsibleUnitName" ColumnName="ReponsibleUnitName" />
+                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
