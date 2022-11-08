@@ -14,7 +14,7 @@
                     runat="server" 
                     AutoGenerateSelectButton="true" 
                     OnSelectedIndexChanged="GridViewStopRoute_SelectedIndexChanged"
-                    SelectedRowStyle-BackColor="Teal"
+                    SelectedRowStyle-BackColor="#34B67A"
                     OnRowDataBound="GridViewStopRoute_RowDataBound"></asp:GridView>
             </div>
         </div>
@@ -27,7 +27,7 @@
                         <small id="stopRouteIDHelp" class="form-text text-muted">Xác nhận lộ trình - điểm dừng nào được cập nhật hay xóa, tăng tự động khi thêm.</small>
                     </div>
                     <div class="col-sm-2">
-                        <asp:Button runat="server" CssClass="btn" ID="btnDeleteStopRoute" style="width: 100%; background-color: teal; color: white" text="Xóa" OnClick="ButtonDeleteStopRoute_Click"/>
+                        <asp:Button runat="server" CssClass="btn" ID="btnDeleteStopRoute" style="width: 100%; background-color: #34B67A; color: white" text="Xóa" OnClick="ButtonDeleteStopRoute_Click"/>
                     </div>
                 </div>
                 <div class="col-sm" style="margin-top: 0">
@@ -63,10 +63,10 @@
 
             <div class="row mt-4">
                 <div class="col-sm-6">
-                    <asp:Button CssClass="btn" style="width:100%; background-color: teal; color:white" runat="server" text="Cập nhật" ID="btnUpdate" OnClick="ButtonUpdateStopRoute_Click"/>
+                    <asp:Button CssClass="btn" style="width:100%; background-color: #34B67A; color:white" runat="server" text="Cập nhật" ID="btnUpdate" OnClick="ButtonUpdateStopRoute_Click"/>
                 </div>
                 <div class="col-sm-6">
-                    <asp:Button CssClass="btn" style="width:100%; background-color: teal; color: white" runat="server" text="Thêm" ID="btnAdd" OnClick="ButtonAddStopRoute_Click"/>
+                    <asp:Button CssClass="btn" style="width:100%; background-color: #34B67A; color: white" runat="server" text="Thêm" ID="btnAdd" OnClick="ButtonAddStopRoute_Click"/>
                 </div>
             </div>
         </div>

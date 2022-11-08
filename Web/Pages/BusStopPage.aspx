@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BusStopPage.aspx.cs" Inherits="Web.Pages.BusStopPage" MasterPageFile="~/Site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+      <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
+        <asp:HiddenField ID="typeMap" Value="pickLocation" runat="server" ClientIDMode="Static" />
+        <script src ="../JavaScript/Map/map.js"></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqDGCtUCp7HDWxfqnWiy-Z2TZfVhDxuKA&callback=initMap" defer></script>
     <div style="background-color: #F4F9F6; min-height: 100vh; box-shadow: 0px 6px 15px rgba(0,0,0,0.15); border-radius: 15px">
 
         <h2 style="text-align: center; color: #8D7F7F; font-weight: bold; padding-top: 20px" class="mt-3">QUẢN LÝ ĐIỂM DỪNG</h2>
@@ -167,85 +171,7 @@
 
         });
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALdDivjYtOHE2M63dHeuXKnYARJdSllSE&callback=initMap" defer></script>
-     <script>  
-         const center = { lat: 10.771119394974335, lng: 106.70050611220746 };
-         let zoom = 15;
-         var map;
-         let marker = [];
-         let busStop = [];
-         let dataBusStop;
-         let markerChoice;
-         
-       //  const imgCurrent = "/Access/iconBus.png";
-        
-
-         function initMap() {
-             map = new google.maps.Map(document.getElementById("map"), {
-                 zoom: zoom,
-                 center: center,
-             });
-
-             /*google.maps.event.addDomListener(window, 'load', initMap);  */
-             map.addListener("click", (e) => {
-                 currentPoint = e.latLng;
-                 if (markerChoice != null) {
-                     markerChoice.setMap(null);
-                     markerChoice = null;
-                 }
-                 console.log(currentPoint.lat());
-                 console.log(e.latLng.toJSON());
-                 markerChoice = placeMarkerAndPanTo(currentPoint, map, imgCurrent);
-                 google.maps.event.addListener(markerChoice, "click", function (e) {
-                     //showInfo(map, markerChoice, TypeChoice);
-                     infoWindow = new google.maps.InfoWindow({
-                         position: e.latLng,
-                         anchor: markerChoice,
-                         shouldfocus: false,
-                         map: map
-                     });
-                     infoWindow.setContent(
-                         JSON.stringify(e.latLng.toJSON(), null, 2)
-                     );
-                     infoWindow.open(map, markerChoice);
-
-                     
-                 });
-
-                 // showInfo(map, markerChoice, TypeChoice);
-                 getLocation(currentPoint.lat(), currentPoint.lng());
-                 // Create a new InfoWindow.
-                 
-             });
-         }
-
-         
-         function placeMarkerAndPanTo(latLng, map, img, typeShow, info, id) {
-             let maker = new google.maps.Marker({
-                 position: latLng,
-                 map: map,
-                 
-             });
-             map.panTo(latLng);
-                 google.maps.event.addListener(maker, "click", function (e) {
-                   //  showInfo(map, maker, typeShow, info);
-                    
-                 });
-             
-             return maker;
-         }
-
-         function getLocation(lat, lng) {
-             
-             let txtlng = document.getElementById("MainContent_txtLongitude");
-             let txtlat = document.getElementById("MainContent_txtLatitude");
-             console.log(txtlng);
-             txtlng.value = lng.toString();
-             txtlat.value = lat.toString();
-         }
-         window.initMap = initMap;
-
-     </script>
+ 
 
 
 </asp:Content>

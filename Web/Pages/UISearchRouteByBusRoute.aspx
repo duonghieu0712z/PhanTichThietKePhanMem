@@ -1,242 +1,82 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UISearchRouteByBusRoute.aspx.cs" Inherits="Web.Pages.UISearchRouteByBusRoute" %>
 
 <asp:Content ID="UISearchRouteByBusRouteHead" ContentPlaceHolderID="Head" runat="server">
-    <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
-    <script>
-        const TypeChoice = 1;
-        const TypeBus = 2;
-        const TypeStart = 3;
-        const TypeEnd = 4;
-        let zoom = 15;
-        let listBusStop;
-        var uniqueId = 1;
-        let currentMaker;
-        let startPoint;
-        let markerStart;
-        let listMaker = [];
-        let markerEnd;
-        let markerChoice;
-        let map;
-        let drawLine = [];
-        let infoWindow;
-        let busStops = [];
-        let dataJson;
-        let lineDirection;
-        const centerDefault = { lat: 11.944959979783556, lng: 108.44610830987766 };
-        const imgStart = "/SetImg/imgStart.png";
-        const imgEnd = "/SetImg/imgStop.png";
-        const imgCurrent = "/SetImg/imgCurrent.png";
-        const imgStopBus = "/SetImg/imgStopBus.png";
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: zoom,
-                center: centerDefault,
-            });
-
-            map.addListener("click", (e) => {
-                currentPoint = e.latLng;
-                if (markerChoice != null) {
-                    markerChoice.setMap(null);
-                    markerChoice = null;
-                }
-                console.log(e.latLng);
-                markerChoice = placeMarkerAndPanTo(currentPoint, map, imgCurrent);
-                google.maps.event.addListener(markerChoice, "click", function (e) {
-                    showInfo(map, markerChoice, TypeChoice);
-                });
-                showInfo(map, markerChoice, TypeChoice);
-
-            });
-            getRoute();
+  <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
+        <asp:HiddenField ID="typeMap" Value="getRoute" runat="server" ClientIDMode="Static" />
+        <script src ="../JavaScript/Map/map.js"></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqDGCtUCp7HDWxfqnWiy-Z2TZfVhDxuKA&callback=initMap" defer></script>
+    <style type="text/css">
+        .desc-icon{
+            width: 40px;
+            height: 40px;
+            border-radius: 24px;
+            background-color: #ffffff;
+            display:inline-block;
+            padding:4px;
         }
-        function drawDirection(listLatLng) {
-            if (lineDirection != null) {
-                lineDirection.setMap(null);
-                lineDirection = null
-            };
-            lineDirection = new google.maps.Polyline({
-                path: listLatLng,
-                geodesic: true,
-                strokeColor: "#FF0000",
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-            });
-            lineDirection.setMap(map);
+        .online-table-data{
+            display:inline-block;
+            margin-top: -1px;
+            float: right;
+            border:none;
         }
-
-        function getContentInfoWindow(type,data) {
-            const strChoice = "Điểm được chọn";
-            const strStart = "Điểm bắt đầu";
-            const strEnd = "Điểm kết thúc";
-            const strBusStop = "Điểm được chọn";
-            const strDelete = "Xóa điểm";
-            let content =
-                '<div id="content">' +
-                '<div  id="siteNotice">' +
-                "</div>";
-            switch (type) {
-                case TypeChoice:
-                    content += `<h4 id="firstHeading" class="">${strChoice}</h4>
-                        <div id="bodyContent">
-                        <button type="button" class="btn btn - success" id = "btn_start_point" click = getStartPoint()>${strStart}</button>
-                        <button type="button" class="btn btn-warning" id = "btn_end_point" click = getEndPoint()>${strEnd}</button>
-                    </div>`;
-                    break;
-                case TypeBus:
-                    let address = "";
-                    if (data.Street) {
-                        address += data.Street + ',';
-                    }
-                    if (data.Wards) {
-                        address +=  data.Wards +',';
-                    } if (data.District) {
-                        address += data.District + ",";
-                    } if (address != "") {
-                        address = "Địa điểm: " + address.substring(0,address.lastIndexOf(","));
-                    };
-                    content += `<h4 id="firstHeading" class="">${strChoice}</h4>
-                        <div id="bodyContent">
-                        <p>Tên: ${data.BusStopName}</p>
-                        <p>Mô tả: ${data.BusStopDescription}</p>
-                        <p>${address}</p>
-                        </div>`;
-                    break;
-                case TypeStart:
-                    content += `<h4 id="firstHeading" class="firstHeading">${strStart}</h4>
-                        <div id="bodyContent">
-                        <button type="button" class="btn btn-danger" id = "btn_delete_start" click = getDeletePoint(maker)>${strDelete}</button> 
-                        </div>`
-                    break;
-                case TypeEnd:
-                    content += `<h4 id="firstHeading" class="firstHeading">${strEnd}</h4>
-                        <div id="bodyContent">
-                        <button type="button" class="btn btn-danger" id = "btn_delete_end" click = getDeletePoint(maker)>${strDelete}</button> 
-                        </div>`
-                    break;
-            }
-            content += `</div>
-                </div>
-                </div>`
-            return content;
+        .tr-search-route-result{
+            background-color: #34B67A;
+            border: 2px solid #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            cursor: pointer;
+            width:100%;
         }
-
-        function showInfo(map, maker, typeContent, info) {
-            if (infoWindow != null && infoWindow.getMap() != null) {
-                infoWindow.close();
-            }
-            infoWindow = new google.maps.InfoWindow({
-                content: getContentInfoWindow(typeContent, info)
-            });
-            infoWindow.open(map, maker);
+        .center-vertical-container{
+            display:flex;
+            justify-items:center;
+            align-items:center;
+            height: 40px;
         }
-        $(document).on('click', '#btn_delete_start', function getStartPoint() {
-            if (markerStart != null) {
-                markerStart.setMap(null);
-                markerStart = null;
-            }
-        });
-        $(document).on('click', '#btn_delete_end', function getStartPoint() {
-            if (markerEnd != null) {
-                markerEnd.setMap(null);
-                markerEnd = null;
-            }
-        });
-        function renderMaker(BusStops, haveDraw) {
-            if (listMaker != []) {
-                listMaker.forEach(marker => {
-                    maker.setMap(null);
-                });
-            }
-            listMaker = [];
-            BusStops.forEach(busStop => {
-                let latLng = { lat: busStop.Latitude, lng: busStop.Longitude }
-                drawLine.push(latLng);
-                listMaker.push(placeMarkerAndPanTo(latLng, map, imgStopBus, TypeBus, busStop));
-            });
-            listBusStop = BusStops;
-            if (haveDraw)
-                drawDirection(drawLine);
+        .desc-detail-icon{
+            width: 40px;
+            height:40px;
+            padding: 4px;
         }
-
-
-
-        $(document).on('click', '#btn_start_point', function getStartPoint() {
-            if (markerStart != null) {
-                markerStart.setMap(null);
-                markerStart = null;
-            }
-            markerChoice.setMap(null);
-            markerStart = placeMarkerAndPanTo(currentPoint, map, imgStart, TypeStart);
-            markerStart.setMap(map);
-
-
-        });
-        $(document).on('click', '#btn_end_point', function getEndPonit() {
-            if (markerEnd != null) {
-                markerEnd.setMap(null);
-                markerEnd = null;
-            }
-            markerChoice.setMap(null);
-            markerEnd = placeMarkerAndPanTo(currentPoint, map, imgEnd, TypeEnd);
-            markerEnd.setMap(map);
-        });
-        //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
-
-        function loadAllStopBus() {
-            if (busStops != []) {
-                busStops = [];
-            }
-            $.ajax({
-                type: "GET", //GET
-                url: "ShowRouteOnMap.aspx/GetAllBusStop",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: false,
-                success: function (msg) {
-                    let data = msg.d;
-                    console.log(data);
-
-                },
-                failure: function (response) {
-                    alert(response.d);
-                },
-                error: function (response) {
-                    alert(response.d);
-                }
-            });
+        .desc-detail-bus-route-number{
+            width:40px;
+            height:40px;
+            background-color: #34B67A;
+            border-radius: 20px;
+            font-size: 18px;
+            color: #ffffff;
+            text-align:center;
+            padding-top: 8px;
         }
-        function placeMarkerAndPanTo(latLng, map, img, typeShow, info, id) {
-            let maker = new google.maps.Marker({
-                position: latLng,
-                map: map,
-                icon: img
-            });
-            map.panTo(latLng);
-            if (typeShow == TypeEnd || typeShow == TypeStart || typeShow == TypeBus) {
-                google.maps.event.addListener(maker, "click", function (e) {
-                    showInfo(map, maker, typeShow, info);
-                });
-            }
-            return maker;
+        .td-detail-text-container{
+            text-align: center;
+            font-size:12px;
         }
-        function getRoute() {
-            dataJson = $('input#hfData').val();
-            console.log(dataJson, "daylatext");
-            if (dataJson != "") {
-
-                let dataRoute = JSON.parse(dataJson);
-                renderMaker(dataRoute, true);
-            } else {
-                renderMaker(dataRoute, true);
-                lineDirection.setMap(null);
-            }
-
-
+        .tr-search-route-result-detail-container{
+            padding: 4px;
+            background-color: #f4f4f4;
+            margin:2px;
         }
-        /*  window.document.addEventListener('DOMContentLoaded', );*/
-        window.initMap = initMap;
-
-
+        .table-detail{
+            border: 1px solid #c4c4c4;
+        }
+        .tb-detail-tr{
+            border: 1px solid #c4c4c4;
+        }
+        .tb-detail-td{
+            padding: 4px;
+        }
+        .table-header{
+            margin-bottom: 0px;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        function handleClickOnTrResultRoute() {
+            this.lbTest.Text = "def";
+        }
     </script>
 </asp:Content>
 
@@ -254,7 +94,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                    <asp:Button Style="height: 36px; background-color: teal; margin-bottom: 12px !important; color: white !important"
+                    <asp:Button Style="height: 36px; background-color: #34B67A; margin-bottom: 12px !important; color: white !important"
                         Text="Tìm kiếm" runat="server" ID="btnSearch" CssClass="btn" OnClick="btnSearch_Click" />
                 </div>
             </div>
@@ -272,7 +112,7 @@
             runat="server" 
             AutoGenerateSelectButton="true"
             OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
-            SelectedRowStyle-BackColor="Teal"
+            SelectedRowStyle-BackColor="#34B67A"
             SelectedRowStyle-ForeColor="White"></asp:GridView>
         </div>
         
@@ -296,10 +136,5 @@
         </div>
 
     </div>
-
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJWlDVjQRt0bT4Q6SN-DsG26LNzbe3MQw&callback=initMap"
-        defer></script>
-
-
+   
 </asp:Content>

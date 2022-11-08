@@ -24,6 +24,15 @@ namespace Web.Pages
         protected global::System.Web.UI.WebControls.HiddenField hfData;
 
         /// <summary>
+        /// typeMap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField typeMap;
+
+        /// <summary>
         /// dlStartPosition control.
         /// </summary>
         /// <remarks>
@@ -42,13 +51,13 @@ namespace Web.Pages
         protected global::System.Web.UI.WebControls.DropDownList dlEndPosition;
 
         /// <summary>
-        /// btnSearch control.
+        /// imgbtnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.ImageButton imgbtnSearch;
 
         /// <summary>
         /// lblRoute control.
@@ -67,6 +76,15 @@ namespace Web.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewSearchRoute;
+
+        /// <summary>
+        /// lbTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTest;
 
         /// <summary>
         /// GridViewSearchBusStop control.
