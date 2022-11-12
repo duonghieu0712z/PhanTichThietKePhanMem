@@ -92,6 +92,8 @@
     <Compile Include="System\Objects\BusRouteFuncs.cs" />
     <Compile Include="System\Objects\BusStopExt.cs" />
     <Compile Include="System\Objects\BusStopFuncs.cs" />
+    <Compile Include="System\Objects\ResponsibleFuncs.cs" />
+    <Compile Include="System\Objects\ResponsibleExt.cs" />
     <Compile Include="System\Objects\RouteExt.cs" />
     <Compile Include="System\Objects\RouteFuncs.cs" />
     <Compile Include="System\Objects\StopRouteExt.cs" />

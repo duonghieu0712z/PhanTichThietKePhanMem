@@ -20,6 +20,26 @@ namespace BusinessLayer.Functions
             }
         }
         #region Route
+        public List<ResponsibleUnit> Select_All_ResponsibleUnit()
+        {
+            return ResponsibleExt.Instance.Select_All();
+        }
+        public int InsertNUpdateResponsible(ResponsibleUnit resp)
+        {
+            return ResponsibleExt.Instance.InsertUpdate(resp);
+        }
+        public ResponsibleUnit Select_Responsible_Unit_ID(int id)
+        {
+            return ResponsibleExt.Instance.Select_ID(id);
+        }
+        public List<ResponsibleUnit> ResponsibleUnit_Pagination(int PageSize, int PageIndex, out int TotalRows)
+        {
+            return ResponsibleExt.Instance.Find_KeyWord("", PageSize, PageIndex, out TotalRows);
+        }
+        public void DeleteResponsibleUnit(List<String> IDs)
+        {
+            ResponsibleExt.Instance.Delete_IDs(IDs);
+        }
         public List<Route> SelectAllRoute()
         {
             return RouteExt.Instance.Route_Select_All();
@@ -36,7 +56,23 @@ namespace BusinessLayer.Functions
         {
             return BusStopExt.Instance.BusStop_Select_All();
         }
+        public void DeleteBusRouteByIDs(List<String> IDs)
+        {
+            BusRouteExt.Instance.BusRoute_Delete_IDs(IDs);
 
+        }
+        public BusRoute Select_Bus_Route_ID(int id)
+        {
+            return BusRouteExt.Instance.BusRoute_Select_ID(id);
+        }
+        public List<BusRoute> Bus_Route_Pagination(int PageSize, int PageIndex, out int TotalRows)
+        {
+            return BusRouteExt.Instance.BusRoute_Find_KeyWord("", PageSize, PageIndex, out TotalRows);
+        }
+        public List<BusRoute> FindBusRoute(string keyword)
+        {
+            return BusRouteExt.Instance.BusRoute_Find(keyword);
+        }
         public int InsertNUpdateBusRoute(BusRoute busRoute)
         {
             return BusRouteExt.Instance.BusRoute_InsertUpdate(busRoute);
