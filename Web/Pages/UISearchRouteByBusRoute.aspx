@@ -4,7 +4,7 @@
   <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
         <asp:HiddenField ID="typeMap" Value="getRoute" runat="server" ClientIDMode="Static" />
         <script src ="../JavaScript/Map/map.js"></script>
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqDGCtUCp7HDWxfqnWiy-Z2TZfVhDxuKA&callback=initMap" defer></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9sw5PYYq0MW-HBbXVMNN6rwZIEBuvhw&callback=initMap" defer></script>
     <style type="text/css">
         .desc-icon{
             width: 40px;

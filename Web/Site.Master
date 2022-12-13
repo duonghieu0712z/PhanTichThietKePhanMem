@@ -11,12 +11,12 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
-<body style="padding : 0;">
+<body style="padding: 0;">
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -38,7 +38,7 @@
         </asp:ScriptManager>
 
         <div class="navbar navbar-expand-lg navbar-light bg-dark">
-            <div class="container"  style="padding:0;">
+            <div class="container" style="padding: 0;">
                 <div class="navbar-header">
                     <a class="navbar-brand" style="color: white" runat="server" href="~/">Quản lý tuyến xe</a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -52,21 +52,22 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/Pages/BusRoutePage.aspx">Quản lý tuyến</a></li>
+                        <li><a runat="server" href="~/Pages/ResponsibleUnitPage.aspx">Đơn vị đảm nhận</a></li>
                         <li><a runat="server" href="~/Pages/RoutePage.aspx">Lộ trình</a></li>
                         <li><a runat="server" href="~/Pages/StopRoutePage.aspx">Lộ trình - Điểm dừng</a></li>
                         <li><a runat="server" href="~/Pages/BusStopPage.aspx">Quản lí điểm dừng</a></li>
-            <%--            <li><a runat="server" href="~/Pages/ShowRouteOnMap.aspx">Bản đồ</a></li>--%>
+                        <%--            <li><a runat="server" href="~/Pages/ShowRouteOnMap.aspx">Bản đồ</a></li>--%>
                         <%--<li>
                             <a runat="server" href="~/Pages/UISearchRoute.aspx">Tra cứu thông tin lộ trình</a>
                         </li>--%>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" style="color: #337ab7; width: 210px" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Tra cứu thông tin lộ trình
+                            <a class="nav-link dropdown-toggle" style="color: #337ab7; width: 210px" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tra cứu thông tin lộ trình
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" runat="server" href="~/Pages/UISearchRoute.aspx">Dựa trên điểm đầu - điểm cuối</a>
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" runat="server" href="~/Pages/UISearchRouteByBusRoute.aspx">Dựa trên tuyến</a>
+                                <a class="dropdown-item" runat="server" href="~/Pages/UISearchRoute.aspx">Dựa trên điểm đầu - điểm cuối</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" runat="server" href="~/Pages/UISearchRouteByBusRoute.aspx">Dựa trên tuyến</a>
                             </div>
                         </li>
                         <%--<li><a runat="server" href="~/Pages/UISearchStopRoute.aspx">Tra cứu thông tin điểm dừng</a></li>--%>
@@ -79,10 +80,10 @@
             <asp:ContentPlaceHolder ID="Head" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-          <div class="container body-content">
+        <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-        <%--    <footer>
+            <%--    <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>--%>
         </div>

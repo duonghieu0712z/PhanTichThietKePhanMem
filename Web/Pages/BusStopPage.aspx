@@ -4,7 +4,8 @@
       <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
         <asp:HiddenField ID="typeMap" Value="pickLocation" runat="server" ClientIDMode="Static" />
         <script src ="../JavaScript/Map/map.js"></script>
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqDGCtUCp7HDWxfqnWiy-Z2TZfVhDxuKA&callback=initMap" defer></script>
+             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9sw5PYYq0MW-HBbXVMNN6rwZIEBuvhw&callback=initMap" defer></script>
+
     <div style="background-color: #F4F9F6; min-height: 100vh; box-shadow: 0px 6px 15px rgba(0,0,0,0.15); border-radius: 15px">
 
         <h2 style="text-align: center; color: #8D7F7F; font-weight: bold; padding-top: 20px" class="mt-3">QUẢN LÝ ĐIỂM DỪNG</h2>
