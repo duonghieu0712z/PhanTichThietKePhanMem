@@ -37,7 +37,7 @@ namespace Web.Pages
             ResponsibleUnit obj = new ResponsibleUnit();
             obj.ResponsibleUnitID = this.txtID.Value.Length > 0 ? int.Parse(this.txtID.Value) : -1;
             obj.ReponsibleUnitName = this.txtResbonsilbeName.Value;
-            int phone = 0;
+            int phone;
             int.TryParse(this.txtPhoneNumber.Value, out phone);
             obj.PhoneNumber = phone;
             return obj;
@@ -160,16 +160,19 @@ namespace Web.Pages
             this.txtPhoneNumber.Value = "";
         }
 
-        protected void btnClear_Click(object sender, EventArgs e)
-        {
-            Clear();
-        }
 
         protected void btTim_Click(object sender, EventArgs e)
         {
             this.hPageIndex.Value = "0";
             this.LoadTimKiem(0);
             this.LoadPhanTrang();
+        }
+
+        protected void btnClear_Click1(object sender, EventArgs e)
+        {
+            this.txtID.Value = "";
+            this.txtResbonsilbeName.Value = "";
+            this.txtPhoneNumber.Value = "";
         }
     }
 }   

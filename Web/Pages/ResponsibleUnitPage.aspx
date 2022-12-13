@@ -30,7 +30,7 @@
                     <div class="row mt-4 px-4">
                         <div class="form-group mt-2">
                             <asp:Button ID="btLuu" runat="server" Text="Lưu" CssClass="btn btn-success" OnClick="btLuu_Click1" />
-                            <asp:Button ID="btnClear" runat="server" Text="Xóa" CssClass="btn-clear btn btn-danger" OnClientClick="return confirm('Bạn có muốn xóa không?')" OnClick="btnClear_Click" />
+                            <asp:Button ID="btnClear" runat="server" Text="Xóa" CssClass="btn btn-danger" OnClick="btnClear_Click1" />
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                                         <input id="selectAll" type="checkbox"><label for="selectAll"></label></input></th>
                                     <th>Edit</th>
                                     <th>ID</th>
-                                    <th>Tên đơn vị đảm nhận</th>
+                                    <th>Tên đơn vị đảm nhận</th> 
                                     <th>Số điện thoại</th>
                                 </tr>
                             </thead>
@@ -117,17 +117,17 @@
         })
 
         $("#btnLuu").click(function () {
-            $('.formAdd').collapse('show')
+            $('.collapse').collapse('show')
         })
 
         $(".btn-edit").click(function () {
             event.preventDefault();
-            $('.formAdd').collapse('show')
+            $('.collapse').collapse('show')
         })
 
         $(".btn-clear").click(function () {
             event.preventDefault();
-            $('.formAdd').collapse('show')
+            $('.collapse').collapse('show')
         })
     </script>
 </asp:Content>
