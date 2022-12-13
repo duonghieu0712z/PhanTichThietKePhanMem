@@ -38,8 +38,8 @@
             <PropertyRef Name="ResponsibleUnitID" />
           </Key>
           <Property Name="ResponsibleUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ReponsibleUnitName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReponsibleUnitName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PhoneNumber" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Route">
           <Key>
@@ -238,8 +238,8 @@
             <PropertyRef Name="ResponsibleUnitID" />
           </Key>
           <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReponsibleUnitName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReponsibleUnitName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

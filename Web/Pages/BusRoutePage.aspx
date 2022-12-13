@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BusRoutePage.aspx.cs" Inherits="Web.Pages.BusRoutePage" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BusRoutePage.aspx.cs" Inherits="Web.Pages.BusRoutePage" EnableEventValidation="false"%>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -6,9 +6,9 @@
     <h1 class="text-light border-0 mt-4" style="font-family: monospace; font-weight: 800; font-size: 32px">Quản lý tuyến
     </h1>
 
-    <asp:Button ID="btnOpenFormAdd" runat="server" Text="Thêm tuyến mới" CssClass="btn_AddNewRoute p-2 mt-5" OnClick="btnOpenFormAdd_Click1" />
-    <div class="formAdd bg-light">
-        <asp:Panel CssClass="panel1 mt-3 p-4" ID="Panel1" runat="server" Visible="false">
+    <button class="btn1 btn btn-primary mb-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Thêm tuyến</button>
+    <div class="collapse formAdd bg-light rounded" id="collapseExample">
+        <asp:Panel CssClass="panel1 mt-3 p-4" ID="Panel1" runat="server">
             <label class="form-control" style="background-color: #DADADADA; font-weight: 600">Thêm tuyến</label>
             <div class="form-group border">
 
@@ -58,44 +58,42 @@
                         <input type="text" class="form-control" id="txtBusesSpace" runat="server" placeholder="Giãn cách chuyến" />
                     </div>
                 </div>
+                <asp:Label ID="error" runat="server" Text=""></asp:Label>
                 <div class="form-group mt-3 p-4">
-                    <asp:Button ID="btLuu" runat="server" Text="Lưu" CssClass="btn" />
-                    <asp:Button ID="btnCancelFormAdd" runat="server" Text="Thoát" CssClass="btn" OnClick="btnCancelFormAdd_Click1" />
+                    <asp:Button ID="btLuu" runat="server" Text="Lưu" CssClass="btn1 btn" OnClick="btLuu_Click" />
+                    <asp:Button ID="btnClear" runat="server" Text="Xóa" CssClass="btn-clear btn btn-danger" OnClick="btnClear_Click" />
                 </div>
             </div>
 
         </asp:Panel>
     </div>
     <!-- Tables -->
-    <div class="table_panel bg-light mb-3">
+    <div class="table_panel bg-light mb-3 rounded">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel CssClass=" mt-2 px-5 py-3" ID="pnTable" runat="server">
-                    <div class="row ml-4" >
-                        <table class="table table-bordered table-responsive bg-light" >
-                            <label class="form-control" style="background-color: #DADADADA; font-weight: 600">
-                                Danh sách tuyến</label>
+                    <div class="row ml-4">
+                        <label class="form-control" style="background-color: #DADADADA; font-weight: 600">
+                            Danh sách tuyến</label>
 
-                            <div class="mt-2 mb-2 row d-flex">
-
-                                <div class="col">
-                                    <input id="txtKeyword" runat="server" class="form-control" placeholder="Tìm kiếm" type="text" />
-                                </div>
-                                <div class="col">
-                                    <asp:DropDownList ID="drlPageNumber" runat="server" AutoPostBack="true" CssClass="dropdown-item form-control" OnSelectedIndexChanged="drlPageNumber_SelectedIndexChanged">
-                                        <asp:ListItem>5</asp:ListItem>
-                                        <asp:ListItem>10</asp:ListItem>
-                                        <asp:ListItem>20</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="col">
-                                    <asp:Button ID="btTim" runat="server" CssClass="btn btn-primary" Text="Tìm" />
-                                </div>
-                                <div class="col">
-                                    <asp:Button ID="btXoa" runat="server" CssClass="btn btn-primary" OnClick="btXoa_Click" OnClientClick="return confirm('Bạn có muốn xóa không?')" Text="Xóa" />
-                                </div>
-                                <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                        <div class="mt-2 mb-2 p-0 d-flex gap-2 w-50">
+                            <div class="col w-50">
+                                <input id="txtKeyword" runat="server" class="form-control" placeholder="Tìm kiếm" type="text" />
                             </div>
+                            <asp:DropDownList ID="drlPageNumber" runat="server" AutoPostBack="true" CssClass="btnDrop btn btn-secondary bg-light dropdown-item w-25 border" OnSelectedIndexChanged="drlPageNumber_SelectedIndexChanged">
+                                <asp:ListItem>5</asp:ListItem>
+                                <asp:ListItem>10</asp:ListItem>
+                                <asp:ListItem>20</asp:ListItem>
+                            </asp:DropDownList>
+                            <div class="">
+                                <asp:Button ID="btTim" runat="server" CssClass="btn1 btn btn-primary" Text="Tìm" OnClick="btTim_Click"/>
+                            </div>
+                            <div class="">
+                                <asp:Button ID="btXoa" runat="server" CssClass="btn btn-danger" OnClick="btXoa_Click" OnClientClick="return confirm('Bạn có muốn xóa không?')" Text="Xóa" />
+                            </div>
+                            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                        </div>
+                        <table class="table table-bordered table-responsive bg-light">
                             <thead class="table-secondary">
                                 <tr class="text-center text-nowrap">
                                     <th>
@@ -136,19 +134,19 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <div class="card-footer text-right">
-            <asp:Panel ID="pnPhanTrang" runat="server" CssClass="p-4">
+            <asp:Panel ID="pnPhanTrang" runat="server" CssClass="pb-5">
                 <div class="form-row d-flex justify-content-center">
                     <div class="col-auto">
-                        <asp:Button ID="btTruoc" runat="server" Text="Trước" class="btn btn-dark" OnClick="btPhanTrang_Click" />
+                        <asp:Button ID="btTruoc" runat="server" Text="Trước" CssClass="btn1 btn btn-primary" OnClick="btPhanTrang_Click" />
                     </div>
-                    <div class="col-auto px-4">
+                    <div class="d-flex col-auto px-4">
                         <asp:HiddenField ID="hPageIndex" runat="server" />
                         <asp:HiddenField ID="hTotalRows" runat="server" />
                         <asp:HiddenField ID="hPageSize" runat="server" />
                         <asp:Panel ID="pnButton" runat="server"></asp:Panel>
                     </div>
                     <div class="col-auto">
-                        <asp:Button ID="btSau" runat="server" Text="Sau" class="btn  btn-dark" OnClick="btPhanTrang_Click" />
+                        <asp:Button ID="btSau" runat="server" Text="Sau" CssClass="btn1 btn btn-primary" OnClick="btPhanTrang_Click" />
                     </div>
                 </div>
             </asp:Panel>
@@ -157,6 +155,18 @@
     <script>
         $("#selectAll").click(function () {
             $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+        })
+        $("#btnLuu").click(function () {
+            event.preventDefault();
+            $('.formAdd').collapse('show')
+        })
+        $(".btn-edit").click(function () {
+            event.preventDefault();
+            $('.formAdd').collapse('show')
+        })
+        $(".btn-clear").click(function () {
+            event.preventDefault();
+            $('.formAdd').collapse('show')
         })
     </script>
 </asp:Content>

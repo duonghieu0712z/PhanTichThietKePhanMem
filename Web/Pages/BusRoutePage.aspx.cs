@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace Web.Pages
 {
@@ -21,8 +22,8 @@ namespace Web.Pages
                 this.LoadTimKiem(0);
                 this.LoadResponsibleUnit();
             }
-            this.LoadEditButton();
             this.LoadBusRoute();
+            this.LoadEditButton();
             this.LoadPhanTrang();
         }
 
@@ -45,14 +46,13 @@ namespace Web.Pages
             this.pnPhanTrang.Visible = true;
             try
             {
-                int idEdit = int.Parse(Request.QueryString["idedit"]);
+                int idEdit = int.Parse(Request.QueryString["idEdit"]);
                 BusRoute obj = HRFunctions.Instance.Select_Bus_Route_ID(idEdit);
                 if (obj != null)
                 {
                     this.txtID.Value = obj.BusRouteID.ToString();
                     this.txtRouteName.Value = obj.RouteName;
-                    this.txtRouteNumber.Value = obj.RouteName;
-                    this.txtRouteName.Value = obj.RouteName;
+                    this.txtRouteNumber.Value = obj.RouteNumber;
                     this.ddlResponsibleUnit.SelectedValue = obj.ResponsibleUnitID.ToString();
                     this.txtOperationType.Value = obj.OperationType;
                     this.txtOperationTime.Value = obj.OperationTime.ToString();
@@ -65,6 +65,20 @@ namespace Web.Pages
             catch { }
         }
 
+        private bool Xet()
+        {
+            if (txtRouteName.Value == "") return false;
+            else if (txtRouteNumber.Value == "") return false;
+            else if (txtOperationTime.Value == "") return false;
+            else if (txtOperationType.Value == "") return false;
+            else if (txtFare.Value == "") return false;
+            else if (txtBusesAmount.Value == "") return false;
+            else if (txtBusesSpace.Value == "") return false;
+            else if (txtBusesTime.Value == "") return false;
+
+            else return true;
+        }
+
         protected void btTim_Click(object sender, EventArgs e)
         {
             this.pnPhanTrang.Visible = true;
@@ -74,29 +88,17 @@ namespace Web.Pages
             this.LoadPhanTrang();
         }
 
-        protected void btnOpenFormAdd_Click1(object sender, EventArgs e)
-        {
-            this.Panel1.Visible = true;
-            this.btnOpenFormAdd.Visible = false;
-        }
-
-        protected void btnCancelFormAdd_Click1(object sender, EventArgs e)
-        {
-            this.Panel1.Visible = false;
-            this.btnOpenFormAdd.Visible = true;
-        }
-
         private void LoadTimKiem(int pIndex)
         {
             int PageSize = int.Parse(this.drlPageNumber.SelectedValue);
             int TotalRows = 0;
-            this.ls = HRFunctions.Instance.Bus_Route_Pagination(PageSize, pIndex, out TotalRows);
+            this.ls = HRFunctions.Instance.Bus_Route_Pagination(this.txtKeyword.Value, PageSize, pIndex, out TotalRows);
             this.hTotalRows.Value = TotalRows.ToString();
             if (ls == null || ls.Count == 0)
             {
                 this.pnTable.Visible = false;
                 this.pnPhanTrang.Visible = false;
-
+                this.Label1.Text = "Không tìm thấy dữ liệu";
             }
         }
 
@@ -170,6 +172,63 @@ namespace Web.Pages
                 HRFunctions.Instance.DeleteBusRouteByIDs(list);
             }
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            Response.Redirect(Request.RawUrl);
+        }
+
+        private BusRoute GetValue()
+        {
+            BusRoute obj = new BusRoute();
+            obj.BusRouteID = this.txtID.Value.Length > 0 ? int.Parse(this.txtID.Value) : -1;
+            obj.RouteName = this.txtRouteName.Value;
+            obj.OperationType = this.txtOperationType.Value;
+            obj.OperationTime = DateTime.Parse(this.txtOperationTime.Value);
+            obj.Fare = int.Parse(this.txtFare.Value);
+            obj.RouteNumber = this.txtRouteNumber.Value;
+            obj.BusesTime = DateTime.Parse(this.txtBusesTime.Value);
+            obj.BusesAmount = int.Parse(this.txtBusesAmount.Value);
+            obj.BusesSpace = DateTime.Parse(this.txtBusesSpace.Value);
+            return obj;
+        }
+
+        private void Clear()
+        {
+            this.txtID.Value = "";
+            this.txtRouteNumber.Value = "";
+            this.txtRouteName.Value = "";
+            this.txtOperationType.Value = "";
+            this.txtOperationTime.Value = "";
+            this.txtFare.Value = "";
+            this.txtBusesSpace.Value = "";
+            this.txtBusesTime.Value = "";
+            this.txtBusesAmount.Value = "";
+        }
+
+        protected void btLuu_Click(object sender, EventArgs e)
+        {
+            if (Xet())
+            {
+                ShowAlert("swal('Success!','Cập nhật thông tin!','success')");
+                BusRoute obj = this.GetValue();
+                HRFunctions.Instance.InsertNUpdateBusRoute(obj);
+                Clear();
+                Response.Redirect(Request.RawUrl);
+                LoadTimKiem(0);
+            }
+            else
+            {
+                this.error.Text = "Vui lòng nhập đầy đủ thông tin";
+            }
+
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private void ShowAlert(string note)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", note, true);
         }
     }
 }

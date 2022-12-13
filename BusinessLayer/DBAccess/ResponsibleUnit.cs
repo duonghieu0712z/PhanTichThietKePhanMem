@@ -16,6 +16,6 @@ namespace BusinessLayer.DBAccess
     {
         public int ResponsibleUnitID { get; set; }
         public string ReponsibleUnitName { get; set; }
-        public string PhoneNumber { get; set; }
+        public int PhoneNumber { get; set; }
     }
 }

@@ -137,7 +137,6 @@ namespace BusinessLayer
                     var list = db.ResponsibleUnits.AsQueryable();
                     list = list.Where(s => s.ResponsibleUnitID.ToString().Contains(Keyword)
                     || s.ReponsibleUnitName.ToLower().Contains(Keyword)
-                    || s.PhoneNumber.ToLower().Contains(Keyword)
                     );
                     if (list != null && list.Any())
                     {

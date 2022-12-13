@@ -37,21 +37,10 @@ namespace Web.Pages
             ResponsibleUnit obj = new ResponsibleUnit();
             obj.ResponsibleUnitID = this.txtID.Value.Length > 0 ? int.Parse(this.txtID.Value) : -1;
             obj.ReponsibleUnitName = this.txtResbonsilbeName.Value;
-            obj.PhoneNumber = this.txtPhoneNumber.Value;
+            int phone = 0;
+            int.TryParse(this.txtPhoneNumber.Value, out phone);
+            obj.PhoneNumber = phone;
             return obj;
-        }
-
-        protected void btLuu_Click(object sender, EventArgs e)
-        {
-            ResponsibleUnit obj = this.GetValue();
-            HRFunctions.Instance.InsertNUpdateResponsible(obj);
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            ResponsibleUnit obj = this.GetValue();
-            HRFunctions.Instance.InsertNUpdateResponsible(obj);
-
         }
 
         private void LoadEdit()
@@ -62,7 +51,7 @@ namespace Web.Pages
                 ResponsibleUnit obj = HRFunctions.Instance.Select_Responsible_Unit_ID(idEdit);
                 if (obj != null)
                 {
-                    this.txtPhoneNumber.Value = obj.PhoneNumber;
+                    this.txtPhoneNumber.Value = obj.PhoneNumber.ToString();
                     this.txtID.Value = obj.ResponsibleUnitID.ToString();
                     this.txtResbonsilbeName.Value = obj.ReponsibleUnitName;
                 }
@@ -129,7 +118,7 @@ namespace Web.Pages
         {
             int PageSize = int.Parse(this.drlPageNumber.SelectedValue);
             int TotalRows = 0;
-            this.ls = HRFunctions.Instance.ResponsibleUnit_Pagination(PageSize, pIndex, out TotalRows);
+            this.ls = HRFunctions.Instance.ResponsibleUnit_Pagination(this.txtSearch.Value, PageSize, pIndex, out TotalRows);
             this.hTotalRows.Value = TotalRows.ToString();
             if (ls == null || ls.Count == 0)
             {
@@ -141,6 +130,8 @@ namespace Web.Pages
         {
             ResponsibleUnit obj = this.GetValue();
             HRFunctions.Instance.InsertNUpdateResponsible(obj);
+            Clear();
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void btnXoa_Click(object sender, EventArgs e)
@@ -150,6 +141,7 @@ namespace Web.Pages
             {
                 List<string> list = selected.Split(',').ToList();
                 HRFunctions.Instance.DeleteResponsibleUnit(list);
+                Response.Redirect(Request.RawUrl);
             }
 
         }
@@ -160,5 +152,24 @@ namespace Web.Pages
             this.LoadTimKiem(PageIndex);
             Global.g_PageSize = this.drlPageNumber.SelectedValue;
         }
+
+        private void Clear()
+        {
+            this.txtID.Value = "";
+            this.txtResbonsilbeName.Value = "";
+            this.txtPhoneNumber.Value = "";
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        protected void btTim_Click(object sender, EventArgs e)
+        {
+            this.hPageIndex.Value = "0";
+            this.LoadTimKiem(0);
+            this.LoadPhanTrang();
+        }
     }
-}
+}   

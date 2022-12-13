@@ -15,15 +15,6 @@ namespace Web.Pages
     {
 
         /// <summary>
-        /// btnOpenFormAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOpenFormAdd;
-
-        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>
@@ -123,6 +114,15 @@ namespace Web.Pages
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtBusesSpace;
 
         /// <summary>
+        /// error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label error;
+
+        /// <summary>
         /// btLuu control.
         /// </summary>
         /// <remarks>
@@ -132,13 +132,13 @@ namespace Web.Pages
         protected global::System.Web.UI.WebControls.Button btLuu;
 
         /// <summary>
-        /// btnCancelFormAdd control.
+        /// btnClear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelFormAdd;
+        protected global::System.Web.UI.WebControls.Button btnClear;
 
         /// <summary>
         /// UpdatePanel1 control.

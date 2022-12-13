@@ -32,9 +32,9 @@ namespace BusinessLayer.Functions
         {
             return ResponsibleExt.Instance.Select_ID(id);
         }
-        public List<ResponsibleUnit> ResponsibleUnit_Pagination(int PageSize, int PageIndex, out int TotalRows)
+        public List<ResponsibleUnit> ResponsibleUnit_Pagination(string keyword, int PageSize, int PageIndex, out int TotalRows)
         {
-            return ResponsibleExt.Instance.Find_KeyWord("", PageSize, PageIndex, out TotalRows);
+            return ResponsibleExt.Instance.Find_KeyWord(keyword, PageSize, PageIndex, out TotalRows);
         }
         public void DeleteResponsibleUnit(List<String> IDs)
         {
@@ -65,9 +65,9 @@ namespace BusinessLayer.Functions
         {
             return BusRouteExt.Instance.BusRoute_Select_ID(id);
         }
-        public List<BusRoute> Bus_Route_Pagination(int PageSize, int PageIndex, out int TotalRows)
+        public List<BusRoute> Bus_Route_Pagination(string keyword, int PageSize, int PageIndex, out int TotalRows)
         {
-            return BusRouteExt.Instance.BusRoute_Find_KeyWord("", PageSize, PageIndex, out TotalRows);
+            return BusRouteExt.Instance.BusRoute_Find_KeyWord(keyword, PageSize, PageIndex, out TotalRows);
         }
         public List<BusRoute> FindBusRoute(string keyword)
         {
