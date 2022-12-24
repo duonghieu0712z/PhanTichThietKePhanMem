@@ -83,19 +83,26 @@
 <asp:Content ID="UISearchRouteMainContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="form-group">
         <div class="row">
-            <div class="d-flex justify-content-center mt-4" style="width: 100%">
+            <div class="d-flex justify-content-center mt-4" style="width: 100%; padding: 0px ">
                 <div class="col-sm-10 ">
                     <div class="form-group">
                         <asp:DropDownList CssClass="form-control"
                             AutoPostBack="true" ID="dlStartPosition"
                             runat="server"
-                            Style="width: 100% !important; max-width: 100% !important">
+                            Style="width: 100% !important; max-width: 100% !important; height: 48px">
                         </asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                    <asp:Button Style="height: 36px; background-color: #34B67A; margin-bottom: 12px !important; color: white !important"
-                        Text="Tìm kiếm" runat="server" ID="btnSearch" CssClass="btn" OnClick="btnSearch_Click" />
+                    <asp:Button 
+                        Style="height: 48px; background-color: #34B67A; margin-bottom: 12px !important; color: white !important; 
+                                background-image: url(../SetImg/ic-search.png); background-position: 8px; background-repeat: no-repeat;
+                                padding: 0px 24px 0px 48px"
+                        Text="Tìm kiếm" 
+                        runat="server" 
+                        ID="btnSearch" 
+                        CssClass="btn" 
+                        OnClick="btnSearch_Click" />
                 </div>
             </div>
         </div>
@@ -105,19 +112,88 @@
         <div class="col-sm-12 overflow-auto">
             <asp:Label id="lblRoute" Visible="false" runat="server"
             ><h4>Danh sách Lộ trình</h4></asp:Label>
-        <asp:GridView Visible="false" style="width:100%" 
-            OnRowDataBound="GridViewSearchRoute_RowDataBound" 
-            ID="GridViewSearchRoute" 
-            CssClass="table table-bordered table-striped" 
-            runat="server" 
-            AutoGenerateSelectButton="true"
-            OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
-            SelectedRowStyle-BackColor="#34B67A"
-            SelectedRowStyle-ForeColor="White"></asp:GridView>
-        </div>
+            <asp:GridView Visible="false" style="width:100%" 
+                OnRowDataBound="GridViewSearchRoute_RowDataBound" 
+                ID="GridViewSearchRoute" 
+                CssClass="table table-bordered table-striped" 
+                runat="server" 
+                AutoGenerateSelectButton="true"
+                OnSelectedIndexChanged="GridViewSearchRoute_SelectedIndexChanged"
+                SelectedRowStyle-BackColor="#34B67A"
+                SelectedRowStyle-ForeColor="White"></asp:GridView>
+            </div>
+
+            <div>
+                <asp:Repeater ID="RepeatRoute" runat="server" Visible="false">
+                    <HeaderTemplate>  
+                        <table style="width: 100%">  
+                    </HeaderTemplate> 
+                    <ItemTemplate>
+                        <tr style="background-color:#34B67A; width:100%; height: 48px; border: 2px solid white; color: white; cursor:pointer">
+                            <td style="padding-left: 24px">
+                                <%#DataBinder.Eval(Container, "DataItem.RouteID") %>
+                            </td>
+                            <td>
+                                <%#DataBinder.Eval(Container, "DataItem.RouteName") %>
+                            </td>
+                            <td>
+                                <div style="display: flex; align-items:center;">
+                                    <div style="width:36px; height:36px; border-radius: 50%; background-color: white; display:flex; justify-content:center; align-items:center;">
+                                        <img src="../SetImg/ic-walk.png" alt="icon-walk" />
+                                    </div>
+                                    <div style="padding: 0px 8px 0px 8px">-</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: flex; align-items:center;">
+                                    <div style="width:36px; height:36px; border-radius: 50%; background-color: white; display:flex; justify-content:center; align-items:center;">
+                                        <img src="../SetImg/ic-car.png" alt="icon-car" />
+                                    </div>
+                                    <div style="padding: 0px 8px 0px 8px">-</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: flex; align-items:center;">
+                                    <div style="width:36px; height:36px; border-radius: 50%; background-color: white; display:flex; justify-content:center; align-items:center;">
+                                        <img src="../SetImg/ic-clock.png" alt="icon-clock" />
+                                    </div>
+                                    <div style="padding: 0px 8px 0px 8px">
+                                        <%#DataBinder.Eval(Container, "DataItem.RouteTime") %>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: flex; align-items:center;">
+                                    <div style="width:36px; height:36px; border-radius: 50%; background-color: white; display:flex; justify-content:center; align-items:center;">
+                                        <img src="../SetImg/ic-money.png" alt="icon-money" />
+                                    </div>
+                                    <div style="padding: 0px 8px 0px 8px">
+                                        <%#DataBinder.Eval(Container, "DataItem.RouteAmount") %>
+                                    </div>
+                                </div>
+                            </td>
+                            <td >
+                                <div style="display:flex;justify-content:right; padding-right:6px;">
+                                    <asp:Button runat="server" 
+                                        ID="TrRoute" 
+                                        OnCommand="TrRoute_Command" 
+                                        CommandName="RouteClick" 
+                                        CommandArgument='<%#DataBinder.Eval(Container, "DataItem.RouteID") %>' 
+                                        Text="Xem chi tiết" 
+                                        style="background-image: url(../SetImg/ic-view.png); background-repeat:no-repeat; background-position: 8px ; padding: 0px 12px 0px 48px; height: 36px; border:none; background-color: white; color: black; border-radius: 4px" >
+                                    </asp:Button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </div>
         
         </div>
-        <div class="row" style="padding-left: 8px; padding-right: 22px; height: 500px">
+        <div class="row" style="padding-left: 8px; padding-right: 22px; padding-top: 24px; height: 500px">
             <div class="col-sm-4 overflow-auto" style="height: 500px">
                 <asp:GridView Visible="false"
                     ID="GridViewSearchBusStop"
@@ -125,6 +201,22 @@
                     CssClass="table table-bordered table-striped"
                     runat="server">
                 </asp:GridView>
+                <asp:Label ID="lblBusStops" runat="server" Visible="false"><h4>Danh sách điểm dừng</h4></asp:Label>
+                <asp:Repeater ID="RepeaterBusStops" runat="server">
+                    <ItemTemplate>
+                        <tr style="">
+                            <td>
+                                <div style="height: 48px; border: 2px solid white; display:flex; align-items:center; box-shadow: 0px 1px 3px rgba(0,0,0,0.4); padding: 0px 8px 0px 8px; margin: 8px 0px 8px 0; border-radius:4px">
+                                    <div style="width:40px; height:40px; border-radius:50%; background-color:white; display:flex; align-items:center">
+                                        <asp:ImageButton ImageUrl="~/SetImg/ic-busStop32.png" Width="30px" Height="36px" AlternateText="iconBusStop" runat="server" ID="btnImgBusStop" />
+                                    </div>
+                                        <%#DataBinder.Eval(Container, "DataItem.BusStopName") %>
+                                </div>
+                            </td>
+                            
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
             <div class="col-sm-8">
                 <div class="row">

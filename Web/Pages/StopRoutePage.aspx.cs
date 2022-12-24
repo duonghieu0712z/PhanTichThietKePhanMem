@@ -152,11 +152,12 @@ namespace Web.Pages
         {
             e.Row.Cells[2].Visible = false;
             e.Row.Cells[3].Visible = false;
+            e.Row.Cells[4].Visible = false;
             e.Row.Cells[0].ForeColor = Color.DarkOrange;
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 e.Row.Cells[1].Text = "Mã Lộ trình-Điểm dừng";
-                e.Row.Cells[4].Text = "Thứ tự";
+                //e.Row.Cells[4].Text = "Thứ tự";
                 e.Row.Cells[5].Text = "Tên Lộ trình";
                 e.Row.Cells[6].Text = "Tên Điểm dừng";
             }

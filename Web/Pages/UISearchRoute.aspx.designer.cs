@@ -78,13 +78,13 @@ namespace Web.Pages
         protected global::System.Web.UI.WebControls.GridView GridViewSearchRoute;
 
         /// <summary>
-        /// lbTest control.
+        /// RepeatRoute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTest;
+        protected global::System.Web.UI.WebControls.Repeater RepeatRoute;
 
         /// <summary>
         /// GridViewSearchBusStop control.
@@ -94,5 +94,23 @@ namespace Web.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewSearchBusStop;
+
+        /// <summary>
+        /// lblBusStops control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBusStops;
+
+        /// <summary>
+        /// RepeaterBusStops control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterBusStops;
     }
 }

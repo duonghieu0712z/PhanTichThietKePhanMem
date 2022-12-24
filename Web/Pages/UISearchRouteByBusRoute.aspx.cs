@@ -63,14 +63,19 @@ namespace Web.Pages
         {
             ClearData();
             BindingRouteData();
-            this.GridViewSearchRoute.Visible = true;
+            this.GridViewSearchRoute.Visible = false;
             this.lblRoute.Visible = true;
+            this.RepeatRoute.Visible = true;
 
         }
         private void BindingRouteData()
         {
             this.GridViewSearchRoute.DataSource = HRFunctions.Instance.SearchRouteByBusRouteId(int.Parse(this.dlStartPosition.SelectedValue));
             this.GridViewSearchRoute.DataBind();
+
+            this.RepeatRoute.DataSource = HRFunctions.Instance.SearchRouteByBusRouteId(int.Parse(this.dlStartPosition.SelectedValue));
+            this.RepeatRoute.DataBind();
+
         }
 
         protected void GridViewSearchRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
@@ -81,6 +86,10 @@ namespace Web.Pages
             e.Row.Cells[2].Visible = false;
             e.Row.Cells[3].Visible = false;
             e.Row.Cells[4].Visible = false;
+            e.Row.Cells[8].Visible = false;
+            e.Row.Cells[9].Visible = false;
+            e.Row.Cells[10].Visible = false;
+            e.Row.Cells[11].Visible = false;
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 e.Row.Cells[5].Text = "Tên lộ trình";
@@ -97,6 +106,8 @@ namespace Web.Pages
         {
             List<BusStop> busStops = HRFunctions.Instance.GetBusStopByRoute(routeID);
             this.GridViewSearchBusStop.DataSource = busStops;
+            this.RepeaterBusStops.DataSource = busStops;
+            this.RepeaterBusStops.DataBind();
             List<BusStopModel> list = new List<BusStopModel>();
             busStops.ForEach(item =>
             {
@@ -160,6 +171,17 @@ namespace Web.Pages
                 list.Add(new BusStopModel(item));
             });
             return list;
+        }
+
+        protected void TrRoute_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "RouteClick")
+            {
+                BindingBusStopData(int.Parse(e.CommandArgument.ToString()));
+                this.GridViewSearchBusStop.Visible = false;
+                this.RepeaterBusStops.Visible = true;
+                lblBusStops.Visible = true;
+            }
         }
     }
 }

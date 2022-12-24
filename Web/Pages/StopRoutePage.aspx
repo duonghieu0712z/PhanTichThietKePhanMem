@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <asp:Label runat="server">Tên vị trí cuối</asp:Label>
+                        <asp:Label runat="server">Tên điểm dừng</asp:Label>
                         <asp:DropDownList style="width: 100%; max-width: 100%" CssClass="form-control" AutoPostBack="true" ID="dlEndPositionID" runat="server">
                         </asp:DropDownList>
                   </div>
