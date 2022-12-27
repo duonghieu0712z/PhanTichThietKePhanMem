@@ -1,0 +1,15 @@
+﻿/*.row {
+    display: flex;
+    margin: 20px 0;
+}
+
+.col-6 {
+    width: 50%;
+}*/
+
+.btn-custome, btn-custome:hover {
+    background: #339933;
+    color: #fff;
+    margin: 0 5px;
+    border: 1px solid #339933;
+}

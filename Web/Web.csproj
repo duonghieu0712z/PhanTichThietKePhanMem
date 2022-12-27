@@ -119,6 +119,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="CSS\RouteMgmt.css" />
     <Content Include="CSS\RoutePage.css" />
     <Content Include="Default.aspx" />
@@ -136,12 +137,16 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="JavaScript\StopRouteHandle.js" />
     <Content Include="Pages\AddData.aspx" />
+    <Content Include="Pages\BusPage.aspx" />
     <Content Include="Pages\BusRoutePage.aspx" />
     <Content Include="Pages\BusStopPage.aspx" />
+    <Content Include="Pages\BusTypePage.aspx" />
     <Content Include="Pages\ResponsibleUnitPage.aspx" />
     <Content Include="Pages\RoutePage.aspx" />
+    <Content Include="Pages\SearchBusPage.aspx" />
     <Content Include="Pages\ShowRouteOnMap.aspx" />
     <Content Include="Pages\StopRoutePage.aspx" />
+    <Content Include="Pages\Test.aspx" />
     <Content Include="Pages\UIBusRoute.aspx" />
     <Content Include="Pages\UIRouteDetail.aspx" />
     <Content Include="Pages\UISearchRoute.aspx" />
@@ -230,6 +235,13 @@
     <Compile Include="Pages\AddData.aspx.designer.cs">
       <DependentUpon>AddData.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BusPage.aspx.cs">
+      <DependentUpon>BusPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BusPage.aspx.designer.cs">
+      <DependentUpon>BusPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\BusRoutePage.aspx.cs">
       <DependentUpon>BusRoutePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -243,6 +255,13 @@
     </Compile>
     <Compile Include="Pages\BusStopPage.aspx.designer.cs">
       <DependentUpon>BusStopPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BusTypePage.aspx.cs">
+      <DependentUpon>BusTypePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BusTypePage.aspx.designer.cs">
+      <DependentUpon>BusTypePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ResponsibleUnitPage.aspx.cs">
       <DependentUpon>ResponsibleUnitPage.aspx</DependentUpon>
@@ -258,6 +277,13 @@
     <Compile Include="Pages\RoutePage.aspx.designer.cs">
       <DependentUpon>RoutePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SearchBusPage.aspx.cs">
+      <DependentUpon>SearchBusPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SearchBusPage.aspx.designer.cs">
+      <DependentUpon>SearchBusPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ShowRouteOnMap.aspx.cs">
       <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
     </Compile>
@@ -270,6 +296,13 @@
     </Compile>
     <Compile Include="Pages\StopRoutePage.aspx.designer.cs">
       <DependentUpon>StopRoutePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UIBusRoute.aspx.cs">
       <DependentUpon>UIBusRoute.aspx</DependentUpon>

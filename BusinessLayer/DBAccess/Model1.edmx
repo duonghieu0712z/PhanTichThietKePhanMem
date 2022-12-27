@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ROUTE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bus">
+          <Key>
+            <PropertyRef Name="BusID" />
+          </Key>
+          <Property Name="BusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LicensePlates" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="BusNumber" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SumSeats" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="BusTypeID" Type="int" Nullable="false" />
+          <Property Name="RoutesID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="BusRoutes">
           <Key>
             <PropertyRef Name="BusRouteID" />
@@ -32,6 +44,14 @@
           <Property Name="Street" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Wards" Type="nvarchar" MaxLength="200" />
           <Property Name="District" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BusType">
+          <Key>
+            <PropertyRef Name="BusTypeID" />
+          </Key>
+          <Property Name="BusTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CarMaker" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="ResponsibleUnit">
           <Key>
@@ -67,8 +87,10 @@
           <Property Name="Order" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ROUTE_MANAGEMENTModelStoreContainer">
+          <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusRoutes" EntityType="Self.BusRoutes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusStop" EntityType="Self.BusStop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusType" EntityType="Self.BusType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResponsibleUnit" EntityType="Self.ResponsibleUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stop_Route" EntityType="Self.Stop_Route" Schema="dbo" store:Type="Tables" />
@@ -232,6 +254,8 @@
             <End Role="Stop_Route" EntitySet="Stop_Route" />
           </AssociationSet>
           <EntitySet Name="ResponsibleUnits" EntityType="ROUTE_MANAGEMENTModel.ResponsibleUnit" />
+          <EntitySet Name="Buses" EntityType="ROUTE_MANAGEMENTModel.Bus" />
+          <EntitySet Name="BusTypes" EntityType="ROUTE_MANAGEMENTModel.BusType" />
         </EntityContainer>
         <EntityType Name="ResponsibleUnit">
           <Key>
@@ -240,6 +264,26 @@
           <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ReponsibleUnitName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bus">
+          <Key>
+            <PropertyRef Name="BusID" />
+          </Key>
+          <Property Name="BusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LicensePlates" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BusNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SumSeats" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BusTypeID" Type="Int32" Nullable="false" />
+          <Property Name="RoutesID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BusType">
+          <Key>
+            <PropertyRef Name="BusTypeID" />
+          </Key>
+          <Property Name="BusTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CarMaker" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -310,6 +354,28 @@
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="ReponsibleUnitName" ColumnName="ReponsibleUnitName" />
                 <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buses">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Bus">
+              <MappingFragment StoreEntitySet="Bus">
+                <ScalarProperty Name="RoutesID" ColumnName="RoutesID" />
+                <ScalarProperty Name="BusTypeID" ColumnName="BusTypeID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SumSeats" ColumnName="SumSeats" />
+                <ScalarProperty Name="BusNumber" ColumnName="BusNumber" />
+                <ScalarProperty Name="LicensePlates" ColumnName="LicensePlates" />
+                <ScalarProperty Name="BusID" ColumnName="BusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusTypes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.BusType">
+              <MappingFragment StoreEntitySet="BusType">
+                <ScalarProperty Name="CarMaker" ColumnName="CarMaker" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BusTypeID" ColumnName="BusTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
