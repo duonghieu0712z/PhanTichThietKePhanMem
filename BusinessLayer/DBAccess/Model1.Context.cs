@@ -26,7 +26,6 @@ namespace BusinessLayer.DBAccess
         }
     
         public virtual DbSet<Bus> Buses { get; set; }
-        public virtual DbSet<BusRoute> BusRoutes { get; set; }
         public virtual DbSet<BusStop> BusStops { get; set; }
         public virtual DbSet<BusType> BusTypes { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
@@ -45,5 +44,6 @@ namespace BusinessLayer.DBAccess
         public virtual DbSet<Stop_Route> Stop_Route { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TypePost> TypePosts { get; set; }
+        public virtual DbSet<BusRoute> BusRoutes { get; set; }
     }
 }

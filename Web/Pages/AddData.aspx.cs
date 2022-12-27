@@ -30,7 +30,7 @@ namespace Web.Pages
             {
                 string json = r.ReadToEnd();
                 ItemRoute itemRoute = JsonConvert.DeserializeObject<ItemRoute>(json);
-                busRoute = ConvertBusRoute(itemRoute);
+                //busRoute = ConvertBusRoute(itemRoute);
 
             }
             using (StreamReader r = new StreamReader(listProduct))
@@ -43,7 +43,7 @@ namespace Web.Pages
                 }
             }
 
-            map.Add(busRoute, busStops);
+            //map.Add(busRoute, busStops);
 
 
             foreach (var item in map)
@@ -116,24 +116,24 @@ namespace Web.Pages
 
 
 
-        private BusRoute ConvertBusRoute(ItemRoute itemRoute)
-        {
-            Random rnd = new Random();
-            BusRoute busRoute = new BusRoute()
-            {
-                RouteNumber = itemRoute.RouteNo,
-                RouteName = itemRoute.routeName,
-                ResponsibleUnitID = itemRoute.ResponsibleUnitID,
-                OperationType = "Phổ thông - Có trợ giá",
-                OperationTime = DateTime.Now,
-                Fare = itemRoute.Fare,
-                BusesAmount = rnd.Next(1, 20),
-                BusesTime = DateTime.Now,
-                BusesSpace = DateTime.Now,
-            };
-            busRoute.BusRouteID = HRFunctions.Instance.InsertNUpdateBusRoute(busRoute);
-            return busRoute;
-        }
+        //private BusRoute ConvertBusRoute(ItemRoute itemRoute)
+        //{
+        //    Random rnd = new Random();
+        //    BusRoute busRoute = new BusRoute()
+        //    {
+        //        RouteNumber = itemRoute.RouteNo,
+        //        RouteName = itemRoute.routeName,
+        //        ResponsibleUnitID = itemRoute.ResponsibleUnitID,
+        //        OperationType = "Phổ thông - Có trợ giá",
+        //        OperationTime = DateTime.Now,
+        //        Fare = itemRoute.Fare,
+        //        BusesAmount = rnd.Next(1, 20),
+        //        BusesTime = DateTime.Now,
+        //        BusesSpace = DateTime.Now,
+        //    };
+        //    busRoute.BusRouteID = HRFunctions.Instance.InsertNUpdateBusRoute(busRoute);
+        //    return busRoute;
+        //}
         private BusStop ConvertBusstop(Item item)
         {
 

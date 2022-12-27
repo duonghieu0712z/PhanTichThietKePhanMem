@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="24293cb782a1459a854f2175280f189d" Name="Diagram1" ShowGrid="true">
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Bus" Width="1.5" PointX="2.75" PointY="5.75" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusRoute" Width="1.5" PointX="0.75" PointY="5.375" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusStop" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusType" Width="1.5" PointX="4.75" PointY="5.75" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Document" Width="1.5" PointX="6.75" PointY="5.75" />
@@ -25,11 +24,12 @@
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Stop_Route" Width="1.5" PointX="5.25" PointY="1.875" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.sysdiagram" Width="1.5" PointX="11.75" PointY="0.75" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.TypePost" Width="1.5" PointX="2.75" PointY="11.75" />
-        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop1" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_BusStop" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_Route" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusRoute" Width="1.5" PointX="11.375" PointY="13" />
+        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

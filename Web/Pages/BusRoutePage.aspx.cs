@@ -181,12 +181,12 @@ namespace Web.Pages
             obj.BusRouteID = this.txtID.Value.Length > 0 ? int.Parse(this.txtID.Value) : -1;
             obj.RouteName = this.txtRouteName.Value;
             obj.OperationType = this.txtOperationType.Value;
-            obj.OperationTime = DateTime.Parse(this.txtOperationTime.Value);
+            obj.OperationTime = this.txtOperationTime.Value;
             obj.Fare = int.Parse(this.txtFare.Value);
             obj.RouteNumber = this.txtRouteNumber.Value;
-            obj.BusesTime = DateTime.Parse(this.txtBusesTime.Value);
-            obj.BusesAmount = int.Parse(this.txtBusesAmount.Value);
-            obj.BusesSpace = DateTime.Parse(this.txtBusesSpace.Value);
+            obj.BusesTime = this.txtBusesTime.Value;
+            obj.BusesAmount = this.txtBusesAmount.Value;
+            obj.BusesSpace = this.txtBusesSpace.Value;
             return obj;
         }
 

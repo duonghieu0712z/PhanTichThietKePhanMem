@@ -26,11 +26,11 @@
           <Property Name="RouteName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ResponsibleUnitID" Type="int" Nullable="false" />
           <Property Name="OperationType" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="OperationTime" Type="datetime" Nullable="false" />
+          <Property Name="OperationTime" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Fare" Type="int" Nullable="false" />
-          <Property Name="BusesAmount" Type="int" Nullable="false" />
-          <Property Name="BusesTime" Type="datetime" Nullable="false" />
-          <Property Name="BusesSpace" Type="datetime" Nullable="false" />
+          <Property Name="BusesAmount" Type="nvarchar" MaxLength="550" />
+          <Property Name="BusesTime" Type="nvarchar" MaxLength="550" Nullable="false" />
+          <Property Name="BusesSpace" Type="nvarchar" MaxLength="550" Nullable="false" />
         </EntityType>
         <EntityType Name="BusStop">
           <Key>
@@ -325,7 +325,6 @@
       <Schema Namespace="ROUTE_MANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ROUTE_MANAGEMENTEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Buses" EntityType="ROUTE_MANAGEMENTModel.Bus" />
-          <EntitySet Name="BusRoutes" EntityType="ROUTE_MANAGEMENTModel.BusRoute" />
           <EntitySet Name="BusStops" EntityType="ROUTE_MANAGEMENTModel.BusStop" />
           <EntitySet Name="BusTypes" EntityType="ROUTE_MANAGEMENTModel.BusType" />
           <EntitySet Name="Documents" EntityType="ROUTE_MANAGEMENTModel.Document" />
@@ -344,10 +343,6 @@
           <EntitySet Name="Stop_Route" EntityType="ROUTE_MANAGEMENTModel.Stop_Route" />
           <EntitySet Name="sysdiagrams" EntityType="ROUTE_MANAGEMENTModel.sysdiagram" />
           <EntitySet Name="TypePosts" EntityType="ROUTE_MANAGEMENTModel.TypePost" />
-          <AssociationSet Name="FK_Route_BusRoutes" Association="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes">
-            <End Role="BusRoute" EntitySet="BusRoutes" />
-            <End Role="Route" EntitySet="Routes" />
-          </AssociationSet>
           <AssociationSet Name="FK_Route_BusStop" Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop">
             <End Role="BusStop" EntitySet="BusStops" />
             <End Role="Route" EntitySet="Routes" />
@@ -364,6 +359,11 @@
             <End Role="Route" EntitySet="Routes" />
             <End Role="Stop_Route" EntitySet="Stop_Route" />
           </AssociationSet>
+          <EntitySet Name="BusRoutes" EntityType="ROUTE_MANAGEMENTModel.BusRoute" />
+          <AssociationSet Name="FK_Route_BusRoutes" Association="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes">
+            <End Role="BusRoute" EntitySet="BusRoutes" />
+            <End Role="Route" EntitySet="Routes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Bus">
           <Key>
@@ -376,22 +376,6 @@
           <Property Name="Status" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="BusTypeID" Type="Int32" Nullable="false" />
           <Property Name="RoutesID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="BusRoute">
-          <Key>
-            <PropertyRef Name="BusRouteID" />
-          </Key>
-          <Property Name="BusRouteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RouteNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RouteName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" />
-          <Property Name="OperationType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="OperationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Fare" Type="Int32" Nullable="false" />
-          <Property Name="BusesAmount" Type="Int32" Nullable="false" />
-          <Property Name="BusesTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="BusesSpace" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Routes" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" FromRole="BusRoute" ToRole="Route" />
         </EntityType>
         <EntityType Name="BusStop">
           <Key>
@@ -544,10 +528,10 @@
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ApplicableDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="BusRoute" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" FromRole="Route" ToRole="BusRoute" />
           <NavigationProperty Name="BusStop" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusStop" FromRole="Route" ToRole="BusStop" />
           <NavigationProperty Name="BusStop1" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusStop1" FromRole="Route" ToRole="BusStop" />
           <NavigationProperty Name="Stop_Route" Relationship="ROUTE_MANAGEMENTModel.FK_Stop_Route_Route" FromRole="Route" ToRole="Stop_Route" />
+          <NavigationProperty Name="BusRoute" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" FromRole="Route" ToRole="BusRoute" />
         </EntityType>
         <EntityType Name="Route1">
           <Key>
@@ -587,18 +571,6 @@
           <Property Name="TypePostsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_Route_BusRoutes">
-          <End Type="ROUTE_MANAGEMENTModel.BusRoute" Role="BusRoute" Multiplicity="1" />
-          <End Type="ROUTE_MANAGEMENTModel.Route" Role="Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusRoute">
-              <PropertyRef Name="BusRouteID" />
-            </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="BusRoutesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Route_BusStop">
           <End Type="ROUTE_MANAGEMENTModel.BusStop" Role="BusStop" Multiplicity="1" />
           <End Type="ROUTE_MANAGEMENTModel.Route" Role="Route" Multiplicity="*" />
@@ -647,6 +619,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BusRoute">
+          <Key>
+            <PropertyRef Name="BusRouteID" />
+          </Key>
+          <Property Name="BusRouteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RouteNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RouteName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" />
+          <Property Name="OperationType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OperationTime" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Fare" Type="Int32" Nullable="false" />
+          <Property Name="BusesAmount" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="BusesTime" Type="String" Nullable="false" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="BusesSpace" Type="String" Nullable="false" MaxLength="550" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Routes" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" FromRole="BusRoute" ToRole="Route" />
+        </EntityType>
+        <Association Name="FK_Route_BusRoutes">
+          <End Type="ROUTE_MANAGEMENTModel.BusRoute" Role="BusRoute" Multiplicity="1" />
+          <End Type="ROUTE_MANAGEMENTModel.Route" Role="Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusRoute">
+              <PropertyRef Name="BusRouteID" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="BusRoutesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -663,22 +663,6 @@
                 <ScalarProperty Name="BusNumber" ColumnName="BusNumber" />
                 <ScalarProperty Name="LicensePlates" ColumnName="LicensePlates" />
                 <ScalarProperty Name="BusID" ColumnName="BusID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BusRoutes">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.BusRoute">
-              <MappingFragment StoreEntitySet="BusRoutes">
-                <ScalarProperty Name="BusesSpace" ColumnName="BusesSpace" />
-                <ScalarProperty Name="BusesTime" ColumnName="BusesTime" />
-                <ScalarProperty Name="BusesAmount" ColumnName="BusesAmount" />
-                <ScalarProperty Name="Fare" ColumnName="Fare" />
-                <ScalarProperty Name="OperationTime" ColumnName="OperationTime" />
-                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
-                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
-                <ScalarProperty Name="RouteName" ColumnName="RouteName" />
-                <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
-                <ScalarProperty Name="BusRouteID" ColumnName="BusRouteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -882,6 +866,22 @@
               <MappingFragment StoreEntitySet="TypePosts">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusRoutes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.BusRoute">
+              <MappingFragment StoreEntitySet="BusRoutes">
+                <ScalarProperty Name="BusesSpace" ColumnName="BusesSpace" />
+                <ScalarProperty Name="BusesTime" ColumnName="BusesTime" />
+                <ScalarProperty Name="BusesAmount" ColumnName="BusesAmount" />
+                <ScalarProperty Name="Fare" ColumnName="Fare" />
+                <ScalarProperty Name="OperationTime" ColumnName="OperationTime" />
+                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
+                <ScalarProperty Name="RouteName" ColumnName="RouteName" />
+                <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
+                <ScalarProperty Name="BusRouteID" ColumnName="BusRouteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
