@@ -60,13 +60,13 @@
                             <input type="text" class="form-control" placeholder="Tên điểm dừng" id="txtName" runat="server">
                         </div>
                     </div>
-                    <div class="form-floating mb-2">
+                    <div class=" mb-2">
                         <input type="text" class="form-control" id="txtStreet" placeholder="Đường\Phố" runat="server">
                     </div>
-                    <div class="form-floating mb-2">
+                    <div class=" mb-2">
                         <input type="text" class="form-control" id="txtWard" placeholder="Xã\Phường" runat="server">
                     </div>
-                    <div class="form-floating mb-2">
+                    <div class=" mb-2">
                         <input type="text" class="form-control" id="txtDistrict" placeholder="Quận\Huyện" runat="server">
                     </div>
                     <div class="form-group">
@@ -78,7 +78,7 @@
                                 <input type="text" class="form-control" placeholder="Vĩ độ" id="txtLatitude" runat="server">
                             </div>
                         </div>
-                        <div class="form-floating">
+                        <div class="">
                             <textarea class="form-control" placeholder="Mô tả" id="txtDescription" runat="server" style="height: 100px"></textarea>
 
                         </div>

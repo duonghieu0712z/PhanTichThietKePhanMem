@@ -112,6 +112,8 @@
                 </div>
                 <div class="col-sm-3 d-flex justify-content-left align-items-center">
                     <asp:ImageButton ImageUrl="~/SetImg/ic-search.png" runat="server" ID="imgbtnSearch" OnClick="imgbtnSearch_Click" Style="background-color: #34B67A; width:48px; height: 72px; margin-bottom: 12px; padding-top: 20px; padding-bottom: 20px;padding-left: 8px; padding-right:8px" />
+                    <%--Nút để tìm điểm gần nhất--%>
+                    <button type="button" onclick="postLocation()"> </button>
                 </div>
             </div>
         </div>

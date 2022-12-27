@@ -223,6 +223,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\BusStopModel.cs" />
+    <Compile Include="Model\Location.cs" />
     <Compile Include="Pages\AddData.aspx.cs">
       <DependentUpon>AddData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -260,6 +262,7 @@
     </Compile>
     <Compile Include="Pages\ShowRouteOnMap.aspx.cs">
       <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\ShowRouteOnMap.aspx.designer.cs">
       <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
