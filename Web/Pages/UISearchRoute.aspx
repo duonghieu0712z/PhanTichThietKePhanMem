@@ -90,30 +90,61 @@
 <asp:Content ID="UISearchRouteMainContent" ContentPlaceHolderID="MainContent" runat="server">
    <div class="form-group">
         <div class="row">
-            <div class="d-flex justify-content-center mt-4" style="width: 100%">
-                <div class="col-sm-3">
-                    <asp:ImageButton ImageUrl="~/SetImg/ic-swap.png" runat="server" Style="float: right;background-color: #34B67A; width:48px; height: 72px; margin-bottom: 12px; padding-top: 20px; padding-bottom: 20px;padding-left: 8px; padding-right:8px" />
+            <div class="d-flex justify-content-center mt-4 align-items-center" style="width: 100%">
+                <div class="col-sm-3 align-items-center">
+                    <asp:ImageButton ImageUrl="~/SetImg/ic-swap.png" runat="server" 
+                        Style="float: right;background-color: #34B67A; width:48px; height: 80px; padding: 24px 8px 24px 8px; border-radius: 4px" />
                 </div>
-                <div class="col-sm-6 ">
+                <div class="col-sm-6 " style="padding: 0px 24px 0px 24px">
                     <div class="form-group">
-                        <asp:DropDownList CssClass="form-control"
+                        <asp:DropDownList CssClass="form-control" 
                             AutoPostBack="true" ID="dlStartPosition"
                             runat="server"
-                            Style="width: 100% !important; max-width: 100% !important">
+                            Style="width: 100% !important; max-width: 100% !important;"
+                            Visible="true">
                         </asp:DropDownList>
+
+                        <div id="choseStartPositionContainer"
+                            style="position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid #c4c4c4; padding:0; margin: 0; border-radius: 4px">
+                            <input id="inputChoseStartPosition" 
+                            placeholder="<Điểm được chọn trên bản đồ>"
+                                style="height: 40px; border: none; width: 100%; border-radius: 4px; padding: 0px 32px 0px 12px"/>
+                            <button id="btnRemoveStartPosition" 
+                                style="width:32px; height:32px; background-color: transparent; position: absolute; right: 4px; top: 5px; display: flex; justify-content:center; border: none; border-radius: 4px; padding: 2px 0px">
+                                <img src="../SetImg/ic-close-red.png" alt="ic-close"
+                                style="width: 24px; height: 24px; object-fit:contain"/>
+                            </button>
+                        </div>
+
                         <asp:DropDownList
                             CssClass="form-control mt-1"
                             AutoPostBack="true"
                             ID="dlEndPosition"
                             runat="server"
-                            Style="width: 100% !important; max-width: 100% !important">
+                            Style="width: 100% !important; max-width: 100% !important;"
+                            Visible="true">
                         </asp:DropDownList>
+
+                        <div id="choseEndPositionContainer"
+                            style="position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid #c4c4c4; padding:0; margin: 0; border-radius: 4px">
+                            <input id="inputChoseEndPosition" 
+                            placeholder="<Điểm được chọn trên bản đồ>"
+                                style="height: 40px; border: none; width: 100%; border-radius: 4px; padding: 0px 32px 0px 12px"/>
+                            <button id="btnRemoveEndPosition" 
+                                style="width:32px; height:32px; background-color: transparent; position: absolute; right: 4px; top: 5px; display: flex; justify-content:center; border: none; border-radius: 4px; padding: 2px 0px">
+                                <img src="../SetImg/ic-close-red.png" alt="ic-close"
+                                style="width: 24px; height: 24px; object-fit:contain"/>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-3 d-flex justify-content-left align-items-center">
-                    <asp:ImageButton ImageUrl="~/SetImg/ic-search.png" runat="server" ID="imgbtnSearch" OnClick="imgbtnSearch_Click" Style="background-color: #34B67A; width:48px; height: 72px; margin-bottom: 12px; padding-top: 20px; padding-bottom: 20px;padding-left: 8px; padding-right:8px" />
+                    <asp:ImageButton ImageUrl="~/SetImg/ic-search.png" runat="server" 
+                        ID="imgbtnSearch" 
+                        OnClick="imgbtnSearch_Click" 
+                        Style="background-color: #34B67A; width:48px; height: 80px; padding: 24px 8px 24px 8px; border-radius: 4px" />
                     <%--Nút để tìm điểm gần nhất--%>
-                    <button type="button" onclick="postLocation()"> </button>
+                    <button type="button" onclick="postLocation()"></button>
                 </div>
             </div>
         </div>

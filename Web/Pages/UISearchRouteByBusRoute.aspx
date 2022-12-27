@@ -83,7 +83,7 @@
 <asp:Content ID="UISearchRouteMainContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="form-group">
         <div class="row">
-            <div class="d-flex justify-content-center mt-4" style="width: 100%; padding: 0px ">
+            <div class="d-flex justify-content-center mt-4" style="width: 100%; padding: 0px 0px 0px 24px">
                 <div class="col-sm-10 ">
                     <div class="form-group">
                         <asp:DropDownList CssClass="form-control"

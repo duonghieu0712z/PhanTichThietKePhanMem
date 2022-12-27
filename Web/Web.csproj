@@ -184,6 +184,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="SetImg\ic-busStop32.png" />
     <Content Include="SetImg\ic-busStop.png" />
+    <Content Include="SetImg\ic-close-red.png" />
     <Content Include="SetImg\ic-view.png" />
     <Content Include="SetImg\ic-car.png" />
     <Content Include="SetImg\ic-clock.png" />
