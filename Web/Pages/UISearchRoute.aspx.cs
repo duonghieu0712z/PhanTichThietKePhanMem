@@ -8,6 +8,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.Model;
 using Route = BusinessLayer.DBAccess.Route;
 
 namespace Web.Pages
@@ -16,29 +17,6 @@ namespace Web.Pages
     public partial class UISearchRoute : System.Web.UI.Page
     {
         public List<Route> RouteList = new List<Route>();
-        public class BusStopModel
-        {
-            public int BusStopID { get; set; }
-            public string BusStopName { get; set; }
-            public string BusStopDescription { get; set; }
-            public double Latitude { get; set; }
-            public double Longitude { get; set; }
-            public string Street { get; set; }
-            public string Wards { get; set; }
-            public string District { get; set; }
-            public BusStopModel(BusStop bus)
-            {
-                BusStopID = bus.BusStopID;
-                BusStopName = bus.BusStopName;
-                BusStopDescription = bus.BusStopDescription;
-                Latitude = bus.Latitude;
-                Longitude = bus.Longitude;
-                Street = bus.Street;
-                Wards = bus.Wards;
-                District = bus.District;
-            }
-
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -207,6 +185,47 @@ namespace Web.Pages
                 this.RepeaterBusStops.Visible = true;
                 lblBusStops.Visible = true;
             }
+        }
+
+        public static BusStop findNearPoint(Location point, List<BusStop> lsBusStop)
+        {
+            List<double> distances = new List<double>();
+
+            //int minValue = distances.Sort
+
+            foreach (var busStop in lsBusStop)
+            {
+                double distance = HRFunctions.deg2rad(HRFunctions.getDistanceFromLatLonInKm(point.latitudes, point.longitudes, busStop.Latitude, busStop.Longitude));
+                distances.Add(distance);
+            }
+            double minDistance = Double.MaxValue;
+
+            foreach (var value in distances)
+            {
+                if (value < minDistance)
+                {
+                    minDistance = value;
+                }
+            }
+            int minIndex = distances.IndexOf(minDistance);
+            Console.WriteLine(minIndex.ToString());
+            return lsBusStop[minIndex];
+        }
+
+
+        [WebMethod]
+        public static List<BusStopModel> findNearByBusStop(Location start, Location end)
+        {
+            List<BusStop> list = HRFunctions.Instance.SelectAllBusStop();
+            List<BusStopModel> lsBusStops = new List<BusStopModel>();
+            BusStopModel busStopStart = new BusStopModel(findNearPoint(start, list));
+            BusStopModel busStopEnd = new BusStopModel(findNearPoint(end, list));
+
+            lsBusStops.Add(busStopStart);
+            lsBusStops.Add(busStopEnd);
+
+            return lsBusStops;
+
         }
     }
 }

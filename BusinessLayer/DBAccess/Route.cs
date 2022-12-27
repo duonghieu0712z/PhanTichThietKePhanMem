@@ -32,10 +32,10 @@ namespace BusinessLayer.DBAccess
         public System.DateTime ApplicableDate { get; set; }
         public System.DateTime OperationDate { get; set; }
     
-        public virtual BusRoute BusRoute { get; set; }
         public virtual BusStop BusStop { get; set; }
         public virtual BusStop BusStop1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stop_Route> Stop_Route { get; set; }
+        public virtual BusRoute BusRoute { get; set; }
     }
 }

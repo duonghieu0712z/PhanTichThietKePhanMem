@@ -28,6 +28,10 @@ const imgCurrent = "/SetImg/imgCurrent.png";
 const imgStopBus = "/SetImg/imgStopBus.png";
 let directionsService;
 let directionsRenderer;
+let latStartPoint;
+let lngStarPoint;
+let latEndPoint;
+let lngEndPoint;
 const typeMaps = [
     'pickLocation',
     'getRoute',
@@ -85,7 +89,8 @@ function initMap() {
         });
         showInforByTypeMap();
         console.log(typeMap);
-        });
+    });
+    loadAllStopBus();
  
 }
 function showInforByTypeMap() {
@@ -252,11 +257,10 @@ function renderMaker(BusStops, haveDraw) {
 
     });
     listBusStop = BusStops;
-    //if (haveDraw) {
-    //    //  drawDirection(drawLine);
-    //    calcRoute(listPosition);
-    //}
-    calcRoute(listPosition);
+    if (haveDraw) {
+        //  drawDirection(drawLine);
+        calcRoute(listPosition);
+    }
 
 }
 
@@ -270,6 +274,8 @@ $(document).on('click', '#btn_start_point', function getStartPoint() {
     markerChoice.setMap(null);
     markerStart = placeMarkerAndPanTo(currentPoint, map, imgStart, TypeStart);
     markerStart.setMap(map);
+    latStartPoint = currentPoint.lat();
+    lngStarPoint = currentPoint.lng();
 
 });
 $(document).on('click', '#btn_end_point', function getEndPonit() {
@@ -280,23 +286,57 @@ $(document).on('click', '#btn_end_point', function getEndPonit() {
     markerChoice.setMap(null);
     markerEnd = placeMarkerAndPanTo(currentPoint, map, imgEnd, TypeEnd);
     markerEnd.setMap(map);
+    latEndPoint = currentPoint.lat();
+    lngEndPoint = currentPoint.lng();
 });
 //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
 
+function postLocation() {
+    console.log(latStartPoint);
+    console.log(latEndPoint);
+    console.log(lngStarPoint);
+    console.log(lngEndPoint);
+    let coordinatesStart = { latitudes: latStartPoint, longitudes: lngStarPoint }
+    let coordinatesEnd = { latitudes: latEndPoint, longitudes: lngEndPoint }
+    let startAndEndPoint = { start: coordinatesStart, end: coordinatesEnd }
+    $.ajax({
+        type: "POST",
+        url: "UISearchRoute.aspx/findNearByBusStop",
+        data: JSON.stringify(startAndEndPoint),
+        // data: '{latitude:"' + lat + '",longitude:"' + lng + '"}',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: OnSuccess,
+        error: OnErrorCall
+    });
+
+    function OnSuccess(response) {
+        alert(response.d);
+        console.log(response.d);
+
+    }
+    function OnErrorCall(response) {
+        console.log("error");
+
+    }
+
+}
+
+//
 function loadAllStopBus() {
     if (busStops != []) {
         busStops = [];
     }
     $.ajax({
         type: "GET", //GET
-        url: "ShowRouteOnMap.aspx/GetAllBusStop",
+        url: "BusStopPage.aspx/GetAllBusStop",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: false,
         success: function (msg) {
             let data = msg.d;
             console.log(data);
-
+            renderMaker(data, false);
         },
         failure: function (response) {
             alert(response.d);
