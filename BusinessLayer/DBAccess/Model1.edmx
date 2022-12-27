@@ -53,6 +53,110 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CarMaker" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DocumentTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeID" />
+          </Key>
+          <Property Name="DocumentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="DriverID" />
+          </Key>
+          <Property Name="DriverID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IDCard" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Sex" Type="bit" Nullable="false" />
+          <Property Name="DayOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="HomeTown" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Driver_Bus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverID" Type="int" Nullable="false" />
+          <Property Name="BusID" Type="int" Nullable="false" />
+          <Property Name="DepartureDay" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HandlingViolations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ResponsibleUnitID" Type="int" Nullable="false" />
+          <Property Name="ProcessingTime" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Information">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DateSubmitted" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Mota" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TypeMenuID" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POSTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="NumberOfReviews" Type="int" Nullable="false" />
+          <Property Name="NumberOfResponse" Type="int" Nullable="false" />
+          <Property Name="CoverImage" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Link" Type="nvarchar" MaxLength="200" />
+          <Property Name="TypePostsID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reflect">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReflectTypeID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="VideoOrPicture" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReflectType">
+          <Key>
+            <PropertyRef Name="ReflectTypeID" />
+          </Key>
+          <Property Name="ReflectTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="ResponsibleUnit">
           <Key>
             <PropertyRef Name="ResponsibleUnitID" />
@@ -77,6 +181,16 @@
           <Property Name="ApplicableDate" Type="date" Nullable="false" />
           <Property Name="OperationDate" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="Routes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RouteID" Type="int" Nullable="false" />
+          <Property Name="NumberRoutes" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="Stop_Route">
           <Key>
             <PropertyRef Name="StopRouteID" />
@@ -86,14 +200,33 @@
           <Property Name="EndPositionID" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="TypePosts">
+          <Key>
+            <PropertyRef Name="TypePostsID" />
+          </Key>
+          <Property Name="TypePostsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="ROUTE_MANAGEMENTModelStoreContainer">
           <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusRoutes" EntityType="Self.BusRoutes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusStop" EntityType="Self.BusStop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusType" EntityType="Self.BusType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Driver_Bus" EntityType="Self.Driver_Bus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HandlingViolations" EntityType="Self.HandlingViolations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Information" EntityType="Self.Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POSTS" EntityType="Self.POSTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reflect" EntityType="Self.Reflect" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReflectType" EntityType="Self.ReflectType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResponsibleUnit" EntityType="Self.ResponsibleUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stop_Route" EntityType="Self.Stop_Route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypePosts" EntityType="Self.TypePosts" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -256,6 +389,18 @@
           <EntitySet Name="ResponsibleUnits" EntityType="ROUTE_MANAGEMENTModel.ResponsibleUnit" />
           <EntitySet Name="Buses" EntityType="ROUTE_MANAGEMENTModel.Bus" />
           <EntitySet Name="BusTypes" EntityType="ROUTE_MANAGEMENTModel.BusType" />
+          <EntitySet Name="Documents" EntityType="ROUTE_MANAGEMENTModel.Document" />
+          <EntitySet Name="DocumentTypes" EntityType="ROUTE_MANAGEMENTModel.DocumentType" />
+          <EntitySet Name="Drivers" EntityType="ROUTE_MANAGEMENTModel.Driver" />
+          <EntitySet Name="Driver_Bus" EntityType="ROUTE_MANAGEMENTModel.Driver_Bus" />
+          <EntitySet Name="HandlingViolations" EntityType="ROUTE_MANAGEMENTModel.HandlingViolation" />
+          <EntitySet Name="Information" EntityType="ROUTE_MANAGEMENTModel.Information" />
+          <EntitySet Name="MENUs" EntityType="ROUTE_MANAGEMENTModel.MENU" />
+          <EntitySet Name="POSTS" EntityType="ROUTE_MANAGEMENTModel.POST" />
+          <EntitySet Name="Reflects" EntityType="ROUTE_MANAGEMENTModel.Reflect" />
+          <EntitySet Name="ReflectTypes" EntityType="ROUTE_MANAGEMENTModel.ReflectType" />
+          <EntitySet Name="Routes1" EntityType="ROUTE_MANAGEMENTModel.Route1" />
+          <EntitySet Name="TypePosts" EntityType="ROUTE_MANAGEMENTModel.TypePost" />
         </EntityContainer>
         <EntityType Name="ResponsibleUnit">
           <Key>
@@ -284,6 +429,127 @@
           <Property Name="BusTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CarMaker" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentTypeID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeID" />
+          </Key>
+          <Property Name="DocumentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="DriverID" />
+          </Key>
+          <Property Name="DriverID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IDCard" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="Boolean" Nullable="false" />
+          <Property Name="DayOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HomeTown" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Driver_Bus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverID" Type="Int32" Nullable="false" />
+          <Property Name="BusID" Type="Int32" Nullable="false" />
+          <Property Name="DepartureDay" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="HandlingViolation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" />
+          <Property Name="ProcessingTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Information">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Mota" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TypeMenuID" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfReviews" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfResponse" Type="Int32" Nullable="false" />
+          <Property Name="CoverImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TypePostsID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reflect">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReflectTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="VideoOrPicture" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ReflectType">
+          <Key>
+            <PropertyRef Name="ReflectTypeID" />
+          </Key>
+          <Property Name="ReflectTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Route1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RouteID" Type="Int32" Nullable="false" />
+          <Property Name="NumberRoutes" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TypePost">
+          <Key>
+            <PropertyRef Name="TypePostsID" />
+          </Key>
+          <Property Name="TypePostsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -376,6 +642,139 @@
                 <ScalarProperty Name="CarMaker" ColumnName="CarMaker" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="BusTypeID" ColumnName="BusTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTypes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Driver">
+              <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="HomeTown" ColumnName="HomeTown" />
+                <ScalarProperty Name="DayOfBirth" ColumnName="DayOfBirth" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Driver_Bus">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Driver_Bus">
+              <MappingFragment StoreEntitySet="Driver_Bus">
+                <ScalarProperty Name="DepartureDay" ColumnName="DepartureDay" />
+                <ScalarProperty Name="BusID" ColumnName="BusID" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HandlingViolations">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.HandlingViolation">
+              <MappingFragment StoreEntitySet="HandlingViolations">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ProcessingTime" ColumnName="ProcessingTime" />
+                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Information">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Information">
+              <MappingFragment StoreEntitySet="Information">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENUs">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="TypeMenuID" ColumnName="TypeMenuID" />
+                <ScalarProperty Name="Mota" ColumnName="Mota" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSTS">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.POST">
+              <MappingFragment StoreEntitySet="POSTS">
+                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="CoverImage" ColumnName="CoverImage" />
+                <ScalarProperty Name="NumberOfResponse" ColumnName="NumberOfResponse" />
+                <ScalarProperty Name="NumberOfReviews" ColumnName="NumberOfReviews" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reflects">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Reflect">
+              <MappingFragment StoreEntitySet="Reflect">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="VideoOrPicture" ColumnName="VideoOrPicture" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ReflectTypeID" ColumnName="ReflectTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReflectTypes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.ReflectType">
+              <MappingFragment StoreEntitySet="ReflectType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ReflectTypeID" ColumnName="ReflectTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes1">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Route1">
+              <MappingFragment StoreEntitySet="Routes">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="NumberRoutes" ColumnName="NumberRoutes" />
+                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypePosts">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.TypePost">
+              <MappingFragment StoreEntitySet="TypePosts">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
