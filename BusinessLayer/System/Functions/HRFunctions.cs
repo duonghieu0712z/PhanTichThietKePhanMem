@@ -318,5 +318,43 @@ namespace BusinessLayer.Functions
             return BusExt.Instance.Bus_Select_BusNumber(busnumber);
         }
         #endregion
+
+        #region Driver
+        public void Delete_IDs_Driver(List<String> IDs)
+        {
+            DriverExt.Instance.Delete_IDs(IDs);
+
+        }
+
+        public void Delete_IDs_DriverOfBus(List<String> IDs)
+        {
+            DriverOfBusExt.Instance.Delete_IDs(IDs);
+
+        }
+        public int InsertNUpdateDriver(Driver driver)
+        {
+            return DriverExt.Instance.InsertUpdate(driver);
+        }
+
+        public int InsertNUpdateDriverOfBus(Driver_Bus driver)
+        {
+            return DriverOfBusExt.Instance.InsertUpdate(driver);
+        }
+
+        public Driver Select_Driver_ID(int id)
+        {
+            return DriverExt.Instance.Select_ID(id);
+        }
+
+        public Driver_Bus Select_BusOfDriver_ID(int id)
+        {
+            return DriverOfBusExt.Instance.Select_ID(id);
+        }
+
+        public List<Driver> Driver_Pagination(string keyword, int PageSize, int PageIndex, out int TotalRows)
+        {
+            return DriverExt.Instance.Find_KeyWord(keyword, PageSize, PageIndex, out TotalRows);
+        }
+        #endregion
     }
 }

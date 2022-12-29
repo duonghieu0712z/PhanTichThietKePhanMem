@@ -142,6 +142,8 @@
     <Content Include="Pages\BusRoutePage.aspx" />
     <Content Include="Pages\BusStopPage.aspx" />
     <Content Include="Pages\BusTypePage.aspx" />
+    <Content Include="Pages\DriverBus.aspx" />
+    <Content Include="Pages\DriverPage.aspx" />
     <Content Include="Pages\ResponsibleUnitPage.aspx" />
     <Content Include="Pages\RoutePage.aspx" />
     <Content Include="Pages\SearchBusPage.aspx" />
@@ -265,6 +267,20 @@
     </Compile>
     <Compile Include="Pages\BusTypePage.aspx.designer.cs">
       <DependentUpon>BusTypePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DriverBus.aspx.cs">
+      <DependentUpon>DriverBus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DriverBus.aspx.designer.cs">
+      <DependentUpon>DriverBus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DriverPage.aspx.cs">
+      <DependentUpon>DriverPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DriverPage.aspx.designer.cs">
+      <DependentUpon>DriverPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ResponsibleUnitPage.aspx.cs">
       <DependentUpon>ResponsibleUnitPage.aspx</DependentUpon>
