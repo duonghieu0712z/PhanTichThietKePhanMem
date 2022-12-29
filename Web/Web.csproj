@@ -135,6 +135,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="JavaScript\Menu.js" />
     <Content Include="JavaScript\StopRouteHandle.js" />
     <Content Include="Pages\AddData.aspx" />
     <Content Include="Pages\BusPage.aspx" />
