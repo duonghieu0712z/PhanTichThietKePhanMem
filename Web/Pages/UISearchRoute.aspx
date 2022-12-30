@@ -166,11 +166,11 @@
             </asp:GridView>
             <div>
                 <asp:Repeater ID="RepeatRoute" runat="server" Visible="false">
-                    <HeaderTemplate>  
-                        <table style="width: 100%">  
-                    </HeaderTemplate> 
                     <ItemTemplate>
-                        <tr style="background-color:#34B67A; width:100%; height: 48px; border: 2px solid white; color: white; cursor:pointer">
+                        <table style="width: 100%">  
+                        <tr id="route-item-<%#DataBinder.Eval(Container, "DataItem.RouteID") %>" 
+                            onClick="onClickRouteItem(<%#DataBinder.Eval(Container, "DataItem.RouteID") %>)"
+                            style="background-color:#34B67A; width:100%; height: 48px; border: 2px solid white; color: white; cursor:pointer">
                             <td style="padding-left: 24px">
                                 <%#DataBinder.Eval(Container, "DataItem.RouteID") %>
                             </td>
@@ -226,10 +226,48 @@
                                 </div>
                             </td>
                         </tr>
-                    </ItemTemplate>
-                    <FooterTemplate>
                         </table>
-                    </FooterTemplate>
+                        <div class="route-sub-item" id="route-sub-item-<%#DataBinder.Eval(Container, "DataItem.RouteID") %>"
+                            style="padding:0px 4px 0px 4px; background-color:#f0f0f0; margin: 4px; display:none">
+                            <%--<table style="width: 100%; border-spacing: 0 4px; border-collapse: separate">
+                                <tr class="rsi-walk" 
+                                    style="background-color:white; box-shadow: 0px 1px 3px rgba(0,0,0,0.4); width:100%; height: 48px;">
+                                    <td style="padding:0px 8px"><img src="../SetImg/ic-walk.png" alt="ic-walk"/></td>
+                                    <td style="width:32%">Đi bộ</td>
+                                    <td><div style="font-size: 12px"> 
+                                        <div style="text-align:center;">Từ</div>
+                                        <div style="color: #34B67A; text-align:center; "><Điểm được chọn trên bản đồ></div>
+                                    </div></td>
+                                    <td><div style="font-size: 12px">
+                                        <div style="text-align:center">Đến</div>
+                                        <div style="color: #34B67A; text-align: center; "><Điểm được chọn trên bản đồ></div>
+                                    </div></td>
+                                    <td>0.3 km</td>
+                                    <td>3 phút</td>
+                                    <td>6.0000 đ</td>
+                                </tr>
+                                <tr class="rsi-route" 
+                                    style="background-color:white; box-shadow: 0px 1px 3px rgba(0,0,0,0.4); width:100%; height: 48px;">
+                                    <td style="padding:0px 8px"><div 
+                                        style="width:32px; height: 32px; border-radius: 50%; background-color: #34B67A; display: flex; justify-content:center; align-items:center; color: white; "
+                                        >45</div></td>
+                                    <td style="width:32%">Đi bộ</td>
+                                    <td><div style="font-size: 12px"> 
+                                        <div style="text-align:center;">Từ</div>
+                                        <div style="color: #34B67A; text-align:center; "><Điểm được chọn trên bản đồ></div>
+                                    </div></td>
+                                    <td><div style="font-size: 12px">
+                                        <div style="text-align:center">Đến</div>
+                                        <div style="color: #34B67A; text-align: center; "><Điểm được chọn trên bản đồ></div>
+                                    </div></td>
+                                    <td>0.3 km</td>
+                                    <td>3 phút</td>
+                                    <td>6.0000 đ</td>
+                                </tr>
+                            </table>--%>
+                        </div>
+                    </ItemTemplate>
+                    
                 </asp:Repeater>
             </div>
         </div>
