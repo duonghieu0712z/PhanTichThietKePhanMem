@@ -32,6 +32,9 @@ let latStartPoint;
 let lngStarPoint;
 let latEndPoint;
 let lngEndPoint;
+let idStartPoint;
+let idEndPoint;
+let dataBusStops;
 const typeMaps = [
     'pickLocation',
     'getRoute',
@@ -276,6 +279,7 @@ $(document).on('click', '#btn_start_point', function getStartPoint() {
     markerStart.setMap(map);
     latStartPoint = currentPoint.lat();
     lngStarPoint = currentPoint.lng();
+  
 
 });
 $(document).on('click', '#btn_end_point', function getEndPonit() {
@@ -288,16 +292,18 @@ $(document).on('click', '#btn_end_point', function getEndPonit() {
     markerEnd.setMap(map);
     latEndPoint = currentPoint.lat();
     lngEndPoint = currentPoint.lng();
+  
 });
 //    $(document).on('click', '#load_all_stop_bus', loadAllStopBus());
+
 
 function postLocation() {
     console.log(latStartPoint);
     console.log(latEndPoint);
     console.log(lngStarPoint);
     console.log(lngEndPoint);
-    let coordinatesStart = { latitudes: latStartPoint, longitudes: lngStarPoint }
-    let coordinatesEnd = { latitudes: latEndPoint, longitudes: lngEndPoint }
+    let coordinatesStart = { id: idStartPoint, latitudes: latStartPoint, longitudes: lngStarPoint }
+    let coordinatesEnd = { id: idEndPoint, latitudes: latEndPoint, longitudes: lngEndPoint }
     let startAndEndPoint = { start: coordinatesStart, end: coordinatesEnd }
     $.ajax({
         type: "POST",
@@ -321,6 +327,8 @@ function postLocation() {
     }
 
 }
+
+//
 
 //
 function loadAllStopBus() {
