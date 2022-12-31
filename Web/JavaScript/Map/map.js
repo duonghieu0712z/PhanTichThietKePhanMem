@@ -392,6 +392,133 @@ function getLocation(lat, lng) {
     txtlat.value = lat.toString();
 }
 
+function onClickRouteItem(routeItemId) {
+    var subItems = document.getElementById(`route-sub-item-${routeItemId}`)
+    subItems.style.display = subItems.style.display === 'block' ? 'none' : 'block'
+    if (subItems.childNodes.length === 1) {
+        subItems.append(createSubRoute())
+    }
+}
+
+function createSubRoute() {
+    var table = document.createElement('table')
+    table.style.width = '100%'
+    table.style.borderCollapse = 'separate'
+    table.style.borderSpacing = '0 4px'
+
+    var tbody = document.createElement('tbody')
+    var routeItem = {
+        isWalk: true,
+        routeNumber: 0,
+        guidText: 'Đi bộ',
+        startName: 'Điểm được chọn trên bản đồ',
+        endName: 'Điểm kết thúc',
+        distanceLength: 8,
+        time: 45,
+        prices: 6000
+    }
+
+    tbody.appendChild(
+        createSubRouteItem(
+            routeItem.isWalk, routeItem.routeNumber, routeItem.guidText,
+            routeItem.startName, routeItem.endName, routeItem.distanceLength,
+            routeItem.time, routeItem.prices))
+
+    routeItem.routeNumber = 45
+    routeItem.isWalk = false
+
+    tbody.appendChild(
+        createSubRouteItem(
+            routeItem.isWalk, routeItem.routeNumber, routeItem.guidText,
+            routeItem.startName, routeItem.endName, routeItem.distanceLength,
+            routeItem.time, routeItem.prices))
+
+    table.appendChild(tbody)
+
+    return table
+}
+
+function createSubRouteItem(isWalk, routeNumber, guidText, startName, endName, distanceLength, time, prices) {
+
+    var tr = document.createElement('tr')
+    tr.style.backgroundColor = 'white'
+    tr.style.boxShadow = '0px 1px 3px rgba(0,0,0,0.4)'
+    tr.style.width = '100%'
+    tr.style.height = '48px'
+
+    var td_icon = document.createElement('td')
+    td_icon.style.padding='0px 8px'
+    if (isWalk === true) {
+        var img = document.createElement('img')
+        img.src = '../SetImg/ic-walk.png'
+        img.alt = 'ic-walk'
+        td_icon.appendChild(img)
+    } else if (isWalk === false) {
+        let div = document.createElement('div')
+        div.style.width = '32px'
+        div.style.height = '32px'
+        div.style.borderRadius = '50%'
+        div.style.backgroundColor = '#34B67A'
+        div.style.display = 'flex'
+        div.style.justifyContent = 'center'
+        div.style.alignItems = 'center'
+        div.style.color='white'
+        div.innerHTML = routeNumber
+        td_icon.appendChild(div)
+    }
+
+    var td_guidText = document.createElement('td')
+    td_guidText.innerHTML = guidText
+    td_guidText.style.width='32%'
+
+    var td_start = document.createElement('td')
+    var start_div_1 = document.createElement('div')
+    start_div_1.style.fontSize = '12px'
+    var start_div_2 = document.createElement('div')
+    start_div_2.style.textAlign = 'center'
+    start_div_2.innerHTML = 'Từ'
+    var start_div_3 = document.createElement('div')
+    start_div_3.style.color = '#34b67a'
+    start_div_3.style.textAlign = 'center'
+    start_div_3.innerHTML = startName
+    start_div_2.appendChild(start_div_3)
+    start_div_1.appendChild(start_div_2)
+    td_start.appendChild(start_div_1)
+    
+    var td_end = document.createElement('td')
+    var end_div_1 = document.createElement('div')
+    end_div_1.style.fontSize = '12px'
+    var end_div_2 = document.createElement('div')
+    end_div_2.style.textAlign = 'center'
+    end_div_2.innerHTML = 'Từ'
+    var end_div_3 = document.createElement('div')
+    end_div_3.style.color = '#34b67a'
+    end_div_3.style.textAlign = 'center'
+    end_div_3.innerHTML = endName
+    end_div_2.appendChild(end_div_3)
+    end_div_1.appendChild(end_div_2)
+    td_end.appendChild(end_div_1)
+
+    var td_distanceLenght = document.createElement('td')
+    td_distanceLenght.innerHTML = `${distanceLength} km`
+
+    var td_time = document.createElement('td')
+    td_time.innerHTML = `${time} phút` 
+
+    var td_prices = document.createElement('td')
+    td_prices.innerHTML = `${prices} đ` 
+
+    //-- append
+    tr.appendChild(td_icon)
+    tr.appendChild(td_guidText)
+    tr.appendChild(td_start)
+    tr.appendChild(td_end)
+    tr.appendChild(td_distanceLenght)
+    tr.appendChild(td_time)
+    tr.appendChild(td_prices)
+
+    return tr
+}
 
 
 /*  window.document.addEventListener('DOMContentLoaded', );*/
