@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="FindRoute\Graph.cs" />
     <Compile Include="FindRoute\Path.cs" />
+    <Compile Include="FindRoute\PathInfo.cs" />
     <Compile Include="FindRoute\Utils.cs" />
     <Compile Include="Models\RouteInfo.cs" />
     <Compile Include="Models\Stop_RouteInfo.cs" />

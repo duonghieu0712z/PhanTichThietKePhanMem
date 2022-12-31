@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.DBAccess;
+using BusinessLayer.Functions;
 using QuikGraph;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLayer
 {
@@ -25,6 +27,8 @@ namespace BusinessLayer
 
         public HashSet<int> RouteIds { get; set; } = new HashSet<int>();
 
-        public double Distance => Utils.Distance(Source.Latitude, Source.Longitude, Target.Latitude, Target.Longitude);
+        public double Distance => Utils.GeoDistance(Source.Latitude, Source.Longitude, Target.Latitude, Target.Longitude);
+
+        public List<Route> Routes => RouteIds.Select(x => HRFunctions.Instance.Route_Select_ID(x)).ToList();
     }
 }
