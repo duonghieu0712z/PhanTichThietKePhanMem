@@ -197,6 +197,7 @@ namespace Web.Pages
             {
                 double distance = HRFunctions.deg2rad(HRFunctions.getDistanceFromLatLonInKm(point.latitudes, point.longitudes, busStop.Latitude, busStop.Longitude));
                 distances.Add(distance);
+               // distances.Add(point.Id);
             }
             double minDistance = Double.MaxValue;
 
@@ -216,11 +217,28 @@ namespace Web.Pages
         [WebMethod]
         public static List<BusStopModel> findNearByBusStop(Location start, Location end)
         {
+            BusStopModel busStopStart;
+            BusStopModel busStopEnd;
             List<BusStop> list = HRFunctions.Instance.SelectAllBusStop();
             List<BusStopModel> lsBusStops = new List<BusStopModel>();
-            BusStopModel busStopStart = new BusStopModel(findNearPoint(start, list));
-            BusStopModel busStopEnd = new BusStopModel(findNearPoint(end, list));
+            if( start.Id != -1 )
+            {
+               busStopStart = new BusStopModel(findNearPoint(start, list));
+            }
+            else
+            {
+               busStopStart = new BusStopModel(list.Find( x => x.BusStopID == start.Id ));  
 
+            }
+
+            if (end.Id != -1) {
+                 busStopEnd = new BusStopModel(findNearPoint(end, list));
+            }
+            else
+            {
+                busStopEnd = new BusStopModel(list.Find(x => x.BusStopID == end.Id));
+            }
+            
             lsBusStops.Add(busStopStart);
             lsBusStops.Add(busStopEnd);
 
