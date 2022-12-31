@@ -231,7 +231,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\BusStopModel.cs" />
+    <Compile Include="Model\InfoModel.cs" />
     <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\RoutesModel.cs" />
     <Compile Include="Pages\AddData.aspx.cs">
       <DependentUpon>AddData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

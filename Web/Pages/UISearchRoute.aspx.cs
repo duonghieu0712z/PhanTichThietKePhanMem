@@ -1,4 +1,5 @@
-﻿using BusinessLayer.DBAccess;
+﻿using BusinessLayer;
+using BusinessLayer.DBAccess;
 using BusinessLayer.Functions;
 using Newtonsoft.Json;
 using System;
@@ -9,7 +10,6 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Web.Model;
-using Route = BusinessLayer.DBAccess.Route;
 
 namespace Web.Pages
 {
@@ -193,6 +193,7 @@ namespace Web.Pages
 
             //int minValue = distances.Sort
 
+
             foreach (var busStop in lsBusStop)
             {
                 double distance = HRFunctions.deg2rad(HRFunctions.getDistanceFromLatLonInKm(point.latitudes, point.longitudes, busStop.Latitude, busStop.Longitude));
@@ -215,8 +216,9 @@ namespace Web.Pages
 
 
         [WebMethod]
-        public static List<BusStopModel> findNearByBusStop(Location start, Location end)
+        public static List<InfoModel> findNearByBusStop(Location start, Location end)
         {
+
             BusStopModel busStopStart;
             BusStopModel busStopEnd;
             List<BusStop> list = HRFunctions.Instance.SelectAllBusStop();
@@ -238,11 +240,20 @@ namespace Web.Pages
             {
                 busStopEnd = new BusStopModel(list.Find(x => x.BusStopID == end.Id));
             }
-            
+
+            var listPath =  Graph.Instance.FindRoute(start.latitudes, start.longitudes, end.latitudes, end.longitudes);
+            var listInfo = Graph.Instance.GetPathInfos(listPath);
+            List<InfoModel> infoModels = new List<InfoModel>();
+            listInfo.ForEach(item =>
+            {
+                infoModels.Add(new InfoModel(item.BusStops, item.Route));
+            });
+
+
             lsBusStops.Add(busStopStart);
             lsBusStops.Add(busStopEnd);
 
-            return lsBusStops;
+            return infoModels;
 
         }
     }

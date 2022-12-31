@@ -4,8 +4,7 @@
     <asp:Content ID="UISearchRouteHead" ContentPlaceHolderID="Head" runat="server">
         <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
         <asp:HiddenField ID="typeMap" Value="getRoute" runat="server" ClientIDMode="Static" />
-        <script src ="../JavaScript/Map/map.js"></script>
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9sw5PYYq0MW-HBbXVMNN6rwZIEBuvhw&callback=initMap" defer></script>
+      
     <style type="text/css">
         .desc-icon{
             width: 40px;
@@ -92,8 +91,10 @@
         <div class="row">
             <div class="d-flex justify-content-center mt-4 align-items-center" style="width: 100%">
                 <div class="col-sm-3 align-items-center">
-                    <asp:ImageButton ImageUrl="~/SetImg/ic-swap.png" runat="server" 
-                        Style="float: right;background-color: #34B67A; width:48px; height: 80px; padding: 24px 8px 24px 8px; border-radius: 4px" />
+                    <button  Style="float: right;background-color: #34B67A; width:48px; height: 80px; padding: 24px 8px 24px 8px; border-radius: 4px; border : none" onclick ="resetDataMap()" >
+                        <img src="../SetImg/ic-swap.png" />
+                    </button>  
+                    
                 </div>
                 <div class="col-sm-6 " style="padding: 0px 24px 0px 24px">
                     <div class="form-group">
@@ -103,13 +104,12 @@
                             Style="width: 100% !important; max-width: 100% !important;"
                             Visible="true">
                         </asp:DropDownList>
-
                         <div id="choseStartPositionContainer"
                             style="position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid #c4c4c4; padding:0; margin: 0; border-radius: 4px">
                             <input id="inputChoseStartPosition" 
                             placeholder="<Điểm được chọn trên bản đồ>"
                                 style="height: 40px; border: none; width: 100%; border-radius: 4px; padding: 0px 32px 0px 12px"/>
-                            <button id="btnRemoveStartPosition" 
+                            <button id="btnRemoveStartPosition" type ="button" onclick ="deleteStartPoint()"
                                 style="width:32px; height:32px; background-color: transparent; position: absolute; right: 4px; top: 5px; display: flex; justify-content:center; border: none; border-radius: 4px; padding: 2px 0px">
                                 <img src="../SetImg/ic-close-red.png" alt="ic-close"
                                 style="width: 24px; height: 24px; object-fit:contain"/>
@@ -130,7 +130,7 @@
                             <input id="inputChoseEndPosition" 
                             placeholder="<Điểm được chọn trên bản đồ>"
                                 style="height: 40px; border: none; width: 100%; border-radius: 4px; padding: 0px 32px 0px 12px"/>
-                            <button id="btnRemoveEndPosition" 
+                            <button id="btnRemoveEndPosition"   type ="button" onclick ="deleteEndPoint()"
                                 style="width:32px; height:32px; background-color: transparent; position: absolute; right: 4px; top: 5px; display: flex; justify-content:center; border: none; border-radius: 4px; padding: 2px 0px">
                                 <img src="../SetImg/ic-close-red.png" alt="ic-close"
                                 style="width: 24px; height: 24px; object-fit:contain"/>
@@ -144,7 +144,7 @@
                         OnClick="imgbtnSearch_Click" 
                         Style="background-color: #34B67A; width:48px; height: 80px; padding: 24px 8px 24px 8px; border-radius: 4px" />
                     <%--Nút để tìm điểm gần nhất--%>
-                    <button type="button" onclick="postLocation()"></button>
+                    <button type="button" onclick="postLocation()" id="btn-search-map-js"></button>
                 </div>
             </div>
         </div>
@@ -309,7 +309,8 @@
 
         </div>
 
-   
+     <script src ="../JavaScript/Map/map.js"></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA51Rp7A1rEl_JBxkN5KYefIPhEInB-auY&callback=initMap" defer></script>
 
 
     </asp:Content>
