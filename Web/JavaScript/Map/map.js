@@ -451,6 +451,7 @@ function createDisplayRoute(routes, subRouteItems) {
 
 
 	var container = document.getElementById('display-sub-route-container')
+	container.innerHTML = null
 	var title = document.createElement('h4')
 	title.innerHTML = 'Danh sách lộ trình'
 	container.appendChild(title)
@@ -651,8 +652,10 @@ function createDisplayRouteItem(order, routeItem, stopRoutes) {
 function handleClickViewMapInDisplayRoute(e, stopRoutes) {
 	e.stopPropagation()
 	var stopRouteContainer = document.getElementById('display-stop-route-container')
+	stopRouteContainer.innerHTML = null
 	var h4 = document.createElement('h4')
 	h4.innerText = 'Danh sách điểm dừng'
+	document.getElementById('display-stop-route-title').innerHTML = null
 	document.getElementById('display-stop-route-title').appendChild(h4)
 
 

@@ -79,6 +79,27 @@
         </div>
         <hr />
         <div class="row">
+            <h3>Nhóm 6</h3>
+            <div class="col-6">
+                <h4>Chức năng thực hiện</h4>
+                <ul>
+                    <li>
+                        <p>Quản lý tài xế</p>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="col-6">
+                <h4>Thành viên</h4>
+                <ul>
+                    <li><strong>Trương Quang Tuấn: </strong><a href="mailto:1910152@dlu.edu.vn">1910152@dlu.edu.vn</a></li>
+                    <li><strong>Phan Thị Hoài Thương: </strong><a href="mailto:1911213@dlu.edu.vn">1911213@dlu.edu.vn</a></li>
+                    <li><strong>Trần Thành Tài: </strong><a href="mailto:1911200@dlu.edu.vn">1911200@dlu.edu.vn</a></li>                                        
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
             <h3>Nhóm 9</h3>
             <div class="col-6">
                 <h4>Chức năng thực hiện</h4>
@@ -103,26 +124,6 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <h3>Nhóm 6</h3>
-            <div class="col-6">
-                <h4>Chức năng thực hiện</h4>
-                <ul>
-                    <li>
-                        <p>Quản lý tài xế</p>
-                    </li>
-                    
-                </ul>
-            </div>
-            <div class="col-6">
-                <h4>Thành viên</h4>
-                <ul>
-                    <li><strong>Trương Quang Tuấn: </strong><a href="mailto:1910152@dlu.edu.vn">1910152@dlu.edu.vn</a></li>
-                    <li><strong>Phan Thị Hoài Thương: </strong><a href="mailto:1911213@dlu.edu.vn">1911213@dlu.edu.vn</a></li>
-                    <li><strong>Trần Thành Tài: </strong><a href="mailto:1911200@dlu.edu.vn">1911200@dlu.edu.vn</a></li>                                        
-                </ul>
-            </div>
-        </div>
-        <hr />
+        
     </div>
 </asp:Content>
