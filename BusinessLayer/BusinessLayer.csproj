@@ -148,6 +148,10 @@
     <Compile Include="System\Objects\BusStopFuncs.cs" />
     <Compile Include="System\Objects\BusTypeExt.cs" />
     <Compile Include="System\Objects\BusTypeFuncs.cs" />
+    <Compile Include="System\Objects\DriverExt.cs" />
+    <Compile Include="System\Objects\DriverFuncs.cs" />
+    <Compile Include="System\Objects\DriverOfBusExt.cs" />
+    <Compile Include="System\Objects\DriverOfBusFuncs.cs" />
     <Compile Include="System\Objects\ResponsibleFuncs.cs" />
     <Compile Include="System\Objects\ResponsibleExt.cs" />
     <Compile Include="System\Objects\RouteExt.cs" />
