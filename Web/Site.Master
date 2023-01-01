@@ -139,7 +139,7 @@
                             <li><a runat="server" href="~/Pages/BusTypePage.aspx">Loại Xe Buýt</a></li>
                             <li><a runat="server" href="~/Pages/BusPage.aspx">Xe Buýt</a></li>
                             <li><a runat="server" href="~/Pages/SearchBusPage.aspx">Tìm Kiếm Xe Buýt</a></li>
-                            <li><a runat="server" href="~/Pages/UIBusRoute.aspx">Quản lý tài xế</a></li>
+                            <li><a runat="server" href="~/Pages/DriverBus.aspx">Quản lý tài xế</a></li>
                         </ul>
                     </li>
                     <li class="menu-item">
