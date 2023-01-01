@@ -53,7 +53,10 @@ let idStartPoint;
 let idEndPoint;
 let dataBusStops;
 let displaySubRouteData;
+//let directionsDisplay;
 CheckDisplay();
+let polylineWark;
+let polylineDriving;
 const typeMaps = ["pickLocation", "getRoute"];
 function initMap() {
 	map = new google.maps.Map(document.getElementById("map"), {
@@ -71,7 +74,16 @@ function initMap() {
 			},
 		],
 	});
-
+	polylineWark = new google.maps.Polyline({
+		strokeColor: "#00D107",
+		strokeOpacity: 1.0,
+		strokeWeight: 3,
+	});
+	polylineDriving = new google.maps.Polyline({
+		strokeColor: "#0015B3",
+		strokeOpacity: 1.0,
+		strokeWeight: 4,
+	});
 	switch (typeMap) {
 		case "pickLocation":
 			break;
@@ -100,11 +112,9 @@ function initMap() {
 		}
 		markerChoice = placeMarkerAndPanTo(currentPoint, map, imgCurrent);
 		google.maps.event.addListener(markerChoice, "click", function (e) {
-			console.log(typeMap);
 			showInfoByTypeMap();
 		});
 		showInfoByTypeMap();
-		console.log(typeMap);
 	});
 	loadAllStopBus();
 }
@@ -160,7 +170,6 @@ function getContentInfoWindow(type, data, maker) {
                     </div>`;
 			break;
 		case TypePickLocation:
-			console.log(TypePickLocation);
 			content += `<h4 id="firstHeading" class="">${strChoice}</h4>
                         <div id="bodyContent">
                         <p>Vĩ độ: ${data.lat()}</p>
@@ -272,13 +281,13 @@ function showInput(display) {
 function setStartPoint(lat, lng, id) {
 	showDropDown();
 	deleteStartPoint();
+	clearDirection();
 	if (id) {
 		startData = { ...tempData };
 		if (startData) inputStart.val(startData.BusStopName);
 	} else {
 		inputStart.val(mapPoint);
 	}
-	console.log(lat, lng);
 	let latLng = { lat: Number(lat), lng: Number(lng) };
 	infoWindow.close();
 	markerStart = placeMarkerAndPanTo(latLng, map, imgStart, TypeStart);
@@ -286,12 +295,12 @@ function setStartPoint(lat, lng, id) {
 }
 function setEndPoint(lat, lng, id) {
 	deleteEndPoint();
-	showDropDown(true);
+	showDropDown();
+	clearDirection();
 	if (id) {
 		endData = { ...tempData };
 		if (endData) inputEnd.val(endData.BusStopName);
 	} else {
-		console.log("không cóa");
 		inputEnd.val(mapPoint);
 	}
 	let latLng = { lat: Number(lat), lng: Number(lng) };
@@ -315,7 +324,6 @@ function calcRoute(listPoint) {
 	let start = listPoint[0];
 	let midPoints = listPoint.slice(1, lengthList - 1);
 	let end = listPoint[lengthList - 1];
-	console.log(midPoints);
 	let request = {
 		origin: start,
 		destination: end,
@@ -325,7 +333,6 @@ function calcRoute(listPoint) {
 	directionsService.route(request, function (result, status) {
 		if (status == "OK") {
 			console.log(result);
-
 			directionsRenderer.setDirections(result);
 			directionsRenderer.setMap(map);
 		} else {
@@ -412,7 +419,6 @@ function postLocation() {
 		longitudes: endLocation.lng(),
 	};
 	let startAndEndPoint = { start: coordinatesStart, end: coordinatesEnd };
-	console.log(startAndEndPoint);
 	$.ajax({
 		type: "POST",
 		url: "UISearchRoute.aspx/findNearByBusStop",
@@ -426,14 +432,13 @@ function postLocation() {
 
 	function OnSuccess(response) {
 		if (response.d.length == 0) {
-			alert("Hai điểm được chọn quá gần nhau")
-			return
+			alert("Hai điểm được chọn quá gần nhau");
+			return;
 		}
-		console.log(response.d);
-		
+		clearDirection();
 		displaySubRouteData = loadRouteToMap(coordinatesStart, coordinatesEnd, response.d);
 		createSubRoute(displaySubRouteData);
-		createDisplayRoute(response.d, displaySubRouteData)
+		createDisplayRoute(response.d, displaySubRouteData);
 	}
 	function OnErrorCall(response) {
 		console.log("error");
@@ -442,283 +447,288 @@ function postLocation() {
 
 function createDisplayRoute(routes, subRouteItems) {
 	//clear data
-	var oldtable = document.getElementById('server-side-route-table')
-	oldtable.style.display = 'none'
+	var oldtable = document.getElementById("server-side-route-table");
+	oldtable.style.display = "none";
 	try {
-		document.getElementById('server-side-route-title').style.display = 'none'
-	} catch (ex) { }
-	document.getElementById('old-stop-route-container').style.display = 'none'
+		document.getElementById("server-side-route-title").style.display = "none";
+	} catch (ex) {}
+	document.getElementById("old-stop-route-container").style.display = "none";
 
-
-	var container = document.getElementById('display-sub-route-container')
-	container.innerHTML = null
-	var title = document.createElement('h4')
-	title.innerHTML = 'Danh sách lộ trình'
-	container.appendChild(title)
+	var container = document.getElementById("display-sub-route-container");
+	container.innerHTML = null;
+	var title = document.createElement("h4");
+	title.innerHTML = "Danh sách lộ trình";
+	container.appendChild(title);
 
 	for (let i = 0; i < routes.length; i++) {
-		let subContainer = document.createElement('div')
+		let subContainer = document.createElement("div");
 
-		let table = document.createElement('table')
-		table.style.width = '100%'
+		let table = document.createElement("table");
+		table.style.width = "100%";
 
-		let tbody = document.createElement('tbody')
-		
-		tbody.appendChild(createDisplayRouteItem(i + 1, routes[i].route, routes[i].listBusStop))
+		let tbody = document.createElement("tbody");
 
-		let div_subs_container = document.createElement('div')
-		div_subs_container.style.padding = '0px 4px 0px 4px'
-		div_subs_container.style.backgroundColor = '#f0f0f0'
-		div_subs_container.style.margin = '4px'
-		div_subs_container.style.display = 'block'
-		div_subs_container.id = `subs-container-${i+1}`
-		div_subs_container.appendChild(createSubRoute(subRouteItems))
-		
+		tbody.appendChild(createDisplayRouteItem(i + 1, routes[i].route, routes[i].listBusStop));
 
-		table.appendChild(tbody)
-		subContainer.appendChild(table)
-		subContainer.appendChild(div_subs_container)
-		container.appendChild(subContainer)
-		addfunctionToDisplayRouteItem(i + 1)
+		let div_subs_container = document.createElement("div");
+		div_subs_container.style.padding = "0px 4px 0px 4px";
+		div_subs_container.style.backgroundColor = "#f0f0f0";
+		div_subs_container.style.margin = "4px";
+		div_subs_container.style.display = "block";
+		div_subs_container.id = `subs-container-${i + 1}`;
+		div_subs_container.appendChild(createSubRoute(subRouteItems));
+
+		table.appendChild(tbody);
+		subContainer.appendChild(table);
+		subContainer.appendChild(div_subs_container);
+		container.appendChild(subContainer);
+		addfunctionToDisplayRouteItem(i + 1);
 	}
-
 }
 function addfunctionToDisplayRouteItem(order) {
-	console.log(order)
-	var tr = document.getElementById(`display-tr-${order}`)
-	console.log(tr)
-	let cont = document.getElementById(`subs-container-${order}`)
-	console.log(cont)
+	var tr = document.getElementById(`display-tr-${order}`);
+	let cont = document.getElementById(`subs-container-${order}`);
 
-	tr.addEventListener('click', function() {
-		let cont = document.getElementById(`subs-container-${order}`)
-		console.log(cont)
-		cont.style.display == 'block' ? cont.style.display = 'none' : cont.style.display = 'block'
-    })
+	tr.addEventListener("click", function () {
+		let cont = document.getElementById(`subs-container-${order}`);
+		cont.style.display == "block" ? (cont.style.display = "none") : (cont.style.display = "block");
+	});
 }
 
-
 function createDisplayRouteItem(order, routeItem, stopRoutes) {
-	let tr = document.createElement('tr')
-	tr.style.backgroundColor = '#34b67a'
-	tr.style.width = '100%'
-	tr.style.height = '48px'
-	tr.style.border = '2px solid white'
-	tr.style.color = 'white'
-	tr.style.cursor = 'pointer'
-	tr.id = `display-tr-${order}`
+	let tr = document.createElement("tr");
+	tr.style.backgroundColor = "#34b67a";
+	tr.style.width = "100%";
+	tr.style.height = "48px";
+	tr.style.border = "2px solid white";
+	tr.style.color = "white";
+	tr.style.cursor = "pointer";
+	tr.id = `display-tr-${order}`;
 
-	let td_icon = document.createElement('td')
-	td_icon.style.paddingLeft = '24px'
-	td_icon.innerHTML = order
+	let td_icon = document.createElement("td");
+	td_icon.style.paddingLeft = "24px";
+	td_icon.innerHTML = order;
 
-	let td_routeName = document.createElement('td')
-	td_routeName.innerHTML = routeItem.RouteName
+	let td_routeName = document.createElement("td");
+	td_routeName.innerHTML = routeItem.RouteName;
 
 	//--walk
 
-	let td_walk = document.createElement('td')
-	let div_walk_1 = document.createElement('div')
-	div_walk_1.style.display = 'flex'
-	div_walk_1.style.alignItems = 'center'
-	let div_walk_2 = document.createElement('div')
-	div_walk_2.style.width = '36px'
-	div_walk_2.style.height = '36px'
-	div_walk_2.style.borderRadius = '50%'
-	div_walk_2.style.backgroundColor = 'white'
-	div_walk_2.style.display = 'flex'
-	div_walk_2.style.justifyContent = 'center'
-	div_walk_2.style.alignItems = 'center'
-	let img_walk = document.createElement('img')
-	img_walk.src = '../SetImg/ic-walk.png'
-	let div_walk_3 = document.createElement('div')
-	div_walk_3.style.padding = '0px 8px 0px 8px'
-	div_walk_3.innerHTML = '-'
+	let td_walk = document.createElement("td");
+	let div_walk_1 = document.createElement("div");
+	div_walk_1.style.display = "flex";
+	div_walk_1.style.alignItems = "center";
+	let div_walk_2 = document.createElement("div");
+	div_walk_2.style.width = "36px";
+	div_walk_2.style.height = "36px";
+	div_walk_2.style.borderRadius = "50%";
+	div_walk_2.style.backgroundColor = "white";
+	div_walk_2.style.display = "flex";
+	div_walk_2.style.justifyContent = "center";
+	div_walk_2.style.alignItems = "center";
+	let img_walk = document.createElement("img");
+	img_walk.src = "../SetImg/ic-walk.png";
+	let div_walk_3 = document.createElement("div");
+	div_walk_3.style.padding = "0px 8px 0px 8px";
+	div_walk_3.innerHTML = "-";
 
-	td_walk.appendChild(div_walk_1)
-	div_walk_1.appendChild(div_walk_2)
-	div_walk_2.appendChild(img_walk)
-	div_walk_1.appendChild(div_walk_3)
+	td_walk.appendChild(div_walk_1);
+	div_walk_1.appendChild(div_walk_2);
+	div_walk_2.appendChild(img_walk);
+	div_walk_1.appendChild(div_walk_3);
 
 	//--car
 
-	let td_car = document.createElement('td')
-	let div_car_1 = document.createElement('div')
-	div_car_1.style.display = 'flex'
-	div_car_1.style.alignItems = 'center'
-	let div_car_2 = document.createElement('div')
-	div_car_2.style.width = '36px'
-	div_car_2.style.height = '36px'
-	div_car_2.style.borderRadius = '50%'
-	div_car_2.style.backgroundColor = 'white'
-	div_car_2.style.display = 'flex'
-	div_car_2.style.justifyContent = 'center'
-	div_car_2.style.alignItems = 'center'
-	let img_car = document.createElement('img')
-	img_car.src = '../SetImg/ic-car.png'
-	let div_car_3 = document.createElement('div')
-	div_car_3.style.padding = '0px 8px 0px 8px'
-	div_car_3.innerHTML = '-'
+	let td_car = document.createElement("td");
+	let div_car_1 = document.createElement("div");
+	div_car_1.style.display = "flex";
+	div_car_1.style.alignItems = "center";
+	let div_car_2 = document.createElement("div");
+	div_car_2.style.width = "36px";
+	div_car_2.style.height = "36px";
+	div_car_2.style.borderRadius = "50%";
+	div_car_2.style.backgroundColor = "white";
+	div_car_2.style.display = "flex";
+	div_car_2.style.justifyContent = "center";
+	div_car_2.style.alignItems = "center";
+	let img_car = document.createElement("img");
+	img_car.src = "../SetImg/ic-car.png";
+	let div_car_3 = document.createElement("div");
+	div_car_3.style.padding = "0px 8px 0px 8px";
+	div_car_3.innerHTML = "-";
 
-	td_car.appendChild(div_car_1)
-	div_car_1.appendChild(div_car_2)
-	div_car_2.appendChild(img_car)
-	div_car_1.appendChild(div_car_3)
+	td_car.appendChild(div_car_1);
+	div_car_1.appendChild(div_car_2);
+	div_car_2.appendChild(img_car);
+	div_car_1.appendChild(div_car_3);
 
 	//--time
-	let td_time = document.createElement('td')
-	let div_time_1 = document.createElement('div')
-	div_time_1.style.display = 'flex'
-	div_time_1.style.alignItems = 'center'
-	let div_time_2 = document.createElement('div')
-	div_time_2.style.width = '36px'
-	div_time_2.style.height = '36px'
-	div_time_2.style.borderRadius = '50%'
-	div_time_2.style.backgroundColor = 'white'
-	div_time_2.style.display = 'flex'
-	div_time_2.style.justifyContent = 'center'
-	div_time_2.style.alignItems = 'center'
-	let img_time = document.createElement('img')
-	img_time.src = '../SetImg/ic-clock.png'
-	let div_time_3 = document.createElement('div')
-	div_time_3.style.padding = '0px 8px 0px 8px'
-	div_time_3.innerHTML = '-'
+	let td_time = document.createElement("td");
+	let div_time_1 = document.createElement("div");
+	div_time_1.style.display = "flex";
+	div_time_1.style.alignItems = "center";
+	let div_time_2 = document.createElement("div");
+	div_time_2.style.width = "36px";
+	div_time_2.style.height = "36px";
+	div_time_2.style.borderRadius = "50%";
+	div_time_2.style.backgroundColor = "white";
+	div_time_2.style.display = "flex";
+	div_time_2.style.justifyContent = "center";
+	div_time_2.style.alignItems = "center";
+	let img_time = document.createElement("img");
+	img_time.src = "../SetImg/ic-clock.png";
+	let div_time_3 = document.createElement("div");
+	div_time_3.style.padding = "0px 8px 0px 8px";
+	div_time_3.innerHTML = "-";
 
-	td_time.appendChild(div_time_1)
-	div_time_1.appendChild(div_time_2)
-	div_time_2.appendChild(img_time)
-	div_time_1.appendChild(div_time_3)
+	td_time.appendChild(div_time_1);
+	div_time_1.appendChild(div_time_2);
+	div_time_2.appendChild(img_time);
+	div_time_1.appendChild(div_time_3);
 
 	//--money
 
-	let td_money = document.createElement('td')
-	let div_money_1 = document.createElement('div')
-	div_money_1.style.display = 'flex'
-	div_money_1.style.alignItems = 'center'
-	let div_money_2 = document.createElement('div')
-	div_money_2.style.width = '36px'
-	div_money_2.style.height = '36px'
-	div_money_2.style.borderRadius = '50%'
-	div_money_2.style.backgroundColor = 'white'
-	div_money_2.style.display = 'flex'
-	div_money_2.style.justifyContent = 'center'
-	div_money_2.style.alignItems = 'center'
-	let img_money = document.createElement('img')
-	img_money.src = '../SetImg/ic-money.png'
-	let div_money_3 = document.createElement('div')
-	div_money_3.style.padding = '0px 8px 0px 8px'
-	div_money_3.innerHTML = '-'
+	let td_money = document.createElement("td");
+	let div_money_1 = document.createElement("div");
+	div_money_1.style.display = "flex";
+	div_money_1.style.alignItems = "center";
+	let div_money_2 = document.createElement("div");
+	div_money_2.style.width = "36px";
+	div_money_2.style.height = "36px";
+	div_money_2.style.borderRadius = "50%";
+	div_money_2.style.backgroundColor = "white";
+	div_money_2.style.display = "flex";
+	div_money_2.style.justifyContent = "center";
+	div_money_2.style.alignItems = "center";
+	let img_money = document.createElement("img");
+	img_money.src = "../SetImg/ic-money.png";
+	let div_money_3 = document.createElement("div");
+	div_money_3.style.padding = "0px 8px 0px 8px";
+	div_money_3.innerHTML = "-";
 
-	td_money.appendChild(div_money_1)
-	div_money_1.appendChild(div_money_2)
-	div_money_2.appendChild(img_money)
-	div_money_1.appendChild(div_money_3)
+	td_money.appendChild(div_money_1);
+	div_money_1.appendChild(div_money_2);
+	div_money_2.appendChild(img_money);
+	div_money_1.appendChild(div_money_3);
 
 	//--option button
-	let td_option = document.createElement('td')
-	let div_option = document.createElement('div')
-	div_option.style.display = 'flex'
-	div_option.style.justifyContent = 'right'
-	div_option.style.paddingRight = '6px'
-	let btn_option = document.createElement('button')
-	btn_option.textContent = 'Xem bản đồ'
-	btn_option.style.backgroundImage = 'url(../SetImg/ic-view.png)'
-	btn_option.style.backgroundRepeat = 'no-repeat'
-	btn_option.style.backgroundPosition = '8px'
-	btn_option.style.padding = '0px 12px 0px 48px'
-	btn_option.style.height = '36px'
-	btn_option.style.border = 'none'
-	btn_option.style.backgroundColor = 'white'
-	btn_option.style.color = 'black'
-	btn_option.style.borderRadius = '4px'
-	btn_option.onclick = (e) => { handleClickViewMapInDisplayRoute(e, stopRoutes); return false }
-	
+	let td_option = document.createElement("td");
+	let div_option = document.createElement("div");
+	div_option.style.display = "flex";
+	div_option.style.justifyContent = "right";
+	div_option.style.paddingRight = "6px";
+	let btn_option = document.createElement("button");
+	btn_option.textContent = "Xem bản đồ";
+	btn_option.style.backgroundImage = "url(../SetImg/ic-view.png)";
+	btn_option.style.backgroundRepeat = "no-repeat";
+	btn_option.style.backgroundPosition = "8px";
+	btn_option.style.padding = "0px 12px 0px 48px";
+	btn_option.style.height = "36px";
+	btn_option.style.border = "none";
+	btn_option.style.backgroundColor = "white";
+	btn_option.style.color = "black";
+	btn_option.style.borderRadius = "4px";
+	btn_option.onclick = (e) => {
+		handleClickViewMapInDisplayRoute(e, stopRoutes);
+		return false;
+	};
 
-	td_option.appendChild(div_option)
-	div_option.appendChild(btn_option)
+	td_option.appendChild(div_option);
+	div_option.appendChild(btn_option);
 
 	//--append
 
-	tr.appendChild(td_icon)
-	tr.appendChild(td_routeName)
-	tr.appendChild(td_walk)
-	tr.appendChild(td_car)
-	tr.appendChild(td_time)
-	tr.appendChild(td_money)
-	tr.appendChild(td_option)
+	tr.appendChild(td_icon);
+	tr.appendChild(td_routeName);
+	tr.appendChild(td_walk);
+	tr.appendChild(td_car);
+	tr.appendChild(td_time);
+	tr.appendChild(td_money);
+	tr.appendChild(td_option);
 
-	return tr
+	return tr;
 }
 function handleClickViewMapInDisplayRoute(e, stopRoutes) {
-	e.stopPropagation()
-	var stopRouteContainer = document.getElementById('display-stop-route-container')
-	stopRouteContainer.innerHTML = null
-	var h4 = document.createElement('h4')
-	h4.innerText = 'Danh sách điểm dừng'
-	document.getElementById('display-stop-route-title').innerHTML = null
-	document.getElementById('display-stop-route-title').appendChild(h4)
+	e.stopPropagation();
+	var stopRouteContainer = document.getElementById("display-stop-route-container");
+	stopRouteContainer.innerHTML = null;
+	var h4 = document.createElement("h4");
+	h4.innerText = "Danh sách điểm dừng";
+	document.getElementById("display-stop-route-title").innerHTML = null;
+	document.getElementById("display-stop-route-title").appendChild(h4);
 
-
-	var table = document.createElement('table')
-	table.style.width = '100%'
-	var tbody = document.createElement('tbody')
-	table.appendChild(tbody)
-	stopRouteContainer.appendChild(table)
+	var table = document.createElement("table");
+	table.style.width = "100%";
+	var tbody = document.createElement("tbody");
+	table.appendChild(tbody);
+	stopRouteContainer.appendChild(table);
 
 	for (let i = 0; i < stopRoutes.length; i++) {
-		let tr = document.createElement('tr')
-		let td = document.createElement('td')
-		let div_1 = document.createElement('div')
-		div_1.style.height = '48px'
-		div_1.style.border = '2px solid white'
-		div_1.style.display = 'flex'
-		div_1.style.alignItems = 'center'
-		div_1.style.boxShadow = '0px 1px 3px rgba(0,0,0,0.4)'
-		div_1.style.padding = '0px 8px 0px 8px'
-		div_1.style.margin = '2px 4px 2px 4px'
-		div_1.style.borderRadius = '4px'
-		div_1.style.backgroundColor='white'
-		let div_2 = document.createElement('div')
-		div_2.style.width = '40px'
-		div_2.style.height = '40px'
-		div_2.borderRadius = '50%'
-		div_2.backgroundColor = 'white'
-		div_2.display = 'flex'
-		div_2.alignItems = 'center'
-		let img = document.createElement('img')
-		img.src = '../SetImg/ic-busStop32.png'
-		img.style.width = '30px'
-		img.style.height = '36px'
+		let tr = document.createElement("tr");
+		let td = document.createElement("td");
+		let div_1 = document.createElement("div");
+		div_1.style.height = "48px";
+		div_1.style.border = "2px solid white";
+		div_1.style.display = "flex";
+		div_1.style.alignItems = "center";
+		div_1.style.boxShadow = "0px 1px 3px rgba(0,0,0,0.4)";
+		div_1.style.padding = "0px 8px 0px 8px";
+		div_1.style.margin = "2px 4px 2px 4px";
+		div_1.style.borderRadius = "4px";
+		div_1.style.backgroundColor = "white";
+		let div_2 = document.createElement("div");
+		div_2.style.width = "40px";
+		div_2.style.height = "40px";
+		div_2.borderRadius = "50%";
+		div_2.backgroundColor = "white";
+		div_2.display = "flex";
+		div_2.alignItems = "center";
+		let img = document.createElement("img");
+		img.src = "../SetImg/ic-busStop32.png";
+		img.style.width = "30px";
+		img.style.height = "36px";
 
-		div_2.appendChild(img)
-		div_1.appendChild(div_2)
+		div_2.appendChild(img);
+		div_1.appendChild(div_2);
 
-		let span = document.createElement('span')
-		span.innerText = stopRoutes[i].BusStopName
-		div_1.appendChild(span)
-		td.appendChild(div_1)
-		tr.appendChild(td)
-		tbody.appendChild(tr)
-    }
+		let span = document.createElement("span");
+		span.innerText = stopRoutes[i].BusStopName;
+		div_1.appendChild(span);
+		td.appendChild(div_1);
+		tr.appendChild(td);
+		tbody.appendChild(tr);
+	}
 }
-
-function calcRoutesRender(listPoint) {
+function clearDirection() {
+	// if (directionsDisplay != null) {
+	// 	directionsDisplay.setOptions({
+	// 		suppressPolylines: true,
+	// 	});
+	// }
+}
+function calcRoutesRender(listPoint, typeMode) {
 	let lengthList = listPoint.length;
 	let start = listPoint[0];
 	let midPoints = listPoint.slice(1, lengthList - 1);
 	let end = listPoint[lengthList - 1];
-	console.log(midPoints);
+	let travelMode = {};
+	if (typeMode) {
+		travelMode = {
+			travelMode: typeMode,
+		};
+	}
 	let request = {
 		origin: start,
 		destination: end,
 		waypoints: midPoints,
-		travelMode: "DRIVING",
+		...travelMode,
 	};
 	directionsService.route(request, function (result, status) {
 		if (status == "OK") {
 			var directionsDisplay = new google.maps.DirectionsRenderer({
 				suppressMarkers: true,
 				map: map,
+				polylineOptions: typeMode === "DRIVING" ? polylineDriving : polylineWark,
 			});
 			directionsDisplay.setDirections(result);
 		} else {
@@ -728,23 +738,25 @@ function calcRoutesRender(listPoint) {
 }
 function loadRouteToMap(startPoint, endPoint, list) {
 	let routeItems = [];
-	console.log(list)
+	console.log(list);
 	if (startPoint.id === 0 || (list && list[0].listBusStop[0].BusRoutesID !== startPoint.id)) {
 		let routeItem = new Object();
 		routeItem.isWalk = true;
+		routeItem.travelMode = "WALKING";
 		routeItem.guidText = "-";
 		routeItem.startName = mapPoint;
 		routeItem.listPoint = [{ location: { lat: startPoint.latitudes, lng: startPoint.longitudes } }];
 		let busStop = list[0].listBusStop[0];
 		routeItem.listPoint.push({ location: { lat: busStop.Latitude, lng: busStop.Longitude } });
 		routeItem.endName = busStop.BusStopName;
-		routeItems.push(routeItem);
+		if (JSON.stringify(routeItem.listPoint[0]) !== JSON.stringify(routeItem.listPoint[1])) routeItems.push(routeItem);
 	}
 	routeItems = routeItems.concat(
 		list.map((item) => {
 			let routeItem = new Object();
 			routeItem.isWalk = false;
 			routeItem.guidText = item.route.RouteName;
+			routeItem.travelMode = "DRIVING";
 			routeItem.startName = item.listBusStop[0].BusStopName;
 			routeItem.listPoint = item.listBusStop.map((busStop) => {
 				return {
@@ -762,20 +774,23 @@ function loadRouteToMap(startPoint, endPoint, list) {
 			return routeItem;
 		})
 	);
+
 	let info = list[list.length - 1];
 	let lastListBusStop = info.listBusStop;
 	let lastItem = lastListBusStop[lastListBusStop.length - 1];
+
 	if (endPoint.id === 0 || (lastItem !== endPoint.id && list)) {
 		let routeItem = new Object();
 		routeItem.isWalk = true;
 		routeItem.guidText = "-";
 		routeItem.startName = lastItem.BusStopName;
-		routeItem.listPoint = [{ location: { lat: startPoint.latitudes, lng: startPoint.longitudes } }];
+		routeItem.listPoint = [{ location: { lat: endPoint.latitudes, lng: endPoint.longitudes } }];
 		let busStop = lastListBusStop[lastListBusStop.length - 1];
 		routeItem.listPoint.push({ location: { lat: busStop.Latitude, lng: busStop.Longitude } });
 		routeItem.endName = "-";
-		routeItems.push(routeItem);
+		if (JSON.stringify(routeItem.listPoint[0]) !== JSON.stringify(routeItem.listPoint[1])) routeItems.push(routeItem);
 	}
+	console.log(routeItems);
 	return routeItems;
 }
 
@@ -791,7 +806,6 @@ function loadAllStopBus() {
 		async: false,
 		success: function (msg) {
 			let data = msg.d;
-			console.log(data);
 			renderMaker(data, false);
 		},
 		failure: function (response) {
@@ -855,10 +869,8 @@ function createSubRoute(array) {
 	// 	time: 45,
 	// 	prices: 6000,
 	// };
-	console.log(array)
 	array.map((routeItem) => {
-		calcRoutesRender(routeItem.listPoint);
-		console.log(routeItem)
+		calcRoutesRender(routeItem.listPoint, routeItem.travelMode);
 		tbody.appendChild(
 			createSubRouteItem(
 				routeItem.isWalk,
