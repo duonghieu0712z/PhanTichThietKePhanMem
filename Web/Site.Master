@@ -113,7 +113,13 @@
                             <li><a href="#">Cơ cấu tổ chức</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item"><a href="#">Thông tin tuyến</a></li>
+                    <li class="menu-item">
+                        <a>Tra cứu thông tin lộ trình</a>
+                        <ul class="sub-menu">
+                            <li><a runat="server" href="~/Pages/UISearchRoute.aspx">Dựa trên điểm đầu - điểm cuối</a></li>
+                            <li><a runat="server" href="~/Pages/UIBusRoute.aspx">Tuyến</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <ul id="admin-menu" class="menu">
                     <li class="menu-item">
@@ -121,8 +127,8 @@
                         <ul class="sub-menu">
                             <li><a runat="server" href="~/Pages/BusRoutePage.aspx">Quản lý tuyến</a></li>
                             <li><a runat="server" href="~/Pages/ResponsibleUnitPage.aspx">Quản lý nhà đảm nhiệm</a></li>
-                            <li><a runat="server" href="~/Pages/UIBusRoute.aspx">Tuyến</a></li>
-                            
+
+
                         </ul>
                     </li>
                     <li class="menu-item">
@@ -146,9 +152,9 @@
                         <a>Tra cứu thông tin lộ trình</a>
                         <ul class="sub-menu">
                             <li><a runat="server" href="~/Pages/UISearchRoute.aspx">Dựa trên điểm đầu - điểm cuối</a></li>
-                            <li><a runat="server" href="~/Pages/UISearchRouteByBusRoute.aspx">Dựa trên tuyến</a></li>                                
+                            <li><a runat="server" href="~/Pages/UIBusRoute.aspx">Tuyến</a></li>
                         </ul>
-                    </li>                     
+                    </li>
                     <li class="menu-item"><a runat="server" href="~/Contact">Liên hệ</a></li>
                 </ul>
             </div>
