@@ -35,7 +35,7 @@
                         <p>Quản lý điểm dừng</p>
                     </li>
                     <li>
-                        <p>Tra cứu thông tin tuyến dựa trên điểm dừng</p>
+                        <p>Tìm kiếm điểm dừng dựa trên điểm đầu điểm cuối</p>
                     </li>
                 </ul>
             </div>
@@ -100,6 +100,26 @@
                     <li><strong>Võ Công Lý: </strong><a href="mailto:1911166@dlu.edu.vn">1911166@dlu.edu.vn</a></li>
                     <li><strong>Võ Đình Hoàng Long: </strong><a href="mailto:1911164@dlu.edu.vn">1911164@dlu.edu.vn</a></li>
                     <li><strong>Nguyễn Hoàng Đăng Khoa: </strong><a href="mailto:1911158@dlu.edu.vn">1911158@dlu.edu.vn</a></li>                                        
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Nhóm 6</h3>
+            <div class="col-6">
+                <h4>Chức năng thực hiện</h4>
+                <ul>
+                    <li>
+                        <p>Quản lý tài xế</p>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="col-6">
+                <h4>Thành viên</h4>
+                <ul>
+                    <li><strong>Trương Quang Tuấn: </strong><a href="mailto:1910152@dlu.edu.vn">1910152@dlu.edu.vn</a></li>
+                    <li><strong>Phan Thị Hoài Thương: </strong><a href="mailto:1911213@dlu.edu.vn">1911213@dlu.edu.vn</a></li>
+                    <li><strong>Trần Thành Tài: </strong><a href="mailto:1911200@dlu.edu.vn">1911200@dlu.edu.vn</a></li>                                        
                 </ul>
             </div>
         </div>
