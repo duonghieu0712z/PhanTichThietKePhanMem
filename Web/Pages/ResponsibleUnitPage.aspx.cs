@@ -125,13 +125,29 @@ namespace Web.Pages
                 this.pnTable.Visible = false;
             }
         }
+        private bool Xet()
+        {
+            if (txtPhoneNumber.Value == "") return false;
+            else if (txtResbonsilbeName.Value == "") return false;
+
+            else return true;
+        }
 
         protected void btLuu_Click1(object sender, EventArgs e)
         {
-            ResponsibleUnit obj = this.GetValue();
-            HRFunctions.Instance.InsertNUpdateResponsible(obj);
-            Clear();
-            Response.Redirect(Request.RawUrl);
+            
+            if (Xet())
+            {
+                ResponsibleUnit obj = this.GetValue();
+                HRFunctions.Instance.InsertNUpdateResponsible(obj);
+                Clear();
+                ShowAlert("swal('Success!','Cập nhật thông tin!','success')");
+                LoadTimKiem(0);
+            }
+            else
+            {
+                ShowAlert("swal('Thông báo','Vui lòng nhập đầy đủ thông tin!','warning')");
+            }
         }
 
         protected void btnXoa_Click(object sender, EventArgs e)
@@ -173,6 +189,10 @@ namespace Web.Pages
             this.txtID.Value = "";
             this.txtResbonsilbeName.Value = "";
             this.txtPhoneNumber.Value = "";
+        }
+        private void ShowAlert(string note)
+        {
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "alert", note, true);
         }
     }
 }   

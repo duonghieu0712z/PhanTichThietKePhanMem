@@ -170,9 +170,8 @@ namespace Web.Pages
             {
                 List<string> list = selected.Split(',').ToList();
                 HRFunctions.Instance.DeleteBusRouteByIDs(list);
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
             }
-            Page.Response.Redirect(Page.Request.Url.ToString(), true);
-            Response.Redirect(Request.RawUrl);
         }
 
         private BusRoute GetValue()
@@ -207,16 +206,15 @@ namespace Web.Pages
         {
             if (Xet())
             {
-                ShowAlert("swal('Success!','Cập nhật thông tin!','success')");
                 BusRoute obj = this.GetValue();
                 HRFunctions.Instance.InsertNUpdateBusRoute(obj);
                 Clear();
-                Response.Redirect(Request.RawUrl);
+                ShowAlert("swal('Success!','Cập nhật thông tin!','success')");
                 LoadTimKiem(0);
             }
             else
             {
-                this.error.Text = "Vui lòng nhập đầy đủ thông tin";
+                ShowAlert("swal('Thông báo','Vui lòng nhập đầy đủ thông tin!','warning')");
             }
 
         }
@@ -228,7 +226,7 @@ namespace Web.Pages
 
         private void ShowAlert(string note)
         {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", note, true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "alert", note, true);
         }
     }
 }

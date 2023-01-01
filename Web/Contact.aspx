@@ -71,9 +71,9 @@
             <div class="col-6">
                 <h4>Thành viên</h4>
                 <ul>
-                    <li><strong>Nhữu Văn Hữu: </strong><a href="mailto:1910127@dlu.edu.vn">1910127@dlu.edu.vn</a></li>
+                    <li><strong>Nhữ Văn Hữu: </strong><a href="mailto:1910127@dlu.edu.vn">1910127@dlu.edu.vn</a></li>
                     <li><strong>Cao Dương Sơn Hiếu: </strong><a href="mailto:1914745@dlu.edu.vn">1914745@dlu.edu.vn</a></li>
-                    <li><strong>Nguyễn Hữu Đức Thanh: </strong><a href="mailto:1911205@dlu.edu.vn">1911205@dlu.edu.vn</a></li>                                        
+                    <li><strong>Nguyễn Hữu Đức Thanh: </strong><a href="mailto:1911205@dlu.edu.vn">1911205@dlu.edu.vn</a></li>
                 </ul>
             </div>
         </div>
@@ -99,7 +99,7 @@
                 <ul>
                     <li><strong>Võ Công Lý: </strong><a href="mailto:1911166@dlu.edu.vn">1911166@dlu.edu.vn</a></li>
                     <li><strong>Võ Đình Hoàng Long: </strong><a href="mailto:1911164@dlu.edu.vn">1911164@dlu.edu.vn</a></li>
-                    <li><strong>Nguyễn Hoàng Đăng Khoa: </strong><a href="mailto:1911158@dlu.edu.vn">1911158@dlu.edu.vn</a></li>                                        
+                    <li><strong>Nguyễn Hoàng Đăng Khoa: </strong><a href="mailto:1911158@dlu.edu.vn">1911158@dlu.edu.vn</a></li>
                 </ul>
             </div>
         </div>

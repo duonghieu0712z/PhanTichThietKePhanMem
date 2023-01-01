@@ -60,7 +60,7 @@
                 </div>
                 <asp:Label ID="error" runat="server" Text=""></asp:Label>
                 <div class="form-group mt-3 p-4">
-                    <asp:Button ID="btLuu" runat="server" Text="Lưu" CssClass="btn1 btn" OnClick="btLuu_Click" />
+                    <asp:Button ID="btLuu" runat="server" Text="Lưu" CssClass="btn" OnClick="btLuu_Click" />
                     <asp:Button ID="btnClear" runat="server" Text="Xóa" CssClass="btn-clear btn btn-danger" OnClick="btnClear_Click" />
                 </div>
             </div>
@@ -80,7 +80,7 @@
                             <div class="col w-50">
                                 <input id="txtKeyword" runat="server" class="form-control" placeholder="Tìm kiếm" type="text" />
                             </div>
-                            <asp:DropDownList ID="drlPageNumber" runat="server" AutoPostBack="true" CssClass="btnDrop btn btn-secondary bg-light dropdown-item w-25 border" OnSelectedIndexChanged="drlPageNumber_SelectedIndexChanged">
+                            <asp:DropDownList ID="drlPageNumber" runat="server" AutoPostBack="true" CssClass="btn btn-secondary bg-light dropdown-item w-25 border text-dark" OnSelectedIndexChanged="drlPageNumber_SelectedIndexChanged">
                                 <asp:ListItem>5</asp:ListItem>
                                 <asp:ListItem>10</asp:ListItem>
                                 <asp:ListItem>20</asp:ListItem>
@@ -137,7 +137,7 @@
             <asp:Panel ID="pnPhanTrang" runat="server" CssClass="pb-5">
                 <div class="form-row d-flex justify-content-center">
                     <div class="col-auto">
-                        <asp:Button ID="btTruoc" runat="server" Text="Trước" CssClass="btn1 btn btn-primary" OnClick="btPhanTrang_Click" />
+                        <asp:Button ID="btTruoc" runat="server" Text="Trước" CssClass="btn btn-primary" OnClick="btPhanTrang_Click" />
                     </div>
                     <div class="d-flex col-auto px-4">
                         <asp:HiddenField ID="hPageIndex" runat="server" />
@@ -146,7 +146,7 @@
                         <asp:Panel ID="pnButton" runat="server"></asp:Panel>
                     </div>
                     <div class="col-auto">
-                        <asp:Button ID="btSau" runat="server" Text="Sau" CssClass="btn1 btn btn-primary" OnClick="btPhanTrang_Click" />
+                        <asp:Button ID="btSau" runat="server" Text="Sau" CssClass="btn btn-primary" OnClick="btPhanTrang_Click" />
                     </div>
                 </div>
             </asp:Panel>
@@ -155,10 +155,6 @@
     <script>
         $("#selectAll").click(function () {
             $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
-        })
-        $("#btnLuu").click(function () {
-            event.preventDefault();
-            $('.formAdd').collapse('show')
         })
         $(".btn-edit").click(function () {
             event.preventDefault();

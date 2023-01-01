@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResponsibleUnitPage.aspx.cs" Inherits="Web.Pages.ResponsibleunitPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="../CSS/Responsible.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/RouteMgmt.css" rel="stylesheet" type="text/css" />
     <h2 class="text-light border-0 mt-4" style="font-family: monospace; font-weight: 800; font-size: 32px">Đơn vị đảm nhận</h2>
 
     <button class="btn1 btn btn-primary mb-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Thêm đơn vị đảm nhận</button>
@@ -51,13 +51,13 @@
                                 <div class="col w-50">
                                     <input placeholder="Tìm kiếm" runat="server" id="txtSearch" class="form-control" />
                                 </div>
-                                <asp:DropDownList CssClass="btnDrop btn btn-secondary bg-light dropdown-item w-25 border" AutoPostBack="true" ID="drlPageNumber" runat="server" OnSelectedIndexChanged="dlPageNumber_SelectedIndexChanged">
+                                <asp:DropDownList CssClass="btnDrop btn btn-secondary bg-light dropdown-item w-25 border text-dark" AutoPostBack="true" ID="drlPageNumber" runat="server" OnSelectedIndexChanged="dlPageNumber_SelectedIndexChanged">
                                     <asp:ListItem>5</asp:ListItem>
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:Button ID="btTim" runat="server" CssClass="btn1 btn btn-success" Text="Tìm" OnClick="btTim_Click" />
-                                <asp:Button ID="btnXoa" runat="server" Text="Xóa" CssClass="btn btn-danger ml-2" OnClick="btnXoa_Click" />
+                                <asp:Button ID="btnXoa" runat="server" Text="Xóa" CssClass="btn btn-danger ml-2" OnClick="btnXoa_Click" OnClientClick="return confirm('Bạn có muốn xóa không?')"/>
                             </div>
                             <thead>
                                 <tr class="text-center text-nowrap" style="background-color: #DADADADA">
@@ -104,7 +104,7 @@
                         <asp:Panel ID="pnButton" runat="server"></asp:Panel>
                     </div>
                     <div class="col-auto">
-                        <asp:Button ID="btSau" runat="server" Text="Sau" class="btn  btn-success" OnClick="btPhanTrang_Click" />
+                        <asp:Button ID="btSau" runat="server" Text="Sau" class="btn btn-success" OnClick="btPhanTrang_Click" />
                     </div>
                 </div>
             </asp:Panel>

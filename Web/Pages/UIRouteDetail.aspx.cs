@@ -9,6 +9,9 @@ namespace Web.Pages
     public partial class UIRouteDetail : System.Web.UI.Page
     {
         public BusRoute br = null;
+        public List<Route> bst = null;
+        public  List<BusStop> busStops = null;
+        public int index;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
