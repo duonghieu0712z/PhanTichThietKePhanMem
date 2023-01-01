@@ -144,7 +144,10 @@
                         OnClick="imgbtnSearch_Click" 
                         Style="background-color: #34B67A; width:48px; height: 80px; padding: 24px 8px 24px 8px; border-radius: 4px" />
                     <%--Nút để tìm điểm gần nhất--%>
-                    <button type="button" onclick="postLocation()" id="btn-search-map-js"></button>
+                    <button type="button" onclick="postLocation()" id="btn-search-map-js"
+                        style="background-color: #34B67A; width:48px; height: 80px; padding: 24px 8px 24px 8px; border-radius: 4px; border:none">
+                        <img src="../SetImg/ic-search.png" />
+                    </button>
                 </div>
             </div>
         </div>
@@ -153,7 +156,7 @@
         <div class="row mt-4" style="padding-left:8px; padding-right: 8px">
         <div class="col-sm-12 overflow-auto">
             <asp:Label id="lblRoute" Visible="false" runat="server"
-            ><h4>Danh sách Lộ trình</h4></asp:Label>
+            ><h4 id="server-side-route-title">Danh sách Lộ trình</h4></asp:Label>
             <asp:GridView Visible="false" style="width:100%" 
                 OnRowDataBound="GridViewSearchRoute_RowDataBound" 
                 ID="GridViewSearchRoute" 
@@ -164,8 +167,12 @@
                 SelectedRowStyle-BackColor="#34B67A"
                 SelectedRowStyle-ForeColor="White">
             </asp:GridView>
-            <div>
-                <asp:Repeater ID="RepeatRoute" runat="server" Visible="false">
+            <div id="display-sub-route-container">
+                    
+            </div>
+            <div id="server-side-route-table">
+                
+                <asp:Repeater ID="RepeatRoute" runat="server" Visible="true">
                     <ItemTemplate>
                         <table style="width: 100%">  
                         <tr id="route-item-<%#DataBinder.Eval(Container, "DataItem.RouteID") %>" 
@@ -221,7 +228,9 @@
                                         CommandName="RouteClick" 
                                         CommandArgument='<%#DataBinder.Eval(Container, "DataItem.RouteID") %>' 
                                         Text="Xem chi tiết" 
-                                        style="background-image: url(../SetImg/ic-view.png); background-repeat:no-repeat; background-position: 8px ; padding: 0px 12px 0px 48px; height: 36px; border:none; background-color: white; color: black; border-radius: 4px" >
+                                        style="background-image: url(../SetImg/ic-view.png); background-repeat:no-repeat; 
+                                                background-position: 8px ; padding: 0px 12px 0px 48px; height: 36px; border:none; 
+                                                background-color: white; color: black; border-radius: 4px" >
                                     </asp:Button>
                                 </div>
                             </td>
@@ -281,22 +290,26 @@
                     CssClass="table table-bordered table-striped"
                     runat="server">
                 </asp:GridView>
-                <asp:Label ID="lblBusStops" runat="server" Visible="false"><h4>Danh sách điểm dừng</h4></asp:Label>
-                <asp:Repeater ID="RepeaterBusStops" runat="server">
-                    <ItemTemplate>
-                        <tr style="">
-                            <td>
-                                <div style="height: 48px; border: 2px solid white; display:flex; align-items:center; box-shadow: 0px 1px 3px rgba(0,0,0,0.4); padding: 0px 8px 0px 8px; margin: 8px 0px 8px 0; border-radius:4px">
-                                    <div style="width:40px; height:40px; border-radius:50%; background-color:white; display:flex; align-items:center">
-                                        <asp:ImageButton ImageUrl="~/SetImg/ic-busStop32.png" Width="30px" Height="36px" AlternateText="iconBusStop" runat="server" ID="btnImgBusStop" />
+                <div id="old-stop-route-container">
+                    <asp:Label ID="lblBusStops" runat="server" Visible="false"><h4>Danh sách điểm dừng</h4></asp:Label>
+                    <asp:Repeater ID="RepeaterBusStops" runat="server">
+                        <ItemTemplate>
+                            <tr style="">
+                                <td>
+                                    <div style="height: 48px; border: 2px solid white; display:flex; align-items:center; box-shadow: 0px 1px 3px rgba(0,0,0,0.4); padding: 0px 8px 0px 8px; margin: 8px 0px 8px 0; border-radius:4px">
+                                        <div style="width:40px; height:40px; border-radius:50%; background-color:white; display:flex; align-items:center">
+                                            <asp:ImageButton ImageUrl="~/SetImg/ic-busStop32.png" Width="30px" Height="36px" AlternateText="iconBusStop" runat="server" ID="btnImgBusStop" />
+                                        </div>
+                                            <%#DataBinder.Eval(Container, "DataItem.BusStopName") %>
                                     </div>
-                                        <%#DataBinder.Eval(Container, "DataItem.BusStopName") %>
-                                </div>
-                            </td>
+                                </td>
                             
-                        </tr>
-                    </ItemTemplate>
-                </asp:Repeater>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+                <div id="display-stop-route-title"></div>
+                <div id="display-stop-route-container" style="background-color: #f0f0f0"></div>
             </div>
             <div class="col-sm-8">
                 <div class="row">

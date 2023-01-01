@@ -54,7 +54,7 @@ namespace Web.Pages
             this.RepeatRoute.Visible = true;
 
         }
-        private void BindingRouteData()
+        public void BindingRouteData()
         {
             this.GridViewSearchRoute.DataSource = HRFunctions.Instance.SearchRouteByStartAndEndPos(int.Parse(this.dlStartPosition.SelectedValue), int.Parse(this.dlEndPosition.SelectedValue));
             this.GridViewSearchRoute.DataBind();
@@ -63,6 +63,12 @@ namespace Web.Pages
             this.RepeatRoute.DataBind();
 
             RouteList = HRFunctions.Instance.SearchRouteByStartAndEndPos(int.Parse(this.dlStartPosition.SelectedValue), int.Parse(this.dlEndPosition.SelectedValue));
+        }
+
+        private void BindingSubRouteData(List<InfoModel> infoModels)
+        {
+            this.RepeatRoute.DataSource = infoModels;
+            this.RepeatRoute.DataBind();
         }
 
         protected void GridViewSearchRoute_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
@@ -144,6 +150,8 @@ namespace Web.Pages
             this.RepeatRoute.DataBind();
             this.RepeatRoute.Visible = false;
 
+            this.lblRoute.Visible = false;
+
             this.RepeaterBusStops.DataSource = null;
             this.RepeaterBusStops.DataBind();
             this.RepeaterBusStops.Visible = false;
@@ -198,7 +206,7 @@ namespace Web.Pages
             {
                 double distance = HRFunctions.deg2rad(HRFunctions.getDistanceFromLatLonInKm(point.latitudes, point.longitudes, busStop.Latitude, busStop.Longitude));
                 distances.Add(distance);
-               // distances.Add(point.Id);
+                // distances.Add(point.Id);
             }
             double minDistance = Double.MaxValue;
 
@@ -214,7 +222,6 @@ namespace Web.Pages
             return lsBusStop[minIndex];
         }
 
-
         [WebMethod]
         public static List<InfoModel> findNearByBusStop(Location start, Location end)
         {
@@ -223,32 +230,32 @@ namespace Web.Pages
             BusStopModel busStopEnd;
             List<BusStop> list = HRFunctions.Instance.SelectAllBusStop();
             List<BusStopModel> lsBusStops = new List<BusStopModel>();
-            if( start.Id != -1 )
+            if (start.Id != -1)
             {
-               busStopStart = new BusStopModel(findNearPoint(start, list));
+                busStopStart = new BusStopModel(findNearPoint(start, list));
             }
             else
             {
-               busStopStart = new BusStopModel(list.Find( x => x.BusStopID == start.Id ));  
+                busStopStart = new BusStopModel(list.Find(x => x.BusStopID == start.Id));
 
             }
 
-            if (end.Id != -1) {
-                 busStopEnd = new BusStopModel(findNearPoint(end, list));
+            if (end.Id != -1)
+            {
+                busStopEnd = new BusStopModel(findNearPoint(end, list));
             }
             else
             {
                 busStopEnd = new BusStopModel(list.Find(x => x.BusStopID == end.Id));
             }
 
-            var listPath =  Graph.Instance.FindRoute(start.latitudes, start.longitudes, end.latitudes, end.longitudes);
+            var listPath = Graph.Instance.FindRoute(start.latitudes, start.longitudes, end.latitudes, end.longitudes);
             var listInfo = Graph.Instance.GetPathInfos(listPath);
             List<InfoModel> infoModels = new List<InfoModel>();
             listInfo.ForEach(item =>
             {
                 infoModels.Add(new InfoModel(item.BusStops, item.Route));
             });
-
 
             lsBusStops.Add(busStopStart);
             lsBusStops.Add(busStopEnd);
