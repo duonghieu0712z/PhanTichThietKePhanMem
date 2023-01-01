@@ -18,6 +18,8 @@ namespace Web.Pages
             {
                 int id = int.Parse(Request.QueryString["id"]);
                 br = HRFunctions.Instance.Select_Bus_Route_ID(id);
+                bst = HRFunctions.Instance.SearchRouteByBusRouteId(id);
+                busStops = HRFunctions.Instance.GetBusStopByRoute(id);
                 BinddingRouteData(id);
             }
             catch { Response.Redirect("/Pages/UIBusRoute"); };

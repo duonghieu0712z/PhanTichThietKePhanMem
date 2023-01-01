@@ -1,7 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UIRouteDetail.aspx.cs" Inherits="Web.Pages.UIRouteDetail" EnableEventValidation="false"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="../CSS/RouteDetails.css" rel="stylesheet" type="text/css" />
+    <asp:HiddenField ID="hfData" Value="" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="typeMap" Value="getRoute" runat="server" ClientIDMode="Static" />
+    <script src ="../JavaScript/Map/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9sw5PYYq0MW-HBbXVMNN6rwZIEBuvhw&callback=initMap" defer></script>
     <div class="container bg-white" runat="server">
 
         <div class="form-control text-center h-100 font-weight-bold text-success border-0">

@@ -167,6 +167,7 @@ namespace Web.Pages
 
         private void LoadEditButton()
         {
+            this.btLuu.Visible = false;
             try
             {
                 int idEdit = int.Parse(Request.QueryString["idedit"]);
@@ -182,7 +183,7 @@ namespace Web.Pages
                     this.txtID.Value = obj.DriverID.ToString();
                     this.txtIDCard.Value = obj.IDCard.ToString();
                     this.txtName.Value = obj.FullName;
-                    this.txtDayOfBirth.Value = obj.DayOfBirth.ToString("mm-dd-yyyy");
+                    this.txtDayOfBirth.Value = obj.DayOfBirth.Date.ToString("mm/dd/yyyy");
                     this.txtHomeTown.Value = obj.HomeTown.ToString();
                     if (obj.Sex == true)
                     {

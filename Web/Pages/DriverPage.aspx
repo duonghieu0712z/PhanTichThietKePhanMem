@@ -79,7 +79,7 @@
                     <div class="form-group mt-3">
                         <asp:Button ID="btXoaTrang" runat="server" Text="Xóa trắng" CssClass="btn btn-primary" OnClick="btXoaTrang_Click" />
                         <asp:Button ID="btLuu" runat="server" Text="Lưu" CssClass="btn btn-primary" OnClick="btLuu_Click" />
-                         <asp:Button ID="btnUpdate" runat="server" Text="Cập nhập" CssClass="btn btn-primary" OnClick="btnUpdate_Click" />
+                        <asp:Button ID="btnUpdate" runat="server" Text="Cập nhập" CssClass="btn btn-primary" OnClick="btnUpdate_Click" />
                         <asp:Button ID="btThoat" runat="server" Text="Thoát" CssClass="btn btn-primary" OnClick="btThoat_Click" />
                     </div>
 
@@ -117,7 +117,18 @@
                                                     <a style="text-align: center" href="?idEdit=<%=item.DriverID %>" class="btn btn-primary">Edit</a>
                                                 </td>
                                                 <td><%=item.FullName %></td>
-                                                <td><%=this.ls1.BusID %></td>
+                                                <% if (this.ls1 != null)
+                                                    {
+                                                %>
+                                                <td><%= this.ls1.BusID%></td>
+                                                <%} %>
+
+                                                <%
+                                                    else
+                                                    {
+                                                %>
+                                                <td>Vui lòng cập nhập</td>
+                                                <%} %>
                                                 <td><%=this.Sex(item.Sex)%></td>
                                                 <td><%=item.IDCard %></td>
                                                 <td><%=item.DayOfBirth %></td>
