@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ROUTE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DocumentTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeID" />
+          </Key>
+          <Property Name="DocumentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HandlingViolations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ResponsibleUnitID" Type="int" Nullable="false" />
+          <Property Name="ProcessingTime" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Information">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DateSubmitted" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Introduction">
+          <Key>
+            <PropertyRef Name="IntroductionID" />
+          </Key>
+          <Property Name="IntroductionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Picture" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ROUTE_MANAGEMENT.dbo.POSTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="POSTS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Content" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="NumberOfReviews" Type="int" />
+          <Property Name="NumberOfResponse" Type="int" />
+          <Property Name="CoverImage" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Link" Type="nvarchar" MaxLength="200" />
+          <Property Name="TypePostsID" Type="int" />
+          <Property Name="SummaryContent" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Reflect">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReflectTypeID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="VideoOrPicture" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReflectType">
+          <Key>
+            <PropertyRef Name="ReflectTypeID" />
+          </Key>
+          <Property Name="ReflectTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResponsibleUnit">
+          <Key>
+            <PropertyRef Name="ResponsibleUnitID" />
+          </Key>
+          <Property Name="ResponsibleUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReponsibleUnitName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PhoneNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ROUTE_MANAGEMENT.dbo.TypePosts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TypePosts">
+          <Key>
+            <PropertyRef Name="TypePostsID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="TypePostsID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Document_Type">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeID" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reflect_Type">
+          <End Role="ReflectType" Type="Self.ReflectType" Multiplicity="1" />
+          <End Role="Reflect" Type="Self.Reflect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReflectType">
+              <PropertyRef Name="ReflectTypeID" />
+            </Principal>
+            <Dependent Role="Reflect">
+              <PropertyRef Name="ReflectTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ROUTE_MANAGEMENTModelStoreContainer">
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HandlingViolations" EntityType="Self.HandlingViolations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Information" EntityType="Self.Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Introduction" EntityType="Self.Introduction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reflect" EntityType="Self.Reflect" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReflectType" EntityType="Self.ReflectType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResponsibleUnit" EntityType="Self.ResponsibleUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POSTS" EntityType="Self.POSTS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [POSTS].[ID] AS [ID], 
+    [POSTS].[Title] AS [Title], 
+    [POSTS].[NgayDang] AS [NgayDang], 
+    [POSTS].[Content] AS [Content], 
+    [POSTS].[Comments] AS [Comments], 
+    [POSTS].[NumberOfReviews] AS [NumberOfReviews], 
+    [POSTS].[NumberOfResponse] AS [NumberOfResponse], 
+    [POSTS].[CoverImage] AS [CoverImage], 
+    [POSTS].[Link] AS [Link], 
+    [POSTS].[TypePostsID] AS [TypePostsID], 
+    [POSTS].[SummaryContent] AS [SummaryContent]
+    FROM [dbo].[POSTS] AS [POSTS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TypePosts" EntityType="Self.TypePosts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TypePosts].[TypePostsID] AS [TypePostsID], 
+    [TypePosts].[Name] AS [Name]
+    FROM [dbo].[TypePosts] AS [TypePosts]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Document_Type" Association="Self.FK_Document_Type">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reflect_Type" Association="Self.FK_Reflect_Type">
+            <End Role="ReflectType" EntitySet="ReflectType" />
+            <End Role="Reflect" EntitySet="Reflect" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ROUTE_MANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DocumentTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DocumentType" Relationship="Self.FK_Document_Type" FromRole="Document" ToRole="DocumentType" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeID" />
+          </Key>
+          <Property Name="DocumentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Documents" Relationship="Self.FK_Document_Type" FromRole="DocumentType" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="HandlingViolation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" />
+          <Property Name="ProcessingTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Information">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Introduction">
+          <Key>
+            <PropertyRef Name="IntroductionID" />
+          </Key>
+          <Property Name="IntroductionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tag" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Reflect">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReflectTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VideoOrPicture" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ReflectType" Relationship="Self.FK_Reflect_Type" FromRole="Reflect" ToRole="ReflectType" />
+        </EntityType>
+        <EntityType Name="ReflectType">
+          <Key>
+            <PropertyRef Name="ReflectTypeID" />
+          </Key>
+          <Property Name="ReflectTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reflects" Relationship="Self.FK_Reflect_Type" FromRole="ReflectType" ToRole="Reflect" />
+        </EntityType>
+        <EntityType Name="ResponsibleUnit">
+          <Key>
+            <PropertyRef Name="ResponsibleUnitID" />
+          </Key>
+          <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReponsibleUnitName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POST">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Content" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfReviews" Type="Int32" />
+          <Property Name="NumberOfResponse" Type="Int32" />
+          <Property Name="CoverImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TypePostsID" Type="Int32" />
+          <Property Name="SummaryContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TypePost">
+          <Key>
+            <PropertyRef Name="TypePostsID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="TypePostsID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Document_Type">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeID" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reflect_Type">
+          <End Role="ReflectType" Type="Self.ReflectType" Multiplicity="1" />
+          <End Role="Reflect" Type="Self.Reflect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReflectType">
+              <PropertyRef Name="ReflectTypeID" />
+            </Principal>
+            <Dependent Role="Reflect">
+              <PropertyRef Name="ReflectTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ROUTE_MANAGEMENTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Documents" EntityType="Self.Document" />
+          <EntitySet Name="DocumentTypes" EntityType="Self.DocumentType" />
+          <EntitySet Name="HandlingViolations" EntityType="Self.HandlingViolation" />
+          <EntitySet Name="Information" EntityType="Self.Information" />
+          <EntitySet Name="Introductions" EntityType="Self.Introduction" />
+          <EntitySet Name="Reflects" EntityType="Self.Reflect" />
+          <EntitySet Name="ReflectTypes" EntityType="Self.ReflectType" />
+          <EntitySet Name="ResponsibleUnits" EntityType="Self.ResponsibleUnit" />
+          <EntitySet Name="POSTS" EntityType="Self.POST" />
+          <EntitySet Name="TypePosts" EntityType="Self.TypePost" />
+          <AssociationSet Name="FK_Document_Type" Association="Self.FK_Document_Type">
+            <End Role="DocumentType" EntitySet="DocumentTypes" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reflect_Type" Association="Self.FK_Reflect_Type">
+            <End Role="ReflectType" EntitySet="ReflectTypes" />
+            <End Role="Reflect" EntitySet="Reflects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ROUTE_MANAGEMENTModelStoreContainer" CdmEntityContainer="ROUTE_MANAGEMENTEntities">
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTypes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HandlingViolations">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.HandlingViolation">
+              <MappingFragment StoreEntitySet="HandlingViolations">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
+                <ScalarProperty Name="ProcessingTime" ColumnName="ProcessingTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Information">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Information">
+              <MappingFragment StoreEntitySet="Information">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Introductions">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Introduction">
+              <MappingFragment StoreEntitySet="Introduction">
+                <ScalarProperty Name="IntroductionID" ColumnName="IntroductionID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reflects">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Reflect">
+              <MappingFragment StoreEntitySet="Reflect">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ReflectTypeID" ColumnName="ReflectTypeID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="VideoOrPicture" ColumnName="VideoOrPicture" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReflectTypes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.ReflectType">
+              <MappingFragment StoreEntitySet="ReflectType">
+                <ScalarProperty Name="ReflectTypeID" ColumnName="ReflectTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResponsibleUnits">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.ResponsibleUnit">
+              <MappingFragment StoreEntitySet="ResponsibleUnit">
+                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
+                <ScalarProperty Name="ReponsibleUnitName" ColumnName="ReponsibleUnitName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSTS">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.POST">
+              <MappingFragment StoreEntitySet="POSTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="NumberOfReviews" ColumnName="NumberOfReviews" />
+                <ScalarProperty Name="NumberOfResponse" ColumnName="NumberOfResponse" />
+                <ScalarProperty Name="CoverImage" ColumnName="CoverImage" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
+                <ScalarProperty Name="SummaryContent" ColumnName="SummaryContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypePosts">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.TypePost">
+              <MappingFragment StoreEntitySet="TypePosts">
+                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
