@@ -14,7 +14,7 @@ namespace Web.Pages
 {
     public partial class BusTypePage : System.Web.UI.Page
     {
-        int PageSize = int.Parse(Global.g_PageSize);
+        int PageSize = int.Parse(Global.g_PageSize2);
         public int pivot = 0;
 
 

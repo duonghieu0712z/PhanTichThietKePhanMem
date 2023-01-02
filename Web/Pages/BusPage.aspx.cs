@@ -17,7 +17,7 @@ namespace Web.Pages
     public partial class WebForm1 : System.Web.UI.Page
     {
         //List<int> list = new List<int> { 1, 2, 3, 4, 5 };
-        int PageSize = int.Parse(Global.g_PageSize);
+        int PageSize = int.Parse(Global.g_PageSize2);
         public int pivot = 0;
         //int PageSize = 2;
 
@@ -140,7 +140,8 @@ namespace Web.Pages
                 }
                 else
                 {
-                    if (HRFunctions.Instance.FindBusByBusNumber(this.SoXe.Value) == null)
+                    var test = HRFunctions.Instance.FindBusByBusNumber(this.SoXe.Value);
+                    if (test == null || test.BusID == int.Parse(this.BusID.Value))
                     {
                         Bus bus = HRFunctions.Instance.FindBusByID(int.Parse(this.BusID.Value));
 
@@ -153,29 +154,13 @@ namespace Web.Pages
 
                         HRFunctions.Instance.AddBus(bus);
                         ShowAlert("swal('Success!','Cập nhật xe thành công!','success')");
-
-                        try
-                        {
-                            pivot = int.Parse(Request.QueryString["page"]);
-                        }
-                        catch
-                        {
-                            pivot = 0;
-                        }
-
                         //Them do
-                        PropertyInfo isreadonly = typeof(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
-                        isreadonly.SetValue(this.Request.QueryString, false, null);
-                        Request.QueryString.Clear();
                         ClearInput();
                     }
                     else
                     {
-                        Console.WriteLine("loi");
-                        ShowAlert("swal('Error!','Số của xe đã tồn tại,'error')");
+                        ShowAlert("swal('Error!','Số của xe đã tồn tại','error')");
                     }
-
-                    
                 }
             }
             else
@@ -184,8 +169,18 @@ namespace Web.Pages
                 this.BienSoXe.Value = "";
                 //LoadListBusPage(0);
             }
-            //LoadDropDownList();
-            LoadListBusPage(pivot,false);
+            try
+            {
+                pivot = int.Parse(Request.QueryString["page"]);
+            }
+            catch
+            {
+                pivot = 0;
+            }
+            PropertyInfo isreadonly = typeof(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
+            isreadonly.SetValue(this.Request.QueryString, false, null);
+            Request.QueryString.Clear();
+            LoadListBusPage(pivot, false);
         }
 
         private void ShowAlert(string note)
