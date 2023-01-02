@@ -17,7 +17,7 @@ namespace Web.Pages
         List<int> list = new List<int> { 1, 2, 3, 4, 5 };
         public List<Bus> listBus;
 
-        int PageSize = int.Parse(Global.g_PageSize);
+        int PageSize = int.Parse(Global.g_PageSize2);
         public int pivot = 0;
 
         protected void Page_Load(object sender, EventArgs e)
