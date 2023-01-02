@@ -14,7 +14,16 @@ namespace BusinessLayer.DBAccess
     
     public partial class ReflectType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ReflectType()
+        {
+            this.Reflects = new HashSet<Reflect>();
+        }
+    
         public int ReflectTypeID { get; set; }
         public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reflect> Reflects { get; set; }
     }
 }

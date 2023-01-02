@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using BusinessLayer.Models;
 
+
 namespace BusinessLayer.Functions
 {
     public class HRFunctions : BaseFunctions
     {
+
+
         private static HRFunctions instance = null;
         public static HRFunctions Instance
         {
@@ -19,342 +22,269 @@ namespace BusinessLayer.Functions
                 return instance;
             }
         }
-        #region Route
-        public List<ResponsibleUnit> Select_All_ResponsibleUnit()
-        {
-            return ResponsibleExt.Instance.Select_All();
-        }
-        public int InsertNUpdateResponsible(ResponsibleUnit resp)
-        {
-            return ResponsibleExt.Instance.InsertUpdate(resp);
-        }
-        public ResponsibleUnit Select_Responsible_Unit_ID(int id)
-        {
-            return ResponsibleExt.Instance.Select_ID(id);
-        }
-        public List<ResponsibleUnit> ResponsibleUnit_Pagination(string keyword, int PageSize, int PageIndex, out int TotalRows)
-        {
-            return ResponsibleExt.Instance.Find_KeyWord(keyword, PageSize, PageIndex, out TotalRows);
-        }
-        public void DeleteResponsibleUnit(List<String> IDs)
-        {
-            ResponsibleExt.Instance.Delete_IDs(IDs);
-        }
-        public List<Route> SelectAllRoute()
-        {
-            return RouteExt.Instance.Route_Select_All();
-        }
-        public List<Stop_Route> SelectAllStopRoute()
-        {
-            return StopRouteExt.Instance.Stop_Route_Select_All();
-        }
-        public List<BusRoute> SelectAllBusRoute()
-        {
-            return BusRouteExt.Instance.BusRoute_Select_All();
-        }
-        public List<BusStop> SelectAllBusStop()
-        {
-            return BusStopExt.Instance.BusStop_Select_All();
-        }
-        public void DeleteBusRouteByIDs(List<String> IDs)
-        {
-            BusRouteExt.Instance.BusRoute_Delete_IDs(IDs);
 
-        }
-        public BusRoute Select_Bus_Route_ID(int id)
+        public List<POST> Select_All_POST()
         {
-            return BusRouteExt.Instance.BusRoute_Select_ID(id);
-        }
-        public List<BusRoute> Bus_Route_Pagination(string keyword, int PageSize, int PageIndex, out int TotalRows)
-        {
-            return BusRouteExt.Instance.BusRoute_Find_KeyWord(keyword, PageSize, PageIndex, out TotalRows);
-        }
-        public List<BusRoute> FindBusRoute(string keyword)
-        {
-            return BusRouteExt.Instance.BusRoute_Find(keyword);
-        }
-        public int InsertNUpdateBusRoute(BusRoute busRoute)
-        {
-            return BusRouteExt.Instance.BusRoute_InsertUpdate(busRoute);
-        }
-        public int InsertNUpdateRoute(Route route)
-        {
-            return RouteExt.Instance.Route_InsertUpdate(route);
-        }
-        public int InsertNUpdateStopRoute(Stop_Route stop_Route)
-        {
-            return StopRouteExt.Instance.Stop_Route_InsertUpdate(stop_Route);
-        }
-        public int InsertNUpdateBusStop(BusStop  busStop)
-        {
-            return BusStopExt.Instance.BusStop_InsertUpdate(busStop);
+            return PostExt.Instance.POST_Select_All();
         }
 
-        public void DeleteRoute(int id)
+        public POST Select_POST_ID(int id)
         {
-            RouteExt.Instance.Route_Delete(id);
-        }
-        public void DeleteStopRoute(int id)
-        {
-            StopRouteExt.Instance.Stop_Route_Delete(id);
+            return PostExt.Instance.POST_Select_ID(id);
         }
 
-        public Route Route_Select_ID(int id)
+        public int InsertNUpdatePOST(POST post)
         {
-            return RouteExt.Instance.Route_Select_ID(id);
+            return PostExt.Instance.POST_InsertUpdate(post);
         }
 
-        public Stop_Route Stop_Route_Select_ID(int id)
+        public void DeletePOST(List<String> IDs)
         {
-            return StopRouteExt.Instance.Stop_Route_Select_ID(id);
+            PostExt.Instance.POST_Delete_IDs(IDs);
         }
 
-        public BusStop BusStop_Select_ID(int id)
+        public List<POST> POST_Pagination(string keyword, int PageSize, int PageIndex, out int TotalRows)
         {
-            return BusStopExt.Instance.BusStop_Select_ID(id);
+            return PostExt.Instance.POST_Find_KeyWord(keyword, PageSize, PageIndex, out TotalRows);
         }
 
-        public List<RouteInfo> GetAllRouteInfo()
+        public List<Information> SelectAll()
         {
-            return RouteExt.Instance.GetAllRouteInfo();
-        }
-        public List<Stop_RouteInfo> GetAllStopRouteInfo()
-        {
-            return StopRouteExt.Instance.GetAllStopRouteInfo();
+            return InformationExt.Instance.Information_Select_All();
         }
 
-        public List<Route> SearchRouteByStartAndEndPos(int idStart, int idEnd)
+        public int InsertUpdateInfo(Information info)
         {
-            return RouteExt.Instance.SearchRouteByStartAndEndPos(idStart, idEnd);
+            return InformationExt.Instance.Info_InsertUpdate(info);
         }
 
-        public List<Route> SearchRouteByBusRouteId(int id)
+        public void DeleteInfo(int id)
         {
-            return RouteExt.Instance.SearchRouteByBusRouteId(id);
+            InformationExt.Instance.Info_Delete(id);
         }
 
-        public List<BusStop> GetBusStopByRoute(int routeId)
+        public Information GetInfo_FromID(int id)
         {
-            return StopRouteExt.Instance.GetBusStopByRoute(routeId);
-        }
-        #endregion
-
-        #region BusStop
-        public List<BusStop> SearchByName(string nameValue)
-        {
-
-            return BusStopExt.Instance.BusStop_Select_By("Name", nameValue);
+            return InformationExt.Instance.Info_Select_ID(id);
         }
 
-        public int InsertBusStop(BusStop bs)
-        {
-            return BusStopExt.Instance.BusStop_InsertUpdate(bs);
-        }
-
-        public BusStop FindBusStopByID(int id)
-        {
-            return BusStopExt.Instance.BusStop_Select_ID(id);
-        }
-        public void DeleteBusStopByID(int id)
-        {
-            BusStopExt.Instance.BusStop_Delete(id);
-        }
-        public void DeleteBusStopByIDs(List<String> IDs)
-        {
-            BusStopExt.Instance.BusStop_Delete_IDs(IDs);
-
-        }
-        public List<BusStop> Bus_Stop_Pagination(int PageSize, int PageIndex, out int TotalRows)
-        {
-            return BusStopExt.Instance.BusStop_Find_KeyWord("", PageSize, PageIndex, out TotalRows);
-        }
-
-        public static double getDistanceFromLatLonInKm(double lat1, double lon1, double lat2, double lon2)
-        {
-            double R = 6371; // Radius of the earth in km
-            double dLat = deg2rad(lat2 - lat1);  // deg2rad below
-            double dLon = deg2rad(lon2 - lon1);
-            double a =
-                Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
-                Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) *
-                Math.Sin(dLon / 2) * Math.Sin(dLon / 2)
-                ;
-            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-            double d = R * c; // Distance in km
-            return d;
-        }
-
-
-        public static double deg2rad(double deg)
-        {
-            return deg * (Math.PI / 180);
-        }
-
-        #endregion
-
-        #region Bus, Bus type manager
-        public BusType GetBusTypeByID(int id)
-        {
-            return BusTypeExt.Instance.BusType_Select_BusTypeID(id);
-        }
-
-        public BusRoute GetBusRouteByID(int id)
-        {
-            return BusExt.Instance.BusRoute_Select_ID(id);
-        }
-
-        public List<Bus> SelectAllBus()
+        public List<Information> SearchByName(string nameValue)
         {
             //Ghi loc, kiem tra quyen, kiem du lieu co hop le khong?
-            return BusExt.Instance.Bus_Select_All();
+            return InformationExt.Instance.Info_Select_By("Title", nameValue);
         }
 
-        public List<BusRoute> SelectAllBusRoutes()
+        public List<Information> DeleteAll()
         {
             //Ghi loc, kiem tra quyen, kiem du lieu co hop le khong?
-            return BusExt.Instance.BusRoute_Select_All();
+            return InformationExt.Instance.Info_Delete_all();
         }
 
-        public List<Bus> SearchBusByCriteria(string multiColumn, int pageSize, int pageIndex, out int total)
+        public ReflectType GetReflectTypeByID(int id)
         {
-            return BusExt.Instance.Bus_Find_By_Criteria(multiColumn, pageSize, pageIndex, out total);
+            return ReflectTypeExt.Instance.ReflectType_Select_ID(id);
         }
 
-        public List<BusType> SearchBusTypeByCrieria(string multiColumn, int pageSize, int pageIndex, out int total)
-        {
-            return BusTypeExt.Instance.Bus_Type_Find_By_Criteria(multiColumn, pageIndex, pageSize, out total);
-        }
-
-        public List<BusType> SelectAllBusType()
+        public List<Reflect> SelectAllReflect()
         {
             //Ghi loc, kiem tra quyen, kiem du lieu co hop le khong?
-            return BusTypeExt.Instance.BusType_Select_All();
+            return ReflectExt.Instance.Reflect_Select_All();
         }
 
-        public int InsertUpdateBusType(int id, string name, string carMaker)
+        public List<Reflect> SearchReflectCriteria(string multiColumn, int pageSize, int pageIndex, out int total)
         {
-            BusType busType;
-            busType = new BusType
+            return ReflectExt.Instance.Reflect_Find_KeyWord(multiColumn, pageSize, pageIndex, out total);
+        }
+
+        public List<ReflectType> SearchReflectTypeByCrieria(string multiColumn, int pageSize, int pageIndex, out int total)
+        {
+            return ReflectTypeExt.Instance.ReflectType_Find_KeyWord(multiColumn, pageIndex, pageSize, out total);
+        }
+
+        public List<ReflectType> SelectAllReflectType()
+        {
+            //Ghi loc, kiem tra quyen, kiem du lieu co hop le khong?
+            return ReflectTypeExt.Instance.ReflectType_Select_All();
+        }
+
+        public void AddReflect(object reflect)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int InsertUpdateReflectType(int id, string name)
+        {
+            ReflectType reflectType;
+            reflectType = new ReflectType
             {
-                BusTypeID = id,
+                ReflectTypeID = id,
                 Name = name,
-                CarMaker = carMaker
+
             };
-            return BusTypeExt.Instance.BusType_InsertUpdate(busType);
+            return ReflectTypeExt.Instance.ReflectType_InsertUpdate(reflectType);
         }
 
 
-        public int AddBus(Bus bus)
+        public int AddReflect(Reflect reflect)
         {
-            return BusExt.Instance.Bus_InsertUpdate(bus);
+            return ReflectExt.Instance.Reflect_InsertUpdate(reflect);
         }
 
-        public Bus FindBusByID(int id)
+        public Reflect FindReflectByID(int id)
         {
-            return BusExt.Instance.Bus_Select_ID(id);
+            return ReflectExt.Instance.Reflect_Select_ID(id);
         }
 
-        public BusType FindBusTypeByID(int id)
+        public ReflectType FindReflectTypeByID(int id)
         {
-            return BusTypeExt.Instance.BusType_Select_BusTypeID(id);
+            return ReflectTypeExt.Instance.ReflectType_Select_ID(id);
         }
 
-        public BusType SelectBusTypeByID(int id)
+        public ReflectType SelectReflectTypeByIDs(int id)
         {
-            return BusTypeExt.Instance.BusType_Select_BusTypeID(id);
+            return ReflectTypeExt.Instance.ReflectType_Select_ID(id);
         }
 
-        public void DeleteBusType(int id)
+        public void DeleteReflectType(int id)
         {
-            BusTypeExt.Instance.BusType_Delete(id);
+            ReflectTypeExt.Instance.ReflectType_Delete(id);
         }
 
-        public void DeleteBusTypeIDs(List<string> ids)
+        public void DeleteReflectTypeIDs(List<string> ids)
         {
-            BusTypeExt.Instance.BusType_Delete_BusTypeIDs(ids);
+            ReflectTypeExt.Instance.ReflectType_Delete_IDs(ids);
         }
 
-        public void DeleteBusBusTypeIDs(List<string> ids)
+        public void DeleteReflectByID(int id)
         {
-            BusExt.Instance.Bus_Delete_BusTypeIDs(ids);
+            ReflectExt.Instance.Reflect_Delete(id);
         }
 
-        public void DeleteBusByID(int id)
+        public List<Reflect> Reflect_Pagination(int PageSize, int PageIndex, out int TotalRows)
         {
-            BusExt.Instance.Bus_Delete(id);
+            return ReflectExt.Instance.Reflect_Pagination(PageSize, PageIndex, out TotalRows);
         }
 
-        public List<Bus> Bus_Pagination(int PageSize, int PageIndex, out int TotalRows)
+        public List<ReflectType> Reflect_Type_Pagination(int PageSize, int PageIndex, out int TotalRows)
         {
-            return BusExt.Instance.Bus_Pagination(PageSize, PageIndex, out TotalRows);
+            return ReflectTypeExt.Instance.ReflectType_Pagination(PageSize, PageIndex, out TotalRows);
         }
 
-        public List<BusType> Bus_Type_Pagination(int PageSize, int PageIndex, out int TotalRows)
+        public int Get_Reflect_Total_Row()
         {
-            return BusTypeExt.Instance.BusType_Pagination(PageSize, PageIndex, out TotalRows);
+            return ReflectExt.Instance.Get_Total_Rows();
+        }
+        public void DeleteReflectByIDs(List<string> list)
+        {
+            ReflectExt.Instance.Reflect_Delete_IDs(list);
+        }
+        public void DeleteReflect(int id)
+        {
+            ReflectExt.Instance.Reflect_Delete(id);
         }
 
-        public int Get_Bus_Total_Row()
+        public Reflect FindBusByTitle(string tieude)
         {
-            return BusExt.Instance.Get_Total_Rows();
+            return ReflectExt.Instance.Reflect_Select_Title(tieude);
         }
-        public void DeleteBusByIDs(List<string> list)
+        public List<Reflect> Reflect_Find_KeyWord(int PageSize, int PageIndex, out int TotalRows)
         {
-            BusExt.Instance.Bus_Delete_IDs(list);
+            return ReflectExt.Instance.Reflect_Find_KeyWord("", PageSize, PageIndex, out TotalRows);
         }
-
-        public Bus FindBusByBienSoXe(string biensoxe)
+        public List<ReflectType> Reflect_Find_Type_KeyWord(int PageSize, int PageIndex, out int TotalRows)
         {
-            return BusExt.Instance.Bus_Select_BienSoXe(biensoxe);
-        }
-
-        public BusType FindBusTypeByBusTypeNameAndCarMarker(string bustypename, string carmarker)
-        {
-            return BusTypeExt.Instance.BusType_Select_BusTypeName(bustypename, carmarker);
+            return ReflectTypeExt.Instance.ReflectType_Find_KeyWord("", PageSize, PageIndex, out TotalRows);
         }
 
-        public Bus FindBusByBusNumber(string busnumber)
+        public ReflectType FindBusTypeByReflectTypeNameAndCarMarker(string Reflecttypename)
         {
-            return BusExt.Instance.Bus_Select_BusNumber(busnumber);
-        }
-        #endregion
-
-        #region Driver
-        public void Delete_IDs_Driver(List<String> IDs)
-        {
-            DriverExt.Instance.Delete_IDs(IDs);
-
+            return ReflectTypeExt.Instance.ReflectType_Select_ReflectTypeName(Reflecttypename);
         }
 
-        public void Delete_IDs_DriverOfBus(List<String> IDs)
+        public void DeleteListDocumentType(List<string> list)
         {
-            DriverOfBusExt.Instance.Delete_IDs(IDs);
-
-        }
-        public int InsertNUpdateDriver(Driver driver)
-        {
-            return DriverExt.Instance.InsertUpdate(driver);
+            DocumentTypeExt.Instance.Delete_IDs(list);
         }
 
-        public int InsertNUpdateDriverOfBus(Driver_Bus driver)
+        public int InsertUpdate_DocumentType(DocumentType obj)
         {
-            return DriverOfBusExt.Instance.InsertUpdate(driver);
+           return DocumentTypeExt.Instance.InsertUpdate(obj);
         }
 
-        public Driver Select_Driver_ID(int id)
+        public int InsertUpdate_Document(Document obj)
         {
-            return DriverExt.Instance.Select_ID(id);
+            return DocumentExt.Instance.InsertUpdate(obj);
         }
 
-        public Driver_Bus Select_BusOfDriver_ID(int id)
+
+        public DocumentType EditDocument_ByID(int idEdit)
         {
-            return DriverOfBusExt.Instance.Select_ID(id);
+            return DocumentTypeExt.Instance.Select_ID(idEdit);
         }
 
-        public List<Driver> Driver_Pagination(string keyword, int PageSize, int PageIndex, out int TotalRows)
+        public Document EditDocumentUI_ByID(int idEdit)
         {
-            return DriverExt.Instance.Find_KeyWord(keyword, PageSize, PageIndex, out TotalRows);
+            return DocumentExt.Instance.Select_ID(idEdit);
         }
-        #endregion
+
+        public List<DocumentType> FindDocumentTypeByKeyWord(string value, int pagesize, int index, out int rows)
+        {
+            return DocumentTypeExt.Instance.Find_KeyWord(value, pagesize, index, out rows);
+        }
+
+        public List<Document> FindDocumentByKeyWord(string value, int pagesize, int index, out int rows)
+        {
+            return DocumentExt.Instance.Find_KeyWord(value, pagesize, index, out rows);
+        }
+
+        public Document SelectDocumentId(int id)
+        {
+            return DocumentExt.Instance.Select_ID(id);
+        }
+
+        public List<Document> FindDocumentByPage(int pagesize, int pindex, out int rows)
+        {
+            return DocumentExt.Instance.Find_DocumentAll(pagesize, pindex, out rows);
+        }
+
+        public List<Document> Load_DocumentFindType(string loai,int pagesize, int pindex, out int rows)
+        {
+            return DocumentExt.Instance.Find_DocumentType(loai ,pagesize, pindex, out rows);
+        }
+
+        public List<DocumentType> SelectAll_DocumentType()
+        {
+            return DocumentTypeExt.Instance.Select_All();
+        }
+
+        public List<HandlingViolation> SelectAllHand()
+        {
+            return handlingViolationsExt.Instance.HandlingViolation_Select_All();
+        }
+        public List<String> SelectTitle()
+        {
+            return handlingViolationsExt.Instance.HandlingViolation_Select_All().Select(x => x.Title).ToList();
+        }
+        public int InsertUpdateInfo(HandlingViolation info)
+        {
+            return handlingViolationsExt.Instance.HandlingViolations_InsertUpdate(info);
+        }
+
+        public void DeleteInfoHand(int id)
+        {
+            handlingViolationsExt.Instance.HandlingViotions_Delete(id);
+        }
+
+        public HandlingViolation GetInfo_FromIDHand(int id)
+        {
+            return handlingViolationsExt.Instance.HandlingViolation_Select_ID(id);
+        }
+
+        public List<HandlingViolation> SearchByNameHand(string nameValue)
+        {
+            //Ghi loc, kiem tra quyen, kiem du lieu co hop le khong?
+            return handlingViolationsExt.Instance.HandlingViolation_Select_By("Title", nameValue);
+        }
+
     }
 }

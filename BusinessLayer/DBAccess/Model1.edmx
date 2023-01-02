@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ROUTE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ROUTE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bus">
           <Key>
             <PropertyRef Name="BusID" />
@@ -26,11 +26,11 @@
           <Property Name="RouteName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ResponsibleUnitID" Type="int" Nullable="false" />
           <Property Name="OperationType" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="OperationTime" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="OperationTime" Type="datetime" Nullable="false" />
           <Property Name="Fare" Type="int" Nullable="false" />
-          <Property Name="BusesAmount" Type="nvarchar" MaxLength="550" />
-          <Property Name="BusesTime" Type="nvarchar" MaxLength="550" Nullable="false" />
-          <Property Name="BusesSpace" Type="nvarchar" MaxLength="550" Nullable="false" />
+          <Property Name="BusesAmount" Type="int" Nullable="false" />
+          <Property Name="BusesTime" Type="datetime" Nullable="false" />
+          <Property Name="BusesSpace" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="BusStop">
           <Key>
@@ -105,9 +105,20 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="DateSubmitted" Type="datetime" Nullable="false" />
-          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Introduction">
+          <Key>
+            <PropertyRef Name="IntroductionID" />
+          </Key>
+          <Property Name="IntroductionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Picture" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="MENU">
           <Key>
@@ -120,21 +131,25 @@
           <Property Name="Mota" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="TypeMenuID" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ROUTE_MANAGEMENT.dbo.POSTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="POSTS">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Content" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="NgayDang" Type="datetime" />
-          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="Rank" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
-          <Property Name="NumberOfReviews" Type="int" Nullable="false" />
-          <Property Name="NumberOfResponse" Type="int" Nullable="false" />
+          <Property Name="NumberOfReviews" Type="int" />
+          <Property Name="NumberOfResponse" Type="int" />
           <Property Name="CoverImage" Type="nvarchar" MaxLength="1000" />
           <Property Name="Link" Type="nvarchar" MaxLength="200" />
-          <Property Name="TypePostsID" Type="int" Nullable="false" />
+          <Property Name="TypePostsID" Type="int" />
+          <Property Name="SummaryContent" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Reflect">
           <Key>
@@ -210,70 +225,37 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ROUTE_MANAGEMENT.dbo.TypePosts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TypePosts">
           <Key>
             <PropertyRef Name="TypePostsID" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="TypePostsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypePostsID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Route_BusRoutes">
-          <End Role="BusRoutes" Type="Self.BusRoutes" Multiplicity="1" />
-          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+        <Association Name="FK_Document_Type">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BusRoutes">
-              <PropertyRef Name="BusRouteID" />
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeID" />
             </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="BusRoutesID" />
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Route_BusStop">
-          <End Role="BusStop" Type="Self.BusStop" Multiplicity="1" />
-          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+        <Association Name="FK_Reflect_Type">
+          <End Role="ReflectType" Type="Self.ReflectType" Multiplicity="1" />
+          <End Role="Reflect" Type="Self.Reflect" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
+            <Principal Role="ReflectType">
+              <PropertyRef Name="ReflectTypeID" />
             </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="StartPositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Route_BusStop1">
-          <End Role="BusStop" Type="Self.BusStop" Multiplicity="1" />
-          <End Role="Route" Type="Self.Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
-            </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="EndPositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Stop_Route_BusStop">
-          <End Role="BusStop" Type="Self.BusStop" Multiplicity="1" />
-          <End Role="Stop_Route" Type="Self.Stop_Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
-            </Principal>
-            <Dependent Role="Stop_Route">
-              <PropertyRef Name="EndPositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Stop_Route_Route">
-          <End Role="Route" Type="Self.Route" Multiplicity="1" />
-          <End Role="Stop_Route" Type="Self.Stop_Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Route">
-              <PropertyRef Name="RouteID" />
-            </Principal>
-            <Dependent Role="Stop_Route">
-              <PropertyRef Name="RouteID" />
+            <Dependent Role="Reflect">
+              <PropertyRef Name="ReflectTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -288,8 +270,8 @@
           <EntitySet Name="Driver_Bus" EntityType="Self.Driver_Bus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HandlingViolations" EntityType="Self.HandlingViolations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Information" EntityType="Self.Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Introduction" EntityType="Self.Introduction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="POSTS" EntityType="Self.POSTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reflect" EntityType="Self.Reflect" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReflectType" EntityType="Self.ReflectType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResponsibleUnit" EntityType="Self.ResponsibleUnit" Schema="dbo" store:Type="Tables" />
@@ -297,137 +279,118 @@
           <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stop_Route" EntityType="Self.Stop_Route" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TypePosts" EntityType="Self.TypePosts" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Route_BusRoutes" Association="Self.FK_Route_BusRoutes">
-            <End Role="BusRoutes" EntitySet="BusRoutes" />
-            <End Role="Route" EntitySet="Route" />
+          <EntitySet Name="POSTS" EntityType="Self.POSTS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [POSTS].[ID] AS [ID], 
+    [POSTS].[Title] AS [Title], 
+    [POSTS].[NgayDang] AS [NgayDang], 
+    [POSTS].[Content] AS [Content], 
+    [POSTS].[Comments] AS [Comments], 
+    [POSTS].[NumberOfReviews] AS [NumberOfReviews], 
+    [POSTS].[NumberOfResponse] AS [NumberOfResponse], 
+    [POSTS].[CoverImage] AS [CoverImage], 
+    [POSTS].[Link] AS [Link], 
+    [POSTS].[TypePostsID] AS [TypePostsID], 
+    [POSTS].[SummaryContent] AS [SummaryContent]
+    FROM [dbo].[POSTS] AS [POSTS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TypePosts" EntityType="Self.TypePosts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TypePosts].[TypePostsID] AS [TypePostsID], 
+    [TypePosts].[Name] AS [Name]
+    FROM [dbo].[TypePosts] AS [TypePosts]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Document_Type" Association="Self.FK_Document_Type">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="Document" EntitySet="Document" />
           </AssociationSet>
-          <AssociationSet Name="FK_Route_BusStop" Association="Self.FK_Route_BusStop">
-            <End Role="BusStop" EntitySet="BusStop" />
-            <End Role="Route" EntitySet="Route" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Route_BusStop1" Association="Self.FK_Route_BusStop1">
-            <End Role="BusStop" EntitySet="BusStop" />
-            <End Role="Route" EntitySet="Route" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stop_Route_BusStop" Association="Self.FK_Stop_Route_BusStop">
-            <End Role="BusStop" EntitySet="BusStop" />
-            <End Role="Stop_Route" EntitySet="Stop_Route" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stop_Route_Route" Association="Self.FK_Stop_Route_Route">
-            <End Role="Route" EntitySet="Route" />
-            <End Role="Stop_Route" EntitySet="Stop_Route" />
+          <AssociationSet Name="FK_Reflect_Type" Association="Self.FK_Reflect_Type">
+            <End Role="ReflectType" EntitySet="ReflectType" />
+            <End Role="Reflect" EntitySet="Reflect" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ROUTE_MANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ROUTE_MANAGEMENTEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Buses" EntityType="ROUTE_MANAGEMENTModel.Bus" />
-          <EntitySet Name="BusStops" EntityType="ROUTE_MANAGEMENTModel.BusStop" />
-          <EntitySet Name="BusTypes" EntityType="ROUTE_MANAGEMENTModel.BusType" />
-          <EntitySet Name="Documents" EntityType="ROUTE_MANAGEMENTModel.Document" />
-          <EntitySet Name="DocumentTypes" EntityType="ROUTE_MANAGEMENTModel.DocumentType" />
-          <EntitySet Name="Drivers" EntityType="ROUTE_MANAGEMENTModel.Driver" />
-          <EntitySet Name="Driver_Bus" EntityType="ROUTE_MANAGEMENTModel.Driver_Bus" />
-          <EntitySet Name="HandlingViolations" EntityType="ROUTE_MANAGEMENTModel.HandlingViolation" />
-          <EntitySet Name="Information" EntityType="ROUTE_MANAGEMENTModel.Information" />
-          <EntitySet Name="MENUs" EntityType="ROUTE_MANAGEMENTModel.MENU" />
-          <EntitySet Name="POSTS" EntityType="ROUTE_MANAGEMENTModel.POST" />
-          <EntitySet Name="Reflects" EntityType="ROUTE_MANAGEMENTModel.Reflect" />
-          <EntitySet Name="ReflectTypes" EntityType="ROUTE_MANAGEMENTModel.ReflectType" />
-          <EntitySet Name="ResponsibleUnits" EntityType="ROUTE_MANAGEMENTModel.ResponsibleUnit" />
-          <EntitySet Name="Routes" EntityType="ROUTE_MANAGEMENTModel.Route" />
-          <EntitySet Name="Routes1" EntityType="ROUTE_MANAGEMENTModel.Route1" />
-          <EntitySet Name="Stop_Route" EntityType="ROUTE_MANAGEMENTModel.Stop_Route" />
-          <EntitySet Name="sysdiagrams" EntityType="ROUTE_MANAGEMENTModel.sysdiagram" />
-          <EntitySet Name="TypePosts" EntityType="ROUTE_MANAGEMENTModel.TypePost" />
-          <AssociationSet Name="FK_Route_BusStop" Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop">
-            <End Role="BusStop" EntitySet="BusStops" />
-            <End Role="Route" EntitySet="Routes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Route_BusStop1" Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop1">
-            <End Role="BusStop" EntitySet="BusStops" />
-            <End Role="Route" EntitySet="Routes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stop_Route_BusStop" Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_BusStop">
-            <End Role="BusStop" EntitySet="BusStops" />
-            <End Role="Stop_Route" EntitySet="Stop_Route" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stop_Route_Route" Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_Route">
-            <End Role="Route" EntitySet="Routes" />
-            <End Role="Stop_Route" EntitySet="Stop_Route" />
-          </AssociationSet>
-          <EntitySet Name="BusRoutes" EntityType="ROUTE_MANAGEMENTModel.BusRoute" />
-          <AssociationSet Name="FK_Route_BusRoutes" Association="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes">
-            <End Role="BusRoute" EntitySet="BusRoutes" />
-            <End Role="Route" EntitySet="Routes" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Bus">
           <Key>
             <PropertyRef Name="BusID" />
           </Key>
           <Property Name="BusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LicensePlates" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="BusNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LicensePlates" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BusNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SumSeats" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BusTypeID" Type="Int32" Nullable="false" />
           <Property Name="RoutesID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BusRoute">
+          <Key>
+            <PropertyRef Name="BusRouteID" />
+          </Key>
+          <Property Name="BusRouteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RouteNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RouteName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" />
+          <Property Name="OperationType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OperationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fare" Type="Int32" Nullable="false" />
+          <Property Name="BusesAmount" Type="Int32" Nullable="false" />
+          <Property Name="BusesTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BusesSpace" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="BusStop">
           <Key>
             <PropertyRef Name="BusStopID" />
           </Key>
           <Property Name="BusStopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BusStopName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="BusStopDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BusStopName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BusStopDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Latitude" Type="Double" Nullable="false" />
           <Property Name="Longitude" Type="Double" Nullable="false" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Wards" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="District" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Routes" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusStop" FromRole="BusStop" ToRole="Route" />
-          <NavigationProperty Name="Routes1" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusStop1" FromRole="BusStop" ToRole="Route" />
-          <NavigationProperty Name="Stop_Route" Relationship="ROUTE_MANAGEMENTModel.FK_Stop_Route_BusStop" FromRole="BusStop" ToRole="Stop_Route" />
+          <Property Name="District" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="BusType">
           <Key>
             <PropertyRef Name="BusTypeID" />
           </Key>
           <Property Name="BusTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CarMaker" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CarMaker" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Path" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DocumentTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DocumentType" Relationship="Self.FK_Document_Type" FromRole="Document" ToRole="DocumentType" />
         </EntityType>
         <EntityType Name="DocumentType">
           <Key>
             <PropertyRef Name="DocumentTypeID" />
           </Key>
           <Property Name="DocumentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Documents" Relationship="Self.FK_Document_Type" FromRole="DocumentType" ToRole="Document" />
         </EntityType>
         <EntityType Name="Driver">
           <Key>
             <PropertyRef Name="DriverID" />
           </Key>
           <Property Name="DriverID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IDCard" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDCard" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Sex" Type="Boolean" Nullable="false" />
           <Property Name="DayOfBirth" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="HomeTown" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTown" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Driver_Bus">
           <Key>
@@ -443,46 +406,41 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" />
           <Property Name="ProcessingTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Information">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Introduction">
+          <Key>
+            <PropertyRef Name="IntroductionID" />
+          </Key>
+          <Property Name="IntroductionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tag" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MENU">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Icon" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Mota" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TypeMenuID" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="POST">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="NgayDang" Type="DateTime" Precision="3" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Rank" Type="Int32" />
-          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="NumberOfReviews" Type="Int32" Nullable="false" />
-          <Property Name="NumberOfResponse" Type="Int32" Nullable="false" />
-          <Property Name="CoverImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TypePostsID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mota" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeMenuID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Reflect">
           <Key>
@@ -490,27 +448,29 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ReflectTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="VideoOrPicture" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VideoOrPicture" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ReflectType" Relationship="Self.FK_Reflect_Type" FromRole="Reflect" ToRole="ReflectType" />
         </EntityType>
         <EntityType Name="ReflectType">
           <Key>
             <PropertyRef Name="ReflectTypeID" />
           </Key>
           <Property Name="ReflectTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reflects" Relationship="Self.FK_Reflect_Type" FromRole="ReflectType" ToRole="Reflect" />
         </EntityType>
         <EntityType Name="ResponsibleUnit">
           <Key>
             <PropertyRef Name="ResponsibleUnitID" />
           </Key>
           <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReponsibleUnitName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ReponsibleUnitName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Route">
@@ -521,17 +481,13 @@
           <Property Name="BusRoutesID" Type="Int32" Nullable="false" />
           <Property Name="StartPositionID" Type="Int32" Nullable="false" />
           <Property Name="EndPositionID" Type="Int32" Nullable="false" />
-          <Property Name="RouteName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RouteName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RouteAmount" Type="Int32" Nullable="false" />
           <Property Name="RouteTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ApplicableDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="BusStop" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusStop" FromRole="Route" ToRole="BusStop" />
-          <NavigationProperty Name="BusStop1" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusStop1" FromRole="Route" ToRole="BusStop" />
-          <NavigationProperty Name="Stop_Route" Relationship="ROUTE_MANAGEMENTModel.FK_Stop_Route_Route" FromRole="Route" ToRole="Stop_Route" />
-          <NavigationProperty Name="BusRoute" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" FromRole="Route" ToRole="BusRoute" />
         </EntityType>
         <EntityType Name="Route1">
           <Key>
@@ -539,7 +495,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RouteID" Type="Int32" Nullable="false" />
-          <Property Name="NumberRoutes" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NumberRoutes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
         </EntityType>
@@ -551,103 +507,99 @@
           <Property Name="RouteID" Type="Int32" Nullable="false" />
           <Property Name="EndPositionID" Type="Int32" Nullable="false" />
           <Property Name="Order" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BusStop" Relationship="ROUTE_MANAGEMENTModel.FK_Stop_Route_BusStop" FromRole="Stop_Route" ToRole="BusStop" />
-          <NavigationProperty Name="Route" Relationship="ROUTE_MANAGEMENTModel.FK_Stop_Route_Route" FromRole="Stop_Route" ToRole="Route" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="POST">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Content" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfReviews" Type="Int32" />
+          <Property Name="NumberOfResponse" Type="Int32" />
+          <Property Name="CoverImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TypePostsID" Type="Int32" />
+          <Property Name="SummaryContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="TypePost">
           <Key>
             <PropertyRef Name="TypePostsID" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="TypePostsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TypePostsID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Route_BusStop">
-          <End Type="ROUTE_MANAGEMENTModel.BusStop" Role="BusStop" Multiplicity="1" />
-          <End Type="ROUTE_MANAGEMENTModel.Route" Role="Route" Multiplicity="*" />
+        <Association Name="FK_Document_Type">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
+            <Principal Role="DocumentType">
+              <PropertyRef Name="DocumentTypeID" />
             </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="StartPositionID" />
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Route_BusStop1">
-          <End Type="ROUTE_MANAGEMENTModel.BusStop" Role="BusStop" Multiplicity="1" />
-          <End Type="ROUTE_MANAGEMENTModel.Route" Role="Route" Multiplicity="*" />
+        <Association Name="FK_Reflect_Type">
+          <End Role="ReflectType" Type="Self.ReflectType" Multiplicity="1" />
+          <End Role="Reflect" Type="Self.Reflect" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
+            <Principal Role="ReflectType">
+              <PropertyRef Name="ReflectTypeID" />
             </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="EndPositionID" />
+            <Dependent Role="Reflect">
+              <PropertyRef Name="ReflectTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Stop_Route_BusStop">
-          <End Type="ROUTE_MANAGEMENTModel.BusStop" Role="BusStop" Multiplicity="1" />
-          <End Type="ROUTE_MANAGEMENTModel.Stop_Route" Role="Stop_Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusStop">
-              <PropertyRef Name="BusStopID" />
-            </Principal>
-            <Dependent Role="Stop_Route">
-              <PropertyRef Name="EndPositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Stop_Route_Route">
-          <End Type="ROUTE_MANAGEMENTModel.Route" Role="Route" Multiplicity="1" />
-          <End Type="ROUTE_MANAGEMENTModel.Stop_Route" Role="Stop_Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Route">
-              <PropertyRef Name="RouteID" />
-            </Principal>
-            <Dependent Role="Stop_Route">
-              <PropertyRef Name="RouteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="BusRoute">
-          <Key>
-            <PropertyRef Name="BusRouteID" />
-          </Key>
-          <Property Name="BusRouteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RouteNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RouteName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="ResponsibleUnitID" Type="Int32" Nullable="false" />
-          <Property Name="OperationType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="OperationTime" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Fare" Type="Int32" Nullable="false" />
-          <Property Name="BusesAmount" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
-          <Property Name="BusesTime" Type="String" Nullable="false" MaxLength="550" FixedLength="false" Unicode="true" />
-          <Property Name="BusesSpace" Type="String" Nullable="false" MaxLength="550" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Routes" Relationship="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" FromRole="BusRoute" ToRole="Route" />
-        </EntityType>
-        <Association Name="FK_Route_BusRoutes">
-          <End Type="ROUTE_MANAGEMENTModel.BusRoute" Role="BusRoute" Multiplicity="1" />
-          <End Type="ROUTE_MANAGEMENTModel.Route" Role="Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusRoute">
-              <PropertyRef Name="BusRouteID" />
-            </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="BusRoutesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        </Schema>
+        <EntityContainer Name="ROUTE_MANAGEMENTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Buses" EntityType="Self.Bus" />
+          <EntitySet Name="BusRoutes" EntityType="Self.BusRoute" />
+          <EntitySet Name="BusStops" EntityType="Self.BusStop" />
+          <EntitySet Name="BusTypes" EntityType="Self.BusType" />
+          <EntitySet Name="Documents" EntityType="Self.Document" />
+          <EntitySet Name="DocumentTypes" EntityType="Self.DocumentType" />
+          <EntitySet Name="Drivers" EntityType="Self.Driver" />
+          <EntitySet Name="Driver_Bus" EntityType="Self.Driver_Bus" />
+          <EntitySet Name="HandlingViolations" EntityType="Self.HandlingViolation" />
+          <EntitySet Name="Information" EntityType="Self.Information" />
+          <EntitySet Name="Introductions" EntityType="Self.Introduction" />
+          <EntitySet Name="MENUs" EntityType="Self.MENU" />
+          <EntitySet Name="Reflects" EntityType="Self.Reflect" />
+          <EntitySet Name="ReflectTypes" EntityType="Self.ReflectType" />
+          <EntitySet Name="ResponsibleUnits" EntityType="Self.ResponsibleUnit" />
+          <EntitySet Name="Routes" EntityType="Self.Route" />
+          <EntitySet Name="Routes1" EntityType="Self.Route1" />
+          <EntitySet Name="Stop_Route" EntityType="Self.Stop_Route" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="POSTS" EntityType="Self.POST" />
+          <EntitySet Name="TypePosts" EntityType="Self.TypePost" />
+          <AssociationSet Name="FK_Document_Type" Association="Self.FK_Document_Type">
+            <End Role="DocumentType" EntitySet="DocumentTypes" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reflect_Type" Association="Self.FK_Reflect_Type">
+            <End Role="ReflectType" EntitySet="ReflectTypes" />
+            <End Role="Reflect" EntitySet="Reflects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -656,232 +608,244 @@
           <EntitySetMapping Name="Buses">
             <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Bus">
               <MappingFragment StoreEntitySet="Bus">
-                <ScalarProperty Name="RoutesID" ColumnName="RoutesID" />
-                <ScalarProperty Name="BusTypeID" ColumnName="BusTypeID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SumSeats" ColumnName="SumSeats" />
-                <ScalarProperty Name="BusNumber" ColumnName="BusNumber" />
+                <ScalarProperty Name="BusID" ColumnName="BusID" />
                 <ScalarProperty Name="LicensePlates" ColumnName="LicensePlates" />
-                <ScalarProperty Name="BusID" ColumnName="BusID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BusStops">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.BusStop">
-              <MappingFragment StoreEntitySet="BusStop">
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="Wards" ColumnName="Wards" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="BusStopDescription" ColumnName="BusStopDescription" />
-                <ScalarProperty Name="BusStopName" ColumnName="BusStopName" />
-                <ScalarProperty Name="BusStopID" ColumnName="BusStopID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BusTypes">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.BusType">
-              <MappingFragment StoreEntitySet="BusType">
-                <ScalarProperty Name="CarMaker" ColumnName="CarMaker" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="BusTypeID" ColumnName="BusTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Documents">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Document">
-              <MappingFragment StoreEntitySet="Document">
-                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Path" ColumnName="Path" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DocumentTypes">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.DocumentType">
-              <MappingFragment StoreEntitySet="DocumentType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Drivers">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Driver">
-              <MappingFragment StoreEntitySet="Driver">
-                <ScalarProperty Name="HomeTown" ColumnName="HomeTown" />
-                <ScalarProperty Name="DayOfBirth" ColumnName="DayOfBirth" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Driver_Bus">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Driver_Bus">
-              <MappingFragment StoreEntitySet="Driver_Bus">
-                <ScalarProperty Name="DepartureDay" ColumnName="DepartureDay" />
-                <ScalarProperty Name="BusID" ColumnName="BusID" />
-                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HandlingViolations">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.HandlingViolation">
-              <MappingFragment StoreEntitySet="HandlingViolations">
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="ProcessingTime" ColumnName="ProcessingTime" />
-                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Information">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Information">
-              <MappingFragment StoreEntitySet="Information">
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MENUs">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.MENU">
-              <MappingFragment StoreEntitySet="MENU">
-                <ScalarProperty Name="TypeMenuID" ColumnName="TypeMenuID" />
-                <ScalarProperty Name="Mota" ColumnName="Mota" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="POSTS">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.POST">
-              <MappingFragment StoreEntitySet="POSTS">
-                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="CoverImage" ColumnName="CoverImage" />
-                <ScalarProperty Name="NumberOfResponse" ColumnName="NumberOfResponse" />
-                <ScalarProperty Name="NumberOfReviews" ColumnName="NumberOfReviews" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="Rank" ColumnName="Rank" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reflects">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Reflect">
-              <MappingFragment StoreEntitySet="Reflect">
+                <ScalarProperty Name="BusNumber" ColumnName="BusNumber" />
+                <ScalarProperty Name="SumSeats" ColumnName="SumSeats" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="VideoOrPicture" ColumnName="VideoOrPicture" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ReflectTypeID" ColumnName="ReflectTypeID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReflectTypes">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.ReflectType">
-              <MappingFragment StoreEntitySet="ReflectType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ReflectTypeID" ColumnName="ReflectTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ResponsibleUnits">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.ResponsibleUnit">
-              <MappingFragment StoreEntitySet="ResponsibleUnit">
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="ReponsibleUnitName" ColumnName="ReponsibleUnitName" />
-                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Routes">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Route">
-              <MappingFragment StoreEntitySet="Route">
-                <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
-                <ScalarProperty Name="ApplicableDate" ColumnName="ApplicableDate" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="RouteTime" ColumnName="RouteTime" />
-                <ScalarProperty Name="RouteAmount" ColumnName="RouteAmount" />
-                <ScalarProperty Name="RouteName" ColumnName="RouteName" />
-                <ScalarProperty Name="EndPositionID" ColumnName="EndPositionID" />
-                <ScalarProperty Name="StartPositionID" ColumnName="StartPositionID" />
-                <ScalarProperty Name="BusRoutesID" ColumnName="BusRoutesID" />
-                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Routes1">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Route1">
-              <MappingFragment StoreEntitySet="Routes">
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="NumberRoutes" ColumnName="NumberRoutes" />
-                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Stop_Route">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Stop_Route">
-              <MappingFragment StoreEntitySet="Stop_Route">
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="EndPositionID" ColumnName="EndPositionID" />
-                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
-                <ScalarProperty Name="StopRouteID" ColumnName="StopRouteID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TypePosts">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.TypePost">
-              <MappingFragment StoreEntitySet="TypePosts">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
+                <ScalarProperty Name="BusTypeID" ColumnName="BusTypeID" />
+                <ScalarProperty Name="RoutesID" ColumnName="RoutesID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BusRoutes">
             <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.BusRoute">
               <MappingFragment StoreEntitySet="BusRoutes">
-                <ScalarProperty Name="BusesSpace" ColumnName="BusesSpace" />
-                <ScalarProperty Name="BusesTime" ColumnName="BusesTime" />
-                <ScalarProperty Name="BusesAmount" ColumnName="BusesAmount" />
-                <ScalarProperty Name="Fare" ColumnName="Fare" />
-                <ScalarProperty Name="OperationTime" ColumnName="OperationTime" />
-                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
-                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
-                <ScalarProperty Name="RouteName" ColumnName="RouteName" />
-                <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
                 <ScalarProperty Name="BusRouteID" ColumnName="BusRouteID" />
+                <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
+                <ScalarProperty Name="RouteName" ColumnName="RouteName" />
+                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
+                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+                <ScalarProperty Name="OperationTime" ColumnName="OperationTime" />
+                <ScalarProperty Name="Fare" ColumnName="Fare" />
+                <ScalarProperty Name="BusesAmount" ColumnName="BusesAmount" />
+                <ScalarProperty Name="BusesTime" ColumnName="BusesTime" />
+                <ScalarProperty Name="BusesSpace" ColumnName="BusesSpace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusStops">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.BusStop">
+              <MappingFragment StoreEntitySet="BusStop">
+                <ScalarProperty Name="BusStopID" ColumnName="BusStopID" />
+                <ScalarProperty Name="BusStopName" ColumnName="BusStopName" />
+                <ScalarProperty Name="BusStopDescription" ColumnName="BusStopDescription" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Wards" ColumnName="Wards" />
+                <ScalarProperty Name="District" ColumnName="District" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusTypes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.BusType">
+              <MappingFragment StoreEntitySet="BusType">
+                <ScalarProperty Name="BusTypeID" ColumnName="BusTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CarMaker" ColumnName="CarMaker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTypes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Driver">
+              <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="DayOfBirth" ColumnName="DayOfBirth" />
+                <ScalarProperty Name="HomeTown" ColumnName="HomeTown" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Driver_Bus">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Driver_Bus">
+              <MappingFragment StoreEntitySet="Driver_Bus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+                <ScalarProperty Name="BusID" ColumnName="BusID" />
+                <ScalarProperty Name="DepartureDay" ColumnName="DepartureDay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HandlingViolations">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.HandlingViolation">
+              <MappingFragment StoreEntitySet="HandlingViolations">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
+                <ScalarProperty Name="ProcessingTime" ColumnName="ProcessingTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Information">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Information">
+              <MappingFragment StoreEntitySet="Information">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Introductions">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Introduction">
+              <MappingFragment StoreEntitySet="Introduction">
+                <ScalarProperty Name="IntroductionID" ColumnName="IntroductionID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENUs">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Mota" ColumnName="Mota" />
+                <ScalarProperty Name="TypeMenuID" ColumnName="TypeMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reflects">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Reflect">
+              <MappingFragment StoreEntitySet="Reflect">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ReflectTypeID" ColumnName="ReflectTypeID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="VideoOrPicture" ColumnName="VideoOrPicture" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReflectTypes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.ReflectType">
+              <MappingFragment StoreEntitySet="ReflectType">
+                <ScalarProperty Name="ReflectTypeID" ColumnName="ReflectTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResponsibleUnits">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.ResponsibleUnit">
+              <MappingFragment StoreEntitySet="ResponsibleUnit">
+                <ScalarProperty Name="ResponsibleUnitID" ColumnName="ResponsibleUnitID" />
+                <ScalarProperty Name="ReponsibleUnitName" ColumnName="ReponsibleUnitName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Route">
+              <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+                <ScalarProperty Name="BusRoutesID" ColumnName="BusRoutesID" />
+                <ScalarProperty Name="StartPositionID" ColumnName="StartPositionID" />
+                <ScalarProperty Name="EndPositionID" ColumnName="EndPositionID" />
+                <ScalarProperty Name="RouteName" ColumnName="RouteName" />
+                <ScalarProperty Name="RouteAmount" ColumnName="RouteAmount" />
+                <ScalarProperty Name="RouteTime" ColumnName="RouteTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ApplicableDate" ColumnName="ApplicableDate" />
+                <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes1">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Route1">
+              <MappingFragment StoreEntitySet="Routes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+                <ScalarProperty Name="NumberRoutes" ColumnName="NumberRoutes" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stop_Route">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Stop_Route">
+              <MappingFragment StoreEntitySet="Stop_Route">
+                <ScalarProperty Name="StopRouteID" ColumnName="StopRouteID" />
+                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+                <ScalarProperty Name="EndPositionID" ColumnName="EndPositionID" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSTS">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.POST">
+              <MappingFragment StoreEntitySet="POSTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="NumberOfReviews" ColumnName="NumberOfReviews" />
+                <ScalarProperty Name="NumberOfResponse" ColumnName="NumberOfResponse" />
+                <ScalarProperty Name="CoverImage" ColumnName="CoverImage" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
+                <ScalarProperty Name="SummaryContent" ColumnName="SummaryContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypePosts">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.TypePost">
+              <MappingFragment StoreEntitySet="TypePosts">
+                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

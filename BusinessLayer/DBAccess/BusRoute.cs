@@ -14,24 +14,15 @@ namespace BusinessLayer.DBAccess
     
     public partial class BusRoute
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BusRoute()
-        {
-            this.Routes = new HashSet<Route>();
-        }
-    
         public int BusRouteID { get; set; }
         public string RouteNumber { get; set; }
         public string RouteName { get; set; }
         public int ResponsibleUnitID { get; set; }
         public string OperationType { get; set; }
-        public string OperationTime { get; set; }
+        public System.DateTime OperationTime { get; set; }
         public int Fare { get; set; }
-        public string BusesAmount { get; set; }
-        public string BusesTime { get; set; }
-        public string BusesSpace { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Route> Routes { get; set; }
+        public int BusesAmount { get; set; }
+        public System.DateTime BusesTime { get; set; }
+        public System.DateTime BusesSpace { get; set; }
     }
 }

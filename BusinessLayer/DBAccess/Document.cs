@@ -19,5 +19,7 @@ namespace BusinessLayer.DBAccess
         public string Path { get; set; }
         public string Content { get; set; }
         public int DocumentTypeID { get; set; }
+    
+        public virtual DocumentType DocumentType { get; set; }
     }
 }

@@ -23,5 +23,7 @@ namespace BusinessLayer.DBAccess
         public string Content { get; set; }
         public string VideoOrPicture { get; set; }
         public string Status { get; set; }
+    
+        public virtual ReflectType ReflectType { get; set; }
     }
 }
