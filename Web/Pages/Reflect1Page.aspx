@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reflect1Page.aspx.cs" Inherits="Web.Pages.Reflect1Page" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="../CSS/styles.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/test.css" rel="stylesheet" type="text/css" />
+    <div class="detail">
+
+    
     <h1 style="text-align: center; color: #008000; font-weight: bold;" class="my-3">Quản lý phản ánh người dùng</h1>
         <div class="container p-3 mx-auto">
          <div class="col-md-1" >
@@ -160,11 +163,12 @@
         </div>
         <%--<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>--%>
     </div>
-
+   </div>
 
     <script>
         $("#selectAll").click(function () {
             $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
         });
     </script>
+
 </asp:Content>

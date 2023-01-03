@@ -104,13 +104,22 @@
         <nav>
             <div>
                 <ul id="user-menu" class="menu">
-                    <li class="menu-item"><a href="#">Trang chủ</a></li>
+                    <li class="menu-item"><a runat="server" href="~/Pages/UIHomePage.aspx">Trang chủ</a></li>
                     <li class="menu-item">
                         <a>Giới thiệu</a>
                         <ul class="sub-menu">
                             <li><a href="#">Giới thiệu chung</a></li>
                             <li><a href="#">Chức năng - nhiệm vụ</a></li>
                             <li><a href="#">Cơ cấu tổ chức</a></li>
+                        </ul>
+                        
+                    </li>
+                    <li class="menu-item">
+                        <a>Tra cứu thông tin</a>
+                        <ul class="sub-menu">
+                            <li><a runat="server" href="~/Pages/DocumentClientUI.aspx">Văn bản</a></li>
+                            <li><a href="#">Tuyển dụng</a></li>
+                            <li><a href="#">Thủ tục cấp tài hiệu xe</a></li>
                         </ul>
                     </li>
                     <li class="menu-item">
@@ -120,6 +129,9 @@
                             <li><a runat="server" href="~/Pages/UIBusRoute.aspx">Tuyến</a></li>
                         </ul>
                     </li>
+
+                    <li class="menu-item"><a runat="server" href="~/Pages/XuLyViPhamHome.aspx">Xử lý vi phạm</a></li>
+                     <li class="menu-item"><a runat="server" href="~/Pages/ReflectUser.aspx">Phản ánh</a></li>
                 </ul>
                 <ul id="admin-menu" class="menu">
                     <li class="menu-item">
@@ -149,6 +161,43 @@
                         </ul>
                     </li>
                    
+                     <li class="menu-item">
+                        <a>Văn bản</a>
+                        <ul class="sub-menu">
+                            <li><a runat="server" href="~/Pages/DocumentTypeUI.aspx">Loại Văn Bản</a></li>
+                            <li><a runat="server" href="~/Pages/DocumentUI.aspx">Văn Bản</a></li>
+                            
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a>Phản ánh</a>
+                        <ul class="sub-menu">
+                            <li><a runat="server" href="~/Pages/Reflect1Page.aspx">Phản Ánh Người Dùng</a></li>
+                            <li><a runat="server" href="~/Pages/ReflectPage.aspx">Phản Ánh</a></li>
+                            
+                        </ul>
+                    </li>
+
+                      <li class="menu-item">
+                        <a>Xử lý vi phạm</a>
+                        <ul class="sub-menu">
+                            <li><a runat="server" href="~/Pages/XuLyViPham.aspx">Xử lý vi phạm</a></li>
+                            
+                            
+                        </ul>
+                    </li>
+
+                     <li class="menu-item">
+                        <a>Bài viết</a>
+                        <ul class="sub-menu">
+                            <li><a runat="server" href="~/Pages/PostPage.aspx">Bài viết</a></li>
+                            
+                            
+                        </ul>
+                    </li>
+
+
                     <li class="menu-item"><a runat="server" href="~/Contact">Liên hệ</a></li>
                 </ul>
             </div>

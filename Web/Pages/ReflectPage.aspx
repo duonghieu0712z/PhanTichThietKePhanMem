@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ReflectPage.aspx.cs" Inherits="Web.Pages.ReflectPage" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="../CSS/styles.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/test.css" rel="stylesheet" type="text/css" />
+    <div class="detail">
     <h1 class="mt-3" style="text-align: center; color: #008000; font-weight: bold;">Quản lý phản ánh</h1>
     <div class="container my-3 py-3">
         <div class="row mb-3">
@@ -66,6 +67,8 @@
             </div>
         </div>
     </div>
+
+        </div>
     <script>
         $("#selectAll").click(function () {
             $("input[type=checkbox]").prop('checked', $(this).prop('checked'));

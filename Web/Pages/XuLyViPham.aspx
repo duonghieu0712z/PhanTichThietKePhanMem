@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#"  AutoEventWireup="true" CodeBehind="XuLyViPham.aspx.cs" Inherits="Web.Pages.XuLyViPham" %>
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">

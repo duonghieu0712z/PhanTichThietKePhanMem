@@ -1,10 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DocumentClientUI.aspx.cs" Inherits="Web.Pages.DocumentClientUI" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <link href="../CSS/styles.css" rel="stylesheet" type="text/css" />
+     <link href="../CSS/test.css" rel="stylesheet" type="text/css" />
+    <div class="detail">
     <asp:Panel ID="Panel1" runat="server">
     
-        <asp:Label ID="Label1" runat="server" Text="Tra cứu văn bản"  style="margin-left:20px; font-family:'Times New Roman', Times, serif;font-weight:bold;font-size:35px;" BorderColor="White" ForeColor="#38B47C"></asp:Label>
+        
+        <asp:Label style="margin-left:350px;text-align:center; font-size:23px; color:#38B47C;font-weight:bold" ID="Label3" runat="server" Text="Label">SỞ GIAO THÔNG VẬN TẢI THÀNH PHỐ ĐÀ LẠT</asp:Label>
         <br />
+        <asp:Label  style="margin-left:200px;text-align:center; font-size:23px; color:#38B47C;font-weight:bold"  ID="Label4" runat="server" Text="Label">TRUNG TÂM QUẢN LÝ GIAO THÔNG CÔNG CỘNG THÀNH PHỐ ĐÀ LẠT</asp:Label>
+        
+        <br />
+
+        <div class="red">
+              <asp:Label ID="Label1" runat="server" Text="Tra cứu văn bản"  style="margin-left:20px; font-family:'Times New Roman', Times, serif;font-weight:bold;font-size:25px;" ForeColor="#38B47C" ></asp:Label>
+        <br />
+        </div>
+      
     
             <asp:DropDownList style="margin-left:20px; margin-top:10px; width: 100px; height:30px; border-radius:5px;" CssClass="custom-select" AutoPostBack="true" ID="dlPageNumber" runat="server"  BackColor="#38b47c" ForeColor="White" OnSelectedIndexChanged="dlPageNumber_SelectedIndexChanged">
                         <asp:ListItem>5</asp:ListItem>
@@ -90,6 +101,6 @@
                 </div>
             </asp:Panel>
         </div>
-
+    </div>
 </asp:Content>
 

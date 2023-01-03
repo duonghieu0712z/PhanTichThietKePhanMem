@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DocumentTypeUI.aspx.cs" Inherits="Web.Pages.DocumentTypeUI" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <link href="../CSS/test.css" rel="stylesheet" type="text/css" />
 
     <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: xx-large; background-color: #FFFFFF; font-weight: bold; color: #38b47c;">Quản lý thể loại văn bản</h2>
     <div class="card">
         <div class="card-header">
-            <div class="form-row">
+            <div class="row-cao">
                 <div class="col-md-1">
                     <asp:DropDownList style="margin-left:-10px;width: 100px; height:30px; border-radius:5px;" CssClass="custom-select" AutoPostBack="true" ID="dlPageNumber" runat="server" OnSelectedIndexChanged="dlPageNumber_SelectedIndexChanged" BackColor="#38b47c" ForeColor="White">
                         <asp:ListItem>5</asp:ListItem>
@@ -26,14 +26,15 @@
                         <asp:ListItem>1000</asp:ListItem>
                     </asp:DropDownList>
                 </div>
+                
                 <div class="col-md-2">
                     <div class="input-group mb-3">
-                         <input style="width:250px;border-radius:10px; margin-left:30px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: medium; font-weight: 100; font-style: italic; font-variant: normal; text-transform: none; background-color: #FFFFFF; color: #40b47c;" type="text" class="form-control" id="txtKeyword" placeholder="Nhập từ khoá bạn muốn tìm..." runat="server">
+                         <input style="width:400px;;border-radius:10px; margin-left:30px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: medium; font-weight: 100; font-style: italic; font-variant: normal; text-transform: none; background-color: #FFFFFF; color: #40b47c;" type="text" class="form-control" id="txtKeyword" placeholder="Nhập từ khoá bạn muốn tìm..." runat="server">
                     </div>
                   
                 </div>
                 <div class="cod-md-2">
-                    <asp:Button  style="margin-left:110px;" ID="btTim" runat="server" CssClass="btn btn-primary" Text="Tìm" OnClick="btTim_Click" BackColor="#40B47C" />
+                    <asp:Button  style="margin-left:110px; " ID="btTim" runat="server" CssClass="btn btn-primary" Text="Tìm" OnClick="btTim_Click" BackColor="#40B47C" />
                 </div>
                 &nbsp;
                 <div class="cod-md-2">

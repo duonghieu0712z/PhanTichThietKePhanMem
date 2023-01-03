@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DocumentUI.aspx.cs" Inherits="Web.Pages.DocumentUI" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+      <link href="../CSS/test.css" rel="stylesheet" type="text/css" />
 
     <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: xx-large; background-color: #FFFFFF; font-weight: bold; color: #38b47c;">Quản lý văn bản</h2>
     <div class="card">
         <div class="card-header">
-            <div class="form-row">
+            <div class="row-cao">
                 <div class="col-md-1">
                     <asp:DropDownList style="margin-left:-10px;width: 100px; height:30px; border-radius:5px;" CssClass="custom-select" AutoPostBack="true" ID="dlPageNumber" runat="server" OnSelectedIndexChanged="dlPageNumber_SelectedIndexChanged" BackColor="#38b47c" ForeColor="White">
                         <asp:ListItem>5</asp:ListItem>

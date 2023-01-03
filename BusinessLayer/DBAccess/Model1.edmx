@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ROUTE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ROUTE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bus">
           <Key>
             <PropertyRef Name="BusID" />
@@ -107,8 +107,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="DateSubmitted" Type="datetime" Nullable="false" />
-          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="Image" Type="nchar" MaxLength="500" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MENU">
           <Key>
@@ -131,12 +131,12 @@
           <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="Rank" Type="int" />
           <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
-          <Property Name="NumberOfReviews" Type="int" Nullable="false" />
-          <Property Name="NumberOfResponse" Type="int" Nullable="false" />
+          <Property Name="NumberOfReviews" Type="int" />
+          <Property Name="NumberOfResponse" Type="int" />
           <Property Name="CoverImage" Type="nvarchar" MaxLength="1000" />
           <Property Name="Link" Type="nvarchar" MaxLength="200" />
-          <Property Name="TypePostsID" Type="int" Nullable="false" />
-          <Property Name="SummaryContent" Type="nchar" MaxLength="3999" />
+          <Property Name="TypePostsID" Type="int" />
+          <Property Name="SummaryContent" Type="nvarchar" MaxLength="3000" />
         </EntityType>
         <EntityType Name="Reflect">
           <Key>
@@ -342,7 +342,8 @@
             <End Role="Stop_Route" EntitySet="Stop_Route" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ROUTE_MANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -447,6 +448,16 @@
           <Property Name="ProcessingTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityType Name="Information">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="MENU">
           <Key>
             <PropertyRef Name="ID" />
@@ -457,6 +468,23 @@
           <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Mota" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TypeMenuID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfReviews" Type="Int32" />
+          <Property Name="NumberOfResponse" Type="Int32" />
+          <Property Name="CoverImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TypePostsID" Type="Int32" />
+          <Property Name="SummaryContent" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Reflect">
           <Key>
@@ -631,7 +659,9 @@
           <EntitySet Name="Drivers" EntityType="Self.Driver" />
           <EntitySet Name="Driver_Bus" EntityType="Self.Driver_Bus" />
           <EntitySet Name="HandlingViolations" EntityType="Self.HandlingViolation" />
+          <EntitySet Name="Information" EntityType="Self.Information" />
           <EntitySet Name="MENUs" EntityType="Self.MENU" />
+          <EntitySet Name="POSTS" EntityType="Self.POST" />
           <EntitySet Name="Reflects" EntityType="Self.Reflect" />
           <EntitySet Name="ReflectTypes" EntityType="Self.ReflectType" />
           <EntitySet Name="ResponsibleUnits" EntityType="Self.ResponsibleUnit" />
@@ -667,36 +697,7 @@
             <End Role="Route" EntitySet="Routes" />
             <End Role="Stop_Route" EntitySet="Stop_Route" />
           </AssociationSet>
-          <EntitySet Name="POSTS" EntityType="ROUTE_MANAGEMENTModel.POST" />
-          <EntitySet Name="Information" EntityType="ROUTE_MANAGEMENTModel.Information" />
         </EntityContainer>
-        <EntityType Name="POST">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="NgayDang" Type="DateTime" Precision="3" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Rank" Type="Int32" />
-          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="NumberOfReviews" Type="Int32" Nullable="false" />
-          <Property Name="NumberOfResponse" Type="Int32" Nullable="false" />
-          <Property Name="CoverImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TypePostsID" Type="Int32" Nullable="false" />
-          <Property Name="SummaryContent" Type="String" MaxLength="3999" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Information">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -807,6 +808,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Information">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Information">
+              <MappingFragment StoreEntitySet="Information">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MENUs">
             <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.MENU">
               <MappingFragment StoreEntitySet="MENU">
@@ -816,6 +828,24 @@
                 <ScalarProperty Name="Icon" ColumnName="Icon" />
                 <ScalarProperty Name="Mota" ColumnName="Mota" />
                 <ScalarProperty Name="TypeMenuID" ColumnName="TypeMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSTS">
+            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.POST">
+              <MappingFragment StoreEntitySet="POSTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="NumberOfReviews" ColumnName="NumberOfReviews" />
+                <ScalarProperty Name="NumberOfResponse" ColumnName="NumberOfResponse" />
+                <ScalarProperty Name="CoverImage" ColumnName="CoverImage" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
+                <ScalarProperty Name="SummaryContent" ColumnName="SummaryContent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -894,35 +924,6 @@
               <MappingFragment StoreEntitySet="TypePosts">
                 <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="POSTS">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.POST">
-              <MappingFragment StoreEntitySet="POSTS">
-                <ScalarProperty Name="SummaryContent" ColumnName="SummaryContent" />
-                <ScalarProperty Name="TypePostsID" ColumnName="TypePostsID" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="CoverImage" ColumnName="CoverImage" />
-                <ScalarProperty Name="NumberOfResponse" ColumnName="NumberOfResponse" />
-                <ScalarProperty Name="NumberOfReviews" ColumnName="NumberOfReviews" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="Rank" ColumnName="Rank" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Information">
-            <EntityTypeMapping TypeName="ROUTE_MANAGEMENTModel.Information">
-              <MappingFragment StoreEntitySet="Information">
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

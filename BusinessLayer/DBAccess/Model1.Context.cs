@@ -34,7 +34,9 @@ namespace BusinessLayer.DBAccess
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<Driver_Bus> Driver_Bus { get; set; }
         public virtual DbSet<HandlingViolation> HandlingViolations { get; set; }
+        public virtual DbSet<Information> Information { get; set; }
         public virtual DbSet<MENU> MENUs { get; set; }
+        public virtual DbSet<POST> POSTS { get; set; }
         public virtual DbSet<Reflect> Reflects { get; set; }
         public virtual DbSet<ReflectType> ReflectTypes { get; set; }
         public virtual DbSet<ResponsibleUnit> ResponsibleUnits { get; set; }
@@ -42,7 +44,5 @@ namespace BusinessLayer.DBAccess
         public virtual DbSet<Route1> Routes1 { get; set; }
         public virtual DbSet<Stop_Route> Stop_Route { get; set; }
         public virtual DbSet<TypePost> TypePosts { get; set; }
-        public virtual DbSet<POST> POSTS { get; set; }
-        public virtual DbSet<Information> Information { get; set; }
     }
 }
