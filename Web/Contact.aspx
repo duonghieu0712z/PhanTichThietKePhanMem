@@ -100,6 +100,27 @@
         </div>
         <hr />
         <div class="row">
+            <h3>Nhóm 7</h3>
+            <div class="col-6">
+                <h4>Chức năng thực hiện</h4>
+                <ul>
+                    <li>
+                        <p>Quản lý thông tin</p>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="col-6">
+                <h4>Thành viên</h4>
+                <ul>
+                    <li><strong>Nguyễn Ngọc Thiên Thư: </strong><a href="mailto:1911211@dlu.edu.vn">1911211@dlu.edu.vn</a></li>
+                    <li><strong>Nguyễn Thành Phú: </strong><a href="mailto:1911185@dlu.edu.vn">1911185@dlu.edu.vn</a></li>
+                    <li><strong>Đào Xuân Hải: </strong><a href="mailto:1911147@dlu.edu.vn">1911147@dlu.edu.vn</a></li>                                        
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
             <h3>Nhóm 9</h3>
             <div class="col-6">
                 <h4>Chức năng thực hiện</h4>
