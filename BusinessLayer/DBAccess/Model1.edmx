@@ -107,8 +107,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="DateSubmitted" Type="datetime" Nullable="false" />
-          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="Image" Type="nchar" MaxLength="500" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MENU">
           <Key>
@@ -131,12 +131,12 @@
           <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="Rank" Type="int" />
           <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
-          <Property Name="NumberOfReviews" Type="int" Nullable="false" />
-          <Property Name="NumberOfResponse" Type="int" Nullable="false" />
+          <Property Name="NumberOfReviews" Type="int" />
+          <Property Name="NumberOfResponse" Type="int" />
           <Property Name="CoverImage" Type="nvarchar" MaxLength="1000" />
           <Property Name="Link" Type="nvarchar" MaxLength="200" />
-          <Property Name="TypePostsID" Type="int" Nullable="false" />
-          <Property Name="SummaryContent" Type="nchar" MaxLength="3999" />
+          <Property Name="TypePostsID" Type="int" />
+          <Property Name="SummaryContent" Type="nvarchar" MaxLength="3000" />
         </EntityType>
         <EntityType Name="Reflect">
           <Key>
@@ -680,12 +680,12 @@
           <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Rank" Type="Int32" />
           <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="NumberOfReviews" Type="Int32" Nullable="false" />
-          <Property Name="NumberOfResponse" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfReviews" Type="Int32" />
+          <Property Name="NumberOfResponse" Type="Int32" />
           <Property Name="CoverImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TypePostsID" Type="Int32" Nullable="false" />
-          <Property Name="SummaryContent" Type="String" MaxLength="3999" FixedLength="true" Unicode="true" />
+          <Property Name="TypePostsID" Type="Int32" />
+          <Property Name="SummaryContent" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Information">
           <Key>
@@ -694,8 +694,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

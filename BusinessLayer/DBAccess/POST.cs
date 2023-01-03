@@ -20,11 +20,11 @@ namespace BusinessLayer.DBAccess
         public string Content { get; set; }
         public Nullable<int> Rank { get; set; }
         public string Comments { get; set; }
-        public int NumberOfReviews { get; set; }
-        public int NumberOfResponse { get; set; }
+        public Nullable<int> NumberOfReviews { get; set; }
+        public Nullable<int> NumberOfResponse { get; set; }
         public string CoverImage { get; set; }
         public string Link { get; set; }
-        public int TypePostsID { get; set; }
+        public Nullable<int> TypePostsID { get; set; }
         public string SummaryContent { get; set; }
     }
 }
