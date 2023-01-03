@@ -132,6 +132,7 @@
 
                     <li class="menu-item"><a runat="server" href="~/Pages/XuLyViPhamHome.aspx">Xử lý vi phạm</a></li>
                      <li class="menu-item"><a runat="server" href="~/Pages/ReflectUser.aspx">Phản ánh</a></li>
+                    <li><a runat="server" href="~/Pages/SearchBusPage.aspx">Tìm Kiếm Xe Buýt</a></li>
                 </ul>
                 <ul id="admin-menu" class="menu">
                     <li class="menu-item">
@@ -152,11 +153,13 @@
                         </ul>
                     </li>
                     <li class="menu-item">
+                        <a runat="server" href="~/Pages/TrangThongtin.aspx">Quản lý thông tin</a>
+                    </li>
+                    <li class="menu-item">
                         <a>Xe buýt</a>
                         <ul class="sub-menu">
                             <li><a runat="server" href="~/Pages/BusTypePage.aspx">Loại Xe Buýt</a></li>
                             <li><a runat="server" href="~/Pages/BusPage.aspx">Xe Buýt</a></li>
-                            <li><a runat="server" href="~/Pages/SearchBusPage.aspx">Tìm Kiếm Xe Buýt</a></li>
                             <li><a runat="server" href="~/Pages/DriverPage.aspx">Quản lý tài xế</a></li>
                         </ul>
                     </li>
