@@ -79,6 +79,28 @@
         </div>
         <hr />
         <div class="row">
+            <h3>Nhóm 5</h3>
+            <div class="col-6">
+                <h4>Chức năng thực hiện</h4>
+                <ul>
+                    <li>
+                        <p>Quản lý phản ánh </p>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-6">
+                <h4>Thành viên</h4>
+                <ul>
+                    <li>1910128 Phan Quốc Huy </li>
+                    <li>1911170 Nguyễn Hữu Thành Nam </li>
+                    <li>1914627 Lê Thành Tựu </li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
             <h3>Nhóm 6</h3>
             <div class="col-6">
                 <h4>Chức năng thực hiện</h4>
@@ -86,7 +108,7 @@
                     <li>
                         <p>Quản lý tài xế</p>
                     </li>
-                    
+
                 </ul>
             </div>
             <div class="col-6">
@@ -94,10 +116,54 @@
                 <ul>
                     <li><strong>Trương Quang Tuấn: </strong><a href="mailto:1910152@dlu.edu.vn">1910152@dlu.edu.vn</a></li>
                     <li><strong>Phan Thị Hoài Thương: </strong><a href="mailto:1911213@dlu.edu.vn">1911213@dlu.edu.vn</a></li>
-                    <li><strong>Trần Thành Tài: </strong><a href="mailto:1911200@dlu.edu.vn">1911200@dlu.edu.vn</a></li>                                        
+                    <li><strong>Trần Thành Tài: </strong><a href="mailto:1911200@dlu.edu.vn">1911200@dlu.edu.vn</a></li>
                 </ul>
             </div>
         </div>
+        <hr />
+        <div class="row">
+            <h3>Nhóm 7</h3>
+            <div class="col-6">
+                <h4>Chức năng thực hiện</h4>
+                <ul>
+                    <li>
+                        <p>Quản lý bảng Thông tin</p>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-6">
+                <h4>Thành viên</h4>
+                <ul>
+                    <li>1911185 - Nguyễn Thành Phú</li>
+                    <li>1911147 - Đào Xuân Hải</li>
+                    <li>1911211 - Nguyễn Ngọc Thiên Thư</li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <h3>Nhóm 8</h3>
+            <div class="col-6">
+                <h4>Chức năng thực hiện</h4>
+                <ul>
+                    <li>
+                        <p>Xử lý vi phạm </p>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-6">
+                <h4>Thành viên</h4>
+                <ul>
+                    <li>Trần Minh Cảnh </li>
+
+                </ul>
+            </div>
+        </div>
+
         <hr />
         <div class="row">
             <h3>Nhóm 9</h3>
@@ -124,8 +190,30 @@
                 </ul>
             </div>
         </div>
+        <hr />
+        <div class="row">
+            <h3>Nhóm 10</h3>
+            <div class="col-6">
+                <h4>Chức năng thực hiện</h4>
+                <ul>
+                    <li>
+                        <p>Quản lý bài viết</p>
+                    </li>
 
-             <div class="row">
+
+                </ul>
+            </div>
+            <div class="col-6">
+                <h4>Thành viên</h4>
+                <ul>
+                    <li>1911182- Nguyễn Văn Nhựt</li>
+                    <li>1911162- Vũ Thành Đại</li>
+                    <li>1911135- Mai Thanh Lâm</li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
             <h3>Nhóm 11</h3>
             <div class="col-6">
                 <h4>Chức năng thực hiện</h4>
@@ -136,108 +224,26 @@
                     <li>
                         <p>Quản lý thể loại văn bản</p>
                     </li>
-                   
+
                 </ul>
             </div>
             <div class="col-6">
                 <h4>Thành viên</h4>
                 <ul>
-                    <li><strong>Lưu Nguyễn Vân Anh </strong> - 1910115</li>
-                    <li><strong>Nguyễn Hoàng Trung Vương </strong> - 1910156</li>
-                    <li><strong>Tôn Thất Nhật Minh </strong> - 1910136</li>
+                    <li><strong>Lưu Nguyễn Vân Anh </strong>- 1910115</li>
+                    <li><strong>Nguyễn Hoàng Trung Vương </strong>- 1910156</li>
+                    <li><strong>Tôn Thất Nhật Minh </strong>- 1910136</li>
                 </ul>
             </div>
         </div>
+        <hr />
 
 
-           <div class="row">
-            <h3>Nhóm 7</h3>
-            <div class="col-6">
-                <h4>Chức năng thực hiện</h4>
-                <ul>
-                    <li>
-                        <p>Quản lý bảng Thông tin</p>
-                    </li>
-                   
-                   
-                </ul>
-            </div>
-            <div class="col-6">
-                <h4>Thành viên</h4>
-                <ul>
-                          <li> 1911185 - Nguyễn Thành Phú</li>
-                        <li>1911147 - Đào Xuân Hải</li>
-                        <li> 1911211 - Nguyễn Ngọc Thiên Thư</li>
-                </ul>
-            </div>
-        </div>
 
 
-           <div class="row">
-            <h3>Nhóm 10</h3>
-            <div class="col-6">
-                <h4>Chức năng thực hiện</h4>
-                <ul>
-                    <li>
-                        <p>Quản lý bài viết</p>
-                    </li>
-                   
-                   
-                </ul>
-            </div>
-            <div class="col-6">
-                <h4>Thành viên</h4>
-                <ul>
-                          <li> 1911182- Nguyễn Văn Nhựt</li>
-                        <li>1911162- Vũ Thành Đại</li>
-                        <li> 1911135- Mai Thanh Lâm</li>
-                </ul>
-            </div>
-        </div>
 
 
-           <div class="row">
-            <h3>Nhóm 5</h3>
-            <div class="col-6">
-                <h4>Chức năng thực hiện</h4>
-                <ul>
-                    <li>
-                        <p> Quản lý phản ánh </p>
-                    </li>
-                   
-                   
-                </ul>
-            </div>
-            <div class="col-6">
-                <h4>Thành viên</h4>
-                <ul>
-                          <li> 1910128 Phan Quốc Huy </li>
-                        <li>1911170 Nguyễn Hữu Thành Nam </li>
-                        <li>1914627 Lê Thành Tựu </li>
-                </ul>
-            </div>
-        </div>
 
-         <div class="row">
-            <h3>Nhóm 8</h3>
-            <div class="col-6">
-                <h4>Chức năng thực hiện</h4>
-                <ul>
-                    <li>
-                        <p> Xử lý vi phạm </p>
-                    </li>
-                   
-                   
-                </ul>
-            </div>
-            <div class="col-6">
-                <h4>Thành viên</h4>
-                <ul>
-                          <li> Trần Minh Cảnh </li>
-                       
-                </ul>
-            </div>
-        </div>
-        
+
     </div>
 </asp:Content>
