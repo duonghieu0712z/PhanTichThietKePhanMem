@@ -34,7 +34,6 @@ namespace Web.Pages
             this.drDriverBus.DataValueField = "BusID";
             this.DataBind();
         }
-
         protected void btXoa_Click(object sender, EventArgs e)
         {
             string selected = Request.Form["cbID"];
@@ -60,6 +59,8 @@ namespace Web.Pages
             this.Label1.Text = "";
             this.lablebus.Visible = false;
             this.drDriverBus.Visible = false;
+            this.btLuu.Visible = true;
+            this.btnUpdate.Visible = false;
         }
 
         protected void btLuu_Click(object sender, EventArgs e)
@@ -168,6 +169,7 @@ namespace Web.Pages
         private void LoadEditButton()
         {
             this.btLuu.Visible = false;
+            this.btnUpdate.Visible = true;
             try
             {
                 int idEdit = int.Parse(Request.QueryString["idedit"]);
@@ -258,6 +260,9 @@ namespace Web.Pages
         {
             Driver_Bus driver_Bus = this.GetBusOfDriver();
             HRFunctions.Instance.InsertNUpdateDriverOfBus(driver_Bus);
+
+            Driver obj = this.GetValue();
+            HRFunctions.Instance.InsertNUpdateDriver(obj);
 
             ShowAlert("swal('Success!','Cập nhật thông tin!','success')");
             this.LoadTimKiem(0);
