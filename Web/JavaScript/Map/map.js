@@ -432,7 +432,7 @@ function postLocation() {
 
 	function OnSuccess(response) {
 		if (response.d.length == 0) {
-			alert("Hai điểm được chọn quá gần nhau");
+			alert("Hai điểm được chọn quá gần nhau, hoặc là không có tuyến giữa 2 điểm bắt đầu và kết thúc");
 			return;
 		}
 		clearDirection();
