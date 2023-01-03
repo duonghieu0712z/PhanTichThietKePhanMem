@@ -14,6 +14,14 @@ namespace BusinessLayer.DBAccess
     
     public partial class BusStop
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BusStop()
+        {
+            this.Routes = new HashSet<Route>();
+            this.Routes1 = new HashSet<Route>();
+            this.Stop_Route = new HashSet<Stop_Route>();
+        }
+    
         public int BusStopID { get; set; }
         public string BusStopName { get; set; }
         public string BusStopDescription { get; set; }
@@ -22,5 +30,12 @@ namespace BusinessLayer.DBAccess
         public string Street { get; set; }
         public string Wards { get; set; }
         public string District { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Route> Routes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Route> Routes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Stop_Route> Stop_Route { get; set; }
     }
 }

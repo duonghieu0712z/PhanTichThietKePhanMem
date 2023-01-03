@@ -58,21 +58,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -134,10 +119,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="CSS\RouteMgmt.css" />
     <Content Include="CSS\RoutePage.css" />
-    <Content Include="CSS\styles.css" />
-    <Content Include="CSS\StyleSheet1.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -150,7 +134,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\DocumentClientUI.aspx" />
     <Content Include="Pages\DocumentTypeUI.aspx" />
     <Content Include="Pages\DocumentUI.aspx" />
@@ -160,11 +143,42 @@
     <Content Include="Pages\Reflect1Page.aspx" />
     <Content Include="Pages\ReflectPage.aspx" />
     <Content Include="Pages\ReflectUser.aspx" />
+    <Content Include="Pages\TaiLieu\113 TB TRUNG TÂM %28TRIỂN KHAI THÍ ĐIỂM KẾT QUẢ THỦ TỤC HÀNH CHÍNH TRONG NGÀY%29.pdf" />
+    <Content Include="Pages\TaiLieu\590-TB-UBND.pdf" />
+    <Content Include="Pages\TaiLieu\ChuyenDe14.pdf" />
+    <Content Include="Pages\TaiLieu\CS_TLBD_Chuyende9.pdf" />
+    <Content Include="Pages\TaiLieu\quyet-dinh-1855-qd-ubnd-uy-ban-nhan-dan-tinh-binh-thuan.pdf" />
+    <Content Include="Pages\TaiLieu\Thong_bao_so_20_TB_TW_ngay_08_9_2022.pdf" />
+    <Content Include="Pages\TaiLieu\thunha.pdf" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="JavaScript\Menu.js" />
+    <Content Include="JavaScript\StopRouteHandle.js" />
+    <Content Include="Pages\AddData.aspx" />
+    <Content Include="Pages\BusPage.aspx" />
+    <Content Include="Pages\BusRoutePage.aspx" />
+    <Content Include="Pages\BusStopPage.aspx" />
+    <Content Include="Pages\BusTypePage.aspx" />
+    <Content Include="Pages\DriverPage.aspx" />
+    <Content Include="Pages\ResponsibleUnitPage.aspx" />
+    <Content Include="Pages\RoutePage.aspx" />
+    <Content Include="Pages\SearchBusPage.aspx" />
+    <Content Include="Pages\ShowRouteOnMap.aspx" />
+    <Content Include="Pages\StopRoutePage.aspx" />
+    <Content Include="Pages\Test.aspx" />
     <Content Include="Pages\TrangThongtin.aspx" />
     <Content Include="Pages\TrangThongTinUser.aspx" />
+    <Content Include="Pages\UIBusRoute.aspx" />
     <Content Include="Pages\UIDetailPost.aspx" />
     <Content Include="Pages\UIHomePage.aspx" />
     <Content Include="Pages\UIPostDetailPage.aspx" />
+    <Content Include="Pages\UIRouteDetail.aspx" />
+    <Content Include="Pages\UIRouteDetail_BACKUP_1590.aspx" />
+    <Content Include="Pages\UIRouteDetail_BASE_1590.aspx" />
+    <Content Include="Pages\UIRouteDetail_LOCAL_1590.aspx" />
+    <Content Include="Pages\UIRouteDetail_REMOTE_1590.aspx" />
+    <Content Include="Pages\UISearchRoute.aspx" />
+    <Content Include="Pages\UISearchRouteByBusRoute.aspx" />
+    <Content Include="Pages\UISearchStopRoute.aspx" />
     <Content Include="Pages\XuLyViPham.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -173,6 +187,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="JavaScript\Map\map.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -195,6 +210,10 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SetImg\ic-busStop32.png" />
+    <Content Include="SetImg\ic-busStop.png" />
+    <Content Include="SetImg\ic-close-red.png" />
+    <Content Include="SetImg\ic-view.png" />
     <Content Include="SetImg\ic-car.png" />
     <Content Include="SetImg\ic-clock.png" />
     <Content Include="SetImg\ic-money.png" />
@@ -238,6 +257,45 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\BusStopModel.cs" />
+    <Compile Include="Model\InfoModel.cs" />
+    <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\RoutesModel.cs" />
+    <Compile Include="Pages\AddData.aspx.cs">
+      <DependentUpon>AddData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AddData.aspx.designer.cs">
+      <DependentUpon>AddData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BusPage.aspx.cs">
+      <DependentUpon>BusPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BusPage.aspx.designer.cs">
+      <DependentUpon>BusPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BusRoutePage.aspx.cs">
+      <DependentUpon>BusRoutePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BusRoutePage.aspx.designer.cs">
+      <DependentUpon>BusRoutePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BusStopPage.aspx.cs">
+      <DependentUpon>BusStopPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BusStopPage.aspx.designer.cs">
+      <DependentUpon>BusStopPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BusTypePage.aspx.cs">
+      <DependentUpon>BusTypePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BusTypePage.aspx.designer.cs">
+      <DependentUpon>BusTypePage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DocumentClientUI.aspx.cs">
       <DependentUpon>DocumentClientUI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -258,6 +316,13 @@
     </Compile>
     <Compile Include="Pages\DocumentUI.aspx.designer.cs">
       <DependentUpon>DocumentUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DriverPage.aspx.cs">
+      <DependentUpon>DriverPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DriverPage.aspx.designer.cs">
+      <DependentUpon>DriverPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\HomeXuLyViPham.aspx.cs">
       <DependentUpon>HomeXuLyViPham.aspx</DependentUpon>
@@ -301,6 +366,48 @@
     <Compile Include="Pages\ReflectUser.aspx.designer.cs">
       <DependentUpon>ReflectUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ResponsibleUnitPage.aspx.cs">
+      <DependentUpon>ResponsibleUnitPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ResponsibleUnitPage.aspx.designer.cs">
+      <DependentUpon>ResponsibleUnitPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RoutePage.aspx.cs">
+      <DependentUpon>RoutePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\RoutePage.aspx.designer.cs">
+      <DependentUpon>RoutePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchBusPage.aspx.cs">
+      <DependentUpon>SearchBusPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SearchBusPage.aspx.designer.cs">
+      <DependentUpon>SearchBusPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShowRouteOnMap.aspx.cs">
+      <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ShowRouteOnMap.aspx.designer.cs">
+      <DependentUpon>ShowRouteOnMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StopRoutePage.aspx.cs">
+      <DependentUpon>StopRoutePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\StopRoutePage.aspx.designer.cs">
+      <DependentUpon>StopRoutePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TrangThongtin.aspx.cs">
       <DependentUpon>TrangThongtin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -314,6 +421,13 @@
     </Compile>
     <Compile Include="Pages\TrangThongTinUser.aspx.designer.cs">
       <DependentUpon>TrangThongTinUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UIBusRoute.aspx.cs">
+      <DependentUpon>UIBusRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UIBusRoute.aspx.designer.cs">
+      <DependentUpon>UIBusRoute.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UIDetailPost.aspx.cs">
       <DependentUpon>UIDetailPost.aspx</DependentUpon>
@@ -335,6 +449,34 @@
     </Compile>
     <Compile Include="Pages\UIPostDetailPage.aspx.designer.cs">
       <DependentUpon>UIPostDetailPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UIRouteDetail.aspx.cs">
+      <DependentUpon>UIRouteDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UIRouteDetail.aspx.designer.cs">
+      <DependentUpon>UIRouteDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchRoute.aspx.cs">
+      <DependentUpon>UISearchRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchRoute.aspx.designer.cs">
+      <DependentUpon>UISearchRoute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchRouteByBusRoute.aspx.cs">
+      <DependentUpon>UISearchRouteByBusRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchRouteByBusRoute.aspx.designer.cs">
+      <DependentUpon>UISearchRouteByBusRoute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UISearchStopRoute.aspx.cs">
+      <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UISearchStopRoute.aspx.designer.cs">
+      <DependentUpon>UISearchStopRoute.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\XuLyViPham.aspx.cs">
       <DependentUpon>XuLyViPham.aspx</DependentUpon>
@@ -368,7 +510,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Pages\TaiLieu\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -404,7 +545,9 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
-  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>JavaScript\Map\map.js</ApplicationManifest>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />

@@ -18,5 +18,8 @@ namespace BusinessLayer.DBAccess
         public int RouteID { get; set; }
         public int EndPositionID { get; set; }
         public int Order { get; set; }
+    
+        public virtual BusStop BusStop { get; set; }
+        public virtual Route Route { get; set; }
     }
 }

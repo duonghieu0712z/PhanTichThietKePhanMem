@@ -8,7 +8,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.WebPages;
 using System.Data;
 using System.Threading.Tasks;
 using BusinessLayer.Functions;
@@ -17,7 +16,7 @@ namespace QuanlyThongtin.Pages
 {
     public partial class TrangThongtin : System.Web.UI.Page
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=SHORTTHU-PC;Initial Catalog=ROUTE_MANAGEMENT;Integrated Security=True");
+        SqlConnection conn = new SqlConnection(@"Data Source=.\sqlexpress;initial catalog=ROUTE_MANAGEMENT;integrated security=True;");
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -125,7 +124,7 @@ namespace QuanlyThongtin.Pages
         }
         protected void DroplistID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (DroplistID.SelectedValue.IsInt())
+            if (int.TryParse(DroplistID.SelectedValue,out int test))
             {
                 int ID = int.Parse(DroplistID.SelectedValue.ToString());
                 Information info = HRFunctions.Instance.GetInfo_FromID(ID);

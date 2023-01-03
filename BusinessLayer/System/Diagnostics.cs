@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BusinessLayer.System
+namespace BusinessLayer
 {
     internal class Diagnostics
     {

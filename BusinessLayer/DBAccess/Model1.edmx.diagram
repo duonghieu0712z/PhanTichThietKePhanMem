@@ -4,30 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d681158aa02f4a058e2b3dc2df6ab94e" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Bus" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusRoute" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusStop" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusType" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Document" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.DocumentType" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Driver" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Driver_Bus" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.HandlingViolation" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Information" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Introduction" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.MENU" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Reflect" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.ReflectType" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.ResponsibleUnit" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Route" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Route1" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Stop_Route" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.sysdiagram" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.POST" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.TypePost" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Document_Type" ManuallyRouted="false" />
-        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Reflect_Type" ManuallyRouted="false" />
+      <Diagram DiagramId="60bdf641ee79453589ad9dd91bf133bf" Name="Diagram1">
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Bus" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusRoute" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusStop" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.BusType" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Document" Width="1.5" PointX="11.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.DocumentType" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Driver" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Driver_Bus" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.HandlingViolation" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.MENU" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Reflect" Width="1.5" PointX="5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.ReflectType" Width="1.5" PointX="2.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.ResponsibleUnit" Width="1.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Route" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Route1" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Stop_Route" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.TypePost" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusRoutes" ManuallyRouted="false" />
+        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop" ManuallyRouted="false" />
+        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Route_BusStop1" ManuallyRouted="false" />
+        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_BusStop" ManuallyRouted="false" />
+        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Document_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Reflect_ReflectType" ManuallyRouted="false" />
+        <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_Route" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.POST" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Information" Width="1.5" PointX="0.75" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

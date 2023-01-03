@@ -24,7 +24,7 @@ namespace QuanlyThongtin.Pages
 
         protected void btnFind_Click(object sender, EventArgs e)
         {
-            informations = HRFunctions.Instance.SearchByName(txtFind.Text.Trim());
+            informations = HRFunctions.Instance.SearchByNameInformation(txtFind.Text.Trim());
             if (txtFind.Text == "")
             {
                 informations = HRFunctions.Instance.SelectAll();
