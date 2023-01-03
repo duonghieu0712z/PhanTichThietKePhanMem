@@ -107,13 +107,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%foreach (var item in ls)
+                                            <%foreach (var item in ls) /*Load ds tài xế*/
                                                 {
                                                     ls1 = BusinessLayer.Functions.HRFunctions.Instance.Select_BusOfDriver_ID(item.DriverID);%>
                                             <tr>
                                                 <td style="width: 40px; text-align: center">
                                                     <input name='cbID' value='<%=item.DriverID %>' type='checkbox' /></td>
                                                 <td style="width: 50px">
+                                                    <%--Update--%>
                                                     <a style="text-align: center" href="?idEdit=<%=item.DriverID %>" class="btn btn-primary">Edit</a>
                                                 </td>
                                                 <td><%=item.FullName %></td>
