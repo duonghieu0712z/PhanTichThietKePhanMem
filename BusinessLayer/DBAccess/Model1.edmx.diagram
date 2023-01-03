@@ -30,7 +30,7 @@
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Reflect_ReflectType" ManuallyRouted="false" />
         <AssociationConnector Association="ROUTE_MANAGEMENTModel.FK_Stop_Route_Route" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.POST" Width="1.5" PointX="10.375" PointY="10.75" />
-        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Information" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ROUTE_MANAGEMENTModel.Information" Width="1.5" PointX="2.75" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
