@@ -1,15 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TrangThongtin.aspx.cs" Inherits="QuanlyThongtin.Pages.TrangThongtin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="TrangThongtin.aspx.cs" Inherits="QuanlyThongtin.Pages.TrangThongtin" validateRequest="false" %>
 
 
-<!DOCTYPE html>
+<%--<!DOCTYPE html>--%>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%--<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Admin Thông Tin</title>
     <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/super-build/ckeditor.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+</head>--%>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/super-build/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
     #header {
         margin: 0px 20px;
@@ -32,7 +35,7 @@
     }
 
     #functions {
-        max-width: 960px;
+        max-width: 550px;
         padding: 20px;
         margin: 20px 20px 20px 10px;
         border-radius: 10px;
@@ -58,7 +61,7 @@
 
     #fields1 {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
         margin-bottom: 10px;
     }
@@ -99,8 +102,7 @@
         text-overflow: ellipsis;
     }
 </style>
-<body class="body-content">
-    <form id="form1" runat="server">
+    <%--<form id="form1" runat="server">--%>
         <br />
         <div id="header">
             <h1>Admin</h1>
@@ -114,7 +116,7 @@
         <div id="contents">
             <div id="table">
                 <asp:GridView ID="GridView1" Style="white-space: nowrap; overflow: auto; display: block; max-width: 500px"
-                    class="table table-striped table-hover table-bordered" runat="server" Width="960px" Font-Bold="False"
+                    class="table table-striped table-hover table-bordered" runat="server" Width="700px" Font-Bold="False"
                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows" AllowPaging="True" OnPageIndexChanging="datagrid_PageIndexChanging" HorizontalAlign="Center" OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
@@ -139,18 +141,18 @@
                     <div id="fields1">
                         <div>
                             <label for="DroplistID">ID</label>
-                            <asp:DropDownList ID="DroplistID" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DroplistID_SelectedIndexChanged" Width="240px" Height="34px">
+                            <asp:DropDownList ID="DroplistID" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DroplistID_SelectedIndexChanged" Width="500px" Height="34px">
                             </asp:DropDownList>
                         </div>
 
                         <div>
                             <label for="txtTitle">Tiêu đề</label>
-                            <asp:TextBox ID="txtTitle" class="form-control" runat="server" Width="240px"></asp:TextBox>
+                            <asp:TextBox ID="txtTitle" class="form-control" runat="server" Width="500px"></asp:TextBox>
                         </div>
 
                         <div>
                             <label for="txtDateSubmit">Ngày giờ</label>
-                            <asp:TextBox ID="txtDateSubmit" class="form-control" runat="server" Width="240px" TextMode="DateTimeLocal"></asp:TextBox>
+                            <asp:TextBox ID="txtDateSubmit" class="form-control" runat="server" Width="500px" TextMode="DateTimeLocal"></asp:TextBox>
                         </div>
                     </div>
 
@@ -172,7 +174,7 @@
                     <asp:Button ID="btnXoaTatCa" class="btn btn-danger" runat="server" Height="30px" Width="100px" Text="Xoá tất cả" OnClick="btnXoaTatCa_Click" />
                 </div>
                 <script>
-                    CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
+                    CKEDITOR.ClassicEditor.create(document.getElementById("MainContent_editor"), {
                         // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
                         toolbar: {
                             items: [
@@ -314,7 +316,7 @@
                     });
                 </script>
                 <script>
-                    CKEDITOR.ClassicEditor.create(document.getElementById("editor2"), {
+                    CKEDITOR.ClassicEditor.create(document.getElementById("MainContent_editor2"), {
                         // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
                         toolbar: {
                             items: [
@@ -457,6 +459,6 @@
                 </script>
             </div>
         </div>
-    </form>
-</body>
-</html>
+    <%--</form>--%>
+</asp:Content>
+<%--</html>--%>
